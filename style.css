@@ -1,0 +1,50 @@
+p.caption {
+  color: #777;
+  margin-top: 10px;
+}
+p code {
+  white-space: inherit;
+}
+pre {
+  word-break: normal;
+  word-wrap: normal;
+}
+pre code {
+  white-space: inherit;
+}
+
+.explanation {
+  background-color: #FDEBD0;
+  padding: 10px;
+  text-align: center;
+  border-style: double;
+}
+
+.more_info {
+  background-color: #D0FDDC;
+  padding: 10px;
+  text-align: left;
+  border-style: double;
+}
+
+.notice {
+  background-color: #4c2b5c;
+  color: #FFFFFF;
+  padding: 10px;
+  text-align: center;
+  border-style: solid;
+}
+
+.steps {
+  background-color: #FFFFFF;
+  padding: 10px;
+  text-align: left;
+  border-style: solid;
+}
+
+.challenge {
+  background-color: #D0FDDC;
+  padding: 10px;
+  text-align: left;
+  border-style: double;
+}

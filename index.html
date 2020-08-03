@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>ESOC 2014 Introduction to Data Science</title>
+  <meta name="description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="ESOC 2014 Introduction to Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="ESOC 2014 Introduction to Data Science" />
+  
+  <meta name="twitter:description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  
+
+<meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu   The University of Arizona sits on the homelands of the Tohono O’odham and Yaqui, whose care and keeping of these lands allows us to be here today." />
+
+
+<meta name="date" content="2020-08-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="whats-ds.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ESOC 214 Introduction to Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-few-words-on-r-and-coding"><i class="fa fa-check"></i><b>1.2</b> A Few Words on R and Coding</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#a-few-words-on-technology"><i class="fa fa-check"></i><b>1.3</b> A Few Words on Technology</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i><b>1.4</b> Readings</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#assignments-with-grade-breakdown"><i class="fa fa-check"></i><b>1.5</b> Assignments with Grade Breakdown</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#requirements-for-the-course"><i class="fa fa-check"></i><b>1.6</b> Requirements for the Course</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#course-schedule"><i class="fa fa-check"></i><b>1.7</b> Course Schedule</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#final-project"><i class="fa fa-check"></i><b>1.8</b> Final Project</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#honors-students-requirements"><i class="fa fa-check"></i><b>1.9</b> Honors Students’ Requirements</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#student-accommodations"><i class="fa fa-check"></i><b>1.10</b> Student Accommodations</a></li>
+<li class="chapter" data-level="1.11" data-path="index.html"><a href="index.html#attendance-due-dates-and-missing-work"><i class="fa fa-check"></i><b>1.11</b> Attendance, Due Dates, and Missing Work</a></li>
+<li class="chapter" data-level="1.12" data-path="index.html"><a href="index.html#course-conduct-and-campus-policies"><i class="fa fa-check"></i><b>1.12</b> Course Conduct and Campus Policies</a></li>
+<li class="chapter" data-level="1.13" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>1.13</b> Code of Conduct</a><ul>
+<li class="chapter" data-level="1.13.1" data-path="index.html"><a href="index.html#our-pledge"><i class="fa fa-check"></i><b>1.13.1</b> Our Pledge</a></li>
+<li class="chapter" data-level="1.13.2" data-path="index.html"><a href="index.html#our-standards"><i class="fa fa-check"></i><b>1.13.2</b> Our Standards</a></li>
+<li class="chapter" data-level="1.13.3" data-path="index.html"><a href="index.html#enforcement"><i class="fa fa-check"></i><b>1.13.3</b> Enforcement</a></li>
+<li class="chapter" data-level="1.13.4" data-path="index.html"><a href="index.html#attribution"><i class="fa fa-check"></i><b>1.13.4</b> Attribution</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="whats-ds.html"><a href="whats-ds.html"><i class="fa fa-check"></i><b>2</b> What’s data science?</a><ul>
+<li class="chapter" data-level="2.1" data-path="whats-ds.html"><a href="whats-ds.html#before-class-1"><i class="fa fa-check"></i><b>2.1</b> Before class #1</a></li>
+<li class="chapter" data-level="2.2" data-path="whats-ds.html"><a href="whats-ds.html#whats-data-science"><i class="fa fa-check"></i><b>2.2</b> What’s data science?</a></li>
+<li class="chapter" data-level="2.3" data-path="whats-ds.html"><a href="whats-ds.html#what-does-a-data-scientist-do"><i class="fa fa-check"></i><b>2.3</b> What does a data scientist do?</a></li>
+<li class="chapter" data-level="2.4" data-path="whats-ds.html"><a href="whats-ds.html#data-science-workflow"><i class="fa fa-check"></i><b>2.4</b> Data Science Workflow</a></li>
+<li class="chapter" data-level="2.5" data-path="whats-ds.html"><a href="whats-ds.html#before-class-2"><i class="fa fa-check"></i><b>2.5</b> Before class #2</a></li>
+<li class="chapter" data-level="2.6" data-path="whats-ds.html"><a href="whats-ds.html#whats-data"><i class="fa fa-check"></i><b>2.6</b> What’s data?</a></li>
+<li class="chapter" data-level="2.7" data-path="whats-ds.html"><a href="whats-ds.html#what-does-data-analysis-look-like"><i class="fa fa-check"></i><b>2.7</b> What does data analysis look like?</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>3</b> Exploring our IDE (Rstudio)</a><ul>
+<li class="chapter" data-level="3.1" data-path="install-r.html"><a href="install-r.html#before-class"><i class="fa fa-check"></i><b>3.1</b> Before class</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="install-r.html"><a href="install-r.html#ive-never-installed-r-and-rstudio-in-my-computer-or-im-not-sure-i-have-r-and-rstudio-installed-in-my-computer"><i class="fa fa-check"></i><b>3.1.1</b> I’ve never installed R and RStudio in my computer OR I’m not sure I have R and RStudio installed in my computer</a></li>
+<li class="chapter" data-level="3.1.2" data-path="install-r.html"><a href="install-r.html#i-already-have-r-and-rstudio-installed"><i class="fa fa-check"></i><b>3.1.2</b> I already have R and RStudio installed</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="install-r.html"><a href="install-r.html#create-an-r-project"><i class="fa fa-check"></i><b>3.2</b> Create an R Project</a></li>
+<li class="chapter" data-level="3.3" data-path="install-r.html"><a href="install-r.html#operations-and-objects"><i class="fa fa-check"></i><b>3.3</b> Operations and Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#before-class-3"><i class="fa fa-check"></i><b>4.1</b> Before Class</a></li>
+<li class="chapter" data-level="4.2" data-path="r-basics.html"><a href="r-basics.html#dataframes"><i class="fa fa-check"></i><b>4.2</b> Dataframes</a></li>
+<li class="chapter" data-level="4.3" data-path="r-basics.html"><a href="r-basics.html#slicing-you-dataframe"><i class="fa fa-check"></i><b>4.3</b> Slicing you dataframe</a></li>
+<li class="chapter" data-level="4.4" data-path="r-basics.html"><a href="r-basics.html#adding-new-variables-i.e.-columns-to-your-dataframe"><i class="fa fa-check"></i><b>4.4</b> Adding new variables (i.e., columns) to your dataframe</a></li>
+<li class="chapter" data-level="4.5" data-path="r-basics.html"><a href="r-basics.html#descriptive-stats-on-dataframes"><i class="fa fa-check"></i><b>4.5</b> Descriptive stats on dataframes</a></li>
+<li class="chapter" data-level="4.6" data-path="r-basics.html"><a href="r-basics.html#note-on-coding-style"><i class="fa fa-check"></i><b>4.6</b> Note on coding style</a></li>
+<li class="chapter" data-level="4.7" data-path="r-basics.html"><a href="r-basics.html#organizing-data-science-projects"><i class="fa fa-check"></i><b>4.7</b> Organizing Data Science Projects</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5</b> Tidyverse</a><ul>
+<li class="chapter" data-level="5.1" data-path="tidyverse.html"><a href="tidyverse.html#before-class-4"><i class="fa fa-check"></i><b>5.1</b> Before Class</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html#installing-packages"><i class="fa fa-check"></i><b>5.2</b> Installing Packages</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyverse.html"><a href="tidyverse.html#load-data-with-tidyverse"><i class="fa fa-check"></i><b>5.3</b> Load Data with Tidyverse</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-tidying.html"><a href="data-tidying.html"><i class="fa fa-check"></i><b>6</b> Data Tidying</a></li>
+<li class="chapter" data-level="7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>7</b> Descriptive Statistics</a><ul>
+<li class="chapter" data-level="7.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#before-class-5"><i class="fa fa-check"></i><b>7.1</b> Before class</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a></li>
+<li class="chapter" data-level="9" data-path="data-case-study-1.html"><a href="data-case-study-1.html"><i class="fa fa-check"></i><b>9</b> Data Case Study 1</a></li>
+<li class="chapter" data-level="10" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>10</b> Data Case Study 2</a></li>
+<li class="chapter" data-level="11" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>11</b> Getting Data</a></li>
+<li class="chapter" data-level="12" data-path="data-case-study-3.html"><a href="data-case-study-3.html"><i class="fa fa-check"></i><b>12</b> Data Case Study 3</a></li>
+<li class="chapter" data-level="13" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>13</b> Markdown</a></li>
+<li class="chapter" data-level="14" data-path="data-case-study-4.html"><a href="data-case-study-4.html"><i class="fa fa-check"></i><b>14</b> Data Case Study 4</a></li>
+<li class="chapter" data-level="15" data-path="analysis-reporting.html"><a href="analysis-reporting.html"><i class="fa fa-check"></i><b>15</b> Analysis Reporting</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ESOC 2014 Introduction to Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">ESOC 2014 Introduction to Data Science</h1>
+<p class="author"><em>Adriana Picoral, PhD (she/her) <br /><a href="mailto:adrianaps@email.arizona.edu" class="email">adrianaps@email.arizona.edu</a> <br /><br />The University of Arizona sits on the homelands of the Tohono O’odham and Yaqui, whose care and keeping of these lands allows us to be here today.</em></p>
+<p class="date"><em>2020-08-03</em></p>
+</div>
+<div id="syllabus" class="section level1">
+<h1><span class="header-section-number">Module 1</span> Syllabus</h1>
+<div id="more_info" class="more_info">
+<p>Tuesday &amp; Thursday 12:30pm - 1:45pm</p>
+<ul>
+<li>Final Exam Date: December 16 (Wednesday) 1:00pm - 3:00pm</li>
+</ul>
+<p>Tuesday &amp; Thursday 2:00pm - 3:15pm</p>
+<ul>
+<li>Final Exam Date: December 14 (Monday) 3:30pm - 5:30pm</li>
+</ul>
+<p><strong>Office Hours/Free help session/Work time</strong></p>
+<ul>
+<li>Tuesday 9:30am - 11:00am &amp; Wednesday 1:00pm - 2:30pm</li>
+</ul>
+</div>
+<div id="course-description" class="section level2">
+<h2><span class="header-section-number">1.1</span> Course Description</h2>
+<p>This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2.</p>
+<p><strong>Upon completion of this course, students should be able to:</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Understand data science as a process</p></li>
+<li><p>Think critically about how data are stored, used, managed, analyzed, and presented</p></li>
+<li><p>Engage in computational thinking and modeling</p></li>
+<li><p>Experiment with skills required for large-scale data analysis</p></li>
+</ol>
+<p>This course is designed to be interactive and hands-on.</p>
+</div>
+<div id="a-few-words-on-r-and-coding" class="section level2">
+<h2><span class="header-section-number">1.2</span> A Few Words on R and Coding</h2>
+<p>This course will be based around the programming language R which we will use within the integrated development environment (IDE) R Studio. For many of you this will be the first time programming, <strong>AND THAT’S OK! This course is intended for beginners, and we will actively focus on building up your R skills over the course of the semester</strong>. Of course, there will still be challenges along the way, but you will rapidly figure out how to solve your own problems as well as to apply your current knowledge to new and exciting questions. If you are struggling I highly encourage you to take advantage of my free help sessions (see times above). Of course, Google is always a super helpful way to get insight into coding problems. Our class Slack channel will also be there so you can help each other out.</p>
+<p>I also want to note that I highly encourage you to help each other, as data scientists are rarely working in isolation. <strong>This does not mean you can directly share code associated with an assignment (this is a violation of UA’s Code of Academic Integrity)</strong>. What it does mean is that it is helpful to talk to each other about problems you encountered, resources you found, or provide helpful tips.</p>
+<p>Learning to code nowadays is much easier, since a simple Google search will research in a huge amount of code that can solve any number of problems. You may use online resources (e.g., StackOverflow), but we will go over the syntax needed to solve all assignments in class. If you do use any external resources, you must explicitly cite where the code was obtained in your comments (add a direct link to the resource). I’ll be checking for recycled code, and any code you re-used without a proper citation will be treated as plagiarism.</p>
+</div>
+<div id="a-few-words-on-technology" class="section level2">
+<h2><span class="header-section-number">1.3</span> A Few Words on Technology</h2>
+<ol style="list-style-type: decimal">
+<li><p>YOU MUST HAVE ACCESS TO A COMPUTER YOU CAN CODE WITH IN EVERY CLASS! We will be actively coding in R on a daily basis, and not being able to follow along will severely hamper your learning. If you do not have a laptop or yours had troubles at some point during the semester, the library offers fast and free rentals of both macs and PCs: <a href="https://new.library.arizona.edu/tech/borrow" class="uri">https://new.library.arizona.edu/tech/borrow</a>. You can also take advantage of the multiple computer labs on campus: <a href="https://it.arizona.edu/service/oscr-computer-labs" class="uri">https://it.arizona.edu/service/oscr-computer-labs</a></p></li>
+<li><p>You will have access to and will be required to retrieve all course materials from the course page on GitHub.</p></li>
+<li><p>You will need to have R and R Studio installed and functioning by the second day of class. We will go over what these programs are and how to install them in the first week of class.</p></li>
+<li><p>Slack participation is critical! If you are having a coding issue, first try and solve it on your own. If you’re still struggling, then post it to our Slack. Essentially, if you are about to email me with a homework/class/coding question, post it to Slack first. I’m not doing this to save me time, but rather because virtually all programmers/coders solve problems by helping each other, and thus I want you to do the same! Please <a href="https://join.slack.com/t/ischool-esoc214/shared_invite/zt-gbmjw9oz-8hcl5iuktuYYdsamAkPVQA">register for our Slack channel</a>.</p></li>
+</ol>
+</div>
+<div id="readings" class="section level2">
+<h2><span class="header-section-number">1.4</span> Readings</h2>
+<p>There is no required textbook for this class. A few times we will use the book “R for Data Science” by Hadley Wickham and Garret Grolemund. This book covers how to create full data science pipelines in R (more than we’ll be doing here) and is available free here: <a href="https://r4ds.had.co.nz/" class="uri">https://r4ds.had.co.nz/</a>.</p>
+<p>Aside from this book, there will be other required readings. I will link these readings for you on this bookdown. Some come from academic journals, and others are news articles that appear in many of the newspapers you read in print and online. For each reading, a word count and an approximate reading time will be provided. Please adjust these approximations to your own reading time, so you can plan accordingly.</p>
+<p>It is crucial that you read all assigned readings to do well in this class. Anyone who has not done the reading will simply not be able to participate.</p>
+</div>
+<div id="assignments-with-grade-breakdown" class="section level2">
+<h2><span class="header-section-number">1.5</span> Assignments with Grade Breakdown</h2>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Activity</th>
+<th>Total Percent</th>
+<th>Unit Percent</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Final Project</td>
+<td>30%</td>
+<td>5% Project Proposal <br/> 15% Write-up <br/> 10% Oral presentation</td>
+<td>This will be a full data science project, complete with formal write-up and presentation to the class</td>
+</tr>
+<tr class="even">
+<td>Midterm</td>
+<td>20%</td>
+<td>20%</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Sharing Code (10)</td>
+<td>10%</td>
+<td>1%</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Data Challenges (9)</td>
+<td>28%</td>
+<td>3.5%</td>
+<td>Lowest will be dropped. All assignments must completed by the date and time provided in the assignment instructions</td>
+</tr>
+<tr class="odd">
+<td>Class Participation</td>
+<td>10%</td>
+<td></td>
+<td>Participation includes both in-class and message board questions, engagement. To get full credit I should see your name or hear you in class once a week.</td>
+</tr>
+<tr class="even">
+<td>Intro and exit surveys</td>
+<td>2%</td>
+<td>1%</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Late assignments within 24 hours of due date and time will get a 20% grade penalty. Assignments submitted 24 hours after the due date and time will not get any credit.</p>
+<p>If you are unable to complete an assignment on the due date due to an illness or another personal problem, please contact me as soon as possible so we can talk about ways to help you complete that assignment.</p>
+<p>Grade Distribution:</p>
+<p>90-100% = A “exemplary, far beyond reqs/expectations”</p>
+<p>80-89% = B “exceeds requirements/expectations”</p>
+<p>70-79% = C “meets requirements/expectations”</p>
+<p>60-69% = D “falls short of requirements/expectations”</p>
+<p>&lt; 60% = E “repeat of course needed”</p>
+<p><strong>A Note About Final Grades</strong></p>
+<p>I do not modify final grades. I have designed this course to be highly passable for the new learner assuming they do the modest homework assignments, come to class, and participate. I’m not a difficult grader, and I build in extensive opportunities for ‘easy points.’ Given all this, please do not try and ask for a higher grade when end of semester rolls around.</p>
+</div>
+<div id="requirements-for-the-course" class="section level2">
+<h2><span class="header-section-number">1.6</span> Requirements for the Course</h2>
+<p>To succeed in this course, 2-3 hours of study time per hour of formal class time (or per unit) are required. This means that in addition to our three hours of formal class meeting time, 6-9 hours a week of study time are needed in order to meet course expectations. These hours should be spent on reading texts, working on your data challenges, researching for new information, or thinking about course content.</p>
+<p><strong>It’s important to mention that each lesson builds upon the previous, and thus staying on top of the material is critical to your success.</strong> As mentioned before, this class is built specifically for beginners, and plenty of students who have never coded before have done extremely well. But, the reason they did is that they came to class consistently, asked questions when they had an issue, and completed their data challenges. If you miss a class, come to office hours to make up what you missed. I will do everything possible to make sure you succeeded assuming you’re willing to put in the work!</p>
+</div>
+<div id="course-schedule" class="section level2">
+<h2><span class="header-section-number">1.7</span> Course Schedule</h2>
+<p>Here is the tentative course schedule. <strong>Data challenges are always due before the start of class on the associated due date</strong>. There will sometimes be other short readings and assignments. These will be posted on D2L directly after the class period in which they are assigned.</p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Week</th>
+<th>Date</th>
+<th>Goals</th>
+<th>Assignment</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Week 01</td>
+<td>2020-08-25</td>
+<td>Introductions <br/> Syllabus</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-08-27</td>
+<td>Intro do Data Science <br/> Data Science workflow</td>
+<td>Reading: <a href="readings/module2_what_is_data_science.pdf">What’s data science?</a> (20 min) <br/> YouTube video <a href="https://youtu.be/6OFm7YcunWc?t=617">Angry Hiring Manager Panel</a> (6.5 min) <br/> <a href="https://forms.gle/NaqrC87cB8xh6Sdz8">Survey 1</a> (10 min)</td>
+</tr>
+<tr class="odd">
+<td>Week 02</td>
+<td>2020-09-01</td>
+<td>What’s Data? What does data analysis look like? <br/> IDE overview <br/> How and Why to Start a Project <br/> Basics of R</td>
+<td>Reading: <a href="readings/module2_eds_leek_whatsdatascience.pdf">Data Science examples</a> (8 min), <a href="readings/module2_modern_data_science_data_intake.pdf">Data Intake</a> (12 min) <br/> <a href="install-r.html#install-r">Install R and RStudio</a></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-09-03</td>
+<td>Basics of R <br/> - basic operations <br/> - objects <br/> - data types</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Week 03</td>
+<td>2020-09-08</td>
+<td>Basics of R <br/> - data frames <br/> - inspecting data <br/> - slicing your data</td>
+<td>Read <a href="http://varianceexplained.org/programming/bad-code/">A Million Lines of Bad Code</a> (549 words, 5 min)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-09-10</td>
+<td>Submitting assignments through GitHub</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Week 04</td>
+<td>2020-09-15</td>
+<td>Installing R Packages <br/> Intro to Tidyverse</td>
+<td>Read <a href="https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/">Advice to Young (and Old) Programmers: A Conversation with Hadley Wickham</a> (2,599 words, 10 min)</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-09-17</td>
+<td>Tidyverse</td>
+<td>Data Challenge 1</td>
+</tr>
+<tr class="odd">
+<td>Week 05</td>
+<td>2020-09-22</td>
+<td>Data Tidying</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-09-24</td>
+<td>Data Tidying</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Week 06</td>
+<td>2020-09-29</td>
+<td>Intro to Descriptive Statistics</td>
+<td>Data Challenge 2</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-10-01</td>
+<td>Descriptive Statistics</td>
+<td>Read <a href="readings/module7_eds_whats_stats.pdf">What is Statistics Good For?</a> (398 words, 3 min)</td>
+</tr>
+<tr class="odd">
+<td>Week 07</td>
+<td>2020-10-06</td>
+<td>Intro to Data Visualization</td>
+<td>Data Challenge 3</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-10-08</td>
+<td>Data Visualization</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Week 08</td>
+<td>2020-10-13</td>
+<td>MIDTERM</td>
+<td>Deadline to meet about final project</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-10-15</td>
+<td>Data analysis case study 1</td>
+<td>Data Challenge 4</td>
+</tr>
+<tr class="odd">
+<td>Week 09</td>
+<td>2020-10-20</td>
+<td>Data analysis case study 1</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-10-22</td>
+<td>Data analysis case study 2</td>
+<td>Data Challenge 5</td>
+</tr>
+<tr class="odd">
+<td>Week 10</td>
+<td>2020-10-27</td>
+<td>Data analysis case study 2</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-10-29</td>
+<td>Getting Data</td>
+<td>Data Challenge 6</td>
+</tr>
+<tr class="odd">
+<td>Week 11</td>
+<td>2020-11-03</td>
+<td>Getting Data</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-11-05</td>
+<td>Data analysis case study 3</td>
+<td>Project Proposal</td>
+</tr>
+<tr class="odd">
+<td>Week 12</td>
+<td>2020-11-10</td>
+<td>Data analysis case study 3</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-11-12</td>
+<td>Markdown</td>
+<td>Data Challenge 7</td>
+</tr>
+<tr class="odd">
+<td>Week 13</td>
+<td>2020-11-17</td>
+<td>Markdown</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-11-19</td>
+<td>Full data analysis case study 4</td>
+<td>Data Challenge 8</td>
+</tr>
+<tr class="odd">
+<td>Week 14</td>
+<td>2020-11-24</td>
+<td>Full data analysis case study 4</td>
+<td></td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-11-26</td>
+<td>Happy Thanksgiving! 🌽🦃🏡</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Week 15</td>
+<td>2020-12-01</td>
+<td>Written and Oral Communication in Data Science</td>
+<td>Data Challenge 9</td>
+</tr>
+<tr class="even">
+<td></td>
+<td>2020-12-03</td>
+<td>Written and Oral Communication in Data Science</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Week 16</td>
+<td>2020-12-08</td>
+<td>Preparing for Final Presentations <br/> Wrap-up</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>For more information about dates including holidays, check <a href="https://catalog.arizona.edu/calendar/2020-2021-academic-calendar">UArizona’s Academic Calendar</a>.</p>
+<div id="explanation" class="explanation">
+<p><strong>Why am I using YYYY-MM-DD date format?</strong></p>
+<p><img src="images/iso_8601_2x.png" width="392" /></p>
+<p><a href="https://xkcd.com/1179/">ISO 8601 – xkcd</a></p>
+</div>
+</div>
+<div id="final-project" class="section level2">
+<h2><span class="header-section-number">1.8</span> Final Project</h2>
+<p>There is a final project in place of a final exam for this class. You will find your own dataset that helps you answer a question that you’re interested in. You’ll bring these data into R, explore it, clean it, make features, and run an analysis that allows you to answer your question. You will be graded on the completed R script as well as your presentation of the data.</p>
+<p>The presentation will last 3-4 minutes, and will take place on the day of the final exam (in place of the exam). University policy on final examinations can be found here: <a href="https://www.registrar.arizona.edu/courses/final-examination-regulations-and-information" class="uri">https://www.registrar.arizona.edu/courses/final-examination-regulations-and-information</a></p>
+</div>
+<div id="honors-students-requirements" class="section level2">
+<h2><span class="header-section-number">1.9</span> Honors Students’ Requirements</h2>
+<p>Students wishing to take this course for Honors Credit should email me to set up an appointment to discuss the terms of the contact and to sign the Honors Course Contract Request Form. The form is available at <a href="https://www.honors.arizona.edu/sample-contracts" class="uri">https://www.honors.arizona.edu/sample-contracts</a>. Students earning credit with the University of Arizona Honors College will be held to the following enhancements:</p>
+<ol style="list-style-type: decimal">
+<li><p>Honors students will be required to create an academic poster based on their final project, and then present this poster at the iSchool’s iShowcase at the end of the semester. Creating a poster will require extra work to ensure clarity of logic, having a well-defined question and approach, and the creation of quality visuals. Guidelines on how to create an engaging academic poster can be found here: <a href="https://guides.nyu.edu/posters" class="uri">https://guides.nyu.edu/posters</a>. Note: The iShowcase is at the end of the semester, but before finals when the regular class will have the project due. Thus, you will have to be ahead of schedule a bit to meet your honors requirement.</p></li>
+<li><p>Honors students will also be expected to informally ‘journal’ about the course each week. Each week, that is, students will be required to write a five-sentence paragraph reflecting on some issue or moment that has arisen in our readings or discussions (e.g., the problem with particular terms or some philosophical or practical dilemma). Ultimately, if offering a paragraph each week, honors students will have written roughly 15 reflective paragraphs for the semester. This must be emailed directly to me by Sunday 5pm each week.</p></li>
+</ol>
+</div>
+<div id="student-accommodations" class="section level2">
+<h2><span class="header-section-number">1.10</span> Student Accommodations</h2>
+<p>It is the University’s goal that learning experiences be as accessible as possible. If you anticipate or experience physical or academic barriers based on disability or pregnancy, please let me know immediately so that we can discuss options. You are also welcome to contact Disability Resources (520-621-3268) to establish reasonable accommodations. For additional information on Disability Resources and reasonable accommodations, please visit <a href="http://drc.arizona.edu/" class="uri">http://drc.arizona.edu/</a>.</p>
+</div>
+<div id="attendance-due-dates-and-missing-work" class="section level2">
+<h2><span class="header-section-number">1.11</span> Attendance, Due Dates, and Missing Work</h2>
+<ol style="list-style-type: decimal">
+<li>Missed class assignments or exams cannot be made up without a well-documented, verifiable, excuse (for example, a physician’s medical excuse). Indeed, due dates are firm, and late work will be accepted only with a verifiable and valid excuse.</li>
+<li>The UA policy regarding absences for any sincerely held religious belief, observance or practice will be accommodated where reasonable, <a href="http://policy.arizona.edu/human-resources/religious-accommodation-policy" class="uri">http://policy.arizona.edu/human-resources/religious-accommodation-policy</a>.</li>
+<li>Absences pre-approved by the UA Dean of Students (or Dean designee) will be honored. <a href="https://deanofstudents.arizona.edu/absences" class="uri">https://deanofstudents.arizona.edu/absences</a><br />
+</li>
+<li>Arriving late and leaving early is extremely disruptive to others in the class. Please avoid this kind of disruption.</li>
+<li>The UA’s policy concerning Class Attendance and Administrative Drops is available at: <a href="https://catalog.arizona.edu/policy/class-attendance-participation-and-administrative-drop" class="uri">https://catalog.arizona.edu/policy/class-attendance-participation-and-administrative-drop</a></li>
+</ol>
+</div>
+<div id="course-conduct-and-campus-policies" class="section level2">
+<h2><span class="header-section-number">1.12</span> Course Conduct and Campus Policies</h2>
+<p>It’s important to be familiar with all campus policies.</p>
+<ol style="list-style-type: decimal">
+<li><p>Students are encouraged to share intellectual views and discuss freely the principles and applications of course materials. However, graded work/exercises must be the product of independent effort unless otherwise instructed. Students are expected to adhere to the UA Code of Academic Integrity as described in the UA General Catalog. See: <a href="http://deanofstudents.arizona.edu/academic-integrity/students/academic-integrity" class="uri">http://deanofstudents.arizona.edu/academic-integrity/students/academic-integrity</a>.</p></li>
+<li><p>It is the University’s goal that learning experiences be as accessible as possible. If you anticipate or experience physical or academic barriers based on disability or pregnancy, please let me know immediately so that we can discuss options. You are also welcome to contact Disability Resources (520-621-3268) to establish reasonable accommodations. For additional information on Disability Resources and reasonable accommodations, please visit <a href="http://drc.arizona.edu/" class="uri">http://drc.arizona.edu/</a>.</p></li>
+<li><p>The UA Threatening Behavior by Students Policy prohibits threats of physical harm to any member of the University community, including to oneself. See <a href="http://policy.arizona.edu/education-and-student-affairs/threatening-behavior-students" class="uri">http://policy.arizona.edu/education-and-student-affairs/threatening-behavior-students</a>.</p></li>
+<li><p>All student records will be managed and held confidentially. <a href="http://www.registrar.arizona.edu/personal-information/family-educational-rights-and-privacy-act-1974-ferpa?topic=ferpa" class="uri">http://www.registrar.arizona.edu/personal-information/family-educational-rights-and-privacy-act-1974-ferpa?topic=ferpa</a></p></li>
+<li><p>The University is committed to creating and maintaining an environment free of discrimination; see <a href="http://policy.arizona.edu/human-resources/nondiscrimination-and-anti-harassment-policy" class="uri">http://policy.arizona.edu/human-resources/nondiscrimination-and-anti-harassment-policy</a>.</p></li>
+<li><p>Information contained in this syllabus, other than the grade and absence policy, may be subject to change without advance notice as deemed appropriate by the instructor.</p></li>
+</ol>
+</div>
+<div id="code-of-conduct" class="section level2">
+<h2><span class="header-section-number">1.13</span> Code of Conduct</h2>
+<p>This code of conduct is based on <a href="https://docs.github.com/en/github/site-policy/github-community-guidelines">GitHub Community Guidelines</a>. One of the goals of this course is to get you familiar with the data science community, and how people work and learn better together. This is a community we build together, and we need everybody’s help to make it better each day.</p>
+<div id="our-pledge" class="section level3">
+<h3><span class="header-section-number">1.13.1</span> Our Pledge</h3>
+<p>In the interest of fostering an open and welcoming environment, we as instructor and students pledge to making participation in our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.</p>
+<ul>
+<li><p><strong>Be welcoming and open-minded.</strong> Although this is an intro course, like in any other learning setting, we have people at different levels of experience. Other people may not have the same experience level or background as you, but that doesn’t mean they don’t have good ideas to contribute. I encourage you to be welcoming to everyone, from more advanced coders to those just getting started. We can all learn from each other.</p></li>
+<li><p><strong>Respect each other.</strong> Nothing sabotages healthy conversation like rudeness. Be civil and professional, and don’t post or say anything that a reasonable person would consider offensive, abusive, or hate speech. Don’t harass or grief anyone. Treat each other with dignity and consideration in all interactions.</p></li>
+</ul>
+<p>You may wish to respond to something by disagreeing with it. That’s fine. But remember to criticize ideas, not people. Avoid name-calling, ad hominem attacks, responding to a post’s tone instead of its actual content, and knee-jerk reactions. Instead, provide reasoned counter-arguments that improve the conversation.</p>
+<ul>
+<li><p><strong>Communicate with empathy.</strong> Disagreements or differences of opinion are a fact of life. Being part of a community means interacting with people from a variety of backgrounds and perspectives (and we are all better because of this variety), many of which may not be your own. If you disagree with someone, try to understand and share their feelings before you address them. This will promote a respectful and friendly atmosphere where people feel comfortable asking questions, participating in discussions, and making contributions.</p></li>
+<li><p><strong>Be clear and stay on topic.</strong> The goal of this course is to learn about data science and how to do data science with R. Off-topic comments are a distraction (sometimes welcome, but usually not) from getting work done and being productive. Staying on topic helps produce positive and productive discussions.</p></li>
+</ul>
+<p>Additionally, as this class will be conducted online, you might not have met each other in person. Communicating on the internet can be awkward, even when you already know people. It’s hard to convey or read tone, and sarcasm is frequently misunderstood. Try to use clear language, and think about how it will be received by the other person.</p>
+</div>
+<div id="our-standards" class="section level3">
+<h3><span class="header-section-number">1.13.2</span> Our Standards</h3>
+<p>Examples of behavior that contributes to creating a positive environment include:</p>
+<ul>
+<li><p>Using welcoming and inclusive language</p></li>
+<li><p>Being respectful of differing viewpoints and experiences</p></li>
+<li><p>Gracefully accepting constructive criticism</p></li>
+<li><p>Focusing on what is best for the community</p></li>
+<li><p>Showing empathy towards other community members</p></li>
+</ul>
+<p>Examples of unacceptable behavior by participants include:</p>
+<ul>
+<li><p>The use of sexualized language or imagery and unwelcome sexual attention or advances</p></li>
+<li><p>Trolling, insulting/derogatory comments, and personal or political attacks</p></li>
+<li><p>Public or private harassment</p></li>
+<li><p>Publishing others’ private information, such as a physical or electronic address, without explicit permission</p></li>
+<li><p>Other conduct which could reasonably be considered inappropriate in a professional setting</p></li>
+</ul>
+</div>
+<div id="enforcement" class="section level3">
+<h3><span class="header-section-number">1.13.3</span> Enforcement</h3>
+<p>Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting your instructor at <a href="mailto:adrianaps@email.arizona" class="email">adrianaps@email.arizona</a>. Your instructor will review and investigate all complaints, and will respond in a way that it deems appropriate to the circumstances. Your instructor is obligated to maintain confidentiality with regard to the reporter of an incident.</p>
+</div>
+<div id="attribution" class="section level3">
+<h3><span class="header-section-number">1.13.4</span> Attribution</h3>
+<p>This Code of Conduct is adapted from the <a href="https://www.contributor-covenant.org/">Contributor Covenant</a>, version 1.4, available at <a href="http://contributor-covenant.org/version/1/4" class="uri">http://contributor-covenant.org/version/1/4</a></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="whats-ds.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ESOC_214_Fall_2020.pdf", "ESOC_214_Fall_2020.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
