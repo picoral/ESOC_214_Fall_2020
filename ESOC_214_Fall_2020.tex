@@ -365,7 +365,7 @@ Week 03\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
 Basics of R - data frames - inspecting data - slicing your data\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-Read \href{http://varianceexplained.org/programming/bad-code/}{A Million Lines of Bad Code} (549 words, 5 min)\strut
+Read \href{http://varianceexplained.org/programming/bad-code/}{A Million Lines of Bad Code} (5 min) \href{readings/module7_eds_whats_stats.pdf}{What is Statistics Good For?} (3 min)\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.22\columnwidth}\raggedright
 \strut
@@ -383,7 +383,7 @@ Week 04\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
 Installing R Packages Intro to Tidyverse\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-Read \href{https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/}{Advice to Young (and Old) Programmers: A Conversation with Hadley Wickham} (2,599 words, 10 min)\strut
+Read \href{https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/}{Advice to Young (and Old) Programmers: A Conversation with Hadley Wickham} (10 min)\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.22\columnwidth}\raggedright
 \strut
@@ -428,7 +428,7 @@ Data Challenge 2\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
 Descriptive Statistics\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-Read \href{readings/module7_eds_whats_stats.pdf}{What is Statistics Good For?} (398 words, 3 min)\strut
+\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.22\columnwidth}\raggedright
 Week 07\strut
@@ -1644,6 +1644,8 @@ Try to multiply \texttt{my\_pets\_ages} by 4. What happens? How can we debug our
 
 Read \href{http://varianceexplained.org/programming/bad-code/}{A Million Lines of Bad Code} a blog post by \href{http://varianceexplained.org/about/}{David Robinson}. (549 words, 5 minutes)
 
+Read \href{readings/module7_eds_whats_stats.pdf}{What is Statistics Good For?} (398 words, 3 min)
+
 \hypertarget{dataframes}{%
 \section{Dataframes}\label{dataframes}}
 
@@ -1934,8 +1936,8 @@ Coding style refers to how you name your objects and functions, how you comment 
 \hypertarget{organizing-data-science-projects}{%
 \section{Organizing Data Science Projects}\label{organizing-data-science-projects}}
 
-\hypertarget{tidyverse}{%
-\chapter{Tidyverse}\label{tidyverse}}
+\hypertarget{intro-to-tidyverse}{%
+\chapter{Intro to Tidyverse}\label{intro-to-tidyverse}}
 
 \hypertarget{before-class-4}{%
 \section{Before Class}\label{before-class-4}}
@@ -1971,8 +1973,417 @@ You need to install any package only once (remember to check for new package ver
 \leavevmode\hypertarget{explanation}{}%
 Note that when calling the \texttt{install.packages()} function you need to enter the package name between quotation marks (e.g., ``tidyverse''). When you call the \texttt{library()} function, you don't use quotation marks (e.g., tidyverse).
 
+\hypertarget{before-you-load-your-data}{%
+\section{Before You Load your Data}\label{before-you-load-your-data}}
+
+Although we are working within an R project, which sets the working directory automatically for you, it's good practice to check what folder you are working from by calling the \texttt{getwd()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/Users/adriana/Desktop/ESOC214/Fall 2020/bookdown/ESOC_214_Fall_2020"
+\end{verbatim}
+
+You can list the contents of your working directory by using the \texttt{dir()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dir}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+We are going to create a \texttt{data} folder in our project, to keep things organized. Today we will be working with \href{https://www.kaggle.com/groundhogclub/groundhog-day}{a data set that contains groundhog day forecasts and temperature}. I cleaned up this data set already (no need for data tidying for now).
+
+You can now list the contents of your \texttt{data} folder with the \texttt{dir()} function with a string that specifies the folder as a parameter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dir}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "groundhog_day.csv"   "tweets.tsv"          "us_avg_tuition.xlsx"
+\end{verbatim}
+
+\hypertarget{whats-our-question-again}{%
+\section{What's our question again?}\label{whats-our-question-again}}
+
+Here's what we will focus on answering today, which is an excerpt from the \href{https://www.kaggle.com/groundhogclub/groundhog-day}{Groundhog Day Forecasts and Temperatures} kaggle page.
+
+``Thousands gather at Gobbler's Knob in Punxsutawney, Pennsylvania, on the second day of February to await the spring forecast from a groundhog known as Punxsutawney Phil. According to legend, if Phil sees his shadow the United States is in store for six more weeks of winter weather. But, if Phil doesn't see his shadow, the country should expect warmer temperatures and the arrival of an early spring.''
+
+So, in summary, our question is \textbf{How accurate is Punxsutawney Phil's winter weather forecast?}
+
 \hypertarget{load-data-with-tidyverse}{%
 \section{Load Data with Tidyverse}\label{load-data-with-tidyverse}}
+
+We will use the \texttt{read\_csv()} function from the \texttt{readr} package (which is part of \texttt{tidyverse}) to read data in. Be careful, there's a similar function that is read.csv() from base R. We do want to use the function with the \texttt{\_} (i.e., \texttt{read\_csv()})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/groundhog_day.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   Year = col_double(),
+##   Punxsutawney_Phil = col_character(),
+##   February_Average_Temperature = col_double(),
+##   February_Average_Temperature_Northeast = col_double(),
+##   February_Average_Temperature_Midwest = col_double(),
+##   February_Average_Temperature_Pennsylvania = col_double(),
+##   March_Average_Temperature = col_double(),
+##   March_Average_Temperature_Northeast = col_double(),
+##   March_Average_Temperature_Midwest = col_double(),
+##   March_Average_Temperature_Pennsylvania = col_double()
+## )
+\end{verbatim}
+
+\leavevmode\hypertarget{challenge}{}%
+\textbf{Reading warnings} - R often prints out warnings in red (these are not always errors). What information did you get when loading your data?
+
+\hypertarget{inspect-your-data}{%
+\section{Inspect Your Data}\label{inspect-your-data}}
+
+As with any other programming language, there are multiple ways to doing anything. As such, there are multiple ways of inspecting your data in R. Here are some of my favorite ways of inspecting my data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get an overview of the data frame}
+\KeywordTok{glimpse}\NormalTok{(groundhog_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 122
+## Columns: 10
+## $ Year                                      <dbl> 1895, 1896, 1897, 1898, 1...
+## $ Punxsutawney_Phil                         <chr> "No Record", "No Record",...
+## $ February_Average_Temperature              <dbl> 26.60, 35.04, 33.39, 35.3...
+## $ February_Average_Temperature_Northeast    <dbl> 15.6, 22.2, 23.6, 24.8, 1...
+## $ February_Average_Temperature_Midwest      <dbl> 21.9, 33.5, 34.7, 33.3, 2...
+## $ February_Average_Temperature_Pennsylvania <dbl> 17.0, 26.6, 27.9, 26.7, 2...
+## $ March_Average_Temperature                 <dbl> 39.97, 38.03, 38.79, 41.0...
+## $ March_Average_Temperature_Northeast       <dbl> 27.6, 25.3, 32.0, 38.0, 2...
+## $ March_Average_Temperature_Midwest         <dbl> 40.2, 36.9, 44.0, 46.0, 3...
+## $ March_Average_Temperature_Pennsylvania    <dbl> 31.3, 27.8, 36.9, 42.0, 3...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(groundhog_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Year      Punxsutawney_Phil  February_Average_Temperature
+##  Min.   :1895   Length:122         Min.   :25.23               
+##  1st Qu.:1925   Class :character   1st Qu.:31.78               
+##  Median :1956   Mode  :character   Median :33.69               
+##  Mean   :1956                      Mean   :33.80               
+##  3rd Qu.:1986                      3rd Qu.:36.01               
+##  Max.   :2016                      Max.   :41.41               
+##  February_Average_Temperature_Northeast February_Average_Temperature_Midwest
+##  Min.   :10.40                          Min.   :20.30                       
+##  1st Qu.:20.02                          1st Qu.:29.62                       
+##  Median :22.95                          Median :33.20                       
+##  Mean   :22.69                          Mean   :32.69                       
+##  3rd Qu.:25.98                          3rd Qu.:36.30                       
+##  Max.   :31.60                          Max.   :41.40                       
+##  February_Average_Temperature_Pennsylvania March_Average_Temperature
+##  Min.   :15.20                             Min.   :35.44            
+##  1st Qu.:23.60                             1st Qu.:39.38            
+##  Median :26.95                             Median :41.81            
+##  Mean   :26.52                             Mean   :41.70            
+##  3rd Qu.:29.80                             3rd Qu.:43.56            
+##  Max.   :35.80                             Max.   :50.41            
+##  March_Average_Temperature_Northeast March_Average_Temperature_Midwest
+##  Min.   :24.20                       Min.   :28.50                    
+##  1st Qu.:29.70                       1st Qu.:39.08                    
+##  Median :32.55                       Median :42.85                    
+##  Mean   :32.37                       Mean   :42.57                    
+##  3rd Qu.:34.80                       3rd Qu.:45.60                    
+##  Max.   :43.40                       Max.   :56.30                    
+##  March_Average_Temperature_Pennsylvania
+##  Min.   :24.50                         
+##  1st Qu.:32.95                         
+##  Median :35.85                         
+##  Mean   :35.91                         
+##  3rd Qu.:38.55                         
+##  Max.   :47.70
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get variable names}
+\KeywordTok{colnames}\NormalTok{(groundhog_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Year"                                     
+##  [2] "Punxsutawney_Phil"                        
+##  [3] "February_Average_Temperature"             
+##  [4] "February_Average_Temperature_Northeast"   
+##  [5] "February_Average_Temperature_Midwest"     
+##  [6] "February_Average_Temperature_Pennsylvania"
+##  [7] "March_Average_Temperature"                
+##  [8] "March_Average_Temperature_Northeast"      
+##  [9] "March_Average_Temperature_Midwest"        
+## [10] "March_Average_Temperature_Pennsylvania"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(groundhog_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Year"                                     
+##  [2] "Punxsutawney_Phil"                        
+##  [3] "February_Average_Temperature"             
+##  [4] "February_Average_Temperature_Northeast"   
+##  [5] "February_Average_Temperature_Midwest"     
+##  [6] "February_Average_Temperature_Pennsylvania"
+##  [7] "March_Average_Temperature"                
+##  [8] "March_Average_Temperature_Northeast"      
+##  [9] "March_Average_Temperature_Midwest"        
+## [10] "March_Average_Temperature_Pennsylvania"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# check the categorical variable}
+\KeywordTok{unique}\NormalTok{(groundhog_predictions}\OperatorTok{$}\NormalTok{Punxsutawney_Phil)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "No Record"      "Full Shadow"    "No Shadow"      "Partial Shadow"
+\end{verbatim}
+
+\leavevmode\hypertarget{challenge}{}%
+Which variables are numeric? Which are categorical?
+
+\hypertarget{the-pipe}{%
+\section{The Pipe}\label{the-pipe}}
+
+We will be using the package \texttt{dplyr} (which is also part of \texttt{tidyverse}) to do an exploratory analysis of our data.
+
+The package \texttt{dplyr} most used function is \texttt{\%\textgreater{}\%} (called the pipe). The pipe allows you to ``pipe'' (or redirect) objects into functions. (hint: use ctrl+shift+m or cmd+shift+m as a shortcut for typing \texttt{\%\textgreater{}\%}).
+
+Here's how to pipe the \texttt{avocado\_data} object into the \texttt{summary()} function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get an overview of the data frame}
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Year      Punxsutawney_Phil  February_Average_Temperature
+##  Min.   :1895   Length:122         Min.   :25.23               
+##  1st Qu.:1925   Class :character   1st Qu.:31.78               
+##  Median :1956   Mode  :character   Median :33.69               
+##  Mean   :1956                      Mean   :33.80               
+##  3rd Qu.:1986                      3rd Qu.:36.01               
+##  Max.   :2016                      Max.   :41.41               
+##  February_Average_Temperature_Northeast February_Average_Temperature_Midwest
+##  Min.   :10.40                          Min.   :20.30                       
+##  1st Qu.:20.02                          1st Qu.:29.62                       
+##  Median :22.95                          Median :33.20                       
+##  Mean   :22.69                          Mean   :32.69                       
+##  3rd Qu.:25.98                          3rd Qu.:36.30                       
+##  Max.   :31.60                          Max.   :41.40                       
+##  February_Average_Temperature_Pennsylvania March_Average_Temperature
+##  Min.   :15.20                             Min.   :35.44            
+##  1st Qu.:23.60                             1st Qu.:39.38            
+##  Median :26.95                             Median :41.81            
+##  Mean   :26.52                             Mean   :41.70            
+##  3rd Qu.:29.80                             3rd Qu.:43.56            
+##  Max.   :35.80                             Max.   :50.41            
+##  March_Average_Temperature_Northeast March_Average_Temperature_Midwest
+##  Min.   :24.20                       Min.   :28.50                    
+##  1st Qu.:29.70                       1st Qu.:39.08                    
+##  Median :32.55                       Median :42.85                    
+##  Mean   :32.37                       Mean   :42.57                    
+##  3rd Qu.:34.80                       3rd Qu.:45.60                    
+##  Max.   :43.40                       Max.   :56.30                    
+##  March_Average_Temperature_Pennsylvania
+##  Min.   :24.50                         
+##  1st Qu.:32.95                         
+##  Median :35.85                         
+##  Mean   :35.91                         
+##  3rd Qu.:38.55                         
+##  Max.   :47.70
+\end{verbatim}
+
+The pipe allows us to apply multiple functions to the same object.
+
+Let's start by selecting one column in our data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Punxsutawney_Phil)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 122 x 1
+##    Punxsutawney_Phil
+##    <chr>            
+##  1 No Record        
+##  2 No Record        
+##  3 No Record        
+##  4 Full Shadow      
+##  5 No Record        
+##  6 Full Shadow      
+##  7 Full Shadow      
+##  8 No Record        
+##  9 Full Shadow      
+## 10 Full Shadow      
+## # ... with 112 more rows
+\end{verbatim}
+
+Now let's add another pipe to get unique values in this column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Punxsutawney_Phil) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{unique}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 1
+##   Punxsutawney_Phil
+##   <chr>            
+## 1 No Record        
+## 2 Full Shadow      
+## 3 No Shadow        
+## 4 Partial Shadow
+\end{verbatim}
+
+\hypertarget{counting-categorical-variables}{%
+\section{Counting Categorical Variables}\label{counting-categorical-variables}}
+
+One of the functions I most use when exploring my data is \texttt{count()}, which you can combine with \texttt{\%\textgreater{}\%}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{count}\NormalTok{(Punxsutawney_Phil)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   Punxsutawney_Phil     n
+##   <chr>             <int>
+## 1 Full Shadow         100
+## 2 No Record             6
+## 3 No Shadow            15
+## 4 Partial Shadow        1
+\end{verbatim}
+
+You can do the same adding \texttt{group\_by()} to your pipeline.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Punxsutawney_Phil) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+## # Groups:   Punxsutawney_Phil [4]
+##   Punxsutawney_Phil     n
+##   <chr>             <int>
+## 1 Full Shadow         100
+## 2 No Record             6
+## 3 No Shadow            15
+## 4 Partial Shadow        1
+\end{verbatim}
+
+And instead of \texttt{count()} we can use the \texttt{summarise()} and \texttt{n()} functions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Punxsutawney_Phil) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{total =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   Punxsutawney_Phil total
+##   <chr>             <int>
+## 1 Full Shadow         100
+## 2 No Record             6
+## 3 No Shadow            15
+## 4 Partial Shadow        1
+\end{verbatim}
+
+\leavevmode\hypertarget{challenge}{}%
+This last way of counting categorical variables (with \texttt{summarise()} and \texttt{n()}) outputs a data frame that is slightly different from the previous too. What's the difference?
+
+\hypertarget{group_by-summarise}{%
+\section{group\_by + summarise}\label{group_by-summarise}}
+
+The combination of the \texttt{group\_by()} and \texttt{summarise()} functions is very powerful. In addition to using the \texttt{n()} function to count how many rows per each category in our categorical variable, we can use other functions with numeric (i.e., quantitative) variable such as \texttt{sum()} and \texttt{mean()}.
+
+\leavevmode\hypertarget{challenge}{}%
+Take a moment to revisit the question we want to answer.
+
+\begin{itemize}
+\item
+  What do we want to find out?
+\item
+  How can we answer our question with this data?
+\item
+  What function (e.g., \texttt{sum()}, \texttt{max()}, \texttt{mean()}) do we use to answer our question? With what variables/columns?
+\end{itemize}
+
+Complete the code below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Punxsutawney_Phil) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{total =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{____ =} \KeywordTok{____}\NormalTok{(____))}
+\end{Highlighting}
+\end{Shaded}
+
+Example of output that you might want to get to answer our question:
+
+\begin{verbatim}
+## # A tibble: 4 x 4
+##   Punxsutawney_Phil total feb_mean_temp mar_mean_temp
+##   <chr>             <int>         <dbl>         <dbl>
+## 1 Full Shadow         100          33.7          41.7
+## 2 No Record             6          31.4          39.1
+## 3 No Shadow            15          35.6          43.0
+## 4 Partial Shadow        1          30.7          41.3
+\end{verbatim}
+
+\hypertarget{data-challenge-1}{%
+\section{DATA CHALLENGE 1}\label{data-challenge-1}}
 
 \hypertarget{data-tidying}{%
 \chapter{Data Tidying}\label{data-tidying}}
@@ -1982,8 +2393,6 @@ Note that when calling the \texttt{install.packages()} function you need to ente
 
 \hypertarget{before-class-5}{%
 \section{Before class}\label{before-class-5}}
-
-Reading: \href{readings/module7_eds_whats_stats.pdf}{What is Statistics Good For?} (398 words, 3 min)
 
 \hypertarget{data-visualization}{%
 \chapter{Data Visualization}\label{data-visualization}}

@@ -48,3 +48,8 @@ pre code {
   text-align: left;
   border-style: double;
 }
+
+.watch-out {
+  background-color: #D0FDDC;
+  font-weight: bold;
+}
