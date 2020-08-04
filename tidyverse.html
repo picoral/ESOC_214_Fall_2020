@@ -172,8 +172,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.1" data-path="install-r.html"><a href="install-r.html#ive-never-installed-r-and-rstudio-in-my-computer-or-im-not-sure-i-have-r-and-rstudio-installed-in-my-computer"><i class="fa fa-check"></i><b>3.1.1</b> I’ve never installed R and RStudio in my computer OR I’m not sure I have R and RStudio installed in my computer</a></li>
 <li class="chapter" data-level="3.1.2" data-path="install-r.html"><a href="install-r.html#i-already-have-r-and-rstudio-installed"><i class="fa fa-check"></i><b>3.1.2</b> I already have R and RStudio installed</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="install-r.html"><a href="install-r.html#create-an-r-project"><i class="fa fa-check"></i><b>3.2</b> Create an R Project</a></li>
-<li class="chapter" data-level="3.3" data-path="install-r.html"><a href="install-r.html#operations-and-objects"><i class="fa fa-check"></i><b>3.3</b> Operations and Objects</a></li>
+<li class="chapter" data-level="3.2" data-path="install-r.html"><a href="install-r.html#why-learn-r"><i class="fa fa-check"></i><b>3.2</b> Why learn R?</a></li>
+<li class="chapter" data-level="3.3" data-path="install-r.html"><a href="install-r.html#why-use-rstudio"><i class="fa fa-check"></i><b>3.3</b> Why use RStudio?</a></li>
+<li class="chapter" data-level="3.4" data-path="install-r.html"><a href="install-r.html#create-an-r-project"><i class="fa fa-check"></i><b>3.4</b> Create an R Project</a></li>
+<li class="chapter" data-level="3.5" data-path="install-r.html"><a href="install-r.html#operations-and-objects"><i class="fa fa-check"></i><b>3.5</b> Operations and Objects</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a><ul>
 <li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#before-class-3"><i class="fa fa-check"></i><b>4.1</b> Before Class</a></li>
@@ -186,8 +188,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5</b> Tidyverse</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidyverse.html"><a href="tidyverse.html#before-class-4"><i class="fa fa-check"></i><b>5.1</b> Before Class</a></li>
-<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html#installing-packages"><i class="fa fa-check"></i><b>5.2</b> Installing Packages</a></li>
-<li class="chapter" data-level="5.3" data-path="tidyverse.html"><a href="tidyverse.html#load-data-with-tidyverse"><i class="fa fa-check"></i><b>5.3</b> Load Data with Tidyverse</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html#what-are-r-packages"><i class="fa fa-check"></i><b>5.2</b> What are R Packages?</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyverse.html"><a href="tidyverse.html#installing-packages"><i class="fa fa-check"></i><b>5.3</b> Installing Packages</a></li>
+<li class="chapter" data-level="5.4" data-path="tidyverse.html"><a href="tidyverse.html#load-data-with-tidyverse"><i class="fa fa-check"></i><b>5.4</b> Load Data with Tidyverse</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-tidying.html"><a href="data-tidying.html"><i class="fa fa-check"></i><b>6</b> Data Tidying</a></li>
 <li class="chapter" data-level="7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>7</b> Descriptive Statistics</a><ul>
@@ -228,20 +231,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">5.1</span> Before Class</h2>
 <p>Read <a href="https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/">Advice to Young (and Old) Programmers: A Conversation with Hadley Wickham</a> by Philip Waggoner (2,599 words, 10 minutes)</p>
 </div>
+<div id="what-are-r-packages" class="section level2">
+<h2><span class="header-section-number">5.2</span> What are R Packages?</h2>
+<p>An R package contains functions, and it might contain data. There are a lot of R packages out here (check the Comprehensive R Archive Network, i.e., CRAN, for a <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">full list</a>). That is one of the beautiful things about R, anyone can create an R package to share their code.</p>
+</div>
 <div id="installing-packages" class="section level2">
-<h2><span class="header-section-number">5.2</span> Installing Packages</h2>
-<p>There are a lot of R packages out here (check the Comprehensive R Archive Network, i.e., CRAN, for a <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">full list</a>). That is one of the beautiful things about R, anyone can create an R package to share their code.</p>
+<h2><span class="header-section-number">5.3</span> Installing Packages</h2>
 <p>The function to install packages in R is <code>install.packages()</code>. We will be working with <a href="https://www.tidyverse.org/">TidyVerse</a> extensively in this course, which is a collection of R packages carefully designed for data science.</p>
 <p>Open your RStudio. In your console, enter the following to install tidyverse (this may take a while).</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="tidyverse.html#cb45-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
-<p>You need to install any package only once (remember to check for new package versions and to keep your packages updated). However, with every new R session, you need to load the packages you are going to use by using the <code>library()</code> function.</p>
+<p>You need to install any package only once (remember to check for new package versions and to keep your packages updated). However, with every new R session, you need to load the packages you are going to use by using the <code>library()</code> function (a library is an installed R package in your computer).</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="tidyverse.html#cb46-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <div id="explanation" class="explanation">
 <p>Note that when calling the <code>install.packages()</code> function you need to enter the package name between quotation marks (e.g., “tidyverse”). When you call the <code>library()</code> function, you don’t use quotation marks (e.g., tidyverse).</p>
 </div>
 </div>
 <div id="load-data-with-tidyverse" class="section level2">
-<h2><span class="header-section-number">5.3</span> Load Data with Tidyverse</h2>
+<h2><span class="header-section-number">5.4</span> Load Data with Tidyverse</h2>
 
 </div>
 </div>

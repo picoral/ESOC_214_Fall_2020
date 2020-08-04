@@ -932,8 +932,6 @@ Examples of what data might look like.
   Structured data (rare):
 \end{itemize}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
 State
 
 School Year
@@ -1000,13 +998,16 @@ Wyoming
 
 4122.205
 
+\leavevmode\hypertarget{challenge}{}%
+Which of the columns (or variables) in the data frame above are \textbf{categorical}, which are \textbf{quantitative}?
+
+;nbsp
+
 \begin{itemize}
 \tightlist
 \item
   Structured, but messy data (more common):
 \end{itemize}
-
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
 
 State
 
@@ -1393,8 +1394,6 @@ NA
   Textual Data (always messy):
 \end{itemize}
 
-\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
-
 \begin{verbatim}
 ##  [1] "CHAPTER I"                                                               
 ##  [2] ""                                                                        
@@ -1476,6 +1475,36 @@ When \href{https://community.rstudio.com/t/should-i-update-all-my-r-packages-fre
 ~
 
 You can ensure your packages are also up-to-date by clicking on ``Tools'' on your RStudio top menu bar, and selecting ``Check for Packages Updates\ldots{}''
+
+\hypertarget{why-learn-r}{%
+\section{Why learn R?}\label{why-learn-r}}
+
+R is both a programming language and \href{https://www.r-project.org/}{a free software environment for statistical computing and graphics}. In addition to being free, here are other reasons to learn R:
+
+\begin{itemize}
+\item
+  \textbf{R is popular.} According to \href{http://r4stats.com/articles/popularity/}{Robert A. Muenchen's post on the popularity of data science software} (which is updated frequently), R is among the top 5 technologies that are mentioned in data science job ads on indeed.com.
+\item
+  \textbf{R is very powerful and versatile}. From creating websites (like this bookdown you're reading right now) to building machine learning models, R has it all.
+\item
+  \textbf{The R community is active and very supportive}. Because R is so popular, there are a number of forums on R. A good way to get a glimpse on how active the R community is to follow \href{https://twitter.com/search?q=\%23rstats}{\texttt{\#rstats}} on twitter.
+\end{itemize}
+
+\hypertarget{why-use-rstudio}{%
+\section{Why use RStudio?}\label{why-use-rstudio}}
+
+You can just use R, but RStudio is an IDE that makes using R easier and more fun. Some features that make RStudio the IDE that many data scientists use:
+
+\begin{itemize}
+\item
+  RStudio is \textbf{free} and \textbf{open source}.
+\item
+  RStudio contains a full-feature integrated text editor, with tab-completion, spellcheck, etc.
+\item
+  RStudio is a cross-platform interface that looks the same across platforms.
+\item
+  RStudio allows you to organize your data science projects so you're not always hunting for the right script that goes with the data you want to analyze. (also, it integrates nicely with \texttt{rmarkdown} and \texttt{knitr})
+\end{itemize}
 
 \hypertarget{create-an-r-project}{%
 \section{Create an R Project}\label{create-an-r-project}}
@@ -1913,10 +1942,13 @@ Coding style refers to how you name your objects and functions, how you comment 
 
 Read \href{https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/}{Advice to Young (and Old) Programmers: A Conversation with Hadley Wickham} by Philip Waggoner (2,599 words, 10 minutes)
 
+\hypertarget{what-are-r-packages}{%
+\section{What are R Packages?}\label{what-are-r-packages}}
+
+An R package contains functions, and it might contain data. There are a lot of R packages out here (check the Comprehensive R Archive Network, i.e., CRAN, for a \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{full list}). That is one of the beautiful things about R, anyone can create an R package to share their code.
+
 \hypertarget{installing-packages}{%
 \section{Installing Packages}\label{installing-packages}}
-
-There are a lot of R packages out here (check the Comprehensive R Archive Network, i.e., CRAN, for a \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{full list}). That is one of the beautiful things about R, anyone can create an R package to share their code.
 
 The function to install packages in R is \texttt{install.packages()}. We will be working with \href{https://www.tidyverse.org/}{TidyVerse} extensively in this course, which is a collection of R packages carefully designed for data science.
 
@@ -1928,7 +1960,7 @@ Open your RStudio. In your console, enter the following to install tidyverse (th
 \end{Highlighting}
 \end{Shaded}
 
-You need to install any package only once (remember to check for new package versions and to keep your packages updated). However, with every new R session, you need to load the packages you are going to use by using the \texttt{library()} function.
+You need to install any package only once (remember to check for new package versions and to keep your packages updated). However, with every new R session, you need to load the packages you are going to use by using the \texttt{library()} function (a library is an installed R package in your computer).
 
 \begin{Shaded}
 \begin{Highlighting}[]

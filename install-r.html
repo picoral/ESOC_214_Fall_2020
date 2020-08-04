@@ -188,8 +188,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="tidyverse.html"><a href="tidyverse.html"><i class="fa fa-check"></i><b>5</b> Tidyverse</a><ul>
 <li class="chapter" data-level="5.1" data-path="tidyverse.html"><a href="tidyverse.html#before-class-4"><i class="fa fa-check"></i><b>5.1</b> Before Class</a></li>
-<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html#installing-packages"><i class="fa fa-check"></i><b>5.2</b> Installing Packages</a></li>
-<li class="chapter" data-level="5.3" data-path="tidyverse.html"><a href="tidyverse.html#load-data-with-tidyverse"><i class="fa fa-check"></i><b>5.3</b> Load Data with Tidyverse</a></li>
+<li class="chapter" data-level="5.2" data-path="tidyverse.html"><a href="tidyverse.html#what-are-r-packages"><i class="fa fa-check"></i><b>5.2</b> What are R Packages?</a></li>
+<li class="chapter" data-level="5.3" data-path="tidyverse.html"><a href="tidyverse.html#installing-packages"><i class="fa fa-check"></i><b>5.3</b> Installing Packages</a></li>
+<li class="chapter" data-level="5.4" data-path="tidyverse.html"><a href="tidyverse.html#load-data-with-tidyverse"><i class="fa fa-check"></i><b>5.4</b> Load Data with Tidyverse</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="data-tidying.html"><a href="data-tidying.html"><i class="fa fa-check"></i><b>6</b> Data Tidying</a></li>
 <li class="chapter" data-level="7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>7</b> Descriptive Statistics</a><ul>
@@ -295,25 +296,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="operations-and-objects" class="section level2">
 <h2><span class="header-section-number">3.5</span> Operations and Objects</h2>
 <p>Let’s start by using R as a calculator. On your <strong>console</strong> type <code>3 + 3</code> and hit enter.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="install-r.html#cb1-1"></a><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="install-r.html#cb2-1"></a><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <div id="question" class="question">
 <p>What symbols do we use for all basic operations (addition, subtraction, multiplication, and division)?
 What happens if you type <code>3 +</code>?</p>
 </div>
 <p>Let’s save our calculation into an object, by using the assignment symbol <code>&lt;-</code>.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="install-r.html#cb3-1"></a>sum_result &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="install-r.html#cb4-1"></a>sum_result &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <div id="question" class="question">
 <p>Take a moment to look around your IDE once again. What has changed?</p>
 </div>
 <p>Now, let’s use this new object in our calculation</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="install-r.html#cb4-1"></a>sum_result <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="install-r.html#cb5-1"></a>sum_result <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
 <div id="question" class="question">
 <p>Take a moment to look around your IDE once again. Has anything changed?</p>
 </div>
 <p>What else can we do with an object?</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="install-r.html#cb6-1"></a><span class="kw">class</span>(sum_result)</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="install-r.html#cb7-1"></a><span class="kw">class</span>(sum_result)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>R is primarily a functional programming language. That means that there pre-programmed functions in base R such as <code>class()</code> and that you can also write your own functions (more on that later).</p>
 <p>Type <code>?class</code> in your console and hit enter to get more information about this function.</p>
@@ -323,16 +324,16 @@ What happens if you type <code>3 +</code>?</p>
 Multiply <code>daisys_age</code> by 4 and save the results in another object called <code>daisys_human_age</code></p>
 </div>
 <p>Imagine I had multiple pets (unfortunately, that is not true, Daisy is my only pet). I can create a <strong>vector</strong> to hold multiple numbers representing the age of each of my pets.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="install-r.html#cb8-1"></a>my_pets_ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="install-r.html#cb9-1"></a>my_pets_ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span></code></pre></div>
 <div id="question" class="question">
 <p>Take a moment to look around your IDE once again. What has changed?</p>
 <p>What is the class of the object <code>my_pets_ages</code>?</p>
 </div>
 <p>Now let’s multiply this vector by 4.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="install-r.html#cb9-1"></a>my_pets_ages <span class="op">*</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="install-r.html#cb10-1"></a>my_pets_ages <span class="op">*</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
 <pre><code>## [1] 32  8 24 12  4</code></pre>
 <p>Errors are pretty common when writing code in any programming language, so be ready to read error messages and debug your code. Let’s insert a typing error in our previous code:</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="install-r.html#cb11-1"></a>my_pets_ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="st">&#39;3&#39;</span>, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="install-r.html#cb12-1"></a>my_pets_ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="st">&#39;3&#39;</span>, <span class="dv">1</span>)</span></code></pre></div>
 <div id="challenge" class="challenge">
 <p>CHALLENGE</p>
 <p>Try to multiply <code>my_pets_ages</code> by 4. What happens? How can we debug our code to find out what is causing the error?</p>
