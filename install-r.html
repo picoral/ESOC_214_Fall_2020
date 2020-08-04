@@ -172,8 +172,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.1.1" data-path="install-r.html"><a href="install-r.html#ive-never-installed-r-and-rstudio-in-my-computer-or-im-not-sure-i-have-r-and-rstudio-installed-in-my-computer"><i class="fa fa-check"></i><b>3.1.1</b> I’ve never installed R and RStudio in my computer OR I’m not sure I have R and RStudio installed in my computer</a></li>
 <li class="chapter" data-level="3.1.2" data-path="install-r.html"><a href="install-r.html#i-already-have-r-and-rstudio-installed"><i class="fa fa-check"></i><b>3.1.2</b> I already have R and RStudio installed</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="install-r.html"><a href="install-r.html#create-an-r-project"><i class="fa fa-check"></i><b>3.2</b> Create an R Project</a></li>
-<li class="chapter" data-level="3.3" data-path="install-r.html"><a href="install-r.html#operations-and-objects"><i class="fa fa-check"></i><b>3.3</b> Operations and Objects</a></li>
+<li class="chapter" data-level="3.2" data-path="install-r.html"><a href="install-r.html#why-learn-r"><i class="fa fa-check"></i><b>3.2</b> Why learn R?</a></li>
+<li class="chapter" data-level="3.3" data-path="install-r.html"><a href="install-r.html#why-use-rstudio"><i class="fa fa-check"></i><b>3.3</b> Why use RStudio?</a></li>
+<li class="chapter" data-level="3.4" data-path="install-r.html"><a href="install-r.html#create-an-r-project"><i class="fa fa-check"></i><b>3.4</b> Create an R Project</a></li>
+<li class="chapter" data-level="3.5" data-path="install-r.html"><a href="install-r.html#operations-and-objects"><i class="fa fa-check"></i><b>3.5</b> Operations and Objects</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a><ul>
 <li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#before-class-3"><i class="fa fa-check"></i><b>4.1</b> Before Class</a></li>
@@ -254,8 +256,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You can ensure your packages are also up-to-date by clicking on “Tools” on your RStudio top menu bar, and selecting “Check for Packages Updates…”</p>
 </div>
 </div>
+<div id="why-learn-r" class="section level2">
+<h2><span class="header-section-number">3.2</span> Why learn R?</h2>
+<p>R is both a programming language and <a href="https://www.r-project.org/">a free software environment for statistical computing and graphics</a>. In addition to being free, here are other reasons to learn R:</p>
+<ul>
+<li><p><strong>R is popular.</strong> According to <a href="http://r4stats.com/articles/popularity/">Robert A. Muenchen’s post on the popularity of data science software</a> (which is updated frequently), R is among the top 5 technologies that are mentioned in data science job ads on indeed.com.</p></li>
+<li><p><strong>R is very powerful and versatile</strong>. From creating websites (like this bookdown you’re reading right now) to building machine learning models, R has it all.</p></li>
+<li><p><strong>The R community is active and very supportive</strong>. Because R is so popular, there are a number of forums on R. A good way to get a glimpse on how active the R community is to follow <a href="https://twitter.com/search?q=%23rstats"><code>#rstats</code></a> on twitter.</p></li>
+</ul>
+</div>
+<div id="why-use-rstudio" class="section level2">
+<h2><span class="header-section-number">3.3</span> Why use RStudio?</h2>
+<p>You can just use R, but RStudio is an IDE that makes using R easier and more fun. Some features that make RStudio the IDE that many data scientists use:</p>
+<ul>
+<li><p>RStudio is <strong>free</strong> and <strong>open source</strong>.</p></li>
+<li><p>RStudio contains a full-feature integrated text editor, with tab-completion, spellcheck, etc.</p></li>
+<li><p>RStudio is a cross-platform interface that looks the same across platforms.</p></li>
+<li><p>RStudio allows you to organize your data science projects so you’re not always hunting for the right script that goes with the data you want to analyze. (also, it integrates nicely with <code>rmarkdown</code> and <code>knitr</code>)</p></li>
+</ul>
+</div>
 <div id="create-an-r-project" class="section level2">
-<h2><span class="header-section-number">3.2</span> Create an R Project</h2>
+<h2><span class="header-section-number">3.4</span> Create an R Project</h2>
 <p>In today’s class, we will focus on situating ourselves around our IDE. For every lesson, we will either start a new R project or open an R project we’ve been working on.</p>
 <p>Why create a RStudio project? RStudio projects make it easier to keep your projects organized, since each project has their own working directory, workspace, history, and source documents. In other words, it’s much easier to open an R project and not have to worry about setting your working directory than to try to hunt down your files.</p>
 <div id="steps" class="steps">
@@ -272,27 +293,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="operations-and-objects" class="section level2">
-<h2><span class="header-section-number">3.3</span> Operations and Objects</h2>
+<h2><span class="header-section-number">3.5</span> Operations and Objects</h2>
 <p>Let’s start by using R as a calculator. On your <strong>console</strong> type <code>3 + 3</code> and hit enter.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="install-r.html#cb2-1"></a><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="install-r.html#cb1-1"></a><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 6</code></pre>
 <div id="question" class="question">
 <p>What symbols do we use for all basic operations (addition, subtraction, multiplication, and division)?
 What happens if you type <code>3 +</code>?</p>
 </div>
 <p>Let’s save our calculation into an object, by using the assignment symbol <code>&lt;-</code>.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="install-r.html#cb4-1"></a>sum_result &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="install-r.html#cb3-1"></a>sum_result &lt;-<span class="st"> </span><span class="dv">3</span> <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <div id="question" class="question">
 <p>Take a moment to look around your IDE once again. What has changed?</p>
 </div>
 <p>Now, let’s use this new object in our calculation</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="install-r.html#cb5-1"></a>sum_result <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="install-r.html#cb4-1"></a>sum_result <span class="op">+</span><span class="st"> </span><span class="dv">3</span></span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
 <div id="question" class="question">
 <p>Take a moment to look around your IDE once again. Has anything changed?</p>
 </div>
 <p>What else can we do with an object?</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="install-r.html#cb7-1"></a><span class="kw">class</span>(sum_result)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="install-r.html#cb6-1"></a><span class="kw">class</span>(sum_result)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>R is primarily a functional programming language. That means that there pre-programmed functions in base R such as <code>class()</code> and that you can also write your own functions (more on that later).</p>
 <p>Type <code>?class</code> in your console and hit enter to get more information about this function.</p>
@@ -302,16 +323,16 @@ What happens if you type <code>3 +</code>?</p>
 Multiply <code>daisys_age</code> by 4 and save the results in another object called <code>daisys_human_age</code></p>
 </div>
 <p>Imagine I had multiple pets (unfortunately, that is not true, Daisy is my only pet). I can create a <strong>vector</strong> to hold multiple numbers representing the age of each of my pets.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="install-r.html#cb9-1"></a>my_pets_ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="install-r.html#cb8-1"></a>my_pets_ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">3</span>, <span class="dv">1</span>)</span></code></pre></div>
 <div id="question" class="question">
 <p>Take a moment to look around your IDE once again. What has changed?</p>
 <p>What is the class of the object <code>my_pets_ages</code>?</p>
 </div>
 <p>Now let’s multiply this vector by 4.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="install-r.html#cb10-1"></a>my_pets_ages <span class="op">*</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="install-r.html#cb9-1"></a>my_pets_ages <span class="op">*</span><span class="st"> </span><span class="dv">4</span></span></code></pre></div>
 <pre><code>## [1] 32  8 24 12  4</code></pre>
 <p>Errors are pretty common when writing code in any programming language, so be ready to read error messages and debug your code. Let’s insert a typing error in our previous code:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="install-r.html#cb12-1"></a>my_pets_ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="st">&#39;3&#39;</span>, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="install-r.html#cb11-1"></a>my_pets_ages &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">8</span>, <span class="dv">2</span>, <span class="dv">6</span>, <span class="st">&#39;3&#39;</span>, <span class="dv">1</span>)</span></code></pre></div>
 <div id="challenge" class="challenge">
 <p>CHALLENGE</p>
 <p>Try to multiply <code>my_pets_ages</code> by 4. What happens? How can we debug our code to find out what is causing the error?</p>
