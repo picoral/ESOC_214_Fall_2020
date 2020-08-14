@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu   The University of Arizona sits on the homelands of the Tohono O’odham and Yaqui, whose care and keeping of these lands allows us to be here today." />
 
 
-<meta name="date" content="2020-08-06" />
+<meta name="date" content="2020-08-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -476,6 +476,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="intro-to-tidyverse.html#cb74-1"></a>groundhog_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb74-2"><a href="intro-to-tidyverse.html#cb74-2"></a><span class="st">  </span><span class="kw">group_by</span>(Punxsutawney_Phil) <span class="op">%&gt;%</span></span>
 <span id="cb74-3"><a href="intro-to-tidyverse.html#cb74-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total =</span> <span class="kw">n</span>())</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 4 x 2
 ##   Punxsutawney_Phil total
 ##   &lt;chr&gt;             &lt;int&gt;
@@ -499,11 +500,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <p>Complete the code below.</p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb76-1"><a href="intro-to-tidyverse.html#cb76-1"></a>groundhog_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb76-2"><a href="intro-to-tidyverse.html#cb76-2"></a><span class="st">  </span><span class="kw">group_by</span>(Punxsutawney_Phil) <span class="op">%&gt;%</span></span>
-<span id="cb76-3"><a href="intro-to-tidyverse.html#cb76-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total =</span> <span class="kw">n</span>(),</span>
-<span id="cb76-4"><a href="intro-to-tidyverse.html#cb76-4"></a>            <span class="dt">____ =</span> <span class="kw">____</span>(____))</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb77-1"><a href="intro-to-tidyverse.html#cb77-1"></a>groundhog_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb77-2"><a href="intro-to-tidyverse.html#cb77-2"></a><span class="st">  </span><span class="kw">group_by</span>(Punxsutawney_Phil) <span class="op">%&gt;%</span></span>
+<span id="cb77-3"><a href="intro-to-tidyverse.html#cb77-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total =</span> <span class="kw">n</span>(),</span>
+<span id="cb77-4"><a href="intro-to-tidyverse.html#cb77-4"></a>            <span class="dt">____ =</span> <span class="kw">____</span>(____))</span></code></pre></div>
 <p>Example of output that you might want to get to answer our question:</p>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 4 x 4
 ##   Punxsutawney_Phil total feb_mean_temp mar_mean_temp
 ##   &lt;chr&gt;             &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;
