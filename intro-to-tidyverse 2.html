@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 6 Intro to Tidyverse | ESOC 2014 Introduction to Data Science</title>
+  <title>Module 5 Intro to Tidyverse | ESOC 2014 Introduction to Data Science</title>
   <meta name="description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 6 Intro to Tidyverse | ESOC 2014 Introduction to Data Science" />
+  <meta property="og:title" content="Module 5 Intro to Tidyverse | ESOC 2014 Introduction to Data Science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,22 +16,22 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 6 Intro to Tidyverse | ESOC 2014 Introduction to Data Science" />
+  <meta name="twitter:title" content="Module 5 Intro to Tidyverse | ESOC 2014 Introduction to Data Science" />
   
   <meta name="twitter:description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
   
 
-<meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
+<meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu   The University of Arizona sits on the homelands of the Tohono O’odham and Yaqui, whose care and keeping of these lands allows us to be here today." />
 
 
-<meta name="date" content="2020-09-06" />
+<meta name="date" content="2020-08-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="version-control.html"/>
+<link rel="prev" href="r-basics.html"/>
 <link rel="next" href="data-tidying.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,7 +50,6 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 
 
 <style type="text/css">
@@ -136,29 +135,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a><ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
-<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-objectives"><i class="fa fa-check"></i><b>1.2</b> Course Objectives</a></li>
-<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#learning-outcomes"><i class="fa fa-check"></i><b>1.3</b> Learning Outcomes</a></li>
-<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#a-few-words-on-r-and-coding"><i class="fa fa-check"></i><b>1.4</b> A Few Words on R and Coding</a></li>
-<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#a-few-words-on-technology"><i class="fa fa-check"></i><b>1.5</b> A Few Words on Technology</a></li>
-<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i><b>1.6</b> Readings</a></li>
-<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#assignments-with-grade-breakdown"><i class="fa fa-check"></i><b>1.7</b> Assignments with Grade Breakdown</a></li>
-<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#requirements-for-the-course"><i class="fa fa-check"></i><b>1.8</b> Requirements for the Course</a></li>
-<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#course-schedule"><i class="fa fa-check"></i><b>1.9</b> Course Schedule</a></li>
-<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#final-project"><i class="fa fa-check"></i><b>1.10</b> Final Project</a></li>
-<li class="chapter" data-level="1.11" data-path="index.html"><a href="index.html#honors-students-requirements"><i class="fa fa-check"></i><b>1.11</b> Honors Students’ Requirements</a></li>
-<li class="chapter" data-level="1.12" data-path="index.html"><a href="index.html#student-accommodations"><i class="fa fa-check"></i><b>1.12</b> Student Accommodations</a></li>
-<li class="chapter" data-level="1.13" data-path="index.html"><a href="index.html#attendance-due-dates-and-missing-work"><i class="fa fa-check"></i><b>1.13</b> Attendance, Due Dates, and Missing Work</a></li>
-<li class="chapter" data-level="1.14" data-path="index.html"><a href="index.html#course-conduct-and-campus-policies"><i class="fa fa-check"></i><b>1.14</b> Course Conduct and Campus Policies</a></li>
-<li class="chapter" data-level="1.15" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>1.15</b> Code of Conduct</a><ul>
-<li class="chapter" data-level="1.15.1" data-path="index.html"><a href="index.html#our-pledge"><i class="fa fa-check"></i><b>1.15.1</b> Our Pledge</a></li>
-<li class="chapter" data-level="1.15.2" data-path="index.html"><a href="index.html#our-standards"><i class="fa fa-check"></i><b>1.15.2</b> Our Standards</a></li>
-<li class="chapter" data-level="1.15.3" data-path="index.html"><a href="index.html#enforcement"><i class="fa fa-check"></i><b>1.15.3</b> Enforcement</a></li>
-<li class="chapter" data-level="1.15.4" data-path="index.html"><a href="index.html#attribution"><i class="fa fa-check"></i><b>1.15.4</b> Attribution</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#a-few-words-on-r-and-coding"><i class="fa fa-check"></i><b>1.2</b> A Few Words on R and Coding</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#a-few-words-on-technology"><i class="fa fa-check"></i><b>1.3</b> A Few Words on Technology</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i><b>1.4</b> Readings</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#assignments-with-grade-breakdown"><i class="fa fa-check"></i><b>1.5</b> Assignments with Grade Breakdown</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#requirements-for-the-course"><i class="fa fa-check"></i><b>1.6</b> Requirements for the Course</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#course-schedule"><i class="fa fa-check"></i><b>1.7</b> Course Schedule</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#final-project"><i class="fa fa-check"></i><b>1.8</b> Final Project</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#honors-students-requirements"><i class="fa fa-check"></i><b>1.9</b> Honors Students’ Requirements</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#student-accommodations"><i class="fa fa-check"></i><b>1.10</b> Student Accommodations</a></li>
+<li class="chapter" data-level="1.11" data-path="index.html"><a href="index.html#attendance-due-dates-and-missing-work"><i class="fa fa-check"></i><b>1.11</b> Attendance, Due Dates, and Missing Work</a></li>
+<li class="chapter" data-level="1.12" data-path="index.html"><a href="index.html#course-conduct-and-campus-policies"><i class="fa fa-check"></i><b>1.12</b> Course Conduct and Campus Policies</a></li>
+<li class="chapter" data-level="1.13" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>1.13</b> Code of Conduct</a><ul>
+<li class="chapter" data-level="1.13.1" data-path="index.html"><a href="index.html#our-pledge"><i class="fa fa-check"></i><b>1.13.1</b> Our Pledge</a></li>
+<li class="chapter" data-level="1.13.2" data-path="index.html"><a href="index.html#our-standards"><i class="fa fa-check"></i><b>1.13.2</b> Our Standards</a></li>
+<li class="chapter" data-level="1.13.3" data-path="index.html"><a href="index.html#enforcement"><i class="fa fa-check"></i><b>1.13.3</b> Enforcement</a></li>
+<li class="chapter" data-level="1.13.4" data-path="index.html"><a href="index.html#attribution"><i class="fa fa-check"></i><b>1.13.4</b> Attribution</a></li>
 </ul></li>
-<li class="chapter" data-level="1.16" data-path="index.html"><a href="index.html#how-to-ask-for-help"><i class="fa fa-check"></i><b>1.16</b> How to Ask For Help</a><ul>
-<li class="chapter" data-level="1.16.1" data-path="index.html"><a href="index.html#before-you-ask-for-help"><i class="fa fa-check"></i><b>1.16.1</b> Before You ask for help</a></li>
-<li class="chapter" data-level="1.16.2" data-path="index.html"><a href="index.html#ask-other-people-for-help"><i class="fa fa-check"></i><b>1.16.2</b> Ask other people for help</a></li>
-<li class="chapter" data-level="1.16.3" data-path="index.html"><a href="index.html#list-of-resources"><i class="fa fa-check"></i><b>1.16.3</b> List of Resources</a></li>
+<li class="chapter" data-level="1.14" data-path="index.html"><a href="index.html#how-to-ask-for-help"><i class="fa fa-check"></i><b>1.14</b> How to Ask For Help</a><ul>
+<li class="chapter" data-level="1.14.1" data-path="index.html"><a href="index.html#before-you-ask-for-help"><i class="fa fa-check"></i><b>1.14.1</b> Before You ask for help</a></li>
+<li class="chapter" data-level="1.14.2" data-path="index.html"><a href="index.html#ask-other-people-for-help"><i class="fa fa-check"></i><b>1.14.2</b> Ask other people for help</a></li>
+<li class="chapter" data-level="1.14.3" data-path="index.html"><a href="index.html#list-of-resources"><i class="fa fa-check"></i><b>1.14.3</b> List of Resources</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="whats-ds.html"><a href="whats-ds.html"><i class="fa fa-check"></i><b>2</b> What’s data science?</a><ul>
@@ -181,7 +178,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.5" data-path="install-r.html"><a href="install-r.html#operations-and-objects"><i class="fa fa-check"></i><b>3.5</b> Operations and Objects</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a><ul>
-<li class="chapter" data-level="4.1" data-path="install-r.html"><a href="install-r.html#before-class"><i class="fa fa-check"></i><b>4.1</b> Before Class</a></li>
+<li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#before-class-3"><i class="fa fa-check"></i><b>4.1</b> Before Class</a></li>
 <li class="chapter" data-level="4.2" data-path="r-basics.html"><a href="r-basics.html#dataframes"><i class="fa fa-check"></i><b>4.2</b> Dataframes</a></li>
 <li class="chapter" data-level="4.3" data-path="r-basics.html"><a href="r-basics.html#slicing-you-dataframe"><i class="fa fa-check"></i><b>4.3</b> Slicing you dataframe</a></li>
 <li class="chapter" data-level="4.4" data-path="r-basics.html"><a href="r-basics.html#adding-new-variables-i.e.-columns-to-your-dataframe"><i class="fa fa-check"></i><b>4.4</b> Adding new variables (i.e., columns) to your dataframe</a></li>
@@ -189,45 +186,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.6" data-path="r-basics.html"><a href="r-basics.html#note-on-coding-style"><i class="fa fa-check"></i><b>4.6</b> Note on coding style</a></li>
 <li class="chapter" data-level="4.7" data-path="r-basics.html"><a href="r-basics.html#organizing-data-science-projects"><i class="fa fa-check"></i><b>4.7</b> Organizing Data Science Projects</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="version-control.html"><a href="version-control.html"><i class="fa fa-check"></i><b>5</b> Version Control</a><ul>
-<li class="chapter" data-level="5.1" data-path="install-r.html"><a href="install-r.html#before-class"><i class="fa fa-check"></i><b>5.1</b> Before Class</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="version-control.html"><a href="version-control.html#install-git-on-your-computer"><i class="fa fa-check"></i><b>5.1.1</b> Install git on your computer</a></li>
-<li class="chapter" data-level="5.1.2" data-path="version-control.html"><a href="version-control.html#create-a-github-account"><i class="fa fa-check"></i><b>5.1.2</b> Create a GitHub account</a></li>
-<li class="chapter" data-level="5.1.3" data-path="version-control.html"><a href="version-control.html#join-our-github-classroom"><i class="fa fa-check"></i><b>5.1.3</b> Join our GitHub classroom</a></li>
-<li class="chapter" data-level="5.1.4" data-path="version-control.html"><a href="version-control.html#link-rstudio-to-github"><i class="fa fa-check"></i><b>5.1.4</b> Link RStudio to GitHub</a></li>
+<li class="chapter" data-level="5" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html"><i class="fa fa-check"></i><b>5</b> Intro to Tidyverse</a><ul>
+<li class="chapter" data-level="5.1" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#before-class-4"><i class="fa fa-check"></i><b>5.1</b> Before Class</a></li>
+<li class="chapter" data-level="5.2" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#what-are-r-packages"><i class="fa fa-check"></i><b>5.2</b> What are R Packages?</a></li>
+<li class="chapter" data-level="5.3" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#installing-packages"><i class="fa fa-check"></i><b>5.3</b> Installing Packages</a></li>
+<li class="chapter" data-level="5.4" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#before-you-load-your-data"><i class="fa fa-check"></i><b>5.4</b> Before You Load your Data</a></li>
+<li class="chapter" data-level="5.5" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#whats-our-question-again"><i class="fa fa-check"></i><b>5.5</b> What’s our question again?</a></li>
+<li class="chapter" data-level="5.6" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#load-data-with-tidyverse"><i class="fa fa-check"></i><b>5.6</b> Load Data with Tidyverse</a></li>
+<li class="chapter" data-level="5.7" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#inspect-your-data"><i class="fa fa-check"></i><b>5.7</b> Inspect Your Data</a></li>
+<li class="chapter" data-level="5.8" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#the-pipe"><i class="fa fa-check"></i><b>5.8</b> The Pipe</a></li>
+<li class="chapter" data-level="5.9" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#counting-categorical-variables"><i class="fa fa-check"></i><b>5.9</b> Counting Categorical Variables</a></li>
+<li class="chapter" data-level="5.10" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#group_by-summarise"><i class="fa fa-check"></i><b>5.10</b> group_by + summarise</a></li>
+<li class="chapter" data-level="5.11" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#data-challenge-1"><i class="fa fa-check"></i><b>5.11</b> DATA CHALLENGE 1</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="version-control.html"><a href="version-control.html#what-is-version-control"><i class="fa fa-check"></i><b>5.2</b> What is version control?</a></li>
-<li class="chapter" data-level="5.3" data-path="version-control.html"><a href="version-control.html#submitting-assignments"><i class="fa fa-check"></i><b>5.3</b> Submitting assignments</a><ul>
-<li class="chapter" data-level="5.3.1" data-path="version-control.html"><a href="version-control.html#clone-assignment-repository"><i class="fa fa-check"></i><b>5.3.1</b> Clone assignment repository</a></li>
-<li class="chapter" data-level="5.3.2" data-path="version-control.html"><a href="version-control.html#modify-files"><i class="fa fa-check"></i><b>5.3.2</b> Modify files</a></li>
-<li class="chapter" data-level="5.3.3" data-path="version-control.html"><a href="version-control.html#commit-changes"><i class="fa fa-check"></i><b>5.3.3</b> Commit changes</a></li>
+<li class="chapter" data-level="6" data-path="data-tidying.html"><a href="data-tidying.html"><i class="fa fa-check"></i><b>6</b> Data Tidying</a></li>
+<li class="chapter" data-level="7" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>7</b> Descriptive Statistics</a><ul>
+<li class="chapter" data-level="7.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#before-class-5"><i class="fa fa-check"></i><b>7.1</b> Before class</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html"><i class="fa fa-check"></i><b>6</b> Intro to Tidyverse</a><ul>
-<li class="chapter" data-level="6.1" data-path="install-r.html"><a href="install-r.html#before-class"><i class="fa fa-check"></i><b>6.1</b> Before Class</a></li>
-<li class="chapter" data-level="6.2" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#what-are-r-packages"><i class="fa fa-check"></i><b>6.2</b> What are R Packages?</a></li>
-<li class="chapter" data-level="6.3" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#installing-packages"><i class="fa fa-check"></i><b>6.3</b> Installing Packages</a></li>
-<li class="chapter" data-level="6.4" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#before-you-load-your-data"><i class="fa fa-check"></i><b>6.4</b> Before You Load your Data</a></li>
-<li class="chapter" data-level="6.5" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#whats-our-question-again"><i class="fa fa-check"></i><b>6.5</b> What’s our question again?</a></li>
-<li class="chapter" data-level="6.6" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#load-data-with-tidyverse"><i class="fa fa-check"></i><b>6.6</b> Load Data with Tidyverse</a></li>
-<li class="chapter" data-level="6.7" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#inspect-your-data"><i class="fa fa-check"></i><b>6.7</b> Inspect Your Data</a></li>
-<li class="chapter" data-level="6.8" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#the-pipe"><i class="fa fa-check"></i><b>6.8</b> The Pipe</a></li>
-<li class="chapter" data-level="6.9" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#counting-categorical-variables"><i class="fa fa-check"></i><b>6.9</b> Counting Categorical Variables</a></li>
-<li class="chapter" data-level="6.10" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#group_by-summarise"><i class="fa fa-check"></i><b>6.10</b> group_by + summarise</a></li>
-<li class="chapter" data-level="6.11" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#data-challenge-1"><i class="fa fa-check"></i><b>6.11</b> DATA CHALLENGE 1</a></li>
-</ul></li>
-<li class="chapter" data-level="7" data-path="data-tidying.html"><a href="data-tidying.html"><i class="fa fa-check"></i><b>7</b> Data Tidying</a></li>
 <li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a></li>
-<li class="chapter" data-level="9" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics</a><ul>
-<li class="chapter" data-level="9.1" data-path="install-r.html"><a href="install-r.html#before-class"><i class="fa fa-check"></i><b>9.1</b> Before class</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="data-case-study-1.html"><a href="data-case-study-1.html"><i class="fa fa-check"></i><b>10</b> Data Case Study 1</a></li>
-<li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a></li>
-<li class="chapter" data-level="12" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>12</b> Getting Data</a></li>
-<li class="chapter" data-level="13" data-path="data-case-study-3.html"><a href="data-case-study-3.html"><i class="fa fa-check"></i><b>13</b> Data Case Study 3</a></li>
-<li class="chapter" data-level="14" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>14</b> Markdown</a></li>
-<li class="chapter" data-level="15" data-path="data-case-study-4.html"><a href="data-case-study-4.html"><i class="fa fa-check"></i><b>15</b> Data Case Study 4</a></li>
-<li class="chapter" data-level="16" data-path="analysis-reporting.html"><a href="analysis-reporting.html"><i class="fa fa-check"></i><b>16</b> Analysis Reporting</a></li>
+<li class="chapter" data-level="9" data-path="data-case-study-1.html"><a href="data-case-study-1.html"><i class="fa fa-check"></i><b>9</b> Data Case Study 1</a></li>
+<li class="chapter" data-level="10" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>10</b> Data Case Study 2</a></li>
+<li class="chapter" data-level="11" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>11</b> Getting Data</a></li>
+<li class="chapter" data-level="12" data-path="data-case-study-3.html"><a href="data-case-study-3.html"><i class="fa fa-check"></i><b>12</b> Data Case Study 3</a></li>
+<li class="chapter" data-level="13" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>13</b> Markdown</a></li>
+<li class="chapter" data-level="14" data-path="data-case-study-4.html"><a href="data-case-study-4.html"><i class="fa fa-check"></i><b>14</b> Data Case Study 4</a></li>
+<li class="chapter" data-level="15" data-path="analysis-reporting.html"><a href="analysis-reporting.html"><i class="fa fa-check"></i><b>15</b> Analysis Reporting</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -250,26 +233,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="intro-to-tidyverse" class="section level1">
-<h1><span class="header-section-number">Module 6</span> Intro to Tidyverse</h1>
-<div id="before-class" class="section level2">
-<h2><span class="header-section-number">6.1</span> Before Class</h2>
+<h1><span class="header-section-number">Module 5</span> Intro to Tidyverse</h1>
+<div id="before-class-4" class="section level2">
+<h2><span class="header-section-number">5.1</span> Before Class</h2>
 <p>Read <a href="https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/">Advice to Young (and Old) Programmers: A Conversation with Hadley Wickham</a> by Philip Waggoner (2,599 words, 10 minutes)</p>
 </div>
 <div id="what-are-r-packages" class="section level2">
-<h2><span class="header-section-number">6.2</span> What are R Packages?</h2>
+<h2><span class="header-section-number">5.2</span> What are R Packages?</h2>
 <p>An R package contains functions, and it might contain data. There are a lot of R packages out here (check the Comprehensive R Archive Network, i.e., CRAN, for a <a href="https://cran.r-project.org/web/packages/available_packages_by_name.html">full list</a>). That is one of the beautiful things about R, anyone can create an R package to share their code.</p>
 </div>
 <div id="installing-packages" class="section level2">
-<h2><span class="header-section-number">6.3</span> Installing Packages</h2>
+<h2><span class="header-section-number">5.3</span> Installing Packages</h2>
 <p>The function to install packages in R is <code>install.packages()</code>. We will be working with <a href="https://www.tidyverse.org/">TidyVerse</a> extensively in this course, which is a collection of R packages carefully designed for data science.</p>
 <p>Open your RStudio. In your console, enter the following to install tidyverse (this may take a while).</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="intro-to-tidyverse.html#cb45-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</span></code></pre></div>
 <p>You need to install any package only once (remember to check for new package versions and to keep your packages updated). However, with every new R session, you need to load the packages you are going to use by using the <code>library()</code> function (a library is an installed R package in your computer).</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="intro-to-tidyverse.html#cb46-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div id="explanation" class="explanation">
 <p>Note that when calling the <code>install.packages()</code> function you need to enter the package name between quotation marks (e.g., “tidyverse”). When you call the <code>library()</code> function, you don’t use quotation marks (e.g., tidyverse).</p>
 </div>
+</div>
 <div id="before-you-load-your-data" class="section level2">
-<h2><span class="header-section-number">6.4</span> Before You Load your Data</h2>
+<h2><span class="header-section-number">5.4</span> Before You Load your Data</h2>
 <p>Although we are working within an R project, which sets the working directory automatically for you, it’s good practice to check what folder you are working from by calling the <code>getwd()</code> function.</p>
 <div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="intro-to-tidyverse.html#cb47-1"></a><span class="kw">getwd</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;/Users/adriana/Desktop/ESOC214/Fall 2020/bookdown/ESOC_214_Fall_2020&quot;</code></pre>
@@ -281,13 +266,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] &quot;groundhog_day.csv&quot;   &quot;tweets.tsv&quot;          &quot;us_avg_tuition.xlsx&quot;</code></pre>
 </div>
 <div id="whats-our-question-again" class="section level2">
-<h2><span class="header-section-number">6.5</span> What’s our question again?</h2>
+<h2><span class="header-section-number">5.5</span> What’s our question again?</h2>
 <p>Here’s what we will focus on answering today, which is an excerpt from the <a href="https://www.kaggle.com/groundhogclub/groundhog-day">Groundhog Day Forecasts and Temperatures</a> kaggle page.</p>
 <p>“Thousands gather at Gobbler’s Knob in Punxsutawney, Pennsylvania, on the second day of February to await the spring forecast from a groundhog known as Punxsutawney Phil. According to legend, if Phil sees his shadow the United States is in store for six more weeks of winter weather. But, if Phil doesn’t see his shadow, the country should expect warmer temperatures and the arrival of an early spring.”</p>
 <p>So, in summary, our question is <strong>How accurate is Punxsutawney Phil’s winter weather forecast?</strong></p>
 </div>
 <div id="load-data-with-tidyverse" class="section level2">
-<h2><span class="header-section-number">6.6</span> Load Data with Tidyverse</h2>
+<h2><span class="header-section-number">5.6</span> Load Data with Tidyverse</h2>
 <p>We will use the <code>read_csv()</code> function from the <code>readr</code> package (which is part of <code>tidyverse</code>) to read data in. Be careful, there’s a similar function that is read.csv() from base R. We do want to use the function with the <code>_</code> (i.e., <code>read_csv()</code>)</p>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="intro-to-tidyverse.html#cb52-1"></a>groundhog_predictions &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/groundhog_day.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
@@ -303,11 +288,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   March_Average_Temperature_Midwest = col_double(),
 ##   March_Average_Temperature_Pennsylvania = col_double()
 ## )</code></pre>
-<p><strong>CHALLENGE</strong></p>
+<div id="challenge" class="challenge">
 <p><strong>Reading warnings</strong> - R often prints out warnings in red (these are not always errors). What information did you get when loading your data?</p>
 </div>
+</div>
 <div id="inspect-your-data" class="section level2">
-<h2><span class="header-section-number">6.7</span> Inspect Your Data</h2>
+<h2><span class="header-section-number">5.7</span> Inspect Your Data</h2>
 <p>As with any other programming language, there are multiple ways to doing anything. As such, there are multiple ways of inspecting your data in R. Here are some of my favorite ways of inspecting my data:</p>
 <div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="intro-to-tidyverse.html#cb54-1"></a><span class="co"># get an overview of the data frame</span></span>
 <span id="cb54-2"><a href="intro-to-tidyverse.html#cb54-2"></a><span class="kw">glimpse</span>(groundhog_predictions)</span></code></pre></div>
@@ -385,11 +371,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="intro-to-tidyverse.html#cb62-1"></a><span class="co"># check the categorical variable</span></span>
 <span id="cb62-2"><a href="intro-to-tidyverse.html#cb62-2"></a><span class="kw">unique</span>(groundhog_predictions<span class="op">$</span>Punxsutawney_Phil)</span></code></pre></div>
 <pre><code>## [1] &quot;No Record&quot;      &quot;Full Shadow&quot;    &quot;No Shadow&quot;      &quot;Partial Shadow&quot;</code></pre>
-<p><strong>CHALLENGE</strong></p>
+<div id="challenge" class="challenge">
 <p>Which variables are numeric? Which are categorical?</p>
 </div>
+</div>
 <div id="the-pipe" class="section level2">
-<h2><span class="header-section-number">6.8</span> The Pipe</h2>
+<h2><span class="header-section-number">5.8</span> The Pipe</h2>
 <p>We will be using the package <code>dplyr</code> (which is also part of <code>tidyverse</code>) to do an exploratory analysis of our data.</p>
 <p>The package <code>dplyr</code> most used function is <code>%&gt;%</code> (called the pipe). The pipe allows you to “pipe” (or redirect) objects into functions. (hint: use ctrl+shift+m or cmd+shift+m as a shortcut for typing <code>%&gt;%</code>).</p>
 <p>Here’s how to pipe the <code>avocado_data</code> object into the <code>summary()</code> function</p>
@@ -462,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Partial Shadow</code></pre>
 </div>
 <div id="counting-categorical-variables" class="section level2">
-<h2><span class="header-section-number">6.9</span> Counting Categorical Variables</h2>
+<h2><span class="header-section-number">5.9</span> Counting Categorical Variables</h2>
 <p>One of the functions I most use when exploring my data is <code>count()</code>, which you can combine with <code>%&gt;%</code>.</p>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="intro-to-tidyverse.html#cb70-1"></a>groundhog_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb70-2"><a href="intro-to-tidyverse.html#cb70-2"></a><span class="st">  </span><span class="kw">count</span>(Punxsutawney_Phil)</span></code></pre></div>
@@ -497,19 +484,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 2 No Record             6
 ## 3 No Shadow            15
 ## 4 Partial Shadow        1</code></pre>
-<p><strong>CHALLENGE</strong></p>
+<div id="challenge" class="challenge">
 <p>This last way of counting categorical variables (with <code>summarise()</code> and <code>n()</code>) outputs a data frame that is slightly different from the previous too. What’s the difference?</p>
 </div>
+</div>
 <div id="group_by-summarise" class="section level2">
-<h2><span class="header-section-number">6.10</span> group_by + summarise</h2>
+<h2><span class="header-section-number">5.10</span> group_by + summarise</h2>
 <p>The combination of the <code>group_by()</code> and <code>summarise()</code> functions is very powerful. In addition to using the <code>n()</code> function to count how many rows per each category in our categorical variable, we can use other functions with numeric (i.e., quantitative) variable such as <code>sum()</code> and <code>mean()</code>.</p>
-<p><strong>CHALLENGE</strong></p>
+<div id="challenge" class="challenge">
 <p>Take a moment to revisit the question we want to answer.</p>
 <ul>
 <li><p>What do we want to find out?</p></li>
 <li><p>How can we answer our question with this data?</p></li>
 <li><p>What function (e.g., <code>sum()</code>, <code>max()</code>, <code>mean()</code>) do we use to answer our question? With what variables/columns?</p></li>
 </ul>
+</div>
 <p>Complete the code below.</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode r watch-out"><code class="sourceCode r"><span id="cb77-1"><a href="intro-to-tidyverse.html#cb77-1"></a>groundhog_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
 <span id="cb77-2"><a href="intro-to-tidyverse.html#cb77-2"></a><span class="st">  </span><span class="kw">group_by</span>(Punxsutawney_Phil) <span class="op">%&gt;%</span></span>
@@ -526,7 +515,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Partial Shadow        1          30.7          41.3</code></pre>
 </div>
 <div id="data-challenge-1" class="section level2">
-<h2><span class="header-section-number">6.11</span> DATA CHALLENGE 1</h2>
+<h2><span class="header-section-number">5.11</span> DATA CHALLENGE 1</h2>
 
 </div>
 </div>
@@ -535,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="version-control.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="r-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="data-tidying.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

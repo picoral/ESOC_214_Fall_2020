@@ -37,7 +37,7 @@
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
 \hypersetup{
   pdftitle={ESOC 2014 Introduction to Data Science},
-  pdfauthor={Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu},
+  pdfauthor={Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu   The University of Arizona sits on the homelands of the Tohono O'odham and Yaqui, whose care and keeping of these lands allows us to be here today.},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 \urlstyle{same} % disable monospaced font for URLs
@@ -112,15 +112,8 @@
 \bibliographystyle{apalike}
 
 \title{ESOC 2014 Introduction to Data Science}
-\usepackage{etoolbox}
-\makeatletter
-\providecommand{\subtitle}[1]{% add subtitle to \maketitle
-  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
-}
-\makeatother
-\subtitle{Fall 2020}
-\author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-09-06}
+\author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}} The University of Arizona sits on the homelands of the Tohono O'odham and Yaqui, whose care and keeping of these lands allows us to be here today.}
+\date{2020-08-14}
 
 \begin{document}
 \maketitle
@@ -132,12 +125,7 @@
 \hypertarget{syllabus}{%
 \chapter{Syllabus}\label{syllabus}}
 
-The University of Arizona sits on the homelands of the Tohono O'odham and Pascua Yaqui, whose care and keeping of these lands allows us to be here today. Territory acknowledgements are one small part of disrupting and dismantling colonial structures.
-
-This syllabus is subject to change if need arises.
-
-\textbf{There are two sections of this course}
-
+\leavevmode\hypertarget{more_info}{}%
 Tuesday \& Thursday 12:30pm - 1:45pm
 
 \begin{itemize}
@@ -165,41 +153,23 @@ Tuesday \& Thursday 2:00pm - 3:15pm
 \hypertarget{course-description}{%
 \section{Course Description}\label{course-description}}
 
-This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, focusing on the \texttt{tidyverse} package for data science. This course is designed to be interactive and hands-on.
+This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2.
 
-\hypertarget{course-objectives}{%
-\section{Course Objectives}\label{course-objectives}}
-
-This course aims at providing students with an understanding of the various steps in the data science workflow. Students will engage in data wrangling and exploration to provide answers to questions about the data, using the R programming language. During the semester students will work on an individual data science project to be presented to the class.
-
-\hypertarget{learning-outcomes}{%
-\section{Learning Outcomes}\label{learning-outcomes}}
-
-At the end of this course, students will be able to:
+\textbf{Upon completion of this course, students should be able to:}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  Apply the different steps of data science as a process to derive knowledge from data
-
-  1.1. form the question to be answered
-
-  1.2. acquire the data to answer question
-
-  1.3. transform and tidy data so that data analysis is possible
-
-  1.4. explore data with understanding as the goal, which includes data visualization
-
-  1.5. communicate data analysis results
+  Understand data science as a process
 \item
-  Demonstrate proficiency of the steps 1.3 - 1.5 above in the R programming language and R Markdown
+  Think critically about how data are stored, used, managed, analyzed, and presented
 \item
-  Identify and apply professional standards regarding all aspects of data ethics and privacy, including how data are stored, used, managed, analyzed, and presented
+  Engage in computational thinking and modeling
 \item
-  Demonstrate knowledge of what a data scientist is and what a career in data science requires in terms of education, and set goals and make plans in case they want to pursue data science beyond the completion of this course
+  Experiment with skills required for large-scale data analysis
 \end{enumerate}
 
-Please refer to the \href{https://ischool.arizona.edu/undergraduate-student-competencies}{department's undergraduate student competencies} to find out how this course's learning outcomes fit into your broad education goals.
+This course is designed to be interactive and hands-on.
 
 \hypertarget{a-few-words-on-r-and-coding}{%
 \section{A Few Words on R and Coding}\label{a-few-words-on-r-and-coding}}
@@ -310,8 +280,6 @@ Intro and exit surveys\strut
 Late assignments within 24 hours of due date and time will get a 20\% grade penalty. Assignments submitted 24 hours after the due date and time will not get any credit.
 
 If you are unable to complete an assignment on the due date due to an illness or another personal problem, please contact me as soon as possible so we can talk about ways to help you complete that assignment.
-
-Any work turned in for this class needs to be distinctly developed for this class, and not work turned in for other classes.
 
 Grade Distribution:
 
@@ -638,6 +606,7 @@ Preparing for Final Presentations Wrap-up\strut
 
 For more information about dates including holidays, check \href{https://catalog.arizona.edu/calendar/2020-2021-academic-calendar}{UArizona's Academic Calendar}.
 
+\leavevmode\hypertarget{explanation}{}%
 \textbf{Why am I using YYYY-MM-DD date format?}
 
 \includegraphics[width=10.89in]{images/iso_8601_2x}
@@ -842,8 +811,7 @@ Fill out \href{https://forms.gle/NaqrC87cB8xh6Sdz8}{Survey 1} (10 min)
 
 Data science is one of the fields with the highest demand, with prospects of increased demand for the next decade \citep{kross2020democratization, hadavand2018can}. Interestingly, the data scientist title was invented in 2008, and the median base salary for a data scientist surpassed \$100,000 in the United States in 2019 \citep{robinson_nolis_2020}.
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 Based on your own experience and on your reading for this module, in your groups discuss the following question:
 
 \begin{itemize}
@@ -855,10 +823,9 @@ Based on your own experience and on your reading for this module, in your groups
 \hypertarget{what-does-a-data-scientist-do}{%
 \section{What does a data scientist do?}\label{what-does-a-data-scientist-do}}
 
-Data science is an interdisciplinary field, and as such data scientists hold jobs with a broad range of skills, from statistics to communication. \href{https://www.indeed.com/jobs?q=data+science\&l=United+States}{A quick search for data science jobs} reveals this long list of skills. However, no single data scientist has all skills listed for different data science jobs. Instead, each data scientist specializes in different skills \citep{robinson_nolis_2020}.
+Data science is an interdisciplinary field, and as such data scientists hold jobs with a broad range of skills, from statistics to communication. \href{https://www.google.com/search?rlz=1C5CHFA_enUS843US843\&sxsrf=ALeKk02S5o7eqMYtn1l_VE-dvUDmZjXxKw:1594738746865\&ei=OsgNX8ObNMSD9PwP6JS2gAM\&q=data+science+jobs\&oq=data+science+\&gs_lcp=CgZwc3ktYWIQAxgAMggIABCxAxCRAjIICAAQsQMQkQIyAggAMgUIABCxAzIECAAQQzICCAAyBQgAELEDMgUIABCxAzIHCAAQsQMQQzIFCAAQsQM6BAgAEEc6BQgAEJECOggIABCxAxCDAToKCAAQsQMQgwEQQ1C3S1icVWDgYGgAcAN4AIABjwGIAcwKkgEDOC41mAEAoAEBqgEHZ3dzLXdpeg\&sclient=psy-ab\&ibp=htl;jobs\&sa=X\&ved=2ahUKEwj2vc_qgM3qAhXEZs0KHTpaC8EQiYsCKAF6BAgKEBA\#htivrt=jobs\&htidocid=cxgsZF4SHt5PJepoAAAAAA\%3D\%3D\&fpstate=tldetail}{A quick Google search for data science jobs} reveals this long list of skills. However, no single data scientist has all skills listed for different data science jobs. Instead, each data scientist specializes in different skills \citep{robinson_nolis_2020}.
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 Make a list of skills listed on data science job announcements and in the video you just watched. Based on these, discuss the following questions in your group:
 
 \begin{enumerate}
@@ -899,8 +866,7 @@ The basic data science workflow involve three main parts:
 \caption{typical data science project model (Grolemund and Wickham, 2018)}\label{fig:unnamed-chunk-3}
 \end{figure}
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 In your groups, based on your own intuition and experience, and based on the \href{https://r4ds.had.co.nz/introduction.html}{Introduction to R for Data Science} book \citep{grolemund2018r}, summarize what each of the following steps means:
 
 \begin{enumerate}
@@ -919,8 +885,7 @@ In your groups, based on your own intuition and experience, and based on the \hr
 
 We will approach the entire data science workflow in this course (but not necessarily every step listed), not in this order. We start with step 3 (Data Wrangling) and 4 (Data Exploration), before we address step 2 (Data Acquisition) and step 5 (Communication)
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 Go back to the list of skills and job positions we discussed (based on the reading and the video):
 
 \begin{enumerate}
@@ -942,18 +907,17 @@ Reading: \href{readings/module2_modern_data_science_data_intake.pdf}{Data Intake
 \hypertarget{whats-data}{%
 \section{What's data?}\label{whats-data}}
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 In your small group, discuss the examples provided in the excerpt from ``Executive Data Science'' \citep{caffo2016executive}.
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
 \item
-  Is data science about ``data''? Why or why not?
+  How is this definition of Data Science different from other definitions we discussed so far?
 \item
   Why did Netflix end up not implementing the best solution from the Netflix prize challenge?
 \item
-  What data was used in each of the examples provided in the reading?
+  What data was used in each of the examples provided?
 \item
   What is data? (come up with a definition).
 \end{enumerate}
@@ -1034,11 +998,10 @@ Wyoming
 
 4122.205
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 Which of the columns (or variables) in the data frame above are \textbf{categorical}, which are \textbf{quantitative}?
 
-~
+;nbsp
 
 \begin{itemize}
 \tightlist
@@ -1444,8 +1407,7 @@ NA
 ## [10] "indulgent father; and had, in consequence of her sister's marriage, been"
 \end{verbatim}
 
-** CHALLENGE **
-
+\leavevmode\hypertarget{challenge}{}%
 What data formats are out there in the world. Create a list based on your experience and the excerpt from ``Modern Data Science with R'' \citep{baumer2017modern}.
 
 \hypertarget{what-does-data-analysis-look-like}{%
@@ -1474,6 +1436,7 @@ Install R and RStudio.
 
 We are using RStudio as our IDE for this course. If you are running your R code in your computer, you need to install both R and RStudio. Alternatively, you can create a free account at \url{http://rstudio.cloud} and run your R code in the cloud. Either way, we will be using the same IDE (i.e., RStudio).
 
+\leavevmode\hypertarget{explanation}{}%
 What's an \textbf{IDE}? IDE stands for \textbf{i}ntegrated \textbf{d}evelopment \textbf{e}nvironment, and its goal is to facilitate coding by integrating a \textbf{text editor}, a \textbf{console} and other tools into one window.
 
 \hypertarget{ive-never-installed-r-and-rstudio-in-my-computer-or-im-not-sure-i-have-r-and-rstudio-installed-in-my-computer}{%
@@ -1506,6 +1469,7 @@ Here's a \href{https://youtu.be/Iwp8bm7w4fQ}{video on how to install R and RStud
   Check your RStudio version, if your version is older than Version 1.3.x, please follow step 2 in the previous section to update RStudio.
 \end{enumerate}
 
+\leavevmode\hypertarget{explanation}{}%
 How often should I update R and RStudio? Always make sure that you have the latest version of R, RStudio, and the packages you're using in your code to ensure you are not running into bugs that are caused by having older versions installed in your computer.
 
 When \href{https://community.rstudio.com/t/should-i-update-all-my-r-packages-frequently-yes-no-why/5856/4}{asked}, \href{https://community.rstudio.com/u/jennybryan}{Jenny Bryan} summarizes the importance of keeping your system up-to-date saying that ``You will always eventually have a reason that you must update. So you can either do that very infrequently, suffer with old versions in the middle, and experience great pain at update. Or admit that maintaining your system is a normal ongoing activity, and do it more often.''
@@ -1551,6 +1515,7 @@ In today's class, we will focus on situating ourselves around our IDE. For every
 
 Why create a RStudio project? RStudio projects make it easier to keep your projects organized, since each project has their own working directory, workspace, history, and source documents. In other words, it's much easier to open an R project and not have to worry about setting your working directory than to try to hunt down your files.
 
+\leavevmode\hypertarget{steps}{}%
 Here are the steps we are starting with today:
 
 \begin{enumerate}
@@ -1565,8 +1530,7 @@ Here are the steps we are starting with today:
 
 ~
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 Take a moment to look around your IDE. What are the main panes on the RStudio interface. What are the 4 main areas of the interface? Can you guess what each area is for?
 
 \hypertarget{operations-and-objects}{%
@@ -1584,6 +1548,7 @@ Let's start by using R as a calculator. On your \textbf{console} type \texttt{3\
 ## [1] 6
 \end{verbatim}
 
+\leavevmode\hypertarget{question}{}%
 What symbols do we use for all basic operations (addition, subtraction, multiplication, and division)?
 What happens if you type \texttt{3\ +}?
 
@@ -1595,6 +1560,7 @@ Let's save our calculation into an object, by using the assignment symbol \textt
 \end{Highlighting}
 \end{Shaded}
 
+\leavevmode\hypertarget{question}{}%
 Take a moment to look around your IDE once again. What has changed?
 
 Now, let's use this new object in our calculation
@@ -1609,6 +1575,7 @@ Now, let's use this new object in our calculation
 ## [1] 9
 \end{verbatim}
 
+\leavevmode\hypertarget{question}{}%
 Take a moment to look around your IDE once again. Has anything changed?
 
 What else can we do with an object?
@@ -1627,7 +1594,8 @@ R is primarily a functional programming language. That means that there pre-prog
 
 Type \texttt{?class} in your console and hit enter to get more information about this function.
 
-\textbf{CHALLENGE}
+\leavevmode\hypertarget{challenge}{}%
+CHALLENGE
 
 Create an object called \texttt{daisys\_age} that holds the number 8.
 Multiply \texttt{daisys\_age} by 4 and save the results in another object called \texttt{daisys\_human\_age}
@@ -1640,6 +1608,7 @@ Imagine I had multiple pets (unfortunately, that is not true, Daisy is my only p
 \end{Highlighting}
 \end{Shaded}
 
+\leavevmode\hypertarget{question}{}%
 Take a moment to look around your IDE once again. What has changed?
 
 What is the class of the object \texttt{my\_pets\_ages}?
@@ -1664,15 +1633,16 @@ Errors are pretty common when writing code in any programming language, so be re
 \end{Highlighting}
 \end{Shaded}
 
-\textbf{CHALLENGE}
+\leavevmode\hypertarget{challenge}{}%
+CHALLENGE
 
 Try to multiply \texttt{my\_pets\_ages} by 4. What happens? How can we debug our code to find out what is causing the error?
 
 \hypertarget{r-basics}{%
 \chapter{R Basics}\label{r-basics}}
 
-\hypertarget{before-class}{%
-\section{Before Class}\label{before-class}}
+\hypertarget{before-class-3}{%
+\section{Before Class}\label{before-class-3}}
 
 Read \href{http://varianceexplained.org/programming/bad-code/}{A Million Lines of Bad Code} a blog post by \href{http://varianceexplained.org/about/}{David Robinson}. (549 words, 5 minutes)
 
@@ -1721,7 +1691,8 @@ Let's now create a dataframe that contains info about my pets.
 ## 5  Poppy   1
 \end{verbatim}
 
-\textbf{CHALLENGE}
+\leavevmode\hypertarget{challenge}{}%
+CHALLENGE
 
 There's a number of functions you can run on dataframes. Try running the following functions on \texttt{my\_pets}:
 
@@ -1886,7 +1857,8 @@ You can also use comparisons to filter your dataframe
 ## [1] "Daisy"
 \end{verbatim}
 
-\textbf{CHALLENGE}
+\leavevmode\hypertarget{challenge}{}%
+CHALLENGE
 
 Print out a list of pet names that are older than 3.
 
@@ -1916,6 +1888,7 @@ Let's add a third column with the pets' ages in human years. For that, we are go
 ## 5  Poppy   1           4
 \end{verbatim}
 
+\leavevmode\hypertarget{question}{}%
 Inspect the new \texttt{my\_pets} dataframe. What dimensions does it have now? How could you get a list of just the human years values in the data frame?
 
 \hypertarget{descriptive-stats-on-dataframes}{%
@@ -1923,7 +1896,8 @@ Inspect the new \texttt{my\_pets} dataframe. What dimensions does it have now? H
 
 Let's explore some functions for descriptive statistics.
 
-\textbf{CHALLENGE}
+\leavevmode\hypertarget{challenge}{}%
+CHALLENGE
 
 Try running the following functions on \texttt{my\_pets\$age} and \texttt{my\_pets\$human\_years}:
 
@@ -1952,155 +1926,23 @@ Coding style refers to how you name your objects and functions, how you comment 
 \begin{itemize}
 \item
   \href{https://style.tidyverse.org}{The tidyverse style guide}
-\item
-  \href{http://adv-r.had.co.nz/Style.html}{Hadley Wickham's Advance R coding style}
-\item
-  \href{https://google.github.io/styleguide/Rguide.html}{Google's R Style Guide}
+
+  \begin{itemize}
+  \item
+    \href{http://adv-r.had.co.nz/Style.html}{Hadley Wickham's Advance R coding style}
+  \item
+    \href{https://google.github.io/styleguide/Rguide.html}{Google's R Style Guide}
+  \end{itemize}
 \end{itemize}
 
 \hypertarget{organizing-data-science-projects}{%
 \section{Organizing Data Science Projects}\label{organizing-data-science-projects}}
 
-\hypertarget{version-control}{%
-\chapter{Version Control}\label{version-control}}
-
-\hypertarget{before-class}{%
-\section{Before Class}\label{before-class}}
-
-\hypertarget{install-git-on-your-computer}{%
-\subsection{Install git on your computer}\label{install-git-on-your-computer}}
-
-Access the \href{https://git-scm.com/download}{git download page} and download the appropriate version for your machine.
-
-If you have a Windows 10 machine, you can watch \href{https://www.youtube.com/watch?v=nbFwejIsHlY}{this video that shows you how to install Git on windows}. When installing, note where it's installed (on the ``Select Destination Location'' window) so you can check if you have the correct path to Git set up in RStudio (it's usually \texttt{C:\textbackslash{}Program\textbackslash{}Git}).
-
-If you have a Mac, you can watch \href{https://www.youtube.com/watch?v=PSULlxUk744}{this video that shows you how to install Git on a Mac}.
-
-\hypertarget{create-a-github-account}{%
-\subsection{Create a GitHub account}\label{create-a-github-account}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Access the \href{https://github.com/}{GitHub} page.
-\item
-  Click on ``\href{https://github.com/join}{Sign Up for GitHub}.''
-\item
-  Fill out the ``Create your account'' forms.
-\item
-  A verification will be sent to your email address, check your inbox for a ``Please verify your email address'' message. Click on ``Verify email address'' button.
-\end{enumerate}
-
-If you already have a GitHub account, confirm you know your username and password by logging in at \href{https://github.com/}{GitHub}.
-
-\hypertarget{join-our-github-classroom}{%
-\subsection{Join our GitHub classroom}\label{join-our-github-classroom}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Access our \href{https://classroom.github.com/classrooms/69162822-esoc214-classroom-1}{join our GitHub classroom} page.
-\item
-  A window with information about what GitHub Classroom wants to access from your GitHub profile will appear. Click on ``Authorize github''.
-\item
-  Access our \href{https://classroom.github.com/a/uE1b8ho7}{first assignment} and click on ``Accept this assignment''
-\end{enumerate}
-
-\hypertarget{link-rstudio-to-github}{%
-\subsection{Link RStudio to GitHub}\label{link-rstudio-to-github}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Open ``preferences'' in RStudio.
-\item
-  Click on ``Git/SVN'' in the menu on the left.
-\item
-  Under ``SSH RSA Key:'' click on ``Create RSA Key\ldots{}''
-\item
-  A window will pop up, click on ``Create''
-\item
-  A new window will pop up, click ``Close''
-\item
-  Now there's a ``View public key'' link next to ``SSH RSA Key:''; click on it
-\item
-  Copy key and close the window
-\item
-  Go to your \href{https://github.com/settings/profile}{GitHub account settings}
-\item
-  On the menu on the left, click on ``SSH and GPC keys''
-\item
-  Click on the ``New SSH Key'' button
-\item
-  Choose a title (e.g., RStudio Connection) and copy the key to the ``key'' field
-\item
-  Click ``Add SSH Key''
-\end{enumerate}
-
-\hypertarget{what-is-version-control}{%
-\section{What is version control?}\label{what-is-version-control}}
-
-Version control is a best practice for reproducible analyses, and widely used in industry and research (i.e., you will need to know how to use version control in your future job).
-
-The purpose of version control is to keep track of changes to your files over time, so that you can recall specific versions at any point in your project.
-
-\href{https://git-scm.com/}{Git} is an open source version control software system that is very popular -- 58\% of data scientist use Git \citep{beckman2020implementing}. There are a number of other version control software available (e.g., \href{https://www.perforce.com/blog/vcs/git-vs-perforce-how-choose-and-when-use-both}{Perforce}).
-
-\hypertarget{submitting-assignments}{%
-\section{Submitting assignments}\label{submitting-assignments}}
-
-\hypertarget{clone-assignment-repository}{%
-\subsection{Clone assignment repository}\label{clone-assignment-repository}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  Go to our \href{https://classroom.github.com/a/uE1b8ho7}{first assignment GitHub repository}
-\item
-  Click on the ``Code'' button and copy the git url (e.g., \url{https://github.com/esoc214/test-assignment-yournamehere.git})
-\item
-  Open RStudio
-\item
-  Go ``File'' \textgreater{} ``New Project\ldots{}''
-\item
-  In the pop-up window, select ``Version Control''
-\item
-  Then choose ``Git''
-\item
-  In the ``Repository URL:'' field enter the link to the first assignment repository from your GitHub account.
-\item
-  Click ``Create''
-\end{enumerate}
-
-\hypertarget{modify-files}{%
-\subsection{Modify files}\label{modify-files}}
-
-For the first assignment, which is a test assignment so you're all set up to submitting all of your assignments for this class, you need to modify \texttt{READM.md} only. For other assignments you will need to edit .R scripts.
-
-\hypertarget{commit-changes}{%
-\subsection{Commit changes}\label{commit-changes}}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi}.}
-\item
-  On the top right panel in RStudio (i.e., Environment quadrant), click on the ``Git'' tab
-\item
-  You will see a list of files, indicating which files have been modified (a blue ``M'' shows next to modified file).
-\item
-  Click om ``Commit'' on the top of this tab
-\item
-  A new window will pop-up. Stage the files you want to commit (click on the check box next to file) and enter a commit message.
-\item
-  Press ``Commit'' and if everything looks good, close the commit window.
-\item
-  Click ``Push'' on top right
-\end{enumerate}
-
 \hypertarget{intro-to-tidyverse}{%
 \chapter{Intro to Tidyverse}\label{intro-to-tidyverse}}
 
-\hypertarget{before-class}{%
-\section{Before Class}\label{before-class}}
+\hypertarget{before-class-4}{%
+\section{Before Class}\label{before-class-4}}
 
 Read \href{https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/}{Advice to Young (and Old) Programmers: A Conversation with Hadley Wickham} by Philip Waggoner (2,599 words, 10 minutes)
 
@@ -2130,6 +1972,7 @@ You need to install any package only once (remember to check for new package ver
 \end{Highlighting}
 \end{Shaded}
 
+\leavevmode\hypertarget{explanation}{}%
 Note that when calling the \texttt{install.packages()} function you need to enter the package name between quotation marks (e.g., ``tidyverse''). When you call the \texttt{library()} function, you don't use quotation marks (e.g., tidyverse).
 
 \hypertarget{before-you-load-your-data}{%
@@ -2205,8 +2048,7 @@ We will use the \texttt{read\_csv()} function from the \texttt{readr} package (w
 ## )
 \end{verbatim}
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 \textbf{Reading warnings} - R often prints out warnings in red (these are not always errors). What information did you get when loading your data?
 
 \hypertarget{inspect-your-data}{%
@@ -2330,8 +2172,7 @@ As with any other programming language, there are multiple ways to doing anythin
 ## [1] "No Record"      "Full Shadow"    "No Shadow"      "Partial Shadow"
 \end{verbatim}
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 Which variables are numeric? Which are categorical?
 
 \hypertarget{the-pipe}{%
@@ -2504,8 +2345,7 @@ And instead of \texttt{count()} we can use the \texttt{summarise()} and \texttt{
 ## 4 Partial Shadow        1
 \end{verbatim}
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 This last way of counting categorical variables (with \texttt{summarise()} and \texttt{n()}) outputs a data frame that is slightly different from the previous too. What's the difference?
 
 \hypertarget{group_by-summarise}{%
@@ -2513,8 +2353,7 @@ This last way of counting categorical variables (with \texttt{summarise()} and \
 
 The combination of the \texttt{group\_by()} and \texttt{summarise()} functions is very powerful. In addition to using the \texttt{n()} function to count how many rows per each category in our categorical variable, we can use other functions with numeric (i.e., quantitative) variable such as \texttt{sum()} and \texttt{mean()}.
 
-\textbf{CHALLENGE}
-
+\leavevmode\hypertarget{challenge}{}%
 Take a moment to revisit the question we want to answer.
 
 \begin{itemize}
@@ -2559,14 +2398,14 @@ Example of output that you might want to get to answer our question:
 \hypertarget{data-tidying}{%
 \chapter{Data Tidying}\label{data-tidying}}
 
-\hypertarget{data-visualization}{%
-\chapter{Data Visualization}\label{data-visualization}}
-
 \hypertarget{descriptive-statistics}{%
 \chapter{Descriptive Statistics}\label{descriptive-statistics}}
 
-\hypertarget{before-class}{%
-\section{Before class}\label{before-class}}
+\hypertarget{before-class-5}{%
+\section{Before class}\label{before-class-5}}
+
+\hypertarget{data-visualization}{%
+\chapter{Data Visualization}\label{data-visualization}}
 
 \hypertarget{data-case-study-1}{%
 \chapter{Data Case Study 1}\label{data-case-study-1}}

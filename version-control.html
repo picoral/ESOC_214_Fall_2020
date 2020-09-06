@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Module 11 Data Case Study 2 | ESOC 2014 Introduction to Data Science</title>
+  <title>Module 5 Version Control | ESOC 2014 Introduction to Data Science</title>
   <meta name="description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
   <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Module 11 Data Case Study 2 | ESOC 2014 Introduction to Data Science" />
+  <meta property="og:title" content="Module 5 Version Control | ESOC 2014 Introduction to Data Science" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Module 11 Data Case Study 2 | ESOC 2014 Introduction to Data Science" />
+  <meta name="twitter:title" content="Module 5 Version Control | ESOC 2014 Introduction to Data Science" />
   
   <meta name="twitter:description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-case-study-1.html"/>
-<link rel="next" href="getting-data.html"/>
+<link rel="prev" href="r-basics.html"/>
+<link rel="next" href="intro-to-tidyverse.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -249,17 +249,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-case-study-2" class="section level1">
-<h1><span class="header-section-number">Module 11</span> Data Case Study 2</h1>
+<div id="version-control" class="section level1">
+<h1><span class="header-section-number">Module 5</span> Version Control</h1>
+<div id="before-class" class="section level2">
+<h2><span class="header-section-number">5.1</span> Before Class</h2>
+<div id="install-git-on-your-computer" class="section level3">
+<h3><span class="header-section-number">5.1.1</span> Install git on your computer</h3>
+<p>Access the <a href="https://git-scm.com/download">git download page</a> and download the appropriate version for your machine.</p>
+<p>If you have a Windows 10 machine, you can watch <a href="https://www.youtube.com/watch?v=nbFwejIsHlY">this video that shows you how to install Git on windows</a>. When installing, note where it’s installed (on the “Select Destination Location” window) so you can check if you have the correct path to Git set up in RStudio (it’s usually <code>C:\Program\Git</code>).</p>
+<p>If you have a Mac, you can watch <a href="https://www.youtube.com/watch?v=PSULlxUk744">this video that shows you how to install Git on a Mac</a>.</p>
+</div>
+<div id="create-a-github-account" class="section level3">
+<h3><span class="header-section-number">5.1.2</span> Create a GitHub account</h3>
+<ol style="list-style-type: decimal">
+<li><p>Access the <a href="https://github.com/">GitHub</a> page.</p></li>
+<li><p>Click on “<a href="https://github.com/join">Sign Up for GitHub</a>.”</p></li>
+<li><p>Fill out the “Create your account” forms.</p></li>
+<li><p>A verification will be sent to your email address, check your inbox for a “Please verify your email address” message. Click on “Verify email address” button.</p></li>
+</ol>
+<p>If you already have a GitHub account, confirm you know your username and password by logging in at <a href="https://github.com/">GitHub</a>.</p>
+</div>
+<div id="join-our-github-classroom" class="section level3">
+<h3><span class="header-section-number">5.1.3</span> Join our GitHub classroom</h3>
+<ol style="list-style-type: decimal">
+<li><p>Access our <a href="https://classroom.github.com/classrooms/69162822-esoc214-classroom-1">join our GitHub classroom</a> page.</p></li>
+<li><p>A window with information about what GitHub Classroom wants to access from your GitHub profile will appear. Click on “Authorize github”.</p></li>
+<li><p>Access our <a href="https://classroom.github.com/a/uE1b8ho7">first assignment</a> and click on “Accept this assignment”</p></li>
+</ol>
+</div>
+<div id="link-rstudio-to-github" class="section level3">
+<h3><span class="header-section-number">5.1.4</span> Link RStudio to GitHub</h3>
+<ol style="list-style-type: decimal">
+<li><p>Open “preferences” in RStudio.</p></li>
+<li><p>Click on “Git/SVN” in the menu on the left.</p></li>
+<li><p>Under “SSH RSA Key:” click on “Create RSA Key…”</p></li>
+<li><p>A window will pop up, click on “Create”</p></li>
+<li><p>A new window will pop up, click “Close”</p></li>
+<li><p>Now there’s a “View public key” link next to “SSH RSA Key:”; click on it</p></li>
+<li><p>Copy key and close the window</p></li>
+<li><p>Go to your <a href="https://github.com/settings/profile">GitHub account settings</a></p></li>
+<li><p>On the menu on the left, click on “SSH and GPC keys”</p></li>
+<li><p>Click on the “New SSH Key” button</p></li>
+<li><p>Choose a title (e.g., RStudio Connection) and copy the key to the “key” field</p></li>
+<li><p>Click “Add SSH Key”</p></li>
+</ol>
+</div>
+</div>
+<div id="what-is-version-control" class="section level2">
+<h2><span class="header-section-number">5.2</span> What is version control?</h2>
+<p>Version control is a best practice for reproducible analyses, and widely used in industry and research (i.e., you will need to know how to use version control in your future job).</p>
+<p>The purpose of version control is to keep track of changes to your files over time, so that you can recall specific versions at any point in your project.</p>
+<p><a href="https://git-scm.com/">Git</a> is an open source version control software system that is very popular – 58% of data scientist use Git <span class="citation">(Beckman et al. <a href="#ref-beckman2020implementing" role="doc-biblioref">2020</a>)</span>. There are a number of other version control software available (e.g., <a href="https://www.perforce.com/blog/vcs/git-vs-perforce-how-choose-and-when-use-both">Perforce</a>).</p>
+</div>
+<div id="submitting-assignments" class="section level2">
+<h2><span class="header-section-number">5.3</span> Submitting assignments</h2>
+<div id="clone-assignment-repository" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Clone assignment repository</h3>
+<ol style="list-style-type: decimal">
+<li><p>Go to our <a href="https://classroom.github.com/a/uE1b8ho7">first assignment GitHub repository</a></p></li>
+<li><p>Click on the “Code” button and copy the git url (e.g., <a href="https://github.com/esoc214/test-assignment-yournamehere.git" class="uri">https://github.com/esoc214/test-assignment-yournamehere.git</a>)</p></li>
+<li><p>Open RStudio</p></li>
+<li><p>Go “File” &gt; “New Project…”</p></li>
+<li><p>In the pop-up window, select “Version Control”</p></li>
+<li><p>Then choose “Git”</p></li>
+<li><p>In the “Repository URL:” field enter the link to the first assignment repository from your GitHub account.</p></li>
+<li><p>Click “Create”</p></li>
+</ol>
+</div>
+<div id="modify-files" class="section level3">
+<h3><span class="header-section-number">5.3.2</span> Modify files</h3>
+<p>For the first assignment, which is a test assignment so you’re all set up to submitting all of your assignments for this class, you need to modify <code>READM.md</code> only. For other assignments you will need to edit .R scripts.</p>
+</div>
+<div id="commit-changes" class="section level3">
+<h3><span class="header-section-number">5.3.3</span> Commit changes</h3>
+<ol style="list-style-type: decimal">
+<li><p>On the top right panel in RStudio (i.e., Environment quadrant), click on the “Git” tab</p></li>
+<li><p>You will see a list of files, indicating which files have been modified (a blue “M” shows next to modified file).</p></li>
+<li><p>Click om “Commit” on the top of this tab</p></li>
+<li><p>A new window will pop-up. Stage the files you want to commit (click on the check box next to file) and enter a commit message.</p></li>
+<li><p>Press “Commit” and if everything looks good, close the commit window.</p></li>
+<li><p>Click “Push” on top right</p></li>
+</ol>
 
+</div>
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-beckman2020implementing">
+<p>Beckman, Matthew D, Mine Çetinkaya-Rundel, Nicholas J Horton, Colin W Rundel, Adam J Sullivan, and Maria Tackett. 2020. “Implementing Version Control with Git as a Learning Objective in Statistics Courses.” <em>arXiv Preprint arXiv:2001.01988</em>.</p>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-case-study-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="getting-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-basics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro-to-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
