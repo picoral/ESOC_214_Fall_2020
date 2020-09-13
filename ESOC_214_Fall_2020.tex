@@ -120,7 +120,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-09-09}
+\date{2020-09-13}
 
 \begin{document}
 \maketitle
@@ -2084,7 +2084,7 @@ For the first assignment, which is a test assignment so you're all set up to sub
 \item
   You will see a list of files, indicating which files have been modified (a blue ``M'' shows next to modified file).
 \item
-  Click om ``Commit'' on the top of this tab
+  Click on ``Commit'' on the top of this tab
 \item
   A new window will pop-up. Stage the files you want to commit (click on the check box next to file) and enter a commit message.
 \item
@@ -2163,7 +2163,9 @@ You can now list the contents of your \texttt{data} folder with the \texttt{dir(
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "groundhog_day.csv"   "tweets.tsv"          "us_avg_tuition.xlsx"
+## [1] "groundhog_day.csv"                  "olympic_history_athlete_events.csv"
+## [3] "olympic_history_noc_regions.csv"    "tweets.tsv"                        
+## [5] "us_avg_tuition.xlsx"
 \end{verbatim}
 
 \hypertarget{whats-our-question-again}{%
@@ -2537,10 +2539,6 @@ Complete the code below.
 Example of output that you might want to get to answer our question:
 
 \begin{verbatim}
-## `summarise()` ungrouping output (override with `.groups` argument)
-\end{verbatim}
-
-\begin{verbatim}
 ## # A tibble: 4 x 4
 ##   Punxsutawney_Phil total feb_mean_temp mar_mean_temp
 ##   <chr>             <int>         <dbl>         <dbl>
@@ -2550,8 +2548,246 @@ Example of output that you might want to get to answer our question:
 ## 4 Partial Shadow        1          30.7          41.3
 \end{verbatim}
 
-\hypertarget{data-challenge-1}{%
-\section{DATA CHALLENGE 1}\label{data-challenge-1}}
+\hypertarget{group_by-filter}{%
+\section{group\_by + filter}\label{group_by-filter}}
+
+The output above contains six \texttt{No\ Record} observations and only one \texttt{Partial\ Shadow}. We can keep just observations that are \texttt{Full\ Shadow} and \texttt{No\ Shadow} by using the filter() function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Punxsutawney_Phil }\OperatorTok{==}\StringTok{ "Full Shadow"} \OperatorTok{|}
+\StringTok{           }\NormalTok{Punxsutawney_Phil }\OperatorTok{==}\StringTok{ "No Shadow"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(Punxsutawney_Phil)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   Punxsutawney_Phil     n
+##   <chr>             <int>
+## 1 Full Shadow         100
+## 2 No Shadow            15
+\end{verbatim}
+
+\textbf{CHALLENGE}
+
+Add a \texttt{filter()} to your solution from the previous challenge.
+
+Example of output that you might want to get:
+
+\begin{verbatim}
+## # A tibble: 2 x 4
+##   Punxsutawney_Phil total feb_mean_temp mar_mean_temp
+##   <chr>             <int>         <dbl>         <dbl>
+## 1 Full Shadow         100          33.7          41.7
+## 2 No Shadow            15          35.6          43.0
+\end{verbatim}
+
+\hypertarget{pivot-dataframe}{%
+\section{Pivot Dataframe}\label{pivot-dataframe}}
+
+Another useful function we will be using a lot during this course is \texttt{pivot\_longer()}, which pivots (or tilts) some columns in our dataframe so we have one column for each of our variables.
+
+Let's first select the temperatures for individual regions and create a new dataframe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selected_predictions <-}\StringTok{ }\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Year, Punxsutawney_Phil, }
+\NormalTok{         February_Average_Temperature_Northeast, }
+\NormalTok{         February_Average_Temperature_Midwest,}
+\NormalTok{         February_Average_Temperature_Pennsylvania,}
+\NormalTok{         March_Average_Temperature_Northeast,}
+\NormalTok{         March_Average_Temperature_Midwest,}
+\NormalTok{         March_Average_Temperature_Pennsylvania)}
+
+\KeywordTok{colnames}\NormalTok{(selected_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Year"                                     
+## [2] "Punxsutawney_Phil"                        
+## [3] "February_Average_Temperature_Northeast"   
+## [4] "February_Average_Temperature_Midwest"     
+## [5] "February_Average_Temperature_Pennsylvania"
+## [6] "March_Average_Temperature_Northeast"      
+## [7] "March_Average_Temperature_Midwest"        
+## [8] "March_Average_Temperature_Pennsylvania"
+\end{verbatim}
+
+Another way of doing the same thing we just did is by saying the columns we want to eliminate from our selection, using the \texttt{-} (i.e, minus) sign.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selected_predictions <-}\StringTok{ }\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{February_Average_Temperature, }\OperatorTok{-}\NormalTok{March_Average_Temperature)}
+
+\KeywordTok{colnames}\NormalTok{(selected_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Year"                                     
+## [2] "Punxsutawney_Phil"                        
+## [3] "February_Average_Temperature_Northeast"   
+## [4] "February_Average_Temperature_Midwest"     
+## [5] "February_Average_Temperature_Pennsylvania"
+## [6] "March_Average_Temperature_Northeast"      
+## [7] "March_Average_Temperature_Midwest"        
+## [8] "March_Average_Temperature_Pennsylvania"
+\end{verbatim}
+
+Now we are ready to \texttt{pivot\_longer()} our selected\_predictions dataframe. Let's examine our selected\_predictions dataframe. We want to move all numbers to our numeric variable called temperature, and we want the column names to be another variable called \texttt{month\_region} so that are data is tidy.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(selected_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 8
+##    Year Punxsutawney_Ph~ February_Averag~ February_Averag~ February_Averag~
+##   <dbl> <chr>                       <dbl>            <dbl>            <dbl>
+## 1  1895 No Record                    15.6             21.9             17  
+## 2  1896 No Record                    22.2             33.5             26.6
+## 3  1897 No Record                    23.6             34.7             27.9
+## 4  1898 Full Shadow                  24.8             33.3             26.7
+## 5  1899 No Record                    18.1             22.2             20  
+## 6  1900 Full Shadow                  21.4             27.5             24.1
+## # ... with 3 more variables: March_Average_Temperature_Northeast <dbl>,
+## #   March_Average_Temperature_Midwest <dbl>,
+## #   March_Average_Temperature_Pennsylvania <dbl>
+\end{verbatim}
+
+Again we can list all the columns we want to pivot (i.e., all the columns that are numeric), but we have a smaller number of columns we don't want to pivot, so we use the \texttt{-} (minus) symbol with the columns we don't want to pivot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selected_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{Year, }\OperatorTok{-}\NormalTok{Punxsutawney_Phil))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 732 x 4
+##     Year Punxsutawney_Phil name                                      value
+##    <dbl> <chr>             <chr>                                     <dbl>
+##  1  1895 No Record         February_Average_Temperature_Northeast     15.6
+##  2  1895 No Record         February_Average_Temperature_Midwest       21.9
+##  3  1895 No Record         February_Average_Temperature_Pennsylvania  17  
+##  4  1895 No Record         March_Average_Temperature_Northeast        27.6
+##  5  1895 No Record         March_Average_Temperature_Midwest          40.2
+##  6  1895 No Record         March_Average_Temperature_Pennsylvania     31.3
+##  7  1896 No Record         February_Average_Temperature_Northeast     22.2
+##  8  1896 No Record         February_Average_Temperature_Midwest       33.5
+##  9  1896 No Record         February_Average_Temperature_Pennsylvania  26.6
+## 10  1896 No Record         March_Average_Temperature_Northeast        25.3
+## # ... with 722 more rows
+\end{verbatim}
+
+We can specify the column names so they are not just \texttt{name} and \texttt{value}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selected_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{Year, }\OperatorTok{-}\NormalTok{Punxsutawney_Phil),}
+               \DataTypeTok{names_to =} \StringTok{"month_region"}\NormalTok{,}
+               \DataTypeTok{values_to =} \StringTok{"temperature"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 732 x 4
+##     Year Punxsutawney_Phil month_region                              temperature
+##    <dbl> <chr>             <chr>                                           <dbl>
+##  1  1895 No Record         February_Average_Temperature_Northeast           15.6
+##  2  1895 No Record         February_Average_Temperature_Midwest             21.9
+##  3  1895 No Record         February_Average_Temperature_Pennsylvania        17  
+##  4  1895 No Record         March_Average_Temperature_Northeast              27.6
+##  5  1895 No Record         March_Average_Temperature_Midwest                40.2
+##  6  1895 No Record         March_Average_Temperature_Pennsylvania           31.3
+##  7  1896 No Record         February_Average_Temperature_Northeast           22.2
+##  8  1896 No Record         February_Average_Temperature_Midwest             33.5
+##  9  1896 No Record         February_Average_Temperature_Pennsylvania        26.6
+## 10  1896 No Record         March_Average_Temperature_Northeast              25.3
+## # ... with 722 more rows
+\end{verbatim}
+
+Let's save the result above in a new dataframe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predictions_tidy <-}\StringTok{ }\NormalTok{selected_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{Year, }\OperatorTok{-}\NormalTok{Punxsutawney_Phil),}
+               \DataTypeTok{names_to =} \StringTok{"month_region"}\NormalTok{,}
+               \DataTypeTok{values_to =} \StringTok{"temperature"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{separating-one-categorical-column-into-two}{%
+\section{Separating one categorical column into two}\label{separating-one-categorical-column-into-two}}
+
+When we look at our \texttt{predictions\_tidy}, we see that the \texttt{month\_region} is actually holding two categorical variables. We can separate this column into its two variables with the \texttt{separate()} function. There are four parts to each of the values, the two middle parts are not useful so we name the first part \texttt{month} the last \texttt{region} and the other two not useful parts (the middle two) \texttt{trash1} and \texttt{trash2}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predictions_tidy_v2 <-}\StringTok{ }\NormalTok{predictions_tidy }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{separate}\NormalTok{(}\DataTypeTok{col =}\NormalTok{ month_region,}
+           \DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"month"}\NormalTok{, }\StringTok{"trash1"}\NormalTok{, }\StringTok{"trash2"}\NormalTok{, }\StringTok{"region"}\NormalTok{)) }
+
+\NormalTok{predictions_tidy_v2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 732 x 7
+##     Year Punxsutawney_Phil month    trash1  trash2      region       temperature
+##    <dbl> <chr>             <chr>    <chr>   <chr>       <chr>              <dbl>
+##  1  1895 No Record         February Average Temperature Northeast           15.6
+##  2  1895 No Record         February Average Temperature Midwest             21.9
+##  3  1895 No Record         February Average Temperature Pennsylvania        17  
+##  4  1895 No Record         March    Average Temperature Northeast           27.6
+##  5  1895 No Record         March    Average Temperature Midwest             40.2
+##  6  1895 No Record         March    Average Temperature Pennsylvania        31.3
+##  7  1896 No Record         February Average Temperature Northeast           22.2
+##  8  1896 No Record         February Average Temperature Midwest             33.5
+##  9  1896 No Record         February Average Temperature Pennsylvania        26.6
+## 10  1896 No Record         March    Average Temperature Northeast           25.3
+## # ... with 722 more rows
+\end{verbatim}
+
+We can delete the two not useful columns (i.e., \texttt{trash1} and \texttt{trash2}) by using the \texttt{select()} and \texttt{-} (minus) symbol.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predictions_tidy_v2 <-}\StringTok{ }\NormalTok{predictions_tidy_v2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{trash1, }\OperatorTok{-}\NormalTok{trash2)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{example-of-plotting}{%
+\section{Example of Plotting}\label{example-of-plotting}}
+
+Now that we have our tidy dataframe (i.e., \texttt{predictions\_tidy\_v2}), we can plot temperatures by year:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predictions_tidy_v2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Year, }
+             \DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ month))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+\hypertarget{data-challenge-01}{%
+\section{DATA CHALLENGE 01}\label{data-challenge-01}}
+
+Accept \href{https://classroom.github.com/a/0CjzlvtW}{data challenge 01 assignment}
 
 \hypertarget{data-tidying}{%
 \chapter{Data Tidying}\label{data-tidying}}

@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-09-09" />
+<meta name="date" content="2020-09-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -213,7 +213,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.8" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#the-pipe"><i class="fa fa-check"></i><b>6.8</b> The Pipe</a></li>
 <li class="chapter" data-level="6.9" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#counting-categorical-variables"><i class="fa fa-check"></i><b>6.9</b> Counting Categorical Variables</a></li>
 <li class="chapter" data-level="6.10" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#group_by-summarise"><i class="fa fa-check"></i><b>6.10</b> group_by + summarise</a></li>
-<li class="chapter" data-level="6.11" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#data-challenge-1"><i class="fa fa-check"></i><b>6.11</b> DATA CHALLENGE 1</a></li>
+<li class="chapter" data-level="6.11" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#group_by-filter"><i class="fa fa-check"></i><b>6.11</b> group_by + filter</a></li>
+<li class="chapter" data-level="6.12" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#pivot-dataframe"><i class="fa fa-check"></i><b>6.12</b> Pivot Dataframe</a></li>
+<li class="chapter" data-level="6.13" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#separating-one-categorical-column-into-two"><i class="fa fa-check"></i><b>6.13</b> Separating one categorical column into two</a></li>
+<li class="chapter" data-level="6.14" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#example-of-plotting"><i class="fa fa-check"></i><b>6.14</b> Example of Plotting</a></li>
+<li class="chapter" data-level="6.15" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#data-challenge-01"><i class="fa fa-check"></i><b>6.15</b> DATA CHALLENGE 01</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-tidying.html"><a href="data-tidying.html"><i class="fa fa-check"></i><b>7</b> Data Tidying</a></li>
 <li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a></li>
@@ -277,7 +281,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We are going to create a <code>data</code> folder in our project, to keep things organized. Today we will be working with <a href="https://www.kaggle.com/groundhogclub/groundhog-day">a data set that contains groundhog day forecasts and temperature</a>. I cleaned up this data set already (no need for data tidying for now).</p>
 <p>You can now list the contents of your <code>data</code> folder with the <code>dir()</code> function with a string that specifies the folder as a parameter.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro-to-tidyverse.html#cb50-1"></a><span class="kw">dir</span>(<span class="st">&quot;data&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;groundhog_day.csv&quot;   &quot;tweets.tsv&quot;          &quot;us_avg_tuition.xlsx&quot;</code></pre>
+<pre><code>## [1] &quot;groundhog_day.csv&quot;                  &quot;olympic_history_athlete_events.csv&quot;
+## [3] &quot;olympic_history_noc_regions.csv&quot;    &quot;tweets.tsv&quot;                        
+## [5] &quot;us_avg_tuition.xlsx&quot;</code></pre>
 </div>
 <div id="whats-our-question-again" class="section level2">
 <h2><span class="header-section-number">6.5</span> What’s our question again?</h2>
@@ -515,7 +521,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb77-3"><a href="intro-to-tidyverse.html#cb77-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">total =</span> <span class="kw">n</span>(),</span>
 <span id="cb77-4"><a href="intro-to-tidyverse.html#cb77-4"></a>            <span class="dt">____ =</span> <span class="kw">____</span>(____))</span></code></pre></div>
 <p>Example of output that you might want to get to answer our question:</p>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 4 x 4
 ##   Punxsutawney_Phil total feb_mean_temp mar_mean_temp
 ##   &lt;chr&gt;             &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;
@@ -524,8 +529,156 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 3 No Shadow            15          35.6          43.0
 ## 4 Partial Shadow        1          30.7          41.3</code></pre>
 </div>
-<div id="data-challenge-1" class="section level2">
-<h2><span class="header-section-number">6.11</span> DATA CHALLENGE 1</h2>
+<div id="group_by-filter" class="section level2">
+<h2><span class="header-section-number">6.11</span> group_by + filter</h2>
+<p>The output above contains six <code>No Record</code> observations and only one <code>Partial Shadow</code>. We can keep just observations that are <code>Full Shadow</code> and <code>No Shadow</code> by using the filter() function:</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="intro-to-tidyverse.html#cb79-1"></a>groundhog_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb79-2"><a href="intro-to-tidyverse.html#cb79-2"></a><span class="st">  </span><span class="kw">filter</span>(Punxsutawney_Phil <span class="op">==</span><span class="st"> &quot;Full Shadow&quot;</span> <span class="op">|</span></span>
+<span id="cb79-3"><a href="intro-to-tidyverse.html#cb79-3"></a><span class="st">           </span>Punxsutawney_Phil <span class="op">==</span><span class="st"> &quot;No Shadow&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb79-4"><a href="intro-to-tidyverse.html#cb79-4"></a><span class="st">  </span><span class="kw">count</span>(Punxsutawney_Phil)</span></code></pre></div>
+<pre><code>## # A tibble: 2 x 2
+##   Punxsutawney_Phil     n
+##   &lt;chr&gt;             &lt;int&gt;
+## 1 Full Shadow         100
+## 2 No Shadow            15</code></pre>
+<p><strong>CHALLENGE</strong></p>
+<p>Add a <code>filter()</code> to your solution from the previous challenge.</p>
+<p>Example of output that you might want to get:</p>
+<pre><code>## # A tibble: 2 x 4
+##   Punxsutawney_Phil total feb_mean_temp mar_mean_temp
+##   &lt;chr&gt;             &lt;int&gt;         &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Full Shadow         100          33.7          41.7
+## 2 No Shadow            15          35.6          43.0</code></pre>
+</div>
+<div id="pivot-dataframe" class="section level2">
+<h2><span class="header-section-number">6.12</span> Pivot Dataframe</h2>
+<p>Another useful function we will be using a lot during this course is <code>pivot_longer()</code>, which pivots (or tilts) some columns in our dataframe so we have one column for each of our variables.</p>
+<p>Let’s first select the temperatures for individual regions and create a new dataframe.</p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="intro-to-tidyverse.html#cb82-1"></a>selected_predictions &lt;-<span class="st"> </span>groundhog_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb82-2"><a href="intro-to-tidyverse.html#cb82-2"></a><span class="st">  </span><span class="kw">select</span>(Year, Punxsutawney_Phil, </span>
+<span id="cb82-3"><a href="intro-to-tidyverse.html#cb82-3"></a>         February_Average_Temperature_Northeast, </span>
+<span id="cb82-4"><a href="intro-to-tidyverse.html#cb82-4"></a>         February_Average_Temperature_Midwest,</span>
+<span id="cb82-5"><a href="intro-to-tidyverse.html#cb82-5"></a>         February_Average_Temperature_Pennsylvania,</span>
+<span id="cb82-6"><a href="intro-to-tidyverse.html#cb82-6"></a>         March_Average_Temperature_Northeast,</span>
+<span id="cb82-7"><a href="intro-to-tidyverse.html#cb82-7"></a>         March_Average_Temperature_Midwest,</span>
+<span id="cb82-8"><a href="intro-to-tidyverse.html#cb82-8"></a>         March_Average_Temperature_Pennsylvania)</span>
+<span id="cb82-9"><a href="intro-to-tidyverse.html#cb82-9"></a></span>
+<span id="cb82-10"><a href="intro-to-tidyverse.html#cb82-10"></a><span class="kw">colnames</span>(selected_predictions)</span></code></pre></div>
+<pre><code>## [1] &quot;Year&quot;                                     
+## [2] &quot;Punxsutawney_Phil&quot;                        
+## [3] &quot;February_Average_Temperature_Northeast&quot;   
+## [4] &quot;February_Average_Temperature_Midwest&quot;     
+## [5] &quot;February_Average_Temperature_Pennsylvania&quot;
+## [6] &quot;March_Average_Temperature_Northeast&quot;      
+## [7] &quot;March_Average_Temperature_Midwest&quot;        
+## [8] &quot;March_Average_Temperature_Pennsylvania&quot;</code></pre>
+<p>Another way of doing the same thing we just did is by saying the columns we want to eliminate from our selection, using the <code>-</code> (i.e, minus) sign.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="intro-to-tidyverse.html#cb84-1"></a>selected_predictions &lt;-<span class="st"> </span>groundhog_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb84-2"><a href="intro-to-tidyverse.html#cb84-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>February_Average_Temperature, <span class="op">-</span>March_Average_Temperature)</span>
+<span id="cb84-3"><a href="intro-to-tidyverse.html#cb84-3"></a></span>
+<span id="cb84-4"><a href="intro-to-tidyverse.html#cb84-4"></a><span class="kw">colnames</span>(selected_predictions)</span></code></pre></div>
+<pre><code>## [1] &quot;Year&quot;                                     
+## [2] &quot;Punxsutawney_Phil&quot;                        
+## [3] &quot;February_Average_Temperature_Northeast&quot;   
+## [4] &quot;February_Average_Temperature_Midwest&quot;     
+## [5] &quot;February_Average_Temperature_Pennsylvania&quot;
+## [6] &quot;March_Average_Temperature_Northeast&quot;      
+## [7] &quot;March_Average_Temperature_Midwest&quot;        
+## [8] &quot;March_Average_Temperature_Pennsylvania&quot;</code></pre>
+<p>Now we are ready to <code>pivot_longer()</code> our selected_predictions dataframe. Let’s examine our selected_predictions dataframe. We want to move all numbers to our numeric variable called temperature, and we want the column names to be another variable called <code>month_region</code> so that are data is tidy.</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="intro-to-tidyverse.html#cb86-1"></a><span class="kw">head</span>(selected_predictions)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 8
+##    Year Punxsutawney_Ph… February_Averag… February_Averag… February_Averag…
+##   &lt;dbl&gt; &lt;chr&gt;                       &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1  1895 No Record                    15.6             21.9             17  
+## 2  1896 No Record                    22.2             33.5             26.6
+## 3  1897 No Record                    23.6             34.7             27.9
+## 4  1898 Full Shadow                  24.8             33.3             26.7
+## 5  1899 No Record                    18.1             22.2             20  
+## 6  1900 Full Shadow                  21.4             27.5             24.1
+## # … with 3 more variables: March_Average_Temperature_Northeast &lt;dbl&gt;,
+## #   March_Average_Temperature_Midwest &lt;dbl&gt;,
+## #   March_Average_Temperature_Pennsylvania &lt;dbl&gt;</code></pre>
+<p>Again we can list all the columns we want to pivot (i.e., all the columns that are numeric), but we have a smaller number of columns we don’t want to pivot, so we use the <code>-</code> (minus) symbol with the columns we don’t want to pivot.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="intro-to-tidyverse.html#cb88-1"></a>selected_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb88-2"><a href="intro-to-tidyverse.html#cb88-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="op">-</span>Year, <span class="op">-</span>Punxsutawney_Phil))</span></code></pre></div>
+<pre><code>## # A tibble: 732 x 4
+##     Year Punxsutawney_Phil name                                      value
+##    &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;                                     &lt;dbl&gt;
+##  1  1895 No Record         February_Average_Temperature_Northeast     15.6
+##  2  1895 No Record         February_Average_Temperature_Midwest       21.9
+##  3  1895 No Record         February_Average_Temperature_Pennsylvania  17  
+##  4  1895 No Record         March_Average_Temperature_Northeast        27.6
+##  5  1895 No Record         March_Average_Temperature_Midwest          40.2
+##  6  1895 No Record         March_Average_Temperature_Pennsylvania     31.3
+##  7  1896 No Record         February_Average_Temperature_Northeast     22.2
+##  8  1896 No Record         February_Average_Temperature_Midwest       33.5
+##  9  1896 No Record         February_Average_Temperature_Pennsylvania  26.6
+## 10  1896 No Record         March_Average_Temperature_Northeast        25.3
+## # … with 722 more rows</code></pre>
+<p>We can specify the column names so they are not just <code>name</code> and <code>value</code>:</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="intro-to-tidyverse.html#cb90-1"></a>selected_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb90-2"><a href="intro-to-tidyverse.html#cb90-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="op">-</span>Year, <span class="op">-</span>Punxsutawney_Phil),</span>
+<span id="cb90-3"><a href="intro-to-tidyverse.html#cb90-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;month_region&quot;</span>,</span>
+<span id="cb90-4"><a href="intro-to-tidyverse.html#cb90-4"></a>               <span class="dt">values_to =</span> <span class="st">&quot;temperature&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 732 x 4
+##     Year Punxsutawney_Phil month_region                              temperature
+##    &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;                                           &lt;dbl&gt;
+##  1  1895 No Record         February_Average_Temperature_Northeast           15.6
+##  2  1895 No Record         February_Average_Temperature_Midwest             21.9
+##  3  1895 No Record         February_Average_Temperature_Pennsylvania        17  
+##  4  1895 No Record         March_Average_Temperature_Northeast              27.6
+##  5  1895 No Record         March_Average_Temperature_Midwest                40.2
+##  6  1895 No Record         March_Average_Temperature_Pennsylvania           31.3
+##  7  1896 No Record         February_Average_Temperature_Northeast           22.2
+##  8  1896 No Record         February_Average_Temperature_Midwest             33.5
+##  9  1896 No Record         February_Average_Temperature_Pennsylvania        26.6
+## 10  1896 No Record         March_Average_Temperature_Northeast              25.3
+## # … with 722 more rows</code></pre>
+<p>Let’s save the result above in a new dataframe.</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="intro-to-tidyverse.html#cb92-1"></a>predictions_tidy &lt;-<span class="st"> </span>selected_predictions <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb92-2"><a href="intro-to-tidyverse.html#cb92-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="kw">c</span>(<span class="op">-</span>Year, <span class="op">-</span>Punxsutawney_Phil),</span>
+<span id="cb92-3"><a href="intro-to-tidyverse.html#cb92-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;month_region&quot;</span>,</span>
+<span id="cb92-4"><a href="intro-to-tidyverse.html#cb92-4"></a>               <span class="dt">values_to =</span> <span class="st">&quot;temperature&quot;</span>)</span></code></pre></div>
+</div>
+<div id="separating-one-categorical-column-into-two" class="section level2">
+<h2><span class="header-section-number">6.13</span> Separating one categorical column into two</h2>
+<p>When we look at our <code>predictions_tidy</code>, we see that the <code>month_region</code> is actually holding two categorical variables. We can separate this column into its two variables with the <code>separate()</code> function. There are four parts to each of the values, the two middle parts are not useful so we name the first part <code>month</code> the last <code>region</code> and the other two not useful parts (the middle two) <code>trash1</code> and <code>trash2</code>.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="intro-to-tidyverse.html#cb93-1"></a>predictions_tidy_v2 &lt;-<span class="st"> </span>predictions_tidy <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb93-2"><a href="intro-to-tidyverse.html#cb93-2"></a><span class="st">  </span><span class="kw">separate</span>(<span class="dt">col =</span> month_region,</span>
+<span id="cb93-3"><a href="intro-to-tidyverse.html#cb93-3"></a>           <span class="dt">into =</span> <span class="kw">c</span>(<span class="st">&quot;month&quot;</span>, <span class="st">&quot;trash1&quot;</span>, <span class="st">&quot;trash2&quot;</span>, <span class="st">&quot;region&quot;</span>)) </span>
+<span id="cb93-4"><a href="intro-to-tidyverse.html#cb93-4"></a></span>
+<span id="cb93-5"><a href="intro-to-tidyverse.html#cb93-5"></a>predictions_tidy_v2</span></code></pre></div>
+<pre><code>## # A tibble: 732 x 7
+##     Year Punxsutawney_Phil month    trash1  trash2      region       temperature
+##    &lt;dbl&gt; &lt;chr&gt;             &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt;       &lt;chr&gt;              &lt;dbl&gt;
+##  1  1895 No Record         February Average Temperature Northeast           15.6
+##  2  1895 No Record         February Average Temperature Midwest             21.9
+##  3  1895 No Record         February Average Temperature Pennsylvania        17  
+##  4  1895 No Record         March    Average Temperature Northeast           27.6
+##  5  1895 No Record         March    Average Temperature Midwest             40.2
+##  6  1895 No Record         March    Average Temperature Pennsylvania        31.3
+##  7  1896 No Record         February Average Temperature Northeast           22.2
+##  8  1896 No Record         February Average Temperature Midwest             33.5
+##  9  1896 No Record         February Average Temperature Pennsylvania        26.6
+## 10  1896 No Record         March    Average Temperature Northeast           25.3
+## # … with 722 more rows</code></pre>
+<p>We can delete the two not useful columns (i.e., <code>trash1</code> and <code>trash2</code>) by using the <code>select()</code> and <code>-</code> (minus) symbol.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="intro-to-tidyverse.html#cb95-1"></a>predictions_tidy_v2 &lt;-<span class="st"> </span>predictions_tidy_v2 <span class="op">%&gt;%</span></span>
+<span id="cb95-2"><a href="intro-to-tidyverse.html#cb95-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>trash1, <span class="op">-</span>trash2)</span></code></pre></div>
+</div>
+<div id="example-of-plotting" class="section level2">
+<h2><span class="header-section-number">6.14</span> Example of Plotting</h2>
+<p>Now that we have our tidy dataframe (i.e., <code>predictions_tidy_v2</code>), we can plot temperatures by year:</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="intro-to-tidyverse.html#cb96-1"></a>predictions_tidy_v2 <span class="op">%&gt;%</span></span>
+<span id="cb96-2"><a href="intro-to-tidyverse.html#cb96-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> Year, </span>
+<span id="cb96-3"><a href="intro-to-tidyverse.html#cb96-3"></a>             <span class="dt">y =</span> temperature)) <span class="op">+</span></span>
+<span id="cb96-4"><a href="intro-to-tidyverse.html#cb96-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">color =</span> month))</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+</div>
+<div id="data-challenge-01" class="section level2">
+<h2><span class="header-section-number">6.15</span> DATA CHALLENGE 01</h2>
+<p>Accept <a href="https://classroom.github.com/a/0CjzlvtW">data challenge 01 assignment</a></p>
 
 </div>
 </div>
