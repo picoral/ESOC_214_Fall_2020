@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-09-13" />
+<meta name="date" content="2020-09-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -219,7 +219,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="6.14" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#example-of-plotting"><i class="fa fa-check"></i><b>6.14</b> Example of Plotting</a></li>
 <li class="chapter" data-level="6.15" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#data-challenge-01"><i class="fa fa-check"></i><b>6.15</b> DATA CHALLENGE 01</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-tidying.html"><a href="data-tidying.html"><i class="fa fa-check"></i><b>7</b> Data Tidying</a></li>
+<li class="chapter" data-level="7" data-path="data-tidying.html"><a href="data-tidying.html"><i class="fa fa-check"></i><b>7</b> Data Tidying</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-tidying.html"><a href="data-tidying.html#load-libraries"><i class="fa fa-check"></i><b>7.1</b> Load libraries</a></li>
+<li class="chapter" data-level="7.2" data-path="data-tidying.html"><a href="data-tidying.html#read-your-data-in"><i class="fa fa-check"></i><b>7.2</b> Read your data in</a></li>
+<li class="chapter" data-level="7.3" data-path="data-tidying.html"><a href="data-tidying.html#summarise-data"><i class="fa fa-check"></i><b>7.3</b> Summarise data</a></li>
+<li class="chapter" data-level="7.4" data-path="data-tidying.html"><a href="data-tidying.html#tidy-data"><i class="fa fa-check"></i><b>7.4</b> Tidy data</a></li>
+</ul></li>
 <li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a></li>
 <li class="chapter" data-level="9" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics</a><ul>
 <li class="chapter" data-level="9.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#before-class"><i class="fa fa-check"></i><b>9.1</b> Before class</a></li>
@@ -254,7 +259,244 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-tidying" class="section level1">
 <h1><span class="header-section-number">Module 7</span> Data Tidying</h1>
+<div id="load-libraries" class="section level2">
+<h2><span class="header-section-number">7.1</span> Load libraries</h2>
+<p>Load tidyverse using <code>library()</code></p>
+<p>Our data for this module is an excel spreadsheet, so we need to install a new package to handle this type of data.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-tidying.html#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
+</div>
+<div id="read-your-data-in" class="section level2">
+<h2><span class="header-section-number">7.2</span> Read your data in</h2>
+<p>After `readxl package installation is done:</p>
+<ol style="list-style-type: decimal">
+<li><p>load <code>readxl</code> using <code>library()</code></p></li>
+<li><p>check your working environment with <code>getwd()</code> and <code>dir()</code></p></li>
+<li><p>load your data</p></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="data-tidying.html#cb2-1"></a>nfl_salary &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/nfl_salary.xlsx&quot;</span>)</span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>inspect your data with <code>summary()</code>, <code>glimpse()</code> and <code>View()</code></li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-tidying.html#cb3-1"></a><span class="kw">glimpse</span>(nfl_salary)</span></code></pre></div>
+<pre><code>## Rows: 800
+## Columns: 11
+## $ year                &lt;dbl&gt; 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2…
+## $ Cornerback          &lt;dbl&gt; 11265916, 11000000, 10000000, 10000000, 10000000,…
+## $ `Defensive Lineman` &lt;dbl&gt; 17818000, 16200000, 12476000, 11904706, 11762782,…
+## $ Linebacker          &lt;dbl&gt; 16420000, 15623000, 11825000, 10083333, 10020000,…
+## $ `Offensive Lineman` &lt;dbl&gt; 15960000, 12800000, 11767500, 10358200, 10000000,…
+## $ Quarterback         &lt;dbl&gt; 17228125, 16000000, 14400000, 14100000, 13510000,…
+## $ `Running Back`      &lt;dbl&gt; 12955000, 10873833, 9479000, 7700000, 7500000, 70…
+## $ Safety              &lt;dbl&gt; 8871428, 8787500, 8282500, 8000000, 7804333, 7652…
+## $ `Special Teamer`    &lt;dbl&gt; 4300000, 3725000, 3556176, 3500000, 3250000, 3225…
+## $ `Tight End`         &lt;dbl&gt; 8734375, 8591000, 8290000, 7723333, 6974666, 6133…
+## $ `Wide Receiver`     &lt;dbl&gt; 16250000, 14175000, 11424000, 11415000, 10800000,…</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li><p>How many observations are there?</p></li>
+<li><p>What variables are there in the data?</p></li>
+</ol>
+</div>
+<div id="summarise-data" class="section level2">
+<h2><span class="header-section-number">7.3</span> Summarise data</h2>
+<p>QUESTIONS: Have salaries for different NFL positions increased between 2011 and 2018?</p>
+<p>Let’s summarise the <code>mean</code> salary for Quarterback <code>by year</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-tidying.html#cb5-1"></a>nfl_salary <span class="op">%&gt;%</span></span>
+<span id="cb5-2"><a href="data-tidying.html#cb5-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
+<span id="cb5-3"><a href="data-tidying.html#cb5-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">quarterback_mean_salary =</span> <span class="kw">mean</span>(Quarterback, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 8 x 2
+##    year quarterback_mean_salary
+##   &lt;dbl&gt;                   &lt;dbl&gt;
+## 1  2011                3376113.
+## 2  2012                3496408.
+## 3  2013                3450185.
+## 4  2014                4234160.
+## 5  2015                4225789.
+## 6  2016                5499939.
+## 7  2017                5329727.
+## 8  2018                6593769.</code></pre>
+<p>What would we do to add the mean salary for <code>Cornerback</code>?</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="data-tidying.html#cb8-1"></a>nfl_salary <span class="op">%&gt;%</span></span>
+<span id="cb8-2"><a href="data-tidying.html#cb8-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="data-tidying.html#cb8-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">quarterback_mean_salary =</span> <span class="kw">mean</span>(Quarterback, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
+<span id="cb8-4"><a href="data-tidying.html#cb8-4"></a>            <span class="dt">cornerback_mean_salary =</span> <span class="kw">mean</span>(Cornerback, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 8 x 3
+##    year quarterback_mean_salary cornerback_mean_salary
+##   &lt;dbl&gt;                   &lt;dbl&gt;                  &lt;dbl&gt;
+## 1  2011                3376113.               3037766.
+## 2  2012                3496408.               3132916.
+## 3  2013                3450185.               2901798.
+## 4  2014                4234160.               3038278.
+## 5  2015                4225789.               3758543.
+## 6  2016                5499939.               4201470.
+## 7  2017                5329727.               4125692.
+## 8  2018                6593769.               4659704.</code></pre>
+<p>Let’s stop and think about how our data is organized. Is our data tidy?</p>
+<p>We have columns that mix two type of variables:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>categorical variable for position</p></li>
+<li><p>numeric variable for salary</p></li>
+</ol>
+</div>
+<div id="tidy-data" class="section level2">
+<h2><span class="header-section-number">7.4</span> Tidy data</h2>
+<p>In order to make our data easier to work with, we need to make sure each column in our data represents just one variable. To do that for our <code>nfl_salary</code> dataframe, we need to pivot it.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-tidying.html#cb11-1"></a>nfl_salary_tidy &lt;-<span class="st"> </span>nfl_salary <span class="op">%&gt;%</span></span>
+<span id="cb11-2"><a href="data-tidying.html#cb11-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="dt">cols =</span> <span class="op">-</span>year,</span>
+<span id="cb11-3"><a href="data-tidying.html#cb11-3"></a>               <span class="dt">names_to =</span> <span class="st">&quot;position&quot;</span>,</span>
+<span id="cb11-4"><a href="data-tidying.html#cb11-4"></a>               <span class="dt">values_to =</span> <span class="st">&quot;salary&quot;</span>)</span></code></pre></div>
+<p>Always inspect your new data frame.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-tidying.html#cb12-1"></a><span class="kw">glimpse</span>(nfl_salary_tidy)</span></code></pre></div>
+<pre><code>## Rows: 8,000
+## Columns: 3
+## $ year     &lt;dbl&gt; 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, …
+## $ position &lt;chr&gt; &quot;Cornerback&quot;, &quot;Defensive Lineman&quot;, &quot;Linebacker&quot;, &quot;Offensive …
+## $ salary   &lt;dbl&gt; 11265916, 17818000, 16420000, 15960000, 17228125, 12955000, …</code></pre>
+<p>How many positions are there in the data? We can now do a <code>count()</code> with our categorical variable for <code>position</code></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-tidying.html#cb14-1"></a>nfl_salary_tidy <span class="op">%&gt;%</span></span>
+<span id="cb14-2"><a href="data-tidying.html#cb14-2"></a><span class="st">  </span><span class="kw">count</span>(position)</span></code></pre></div>
+<pre><code>## # A tibble: 10 x 2
+##    position              n
+##    &lt;chr&gt;             &lt;int&gt;
+##  1 Cornerback          800
+##  2 Defensive Lineman   800
+##  3 Linebacker          800
+##  4 Offensive Lineman   800
+##  5 Quarterback         800
+##  6 Running Back        800
+##  7 Safety              800
+##  8 Special Teamer      800
+##  9 Tight End           800
+## 10 Wide Receiver       800</code></pre>
+<p>We can add <code>year</code> to our <code>group_by</code> to check how many observations per <code>position</code> across <code>year</code></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-tidying.html#cb16-1"></a>nfl_salary_tidy <span class="op">%&gt;%</span></span>
+<span id="cb16-2"><a href="data-tidying.html#cb16-2"></a><span class="st">  </span><span class="kw">count</span>(position, year)</span></code></pre></div>
+<pre><code>## # A tibble: 80 x 3
+##    position           year     n
+##    &lt;chr&gt;             &lt;dbl&gt; &lt;int&gt;
+##  1 Cornerback         2011   100
+##  2 Cornerback         2012   100
+##  3 Cornerback         2013   100
+##  4 Cornerback         2014   100
+##  5 Cornerback         2015   100
+##  6 Cornerback         2016   100
+##  7 Cornerback         2017   100
+##  8 Cornerback         2018   100
+##  9 Defensive Lineman  2011   100
+## 10 Defensive Lineman  2012   100
+## # … with 70 more rows</code></pre>
+<p>Let’s check for NAs (i.e., missing data), we can do that by using <code>is.na()</code> and <code>filter()</code>.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-tidying.html#cb18-1"></a>nfl_salary_tidy <span class="op">%&gt;%</span></span>
+<span id="cb18-2"><a href="data-tidying.html#cb18-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb18-3"><a href="data-tidying.html#cb18-3"></a><span class="st">  </span><span class="kw">count</span>(position, year)</span></code></pre></div>
+<pre><code>## # A tibble: 9 x 3
+##   position        year     n
+##   &lt;chr&gt;          &lt;dbl&gt; &lt;int&gt;
+## 1 Quarterback     2011     3
+## 2 Quarterback     2012    12
+## 3 Quarterback     2013     7
+## 4 Quarterback     2014    11
+## 5 Quarterback     2015     3
+## 6 Quarterback     2016     5
+## 7 Quarterback     2017     3
+## 8 Quarterback     2018    11
+## 9 Special Teamer  2011     1</code></pre>
+<p>We can remove these rows from our data frame.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-tidying.html#cb20-1"></a>nfl_salary_tidy_clean &lt;-<span class="st"> </span>nfl_salary_tidy <span class="op">%&gt;%</span></span>
+<span id="cb20-2"><a href="data-tidying.html#cb20-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(salary))</span></code></pre></div>
+<p>Inspect your new data frame.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-tidying.html#cb21-1"></a><span class="kw">glimpse</span>(nfl_salary_tidy_clean)</span></code></pre></div>
+<pre><code>## Rows: 7,944
+## Columns: 3
+## $ year     &lt;dbl&gt; 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, …
+## $ position &lt;chr&gt; &quot;Cornerback&quot;, &quot;Defensive Lineman&quot;, &quot;Linebacker&quot;, &quot;Offensive …
+## $ salary   &lt;dbl&gt; 11265916, 17818000, 16420000, 15960000, 17228125, 12955000, …</code></pre>
+<p>Now we can do our salary <code>summarise()</code> in a cleaner way. We are going to do a <code>mean()</code> of our numeric variable <code>salary</code> by <code>year</code> AND <code>position</code>.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-tidying.html#cb23-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb23-2"><a href="data-tidying.html#cb23-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, position) <span class="op">%&gt;%</span></span>
+<span id="cb23-3"><a href="data-tidying.html#cb23-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;year&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 80 x 3
+## # Groups:   year [8]
+##     year position          mean_salary
+##    &lt;dbl&gt; &lt;chr&gt;                   &lt;dbl&gt;
+##  1  2011 Cornerback           3037766.
+##  2  2011 Defensive Lineman    4306995.
+##  3  2011 Linebacker           4016045.
+##  4  2011 Offensive Lineman    4662748.
+##  5  2011 Quarterback          3376113.
+##  6  2011 Running Back         1976341.
+##  7  2011 Safety               2241891.
+##  8  2011 Special Teamer       1244069.
+##  9  2011 Tight End            1608100.
+## 10  2011 Wide Receiver        2996590.
+## # … with 70 more rows</code></pre>
+<p>We can do the group_by both ways (first <code>year</code> and then <code>position</code> or vice-versa).</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-tidying.html#cb26-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb26-2"><a href="data-tidying.html#cb26-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
+<span id="cb26-3"><a href="data-tidying.html#cb26-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb26-4"><a href="data-tidying.html#cb26-4"></a><span class="st">  </span><span class="kw">arrange</span>(mean_salary)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;position&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 80 x 3
+## # Groups:   position [10]
+##    position        year mean_salary
+##    &lt;chr&gt;          &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Special Teamer  2013    1235892.
+##  2 Special Teamer  2011    1244069.
+##  3 Special Teamer  2014    1264493.
+##  4 Special Teamer  2012    1313043.
+##  5 Special Teamer  2015    1348637.
+##  6 Special Teamer  2016    1394443.
+##  7 Special Teamer  2017    1459552.
+##  8 Special Teamer  2018    1571447.
+##  9 Tight End       2011    1608100.
+## 10 Tight End       2012    1664520.
+## # … with 70 more rows</code></pre>
+<p>Add a <code>-</code> (minus) sign to the argument in <code>arrange()</code> to arrange your results by decreasing order of mean_salary.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-tidying.html#cb29-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb29-2"><a href="data-tidying.html#cb29-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
+<span id="cb29-3"><a href="data-tidying.html#cb29-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb29-4"><a href="data-tidying.html#cb29-4"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>mean_salary)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;position&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 80 x 3
+## # Groups:   position [10]
+##    position           year mean_salary
+##    &lt;chr&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Offensive Lineman  2018    7522647.
+##  2 Defensive Lineman  2018    7202360.
+##  3 Quarterback        2018    6593769.
+##  4 Offensive Lineman  2017    6370947.
+##  5 Defensive Lineman  2017    6202601.
+##  6 Wide Receiver      2018    5627721.
+##  7 Quarterback        2016    5499939.
+##  8 Offensive Lineman  2016    5410392.
+##  9 Quarterback        2017    5329727.
+## 10 Linebacker         2018    5293675.
+## # … with 70 more rows</code></pre>
+<p>We can also add <code>arrange()</code> to our code block.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-tidying.html#cb32-1"></a>nfl_salary_tidy_clean <span class="op">%&gt;%</span></span>
+<span id="cb32-2"><a href="data-tidying.html#cb32-2"></a><span class="st">  </span><span class="kw">group_by</span>(position, year) <span class="op">%&gt;%</span></span>
+<span id="cb32-3"><a href="data-tidying.html#cb32-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_salary =</span> <span class="kw">mean</span>(salary)) <span class="op">%&gt;%</span></span>
+<span id="cb32-4"><a href="data-tidying.html#cb32-4"></a><span class="st">  </span><span class="kw">arrange</span>()</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;position&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 80 x 3
+## # Groups:   position [10]
+##    position           year mean_salary
+##    &lt;chr&gt;             &lt;dbl&gt;       &lt;dbl&gt;
+##  1 Cornerback         2011    3037766.
+##  2 Cornerback         2012    3132916.
+##  3 Cornerback         2013    2901798.
+##  4 Cornerback         2014    3038278.
+##  5 Cornerback         2015    3758543.
+##  6 Cornerback         2016    4201470.
+##  7 Cornerback         2017    4125692.
+##  8 Cornerback         2018    4659704.
+##  9 Defensive Lineman  2011    4306995.
+## 10 Defensive Lineman  2012    4693730.
+## # … with 70 more rows</code></pre>
 
+</div>
 </div>
             </section>
 
