@@ -120,7 +120,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-09-23}
+\date{2020-09-19}
 
 \begin{document}
 \maketitle
@@ -433,7 +433,7 @@ Week 05\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
 Data Tidying\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-\href{https://classroom.github.com/a/0CjzlvtW}{Data Challenge 1}\strut
+Data Challenge 1\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.22\columnwidth}\raggedright
 \strut
@@ -451,7 +451,7 @@ Week 06\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
 Intro to Descriptive Statistics\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-\href{https://classroom.github.com/a/DhH5ciNQ}{Data Challenge 2}\strut
+Data Challenge 2\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.22\columnwidth}\raggedright
 \strut
@@ -640,7 +640,7 @@ For more information about dates including holidays, check \href{https://catalog
 
 \textbf{Why am I using YYYY-MM-DD date format?}
 
-\includegraphics[width=10.89in]{images/iso_8601_2x}
+\includegraphics{images/iso_8601_2x.png}
 
 \href{https://xkcd.com/1179/}{ISO 8601 -- xkcd}
 
@@ -2163,11 +2163,10 @@ You can now list the contents of your \texttt{data} folder with the \texttt{dir(
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "elnino.csv"                          "GlobalLandTemperaturesByCountry.csv"
-##  [3] "groundhog_day.csv"                   "nfl_salary.xlsx"                    
-##  [5] "olympic_history_athlete_events.csv"  "olympic_history_noc_regions.csv"    
-##  [7] "passwords.csv"                       "spotify_songs.csv"                  
-##  [9] "tweets.tsv"                          "us_avg_tuition.xlsx"
+## [1] "elnino.csv"                         "groundhog_day.csv"                 
+## [3] "nfl_salary.xlsx"                    "olympic_history_athlete_events.csv"
+## [5] "olympic_history_noc_regions.csv"    "tweets.tsv"                        
+## [7] "us_avg_tuition.xlsx"
 \end{verbatim}
 
 \hypertarget{whats-our-question-again}{%
@@ -2810,7 +2809,7 @@ Our data for this module is an excel spreadsheet, so we need to install a new pa
 \hypertarget{read-your-data-in}{%
 \section{Read your data in}\label{read-your-data-in}}
 
-After \texttt{readxl} package installation is done:
+After `readxl package installation is done:
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3432,158 +3431,8 @@ Then we plot it.
 \hypertarget{data-challenge-02}{%
 \section{DATA CHALLENGE 02}\label{data-challenge-02}}
 
-Accept \href{https://classroom.github.com/a/DhH5ciNQ}{data challenge 02 assignment}
-
 \hypertarget{data-visualization}{%
 \chapter{Data Visualization}\label{data-visualization}}
-
-\hypertarget{the-layered-grammar-of-graphics}{%
-\section{The layered grammar of graphics}\label{the-layered-grammar-of-graphics}}
-
-The package we will be using for plotting in this class is called \texttt{ggplot2} which is part of \texttt{tidyverse}, and it uses as a principle the idea of layered grammar of graphics. That means you can add code to add or change your plot in layers, by using the \texttt{+} symbol.
-
-Let's start with some data, so we can created different plots using different layers.
-
-\hypertarget{load-data}{%
-\section{Load data}\label{load-data}}
-
-Get data directly from \href{https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv}{tidy tuesday github}.
-
-\begin{verbatim}
-## Rows: 32,833
-## Columns: 23
-## $ track_id                 <chr> "6f807x0ima9a1j3VPbc7VN", "0r7CVbZTWZgbTCY...
-## $ track_name               <chr> "I Don't Care (with Justin Bieber) - Loud ...
-## $ track_artist             <chr> "Ed Sheeran", "Maroon 5", "Zara Larsson", ...
-## $ track_popularity         <dbl> 66, 67, 70, 60, 69, 67, 62, 69, 68, 67, 58...
-## $ track_album_id           <chr> "2oCs0DGTsRO98Gh5ZSl2Cx", "63rPSO264uRjW1X...
-## $ track_album_name         <chr> "I Don't Care (with Justin Bieber) [Loud L...
-## $ track_album_release_date <chr> "2019-06-14", "2019-12-13", "2019-07-05", ...
-## $ playlist_name            <chr> "Pop Remix", "Pop Remix", "Pop Remix", "Po...
-## $ playlist_id              <chr> "37i9dQZF1DXcZDD7cfEKhW", "37i9dQZF1DXcZDD...
-## $ playlist_genre           <chr> "pop", "pop", "pop", "pop", "pop", "pop", ...
-## $ playlist_subgenre        <chr> "dance pop", "dance pop", "dance pop", "da...
-## $ danceability             <dbl> 0.748, 0.726, 0.675, 0.718, 0.650, 0.675, ...
-## $ energy                   <dbl> 0.916, 0.815, 0.931, 0.930, 0.833, 0.919, ...
-## $ key                      <dbl> 6, 11, 1, 7, 1, 8, 5, 4, 8, 2, 6, 8, 1, 5,...
-## $ loudness                 <dbl> -2.634, -4.969, -3.432, -3.778, -4.672, -5...
-## $ mode                     <dbl> 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, ...
-## $ speechiness              <dbl> 0.0583, 0.0373, 0.0742, 0.1020, 0.0359, 0....
-## $ acousticness             <dbl> 0.10200, 0.07240, 0.07940, 0.02870, 0.0803...
-## $ instrumentalness         <dbl> 0.00e+00, 4.21e-03, 2.33e-05, 9.43e-06, 0....
-## $ liveness                 <dbl> 0.0653, 0.3570, 0.1100, 0.2040, 0.0833, 0....
-## $ valence                  <dbl> 0.518, 0.693, 0.613, 0.277, 0.725, 0.585, ...
-## $ tempo                    <dbl> 122.036, 99.972, 124.008, 121.956, 123.976...
-## $ duration_ms              <dbl> 194754, 162600, 176616, 169093, 189052, 16...
-\end{verbatim}
-
-EXERCISE
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\item
-  What variables do we have in this data?
-\item
-  What questions can you ask about this data?
-\end{enumerate}
-
-\hypertarget{what-to-plot}{%
-\section{What to plot?}\label{what-to-plot}}
-
-The first thing you need to do is define what you want to plot. If you've never plotted data before, you might not be familiar with the different types of charts you can create.
-
-Here's a few (can you tell what type of plot these are?):
-
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-75-1.pdf}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\item
-  What is the plot above called?
-\item
-  What variable(s) are we plotting?
-\item
-  What can we conclude based on this plot?
-\end{enumerate}
-
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-76-1.pdf}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\item
-  What is the plot above called?
-\item
-  What variable(s) are we plotting?
-\item
-  What can we conclude based on this plot?
-\end{enumerate}
-
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-77-1.pdf}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\item
-  What is the plot above called?
-\item
-  What variable(s) are we plotting?
-\item
-  What can we conclude based on this plot?
-\end{enumerate}
-
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-78-1.pdf}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\item
-  What is the plot above called?
-\item
-  What variable(s) are we plotting?
-\item
-  What can we conclude based on this plot?
-\end{enumerate}
-
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-79-1.pdf}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\item
-  What is the plot above called?
-\item
-  What variable(s) are we plotting?
-\item
-  What can we conclude based on this plot?
-\end{enumerate}
-
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-80-1.pdf}
-
-\begin{enumerate}
-\def\labelenumi{\arabic{enumi})}
-\item
-  What is the plot above called?
-\item
-  What variable(s) are we plotting?
-\item
-  What can we conclude based on this plot?
-\end{enumerate}
-
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-81-1.pdf}
-
-\hypertarget{aesthetic-mappings}{%
-\section{Aesthetic Mappings}\label{aesthetic-mappings}}
-
-Two-dimensional plots have two axis, \texttt{x} (horizontal) and \texttt{y} (vertical). You can also map other elements of your chart in addition to position (i.e., \texttt{x} and \texttt{y}), such as color, size, and shape.
-
-You map your aesthetics using the \texttt{aes()} function, which can be place inside of the \texttt{ggplot()} function.
-
-\hypertarget{facets}{%
-\section{Facets}\label{facets}}
-
-You can use the \texttt{facet\_wrap()} function to split your plotting into several smaller plots, usually by a categorical variable.
-
-\hypertarget{geom_-i.e.-geometric-objects}{%
-\section{geom\_ (i.e., Geometric Objects)}\label{geom_-i.e.-geometric-objects}}
-
-Functions such as \texttt{geom\_histogram()}, \texttt{geom\_point()}, and \texttt{geom\_col()} are geometric objects and determine what type of plot R draws.
 
 \hypertarget{descriptive-statistics}{%
 \chapter{Descriptive Statistics}\label{descriptive-statistics}}

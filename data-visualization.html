@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-09-19" />
+<meta name="date" content="2020-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -231,7 +231,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="data-wrangling.html"><a href="data-wrangling.html#data-challenge-02"><i class="fa fa-check"></i><b>7.6</b> DATA CHALLENGE 02</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a></li>
+<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-visualization.html"><a href="data-visualization.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The layered grammar of graphics</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualization.html"><a href="data-visualization.html#load-data"><i class="fa fa-check"></i><b>8.2</b> Load data</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#what-to-plot"><i class="fa fa-check"></i><b>8.3</b> What to plot?</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#aesthetic-mappings"><i class="fa fa-check"></i><b>8.4</b> Aesthetic Mappings</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>8.5</b> Facets</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualization.html"><a href="data-visualization.html#geom_-i.e.-geometric-objects"><i class="fa fa-check"></i><b>8.6</b> geom_ (i.e., Geometric Objects)</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics</a><ul>
 <li class="chapter" data-level="9.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#before-class"><i class="fa fa-check"></i><b>9.1</b> Before class</a></li>
 </ul></li>
@@ -265,7 +272,101 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-visualization" class="section level1">
 <h1><span class="header-section-number">Module 8</span> Data Visualization</h1>
+<div id="the-layered-grammar-of-graphics" class="section level2">
+<h2><span class="header-section-number">8.1</span> The layered grammar of graphics</h2>
+<p>The package we will be using for plotting in this class is called <code>ggplot2</code> which is part of <code>tidyverse</code>, and it uses as a principle the idea of layered grammar of graphics. That means you can add code to add or change your plot in layers, by using the <code>+</code> symbol.</p>
+<p>Let’s start with some data, so we can created different plots using different layers.</p>
+</div>
+<div id="load-data" class="section level2">
+<h2><span class="header-section-number">8.2</span> Load data</h2>
+<p>Get data directly from <a href="https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv">tidy tuesday github</a>.</p>
+<pre><code>## Rows: 32,833
+## Columns: 23
+## $ track_id                 &lt;chr&gt; &quot;6f807x0ima9a1j3VPbc7VN&quot;, &quot;0r7CVbZTWZgbTCYdf…
+## $ track_name               &lt;chr&gt; &quot;I Don&#39;t Care (with Justin Bieber) - Loud Lu…
+## $ track_artist             &lt;chr&gt; &quot;Ed Sheeran&quot;, &quot;Maroon 5&quot;, &quot;Zara Larsson&quot;, &quot;T…
+## $ track_popularity         &lt;dbl&gt; 66, 67, 70, 60, 69, 67, 62, 69, 68, 67, 58, …
+## $ track_album_id           &lt;chr&gt; &quot;2oCs0DGTsRO98Gh5ZSl2Cx&quot;, &quot;63rPSO264uRjW1X5E…
+## $ track_album_name         &lt;chr&gt; &quot;I Don&#39;t Care (with Justin Bieber) [Loud Lux…
+## $ track_album_release_date &lt;chr&gt; &quot;2019-06-14&quot;, &quot;2019-12-13&quot;, &quot;2019-07-05&quot;, &quot;2…
+## $ playlist_name            &lt;chr&gt; &quot;Pop Remix&quot;, &quot;Pop Remix&quot;, &quot;Pop Remix&quot;, &quot;Pop …
+## $ playlist_id              &lt;chr&gt; &quot;37i9dQZF1DXcZDD7cfEKhW&quot;, &quot;37i9dQZF1DXcZDD7c…
+## $ playlist_genre           &lt;chr&gt; &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;p…
+## $ playlist_subgenre        &lt;chr&gt; &quot;dance pop&quot;, &quot;dance pop&quot;, &quot;dance pop&quot;, &quot;danc…
+## $ danceability             &lt;dbl&gt; 0.748, 0.726, 0.675, 0.718, 0.650, 0.675, 0.…
+## $ energy                   &lt;dbl&gt; 0.916, 0.815, 0.931, 0.930, 0.833, 0.919, 0.…
+## $ key                      &lt;dbl&gt; 6, 11, 1, 7, 1, 8, 5, 4, 8, 2, 6, 8, 1, 5, 5…
+## $ loudness                 &lt;dbl&gt; -2.634, -4.969, -3.432, -3.778, -4.672, -5.3…
+## $ mode                     &lt;dbl&gt; 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0,…
+## $ speechiness              &lt;dbl&gt; 0.0583, 0.0373, 0.0742, 0.1020, 0.0359, 0.12…
+## $ acousticness             &lt;dbl&gt; 0.10200, 0.07240, 0.07940, 0.02870, 0.08030,…
+## $ instrumentalness         &lt;dbl&gt; 0.00e+00, 4.21e-03, 2.33e-05, 9.43e-06, 0.00…
+## $ liveness                 &lt;dbl&gt; 0.0653, 0.3570, 0.1100, 0.2040, 0.0833, 0.14…
+## $ valence                  &lt;dbl&gt; 0.518, 0.693, 0.613, 0.277, 0.725, 0.585, 0.…
+## $ tempo                    &lt;dbl&gt; 122.036, 99.972, 124.008, 121.956, 123.976, …
+## $ duration_ms              &lt;dbl&gt; 194754, 162600, 176616, 169093, 189052, 1630…</code></pre>
+<p>EXERCISE</p>
+<ol style="list-style-type: decimal">
+<li><p>What variables do we have in this data?</p></li>
+<li><p>What questions can you ask about this data?</p></li>
+</ol>
+</div>
+<div id="what-to-plot" class="section level2">
+<h2><span class="header-section-number">8.3</span> What to plot?</h2>
+<p>The first thing you need to do is define what you want to plot. If you’ve never plotted data before, you might not be familiar with the different types of charts you can create.</p>
+<p>Here’s a few (can you tell what type of plot these are?):</p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-75-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-76-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-79-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-80-1.png" width="672" /></p>
+<ol style="list-style-type: decimal">
+<li><p>What is the plot above called?</p></li>
+<li><p>What variable(s) are we plotting?</p></li>
+<li><p>What can we conclude based on this plot?</p></li>
+</ol>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-81-1.png" width="672" /></p>
+</div>
+<div id="aesthetic-mappings" class="section level2">
+<h2><span class="header-section-number">8.4</span> Aesthetic Mappings</h2>
+<p>Two-dimensional plots have two axis, <code>x</code> (horizontal) and <code>y</code> (vertical). You can also map other elements of your chart in addition to position (i.e., <code>x</code> and <code>y</code>), such as color, size, and shape.</p>
+<p>You map your aesthetics using the <code>aes()</code> function, which can be place inside of the <code>ggplot()</code> function.</p>
+</div>
+<div id="facets" class="section level2">
+<h2><span class="header-section-number">8.5</span> Facets</h2>
+<p>You can use the <code>facet_wrap()</code> function to split your plotting into several smaller plots, usually by a categorical variable.</p>
+</div>
+<div id="geom_-i.e.-geometric-objects" class="section level2">
+<h2><span class="header-section-number">8.6</span> geom_ (i.e., Geometric Objects)</h2>
+<p>Functions such as <code>geom_histogram()</code>, <code>geom_point()</code>, and <code>geom_col()</code> are geometric objects and determine what type of plot R draws.</p>
 
+</div>
 </div>
             </section>
 

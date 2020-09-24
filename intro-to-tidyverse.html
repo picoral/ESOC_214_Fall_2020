@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-09-19" />
+<meta name="date" content="2020-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -231,7 +231,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="7.6" data-path="data-wrangling.html"><a href="data-wrangling.html#data-challenge-02"><i class="fa fa-check"></i><b>7.6</b> DATA CHALLENGE 02</a></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a></li>
+<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-visualization.html"><a href="data-visualization.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The layered grammar of graphics</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualization.html"><a href="data-visualization.html#load-data"><i class="fa fa-check"></i><b>8.2</b> Load data</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#what-to-plot"><i class="fa fa-check"></i><b>8.3</b> What to plot?</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#aesthetic-mappings"><i class="fa fa-check"></i><b>8.4</b> Aesthetic Mappings</a></li>
+<li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>8.5</b> Facets</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualization.html"><a href="data-visualization.html#geom_-i.e.-geometric-objects"><i class="fa fa-check"></i><b>8.6</b> geom_ (i.e., Geometric Objects)</a></li>
+</ul></li>
 <li class="chapter" data-level="9" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics</a><ul>
 <li class="chapter" data-level="9.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#before-class"><i class="fa fa-check"></i><b>9.1</b> Before class</a></li>
 </ul></li>
@@ -292,10 +299,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We are going to create a <code>data</code> folder in our project, to keep things organized. Today we will be working with <a href="https://www.kaggle.com/groundhogclub/groundhog-day">a data set that contains groundhog day forecasts and temperature</a>. I cleaned up this data set already (no need for data tidying for now).</p>
 <p>You can now list the contents of your <code>data</code> folder with the <code>dir()</code> function with a string that specifies the folder as a parameter.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro-to-tidyverse.html#cb50-1"></a><span class="kw">dir</span>(<span class="st">&quot;data&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;elnino.csv&quot;                         &quot;groundhog_day.csv&quot;                 
-## [3] &quot;nfl_salary.xlsx&quot;                    &quot;olympic_history_athlete_events.csv&quot;
-## [5] &quot;olympic_history_noc_regions.csv&quot;    &quot;tweets.tsv&quot;                        
-## [7] &quot;us_avg_tuition.xlsx&quot;</code></pre>
+<pre><code>##  [1] &quot;elnino.csv&quot;                          &quot;GlobalLandTemperaturesByCountry.csv&quot;
+##  [3] &quot;groundhog_day.csv&quot;                   &quot;nfl_salary.xlsx&quot;                    
+##  [5] &quot;olympic_history_athlete_events.csv&quot;  &quot;olympic_history_noc_regions.csv&quot;    
+##  [7] &quot;passwords.csv&quot;                       &quot;spotify_songs.csv&quot;                  
+##  [9] &quot;tweets.tsv&quot;                          &quot;us_avg_tuition.xlsx&quot;</code></pre>
 </div>
 <div id="whats-our-question-again" class="section level2">
 <h2><span class="header-section-number">6.5</span> What’s our question again?</h2>
