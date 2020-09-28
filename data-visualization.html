@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-09-24" />
+<meta name="date" content="2020-09-28" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -235,10 +235,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.1" data-path="data-visualization.html"><a href="data-visualization.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The layered grammar of graphics</a></li>
 <li class="chapter" data-level="8.2" data-path="data-visualization.html"><a href="data-visualization.html#load-data"><i class="fa fa-check"></i><b>8.2</b> Load data</a></li>
 <li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#what-to-plot"><i class="fa fa-check"></i><b>8.3</b> What to plot?</a></li>
-<li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#aesthetic-mappings"><i class="fa fa-check"></i><b>8.4</b> Aesthetic Mappings</a></li>
-<li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>8.5</b> Facets</a></li>
-<li class="chapter" data-level="8.6" data-path="data-visualization.html"><a href="data-visualization.html#geom_-i.e.-geometric-objects"><i class="fa fa-check"></i><b>8.6</b> geom_ (i.e., Geometric Objects)</a></li>
-<li class="chapter" data-level="8.7" data-path="data-visualization.html"><a href="data-visualization.html#data-challenge-03"><i class="fa fa-check"></i><b>8.7</b> DATA CHALLENGE 03</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#aesthetic-mappings"><i class="fa fa-check"></i><b>8.4</b> Aesthetic Mappings</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="data-visualization.html"><a href="data-visualization.html#one-continuous-variable"><i class="fa fa-check"></i><b>8.4.1</b> One continuous variable</a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-visualization.html"><a href="data-visualization.html#two-numeric-variables"><i class="fa fa-check"></i><b>8.4.2</b> Two numeric variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#geom_-i.e.-geometric-objects"><i class="fa fa-check"></i><b>8.5</b> geom_ (i.e., Geometric Objects)</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualization.html"><a href="data-visualization.html#more-mappings-with-aes"><i class="fa fa-check"></i><b>8.6</b> More mappings with aes()</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>8.7</b> Facets</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualization.html"><a href="data-visualization.html#more-summarize"><i class="fa fa-check"></i><b>8.8</b> More Summarize</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualization.html"><a href="data-visualization.html#data-challenge-03"><i class="fa fa-check"></i><b>8.9</b> DATA CHALLENGE 03</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics</a><ul>
 <li class="chapter" data-level="9.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#before-class"><i class="fa fa-check"></i><b>9.1</b> Before class</a></li>
@@ -356,19 +361,142 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="aesthetic-mappings" class="section level2">
 <h2><span class="header-section-number">8.4</span> Aesthetic Mappings</h2>
-<p>Two-dimensional plots have two axis, <code>x</code> (horizontal) and <code>y</code> (vertical). You can also map other elements of your chart in addition to position (i.e., <code>x</code> and <code>y</code>), such as color, size, and shape.</p>
 <p>You map your aesthetics using the <code>aes()</code> function, which can be place inside of the <code>ggplot()</code> function.</p>
+<div id="one-continuous-variable" class="section level3">
+<h3><span class="header-section-number">8.4.1</span> One continuous variable</h3>
+<p>You need to map at least one variable when you are plotting. Check the help for <code>geom_histogram</code> to see what kind of variable you can plot in a histogram.</p>
+<p>The variable <code>track_popularity</code> is continuous.</p>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="data-visualization.html#cb150-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb150-2"><a href="data-visualization.html#cb150-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> track_popularity)) <span class="op">+</span></span>
+<span id="cb150-3"><a href="data-visualization.html#cb150-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() </span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-82-1.png" width="672" /></p>
+<p>The variable <code>release_year</code> is also continuous.</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="data-visualization.html#cb152-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb152-2"><a href="data-visualization.html#cb152-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year)) <span class="op">+</span></span>
+<span id="cb152-3"><a href="data-visualization.html#cb152-3"></a><span class="st">  </span><span class="kw">geom_histogram</span>() </span></code></pre></div>
+<pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-83-1.png" width="672" /></p>
 </div>
-<div id="facets" class="section level2">
-<h2><span class="header-section-number">8.5</span> Facets</h2>
-<p>You can use the <code>facet_wrap()</code> function to split your plotting into several smaller plots, usually by a categorical variable.</p>
+<div id="two-numeric-variables" class="section level3">
+<h3><span class="header-section-number">8.4.2</span> Two numeric variables</h3>
+<p>Two-dimensional plots have two axis, <code>x</code> (horizontal) and <code>y</code> (vertical).</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-visualization.html#cb154-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb154-2"><a href="data-visualization.html#cb154-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb154-3"><a href="data-visualization.html#cb154-3"></a>             <span class="dt">y =</span> track_popularity)) <span class="op">+</span></span>
+<span id="cb154-4"><a href="data-visualization.html#cb154-4"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-84-1.png" width="672" /></p>
+</div>
 </div>
 <div id="geom_-i.e.-geometric-objects" class="section level2">
-<h2><span class="header-section-number">8.6</span> geom_ (i.e., Geometric Objects)</h2>
+<h2><span class="header-section-number">8.5</span> geom_ (i.e., Geometric Objects)</h2>
 <p>Functions such as <code>geom_histogram()</code>, <code>geom_point()</code>, and <code>geom_col()</code> are geometric objects and determine what type of plot R draws.</p>
+<p>You can also map other elements of your chart in addition to position (i.e., <code>x</code> and <code>y</code>), such as color, size, and shape.</p>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-visualization.html#cb155-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb155-2"><a href="data-visualization.html#cb155-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb155-3"><a href="data-visualization.html#cb155-3"></a>             <span class="dt">y =</span> track_popularity,</span>
+<span id="cb155-4"><a href="data-visualization.html#cb155-4"></a>             <span class="dt">color =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb155-5"><a href="data-visualization.html#cb155-5"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-85-1.png" width="672" /></p>
+<hr/>
+<p>EXERCISE</p>
+<p>Check the help page for <code>geom_point</code> (enter <code>?geom_point</code> in your console).
+Change <code>geom_point()</code> to the suggested variations in its help page.</p>
+<hr/>
+</div>
+<div id="more-mappings-with-aes" class="section level2">
+<h2><span class="header-section-number">8.6</span> More mappings with aes()</h2>
+<p>In addition to <code>color</code> you can also add <code>size</code> and <code>shape</code> to <code>aes()</code>.</p>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="data-visualization.html#cb156-1"></a>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb156-2"><a href="data-visualization.html#cb156-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb156-3"><a href="data-visualization.html#cb156-3"></a>             <span class="dt">y =</span> track_popularity,</span>
+<span id="cb156-4"><a href="data-visualization.html#cb156-4"></a>             <span class="dt">color =</span> playlist_subgenre,</span>
+<span id="cb156-5"><a href="data-visualization.html#cb156-5"></a>             <span class="dt">shape =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb156-6"><a href="data-visualization.html#cb156-6"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-86-1.png" width="672" /></p>
+<p>The plot above is too messy, there’s too much information. You often need to transform your data before plotting it.</p>
+<hr/>
+<p>EXERCISE</p>
+<p>Summarize mean <code>track_popularity</code> by <code>release_year</code>, <code>playlist_genre</code> and <code>playlist_subgenre</code>.</p>
+<p>Your summarized data frame should look something like this:</p>
+<pre><code>## `summarise()` regrouping output by &#39;release_year&#39;, &#39;playlist_genre&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 883 x 4
+## # Groups:   release_year, playlist_genre [302]
+##    release_year playlist_genre playlist_subgenre  mean_popularity
+##           &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt;                        &lt;dbl&gt;
+##  1         1957 r&amp;b            urban contemporary              59
+##  2         1957 rock           classic rock                     1
+##  3         1958 rock           classic rock                    73
+##  4         1960 r&amp;b            neo soul                        13
+##  5         1960 r&amp;b            urban contemporary              19
+##  6         1961 r&amp;b            urban contemporary              47
+##  7         1962 r&amp;b            urban contemporary              64
+##  8         1962 rock           classic rock                    64
+##  9         1963 r&amp;b            neo soul                        73
+## 10         1963 rock           album rock                      59
+## # … with 873 more rows</code></pre>
+<hr/>
+<p>Now you can plot your summarized data.</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="data-visualization.html#cb159-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb159-2"><a href="data-visualization.html#cb159-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb159-3"><a href="data-visualization.html#cb159-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb159-4"><a href="data-visualization.html#cb159-4"></a>             <span class="dt">color =</span> playlist_subgenre,</span>
+<span id="cb159-5"><a href="data-visualization.html#cb159-5"></a>             <span class="dt">shape =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb159-6"><a href="data-visualization.html#cb159-6"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-88-1.png" width="672" /></p>
+<p>Still super messy. Shape is not really a good way to do this.</p>
+<p>Let’s try a bar plot.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="data-visualization.html#cb160-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb160-2"><a href="data-visualization.html#cb160-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb160-3"><a href="data-visualization.html#cb160-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb160-4"><a href="data-visualization.html#cb160-4"></a>             <span class="dt">fill =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb160-5"><a href="data-visualization.html#cb160-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-89-1.png" width="672" /></p>
+<p>Not great either, too much going on.</p>
+</div>
+<div id="facets" class="section level2">
+<h2><span class="header-section-number">8.7</span> Facets</h2>
+<p>You can use the <code>facet_wrap()</code> function to split your plotting into several smaller plots, usually by a categorical variable.</p>
+<p>Let’s try the scatterplot first.</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="data-visualization.html#cb161-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb161-2"><a href="data-visualization.html#cb161-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb161-3"><a href="data-visualization.html#cb161-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb161-4"><a href="data-visualization.html#cb161-4"></a>             <span class="dt">color =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb161-5"><a href="data-visualization.html#cb161-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb161-6"><a href="data-visualization.html#cb161-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>playlist_subgenre)</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-90-1.png" width="672" /></p>
+<p>What about a bar plot?</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="data-visualization.html#cb162-1"></a>spotify_summary <span class="op">%&gt;%</span></span>
+<span id="cb162-2"><a href="data-visualization.html#cb162-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> release_year, </span>
+<span id="cb162-3"><a href="data-visualization.html#cb162-3"></a>             <span class="dt">y =</span> mean_popularity,</span>
+<span id="cb162-4"><a href="data-visualization.html#cb162-4"></a>             <span class="dt">fill =</span> playlist_genre)) <span class="op">+</span></span>
+<span id="cb162-5"><a href="data-visualization.html#cb162-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="op">+</span></span>
+<span id="cb162-6"><a href="data-visualization.html#cb162-6"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>playlist_subgenre)</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-91-1.png" width="672" /></p>
+</div>
+<div id="more-summarize" class="section level2">
+<h2><span class="header-section-number">8.8</span> More Summarize</h2>
+<p>We can also plot categorical variables on the <code>x</code> axis.</p>
+<hr/>
+<p>EXERCISE</p>
+<p>Summarize mean <code>track_popularity</code> by <code>playlist_genre</code>.</p>
+<p>Your summarized data frame should look something like this:</p>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 6 x 2
+##   playlist_genre mean_popularity
+##   &lt;chr&gt;                    &lt;dbl&gt;
+## 1 edm                       34.8
+## 2 latin                     47.0
+## 3 pop                       47.7
+## 4 r&amp;b                       41.2
+## 5 rap                       43.2
+## 6 rock                      41.7</code></pre>
+<p>Now plot a bar chart mapping <code>x</code> to <code>playlist_genre</code>, <code>y</code> to <code>mean_popularity</code>.</p>
+<p>Your plot should look something like this:</p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-93-1.png" width="672" /></p>
 </div>
 <div id="data-challenge-03" class="section level2">
-<h2><span class="header-section-number">8.7</span> DATA CHALLENGE 03</h2>
+<h2><span class="header-section-number">8.9</span> DATA CHALLENGE 03</h2>
 <p>Accept <a href="https://classroom.github.com/a/ndGrSqaq">data challenge 03 assignment</a></p>
 
 </div>

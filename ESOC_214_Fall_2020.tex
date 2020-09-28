@@ -120,7 +120,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-09-24}
+\date{2020-09-28}
 
 \begin{document}
 \maketitle
@@ -640,7 +640,7 @@ For more information about dates including holidays, check \href{https://catalog
 
 \textbf{Why am I using YYYY-MM-DD date format?}
 
-\includegraphics[width=10.89in]{images/iso_8601_2x}
+\includegraphics{images/iso_8601_2x.png}
 
 \href{https://xkcd.com/1179/}{ISO 8601 -- xkcd}
 
@@ -2163,11 +2163,11 @@ You can now list the contents of your \texttt{data} folder with the \texttt{dir(
 \end{Shaded}
 
 \begin{verbatim}
-##  [1] "elnino.csv"                          "GlobalLandTemperaturesByCountry.csv"
-##  [3] "groundhog_day.csv"                   "nfl_salary.xlsx"                    
-##  [5] "olympic_history_athlete_events.csv"  "olympic_history_noc_regions.csv"    
-##  [7] "passwords.csv"                       "spotify_songs.csv"                  
-##  [9] "tweets.tsv"                          "us_avg_tuition.xlsx"
+## [1] "elnino.csv"                         "groundhog_day.csv"                 
+## [3] "nfl_salary.xlsx"                    "olympic_history_athlete_events.csv"
+## [5] "olympic_history_noc_regions.csv"    "passwords.csv"                     
+## [7] "spotify_songs.csv"                  "tweets.tsv"                        
+## [9] "us_avg_tuition.xlsx"
 \end{verbatim}
 
 \hypertarget{whats-our-question-again}{%
@@ -3571,19 +3571,233 @@ Here's a few (can you tell what type of plot these are?):
 \hypertarget{aesthetic-mappings}{%
 \section{Aesthetic Mappings}\label{aesthetic-mappings}}
 
-Two-dimensional plots have two axis, \texttt{x} (horizontal) and \texttt{y} (vertical). You can also map other elements of your chart in addition to position (i.e., \texttt{x} and \texttt{y}), such as color, size, and shape.
-
 You map your aesthetics using the \texttt{aes()} function, which can be place inside of the \texttt{ggplot()} function.
+
+\hypertarget{one-continuous-variable}{%
+\subsection{One continuous variable}\label{one-continuous-variable}}
+
+You need to map at least one variable when you are plotting. Check the help for \texttt{geom\_histogram} to see what kind of variable you can plot in a histogram.
+
+The variable \texttt{track\_popularity} is continuous.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ track_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-82-1.pdf}
+
+The variable \texttt{release\_year} is also continuous.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-83-1.pdf}
+
+\hypertarget{two-numeric-variables}{%
+\subsection{Two numeric variables}\label{two-numeric-variables}}
+
+Two-dimensional plots have two axis, \texttt{x} (horizontal) and \texttt{y} (vertical).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ track_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-84-1.pdf}
+
+\hypertarget{geom_-i.e.-geometric-objects}{%
+\section{geom\_ (i.e., Geometric Objects)}\label{geom_-i.e.-geometric-objects}}
+
+Functions such as \texttt{geom\_histogram()}, \texttt{geom\_point()}, and \texttt{geom\_col()} are geometric objects and determine what type of plot R draws.
+
+You can also map other elements of your chart in addition to position (i.e., \texttt{x} and \texttt{y}), such as color, size, and shape.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ track_popularity,}
+             \DataTypeTok{color =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-85-1.pdf}
+
+EXERCISE
+
+Check the help page for \texttt{geom\_point} (enter \texttt{?geom\_point} in your console).
+Change \texttt{geom\_point()} to the suggested variations in its help page.
+
+\hypertarget{more-mappings-with-aes}{%
+\section{More mappings with aes()}\label{more-mappings-with-aes}}
+
+In addition to \texttt{color} you can also add \texttt{size} and \texttt{shape} to \texttt{aes()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ track_popularity,}
+             \DataTypeTok{color =}\NormalTok{ playlist_subgenre,}
+             \DataTypeTok{shape =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-86-1.pdf}
+
+The plot above is too messy, there's too much information. You often need to transform your data before plotting it.
+
+EXERCISE
+
+Summarize mean \texttt{track\_popularity} by \texttt{release\_year}, \texttt{playlist\_genre} and \texttt{playlist\_subgenre}.
+
+Your summarized data frame should look something like this:
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'release_year', 'playlist_genre' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 883 x 4
+## # Groups:   release_year, playlist_genre [302]
+##    release_year playlist_genre playlist_subgenre  mean_popularity
+##           <dbl> <chr>          <chr>                        <dbl>
+##  1         1957 r&b            urban contemporary              59
+##  2         1957 rock           classic rock                     1
+##  3         1958 rock           classic rock                    73
+##  4         1960 r&b            neo soul                        13
+##  5         1960 r&b            urban contemporary              19
+##  6         1961 r&b            urban contemporary              47
+##  7         1962 r&b            urban contemporary              64
+##  8         1962 rock           classic rock                    64
+##  9         1963 r&b            neo soul                        73
+## 10         1963 rock           album rock                      59
+## # ... with 873 more rows
+\end{verbatim}
+
+Now you can plot your summarized data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_summary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ mean_popularity,}
+             \DataTypeTok{color =}\NormalTok{ playlist_subgenre,}
+             \DataTypeTok{shape =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-88-1.pdf}
+
+Still super messy. Shape is not really a good way to do this.
+
+Let's try a bar plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_summary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ mean_popularity,}
+             \DataTypeTok{fill =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-89-1.pdf}
+
+Not great either, too much going on.
 
 \hypertarget{facets}{%
 \section{Facets}\label{facets}}
 
 You can use the \texttt{facet\_wrap()} function to split your plotting into several smaller plots, usually by a categorical variable.
 
-\hypertarget{geom_-i.e.-geometric-objects}{%
-\section{geom\_ (i.e., Geometric Objects)}\label{geom_-i.e.-geometric-objects}}
+Let's try the scatterplot first.
 
-Functions such as \texttt{geom\_histogram()}, \texttt{geom\_point()}, and \texttt{geom\_col()} are geometric objects and determine what type of plot R draws.
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_summary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ mean_popularity,}
+             \DataTypeTok{color =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{playlist_subgenre)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-90-1.pdf}
+
+What about a bar plot?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_summary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ mean_popularity,}
+             \DataTypeTok{fill =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{playlist_subgenre)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+\hypertarget{more-summarize}{%
+\section{More Summarize}\label{more-summarize}}
+
+We can also plot categorical variables on the \texttt{x} axis.
+
+EXERCISE
+
+Summarize mean \texttt{track\_popularity} by \texttt{playlist\_genre}.
+
+Your summarized data frame should look something like this:
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 6 x 2
+##   playlist_genre mean_popularity
+##   <chr>                    <dbl>
+## 1 edm                       34.8
+## 2 latin                     47.0
+## 3 pop                       47.7
+## 4 r&b                       41.2
+## 5 rap                       43.2
+## 6 rock                      41.7
+\end{verbatim}
+
+Now plot a bar chart mapping \texttt{x} to \texttt{playlist\_genre}, \texttt{y} to \texttt{mean\_popularity}.
+
+Your plot should look something like this:
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-93-1.pdf}
 
 \hypertarget{data-challenge-03}{%
 \section{DATA CHALLENGE 03}\label{data-challenge-03}}
