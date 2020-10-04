@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Module 9 Data Visualization II | ESOC 2014 Introduction to Data Science</title>
+  <meta name="description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Module 9 Data Visualization II | ESOC 2014 Introduction to Data Science" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Module 9 Data Visualization II | ESOC 2014 Introduction to Data Science" />
+  
+  <meta name="twitter:description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
+  
+
+<meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
+
+
+<meta name="date" content="2020-10-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="data-visualization.html"/>
+<link rel="next" href="data-case-study-1.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">ESOC 214 Introduction to Data Science</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Syllabus</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#course-description"><i class="fa fa-check"></i><b>1.1</b> Course Description</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#course-objectives"><i class="fa fa-check"></i><b>1.2</b> Course Objectives</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#learning-outcomes"><i class="fa fa-check"></i><b>1.3</b> Learning Outcomes</a></li>
+<li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#a-few-words-on-r-and-coding"><i class="fa fa-check"></i><b>1.4</b> A Few Words on R and Coding</a></li>
+<li class="chapter" data-level="1.5" data-path="index.html"><a href="index.html#a-few-words-on-technology"><i class="fa fa-check"></i><b>1.5</b> A Few Words on Technology</a></li>
+<li class="chapter" data-level="1.6" data-path="index.html"><a href="index.html#readings"><i class="fa fa-check"></i><b>1.6</b> Readings</a></li>
+<li class="chapter" data-level="1.7" data-path="index.html"><a href="index.html#assignments-with-grade-breakdown"><i class="fa fa-check"></i><b>1.7</b> Assignments with Grade Breakdown</a></li>
+<li class="chapter" data-level="1.8" data-path="index.html"><a href="index.html#requirements-for-the-course"><i class="fa fa-check"></i><b>1.8</b> Requirements for the Course</a></li>
+<li class="chapter" data-level="1.9" data-path="index.html"><a href="index.html#course-schedule"><i class="fa fa-check"></i><b>1.9</b> Course Schedule</a></li>
+<li class="chapter" data-level="1.10" data-path="index.html"><a href="index.html#final-project"><i class="fa fa-check"></i><b>1.10</b> Final Project</a></li>
+<li class="chapter" data-level="1.11" data-path="index.html"><a href="index.html#honors-students-requirements"><i class="fa fa-check"></i><b>1.11</b> Honors Students’ Requirements</a></li>
+<li class="chapter" data-level="1.12" data-path="index.html"><a href="index.html#student-accommodations"><i class="fa fa-check"></i><b>1.12</b> Student Accommodations</a></li>
+<li class="chapter" data-level="1.13" data-path="index.html"><a href="index.html#attendance-due-dates-and-missing-work"><i class="fa fa-check"></i><b>1.13</b> Attendance, Due Dates, and Missing Work</a></li>
+<li class="chapter" data-level="1.14" data-path="index.html"><a href="index.html#course-conduct-and-campus-policies"><i class="fa fa-check"></i><b>1.14</b> Course Conduct and Campus Policies</a></li>
+<li class="chapter" data-level="1.15" data-path="index.html"><a href="index.html#code-of-conduct"><i class="fa fa-check"></i><b>1.15</b> Code of Conduct</a><ul>
+<li class="chapter" data-level="1.15.1" data-path="index.html"><a href="index.html#our-pledge"><i class="fa fa-check"></i><b>1.15.1</b> Our Pledge</a></li>
+<li class="chapter" data-level="1.15.2" data-path="index.html"><a href="index.html#our-standards"><i class="fa fa-check"></i><b>1.15.2</b> Our Standards</a></li>
+<li class="chapter" data-level="1.15.3" data-path="index.html"><a href="index.html#enforcement"><i class="fa fa-check"></i><b>1.15.3</b> Enforcement</a></li>
+<li class="chapter" data-level="1.15.4" data-path="index.html"><a href="index.html#attribution"><i class="fa fa-check"></i><b>1.15.4</b> Attribution</a></li>
+</ul></li>
+<li class="chapter" data-level="1.16" data-path="index.html"><a href="index.html#how-to-ask-for-help"><i class="fa fa-check"></i><b>1.16</b> How to Ask For Help</a><ul>
+<li class="chapter" data-level="1.16.1" data-path="index.html"><a href="index.html#before-you-ask-for-help"><i class="fa fa-check"></i><b>1.16.1</b> Before You ask for help</a></li>
+<li class="chapter" data-level="1.16.2" data-path="index.html"><a href="index.html#ask-other-people-for-help"><i class="fa fa-check"></i><b>1.16.2</b> Ask other people for help</a></li>
+<li class="chapter" data-level="1.16.3" data-path="index.html"><a href="index.html#list-of-resources"><i class="fa fa-check"></i><b>1.16.3</b> List of Resources</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="whats-ds.html"><a href="whats-ds.html"><i class="fa fa-check"></i><b>2</b> What’s data science?</a><ul>
+<li class="chapter" data-level="2.1" data-path="whats-ds.html"><a href="whats-ds.html#before-class-1"><i class="fa fa-check"></i><b>2.1</b> Before class #1</a></li>
+<li class="chapter" data-level="2.2" data-path="whats-ds.html"><a href="whats-ds.html#whats-data-science"><i class="fa fa-check"></i><b>2.2</b> What’s data science?</a></li>
+<li class="chapter" data-level="2.3" data-path="whats-ds.html"><a href="whats-ds.html#what-does-a-data-scientist-do"><i class="fa fa-check"></i><b>2.3</b> What does a data scientist do?</a></li>
+<li class="chapter" data-level="2.4" data-path="whats-ds.html"><a href="whats-ds.html#data-science-workflow"><i class="fa fa-check"></i><b>2.4</b> Data Science Workflow</a></li>
+<li class="chapter" data-level="2.5" data-path="whats-ds.html"><a href="whats-ds.html#before-class-2"><i class="fa fa-check"></i><b>2.5</b> Before class #2</a></li>
+<li class="chapter" data-level="2.6" data-path="whats-ds.html"><a href="whats-ds.html#whats-data"><i class="fa fa-check"></i><b>2.6</b> What’s data?</a></li>
+<li class="chapter" data-level="2.7" data-path="whats-ds.html"><a href="whats-ds.html#what-does-data-analysis-look-like"><i class="fa fa-check"></i><b>2.7</b> What does data analysis look like?</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>3</b> Exploring our IDE (Rstudio)</a><ul>
+<li class="chapter" data-level="3.1" data-path="install-r.html"><a href="install-r.html#before-class-3"><i class="fa fa-check"></i><b>3.1</b> Before class #3</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="install-r.html"><a href="install-r.html#ive-never-installed-r-and-rstudio-in-my-computer-or-im-not-sure-i-have-r-and-rstudio-installed-in-my-computer"><i class="fa fa-check"></i><b>3.1.1</b> I’ve never installed R and RStudio in my computer OR I’m not sure I have R and RStudio installed in my computer</a></li>
+<li class="chapter" data-level="3.1.2" data-path="install-r.html"><a href="install-r.html#i-already-have-r-and-rstudio-installed"><i class="fa fa-check"></i><b>3.1.2</b> I already have R and RStudio installed</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="install-r.html"><a href="install-r.html#why-learn-r"><i class="fa fa-check"></i><b>3.2</b> Why learn R?</a></li>
+<li class="chapter" data-level="3.3" data-path="install-r.html"><a href="install-r.html#why-use-rstudio"><i class="fa fa-check"></i><b>3.3</b> Why use RStudio?</a></li>
+<li class="chapter" data-level="3.4" data-path="install-r.html"><a href="install-r.html#create-an-r-project"><i class="fa fa-check"></i><b>3.4</b> Create an R Project</a></li>
+<li class="chapter" data-level="3.5" data-path="install-r.html"><a href="install-r.html#operations-and-objects"><i class="fa fa-check"></i><b>3.5</b> Operations and Objects</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="r-basics.html"><a href="r-basics.html"><i class="fa fa-check"></i><b>4</b> R Basics</a><ul>
+<li class="chapter" data-level="4.1" data-path="r-basics.html"><a href="r-basics.html#before-class-4"><i class="fa fa-check"></i><b>4.1</b> Before Class #4</a></li>
+<li class="chapter" data-level="4.2" data-path="r-basics.html"><a href="r-basics.html#dataframes"><i class="fa fa-check"></i><b>4.2</b> Dataframes</a></li>
+<li class="chapter" data-level="4.3" data-path="r-basics.html"><a href="r-basics.html#slicing-your-dataframe"><i class="fa fa-check"></i><b>4.3</b> Slicing your dataframe</a></li>
+<li class="chapter" data-level="4.4" data-path="r-basics.html"><a href="r-basics.html#adding-new-variables-i.e.-columns-to-your-dataframe"><i class="fa fa-check"></i><b>4.4</b> Adding new variables (i.e., columns) to your dataframe</a></li>
+<li class="chapter" data-level="4.5" data-path="r-basics.html"><a href="r-basics.html#descriptive-stats-on-dataframes"><i class="fa fa-check"></i><b>4.5</b> Descriptive stats on dataframes</a></li>
+<li class="chapter" data-level="4.6" data-path="r-basics.html"><a href="r-basics.html#note-on-coding-style"><i class="fa fa-check"></i><b>4.6</b> Note on coding style</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="version-control.html"><a href="version-control.html"><i class="fa fa-check"></i><b>5</b> Version Control</a><ul>
+<li class="chapter" data-level="5.1" data-path="version-control.html"><a href="version-control.html#before-class-5"><i class="fa fa-check"></i><b>5.1</b> Before Class #5</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="version-control.html"><a href="version-control.html#install-git-on-your-computer"><i class="fa fa-check"></i><b>5.1.1</b> Install git on your computer</a></li>
+<li class="chapter" data-level="5.1.2" data-path="version-control.html"><a href="version-control.html#create-a-github-account"><i class="fa fa-check"></i><b>5.1.2</b> Create a GitHub account</a></li>
+<li class="chapter" data-level="5.1.3" data-path="version-control.html"><a href="version-control.html#join-our-github-classroom"><i class="fa fa-check"></i><b>5.1.3</b> Join our GitHub classroom</a></li>
+<li class="chapter" data-level="5.1.4" data-path="version-control.html"><a href="version-control.html#link-rstudio-to-github"><i class="fa fa-check"></i><b>5.1.4</b> Link RStudio to GitHub</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="version-control.html"><a href="version-control.html#what-is-version-control"><i class="fa fa-check"></i><b>5.2</b> What is version control?</a></li>
+<li class="chapter" data-level="5.3" data-path="version-control.html"><a href="version-control.html#submitting-assignments"><i class="fa fa-check"></i><b>5.3</b> Submitting assignments</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="version-control.html"><a href="version-control.html#clone-assignment-repository"><i class="fa fa-check"></i><b>5.3.1</b> Clone assignment repository</a></li>
+<li class="chapter" data-level="5.3.2" data-path="version-control.html"><a href="version-control.html#modify-files"><i class="fa fa-check"></i><b>5.3.2</b> Modify files</a></li>
+<li class="chapter" data-level="5.3.3" data-path="version-control.html"><a href="version-control.html#commit-changes"><i class="fa fa-check"></i><b>5.3.3</b> Commit changes</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html"><i class="fa fa-check"></i><b>6</b> Intro to Tidyverse</a><ul>
+<li class="chapter" data-level="6.1" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#before-class-6"><i class="fa fa-check"></i><b>6.1</b> Before Class #6</a></li>
+<li class="chapter" data-level="6.2" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#what-are-r-packages"><i class="fa fa-check"></i><b>6.2</b> What are R Packages?</a></li>
+<li class="chapter" data-level="6.3" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#installing-packages"><i class="fa fa-check"></i><b>6.3</b> Installing Packages</a></li>
+<li class="chapter" data-level="6.4" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#before-you-load-your-data"><i class="fa fa-check"></i><b>6.4</b> Before You Load your Data</a></li>
+<li class="chapter" data-level="6.5" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#whats-our-question-again"><i class="fa fa-check"></i><b>6.5</b> What’s our question again?</a></li>
+<li class="chapter" data-level="6.6" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#load-data-with-tidyverse"><i class="fa fa-check"></i><b>6.6</b> Load Data with Tidyverse</a></li>
+<li class="chapter" data-level="6.7" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#inspect-your-data"><i class="fa fa-check"></i><b>6.7</b> Inspect Your Data</a></li>
+<li class="chapter" data-level="6.8" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#the-pipe"><i class="fa fa-check"></i><b>6.8</b> The Pipe</a></li>
+<li class="chapter" data-level="6.9" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#counting-categorical-variables"><i class="fa fa-check"></i><b>6.9</b> Counting Categorical Variables</a></li>
+<li class="chapter" data-level="6.10" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#group_by-summarise"><i class="fa fa-check"></i><b>6.10</b> group_by + summarise</a></li>
+<li class="chapter" data-level="6.11" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#group_by-filter"><i class="fa fa-check"></i><b>6.11</b> group_by + filter</a></li>
+<li class="chapter" data-level="6.12" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#pivot-dataframe"><i class="fa fa-check"></i><b>6.12</b> Pivot Dataframe</a></li>
+<li class="chapter" data-level="6.13" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#separating-one-categorical-column-into-two"><i class="fa fa-check"></i><b>6.13</b> Separating one categorical column into two</a></li>
+<li class="chapter" data-level="6.14" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#example-of-plotting"><i class="fa fa-check"></i><b>6.14</b> Example of Plotting</a></li>
+<li class="chapter" data-level="6.15" data-path="intro-to-tidyverse.html"><a href="intro-to-tidyverse.html#data-challenge-01"><i class="fa fa-check"></i><b>6.15</b> DATA CHALLENGE 01</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-wrangling.html"><a href="data-wrangling.html"><i class="fa fa-check"></i><b>7</b> Data Wrangling</a><ul>
+<li class="chapter" data-level="7.1" data-path="data-wrangling.html"><a href="data-wrangling.html#load-libraries"><i class="fa fa-check"></i><b>7.1</b> Load libraries</a></li>
+<li class="chapter" data-level="7.2" data-path="data-wrangling.html"><a href="data-wrangling.html#read-your-data-in"><i class="fa fa-check"></i><b>7.2</b> Read your data in</a></li>
+<li class="chapter" data-level="7.3" data-path="data-wrangling.html"><a href="data-wrangling.html#summarise-data"><i class="fa fa-check"></i><b>7.3</b> Summarise data</a></li>
+<li class="chapter" data-level="7.4" data-path="data-wrangling.html"><a href="data-wrangling.html#tidy-data"><i class="fa fa-check"></i><b>7.4</b> Tidy data</a><ul>
+<li class="chapter" data-level="7.4.1" data-path="data-wrangling.html"><a href="data-wrangling.html#viz-demo"><i class="fa fa-check"></i><b>7.4.1</b> Viz Demo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="data-wrangling.html"><a href="data-wrangling.html#transform-data"><i class="fa fa-check"></i><b>7.5</b> Transform Data</a><ul>
+<li class="chapter" data-level="7.5.1" data-path="data-wrangling.html"><a href="data-wrangling.html#viz-demo-1"><i class="fa fa-check"></i><b>7.5.1</b> Viz Demo</a></li>
+</ul></li>
+<li class="chapter" data-level="7.6" data-path="data-wrangling.html"><a href="data-wrangling.html#data-challenge-02"><i class="fa fa-check"></i><b>7.6</b> DATA CHALLENGE 02</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="data-visualization.html"><a href="data-visualization.html"><i class="fa fa-check"></i><b>8</b> Data Visualization</a><ul>
+<li class="chapter" data-level="8.1" data-path="data-visualization.html"><a href="data-visualization.html#the-layered-grammar-of-graphics"><i class="fa fa-check"></i><b>8.1</b> The layered grammar of graphics</a></li>
+<li class="chapter" data-level="8.2" data-path="data-visualization.html"><a href="data-visualization.html#load-data"><i class="fa fa-check"></i><b>8.2</b> Load data</a></li>
+<li class="chapter" data-level="8.3" data-path="data-visualization.html"><a href="data-visualization.html#what-to-plot"><i class="fa fa-check"></i><b>8.3</b> What to plot?</a></li>
+<li class="chapter" data-level="8.4" data-path="data-visualization.html"><a href="data-visualization.html#aesthetic-mappings"><i class="fa fa-check"></i><b>8.4</b> Aesthetic Mappings</a><ul>
+<li class="chapter" data-level="8.4.1" data-path="data-visualization.html"><a href="data-visualization.html#one-continuous-variable"><i class="fa fa-check"></i><b>8.4.1</b> One continuous variable</a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-visualization.html"><a href="data-visualization.html#two-numeric-variables"><i class="fa fa-check"></i><b>8.4.2</b> Two numeric variables</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="data-visualization.html"><a href="data-visualization.html#geom_-i.e.-geometric-objects"><i class="fa fa-check"></i><b>8.5</b> geom_ (i.e., Geometric Objects)</a></li>
+<li class="chapter" data-level="8.6" data-path="data-visualization.html"><a href="data-visualization.html#more-mappings-with-aes"><i class="fa fa-check"></i><b>8.6</b> More mappings with aes()</a></li>
+<li class="chapter" data-level="8.7" data-path="data-visualization.html"><a href="data-visualization.html#facets"><i class="fa fa-check"></i><b>8.7</b> Facets</a></li>
+<li class="chapter" data-level="8.8" data-path="data-visualization.html"><a href="data-visualization.html#more-summarize"><i class="fa fa-check"></i><b>8.8</b> More Summarize</a></li>
+<li class="chapter" data-level="8.9" data-path="data-visualization.html"><a href="data-visualization.html#data-challenge-03"><i class="fa fa-check"></i><b>8.9</b> DATA CHALLENGE 03</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html"><i class="fa fa-check"></i><b>9</b> Data Visualization II</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-viz-by-artist"><i class="fa fa-check"></i><b>9.1</b> Data Viz by Artist</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#explore-artist-info"><i class="fa fa-check"></i><b>9.1.1</b> Explore Artist Info</a></li>
+<li class="chapter" data-level="9.1.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#create-new-data-frame-with-selected-artists"><i class="fa fa-check"></i><b>9.1.2</b> Create new data frame with selected artists</a></li>
+<li class="chapter" data-level="9.1.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#plotting"><i class="fa fa-check"></i><b>9.1.3</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-viz-by-album"><i class="fa fa-check"></i><b>9.2</b> Data Viz by Album</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#create-new-data-frame"><i class="fa fa-check"></i><b>9.2.1</b> Create new data frame</a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#summarize-data"><i class="fa fa-check"></i><b>9.2.2</b> Summarize data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#plot-summarized-data"><i class="fa fa-check"></i><b>9.2.3</b> Plot summarized data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-challenge-04"><i class="fa fa-check"></i><b>9.3</b> DATA CHALLENGE 04</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-case-study-1.html"><a href="data-case-study-1.html"><i class="fa fa-check"></i><b>10</b> Data Case Study 1</a></li>
+<li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a></li>
+<li class="chapter" data-level="12" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>12</b> Getting Data</a></li>
+<li class="chapter" data-level="13" data-path="data-case-study-3.html"><a href="data-case-study-3.html"><i class="fa fa-check"></i><b>13</b> Data Case Study 3</a></li>
+<li class="chapter" data-level="14" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>14</b> Markdown</a></li>
+<li class="chapter" data-level="15" data-path="data-case-study-4.html"><a href="data-case-study-4.html"><i class="fa fa-check"></i><b>15</b> Data Case Study 4</a></li>
+<li class="chapter" data-level="16" data-path="analysis-reporting.html"><a href="analysis-reporting.html"><i class="fa fa-check"></i><b>16</b> Analysis Reporting</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">ESOC 2014 Introduction to Data Science</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-visualization-ii" class="section level1">
+<h1><span class="header-section-number">Module 9</span> Data Visualization II</h1>
+<p>We will continue working with the spotify data set we worked with last week. The objectives of this module are as follows: by the end of this module you will be able to …</p>
+<ol style="list-style-type: decimal">
+<li><p>Explore a large data frame to decide what part of the data you want to focus on</p></li>
+<li><p>Create subsets of your original data frame</p></li>
+<li><p>Create summarizations of your data based on different variables</p></li>
+<li><p>Plot these summarizations</p></li>
+</ol>
+<pre><code>## Rows: 32,833
+## Columns: 25
+## $ track_id                 &lt;chr&gt; &quot;6f807x0ima9a1j3VPbc7VN&quot;, &quot;0r7CVbZTWZgbTCYdf…
+## $ track_name               &lt;chr&gt; &quot;I Don&#39;t Care (with Justin Bieber) - Loud Lu…
+## $ track_artist             &lt;chr&gt; &quot;Ed Sheeran&quot;, &quot;Maroon 5&quot;, &quot;Zara Larsson&quot;, &quot;T…
+## $ track_popularity         &lt;dbl&gt; 66, 67, 70, 60, 69, 67, 62, 69, 68, 67, 58, …
+## $ track_album_id           &lt;chr&gt; &quot;2oCs0DGTsRO98Gh5ZSl2Cx&quot;, &quot;63rPSO264uRjW1X5E…
+## $ track_album_name         &lt;chr&gt; &quot;I Don&#39;t Care (with Justin Bieber) [Loud Lux…
+## $ track_album_release_date &lt;chr&gt; &quot;2019-06-14&quot;, &quot;2019-12-13&quot;, &quot;2019-07-05&quot;, &quot;2…
+## $ playlist_name            &lt;chr&gt; &quot;Pop Remix&quot;, &quot;Pop Remix&quot;, &quot;Pop Remix&quot;, &quot;Pop …
+## $ playlist_id              &lt;chr&gt; &quot;37i9dQZF1DXcZDD7cfEKhW&quot;, &quot;37i9dQZF1DXcZDD7c…
+## $ playlist_genre           &lt;chr&gt; &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;p…
+## $ playlist_subgenre        &lt;chr&gt; &quot;dance pop&quot;, &quot;dance pop&quot;, &quot;dance pop&quot;, &quot;danc…
+## $ danceability             &lt;dbl&gt; 0.748, 0.726, 0.675, 0.718, 0.650, 0.675, 0.…
+## $ energy                   &lt;dbl&gt; 0.916, 0.815, 0.931, 0.930, 0.833, 0.919, 0.…
+## $ key                      &lt;dbl&gt; 6, 11, 1, 7, 1, 8, 5, 4, 8, 2, 6, 8, 1, 5, 5…
+## $ loudness                 &lt;dbl&gt; -2.634, -4.969, -3.432, -3.778, -4.672, -5.3…
+## $ mode                     &lt;dbl&gt; 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 0,…
+## $ speechiness              &lt;dbl&gt; 0.0583, 0.0373, 0.0742, 0.1020, 0.0359, 0.12…
+## $ acousticness             &lt;dbl&gt; 0.10200, 0.07240, 0.07940, 0.02870, 0.08030,…
+## $ instrumentalness         &lt;dbl&gt; 0.00e+00, 4.21e-03, 2.33e-05, 9.43e-06, 0.00…
+## $ liveness                 &lt;dbl&gt; 0.0653, 0.3570, 0.1100, 0.2040, 0.0833, 0.14…
+## $ valence                  &lt;dbl&gt; 0.518, 0.693, 0.613, 0.277, 0.725, 0.585, 0.…
+## $ tempo                    &lt;dbl&gt; 122.036, 99.972, 124.008, 121.956, 123.976, …
+## $ duration_ms              &lt;dbl&gt; 194754, 162600, 176616, 169093, 189052, 1630…
+## $ release_year             &lt;dbl&gt; 2019, 2019, 2019, 2019, 2019, 2019, 2019, 20…
+## $ decade                   &lt;dbl&gt; 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…</code></pre>
+<div id="data-viz-by-artist" class="section level2">
+<h2><span class="header-section-number">9.1</span> Data Viz by Artist</h2>
+<p>QUESTION: Which artist (from just a few) is most popular? Does that change across different decades?</p>
+<div id="explore-artist-info" class="section level3">
+<h3><span class="header-section-number">9.1.1</span> Explore Artist Info</h3>
+<p>Let’s check who the artists are in this data set. Check what the unique values are for the <code>track_artist</code> variable using <code>select()</code> and <code>unique()</code>.</p>
+<pre><code>## # A tibble: 10,693 x 1
+##    track_artist    
+##    &lt;chr&gt;           
+##  1 Ed Sheeran      
+##  2 Maroon 5        
+##  3 Zara Larsson    
+##  4 The Chainsmokers
+##  5 Lewis Capaldi   
+##  6 Katy Perry      
+##  7 Sam Feldt       
+##  8 Avicii          
+##  9 Shawn Mendes    
+## 10 Ellie Goulding  
+## # … with 10,683 more rows</code></pre>
+<p>Who’s the artist with the most songs? Use <code>count()</code> and <code>arrange()</code> to find out.</p>
+<pre><code>## # A tibble: 10,693 x 2
+##    track_artist                  n
+##    &lt;chr&gt;                     &lt;int&gt;
+##  1 Martin Garrix               161
+##  2 Queen                       136
+##  3 The Chainsmokers            123
+##  4 David Guetta                110
+##  5 Don Omar                    102
+##  6 Drake                       100
+##  7 Dimitri Vegas &amp; Like Mike    93
+##  8 Calvin Harris                91
+##  9 Hardwell                     84
+## 10 Kygo                         83
+## # … with 10,683 more rows</code></pre>
+<p>What genre are these artists classified as?</p>
+<pre><code>## # A tibble: 13,175 x 3
+##    track_artist              playlist_genre     n
+##    &lt;chr&gt;                     &lt;chr&gt;          &lt;int&gt;
+##  1 Queen                     rock             134
+##  2 Martin Garrix             edm              125
+##  3 Don Omar                  latin            100
+##  4 Dimitri Vegas &amp; Like Mike edm               79
+##  5 Guns N&#39; Roses             rock              76
+##  6 Hardwell                  edm               76
+##  7 Logic                     rap               65
+##  8 Daddy Yankee              latin             61
+##  9 David Guetta              edm               60
+## 10 Wisin &amp; Yandel            latin             60
+## # … with 13,165 more rows</code></pre>
+<p>What can we conclude about artist tracks and <code>playlist_genre</code>?</p>
+<p>Let’s look at specific artist of our choosing. I’m looking at <code>The Cranberries</code>, <code>The Beatles</code> and <code>Queen</code>.
+What genres are their songs classfied as?</p>
+<pre><code>## # A tibble: 4 x 3
+##   track_artist    playlist_genre     n
+##   &lt;chr&gt;           &lt;chr&gt;          &lt;int&gt;
+## 1 Queen           pop                2
+## 2 Queen           rock             134
+## 3 The Beatles     rock              19
+## 4 The Cranberries rock              45</code></pre>
+<p>What are the two pop songs by Queen? Use <code>filter()</code> and <code>select()</code> to find out.</p>
+<pre><code>## # A tibble: 2 x 1
+##   track_name                  
+##   &lt;chr&gt;                       
+## 1 Don&#39;t Stop Me Now - 2011 Mix
+## 2 Radio Ga Ga</code></pre>
+</div>
+<div id="create-new-data-frame-with-selected-artists" class="section level3">
+<h3><span class="header-section-number">9.1.2</span> Create new data frame with selected artists</h3>
+<p>Create another data frame that is a subset of the original <code>spotify_songs</code> data frame to start visualizing info about the artists you chose.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-visualization-ii.html#cb171-1"></a><span class="co"># filter original data frame to create new data frame with selected artists</span></span>
+<span id="cb171-2"><a href="data-visualization-ii.html#cb171-2"></a>spotify_tc_tv_q &lt;-<span class="st"> </span>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb171-3"><a href="data-visualization-ii.html#cb171-3"></a><span class="st">  </span><span class="kw">filter</span>(track_artist <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;The Cranberries&#39;</span>, <span class="st">&#39;The Beatles&#39;</span>, <span class="st">&#39;Queen&#39;</span>))</span>
+<span id="cb171-4"><a href="data-visualization-ii.html#cb171-4"></a></span>
+<span id="cb171-5"><a href="data-visualization-ii.html#cb171-5"></a><span class="co"># inspect new data frame</span></span>
+<span id="cb171-6"><a href="data-visualization-ii.html#cb171-6"></a><span class="kw">glimpse</span>(spotify_tc_tv_q)</span></code></pre></div>
+<pre><code>## Rows: 200
+## Columns: 25
+## $ track_id                 &lt;chr&gt; &quot;7hQJA50XrCWABAu5v6QZ4i&quot;, &quot;1lpFXKKckqVkyAN1l…
+## $ track_name               &lt;chr&gt; &quot;Don&#39;t Stop Me Now - 2011 Mix&quot;, &quot;Radio Ga Ga…
+## $ track_artist             &lt;chr&gt; &quot;Queen&quot;, &quot;Queen&quot;, &quot;The Beatles&quot;, &quot;The Cranbe…
+## $ track_popularity         &lt;dbl&gt; 75, 3, 1, 43, 42, 44, 40, 40, 38, 37, 37, 38…
+## $ track_album_id           &lt;chr&gt; &quot;21HMAUrbbYSj9NiPPlGumy&quot;, &quot;39MMaY4ampwjkSOFa…
+## $ track_album_name         &lt;chr&gt; &quot;Jazz (Deluxe Remastered Version)&quot;, &quot;The Wor…
+## $ track_album_release_date &lt;chr&gt; &quot;1978-11-10&quot;, &quot;1984-02-27&quot;, &quot;1996-03-18&quot;, &quot;2…
+## $ playlist_name            &lt;chr&gt; &quot;Dr. Q&#39;s Prescription Playlist\U0001f48a&quot;, &quot;…
+## $ playlist_id              &lt;chr&gt; &quot;6jAPdgY9XmxC9cgkXAVmVv&quot;, &quot;65HtIbyFkaQPflCa4…
+## $ playlist_genre           &lt;chr&gt; &quot;pop&quot;, &quot;pop&quot;, &quot;rock&quot;, &quot;rock&quot;, &quot;rock&quot;, &quot;rock&quot;…
+## $ playlist_subgenre        &lt;chr&gt; &quot;post-teen pop&quot;, &quot;electropop&quot;, &quot;album rock&quot;,…
+## $ danceability             &lt;dbl&gt; 0.563, 0.762, 0.388, 0.529, 0.473, 0.437, 0.…
+## $ energy                   &lt;dbl&gt; 0.865, 0.414, 0.677, 0.845, 0.598, 0.785, 0.…
+## $ key                      &lt;dbl&gt; 5, 5, 8, 0, 6, 4, 0, 9, 7, 9, 7, 0, 0, 9, 9,…
+## $ loudness                 &lt;dbl&gt; -5.277, -12.036, -7.262, -5.432, -5.101, -4.…
+## $ mode                     &lt;dbl&gt; 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 0,…
+## $ speechiness              &lt;dbl&gt; 0.1600, 0.0379, 0.0301, 0.0294, 0.0268, 0.05…
+## $ acousticness             &lt;dbl&gt; 0.047200, 0.173000, 0.052700, 0.000199, 0.03…
+## $ instrumentalness         &lt;dbl&gt; 1.91e-04, 1.11e-04, 1.07e-02, 1.74e-01, 7.79…
+## $ liveness                 &lt;dbl&gt; 0.7700, 0.0942, 0.2210, 0.2270, 0.1250, 0.10…
+## $ valence                  &lt;dbl&gt; 0.6010, 0.7310, 0.4240, 0.5710, 0.0565, 0.48…
+## $ tempo                    &lt;dbl&gt; 156.271, 112.398, 175.818, 109.093, 93.022, …
+## $ duration_ms              &lt;dbl&gt; 209413, 349133, 234053, 256387, 239947, 2515…
+## $ release_year             &lt;dbl&gt; 1978, 1984, 1996, 2019, 2019, 2019, 2019, 20…
+## $ decade                   &lt;dbl&gt; 1970, 1980, 1990, 2010, 2010, 2010, 2010, 20…</code></pre>
+</div>
+<div id="plotting" class="section level3">
+<h3><span class="header-section-number">9.1.3</span> Plotting</h3>
+<p>Plot song count (x) by <code>decade</code> (y) the songs were release across <code>track_artist</code> (color). You need a <code>count</code> of <code>track_artist</code> and <code>decade</code> for this plot.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="data-visualization-ii.html#cb173-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb173-2"><a href="data-visualization-ii.html#cb173-2"></a><span class="st">  </span><span class="kw">count</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb173-3"><a href="data-visualization-ii.html#cb173-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> n, <span class="dt">color =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb173-4"><a href="data-visualization-ii.html#cb173-4"></a><span class="st">  </span><span class="kw">geom_point</span>() </span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-101-1.png" width="672" /></p>
+<p>To make tendencies clearer, we can add <code>geom_line</code> to our plot. We need a new aesthetics for the lines to connect the right points, called <code>group</code>. In this case, <code>group</code> takes the same variable as the <code>color</code> mapping.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-visualization-ii.html#cb174-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb174-2"><a href="data-visualization-ii.html#cb174-2"></a><span class="st">  </span><span class="kw">count</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb174-3"><a href="data-visualization-ii.html#cb174-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> n, <span class="dt">color =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb174-4"><a href="data-visualization-ii.html#cb174-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb174-5"><a href="data-visualization-ii.html#cb174-5"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> track_artist))</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-102-1.png" width="672" /></p>
+<p>From the plot above, what can we conclude about the selected artists? When did they start releasing songs?</p>
+<p>Let’s look at <code>track_popularity</code> by artist across decade. For this, we need <code>group_by</code> and <code>summarise</code> before we can build our plot.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="data-visualization-ii.html#cb175-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb175-2"><a href="data-visualization-ii.html#cb175-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb175-3"><a href="data-visualization-ii.html#cb175-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb175-4"><a href="data-visualization-ii.html#cb175-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">color =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb175-5"><a href="data-visualization-ii.html#cb175-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb175-6"><a href="data-visualization-ii.html#cb175-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">group =</span> track_artist))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-103-1.png" width="672" /></p>
+<p>How would this plot look like as a bar plot?</p>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="data-visualization-ii.html#cb177-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb177-2"><a href="data-visualization-ii.html#cb177-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb177-3"><a href="data-visualization-ii.html#cb177-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb177-4"><a href="data-visualization-ii.html#cb177-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb177-5"><a href="data-visualization-ii.html#cb177-5"></a><span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-104-1.png" width="672" /></p>
+<p>Which chart do you think is easier to read? Why?</p>
+<p>We have multiple songs per artists, so we can include standard deviation in our <code>summarise</code>.</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="data-visualization-ii.html#cb179-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb179-2"><a href="data-visualization-ii.html#cb179-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb179-3"><a href="data-visualization-ii.html#cb179-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb179-4"><a href="data-visualization-ii.html#cb179-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb179-5"><a href="data-visualization-ii.html#cb179-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 13 x 5
+## # Groups:   track_artist [3]
+##    track_artist    decade     n mean_popularity sd_popularity
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;int&gt;           &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Queen             1970    97            43.2         15.1 
+##  2 Queen             1980    29            43.8         22.5 
+##  3 Queen             1990     4            19.8         27.6 
+##  4 Queen             2010     6            51.8         11.7 
+##  5 The Beatles       1960     9            69.8          6.53
+##  6 The Beatles       1970     5            69.2          5.89
+##  7 The Beatles       1980     1            39           NA   
+##  8 The Beatles       1990     1             1           NA   
+##  9 The Beatles       2000     1            74           NA   
+## 10 The Beatles       2010     2            55.5          4.95
+## 11 The Cranberries   1990    31            52.5         13.3 
+## 12 The Cranberries   2000     2            35.5          3.54
+## 13 The Cranberries   2010    12            37.6         12.3</code></pre>
+<p>NAs in our data frame is a problem. We can add <code>mutate</code> with <code>replace_na</code> to replace these NAs with zero.</p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb182-1"><a href="data-visualization-ii.html#cb182-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb182-2"><a href="data-visualization-ii.html#cb182-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb182-3"><a href="data-visualization-ii.html#cb182-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb182-4"><a href="data-visualization-ii.html#cb182-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb182-5"><a href="data-visualization-ii.html#cb182-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb182-6"><a href="data-visualization-ii.html#cb182-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>))</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 13 x 5
+## # Groups:   track_artist [3]
+##    track_artist    decade     n mean_popularity sd_popularity
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;int&gt;           &lt;dbl&gt;         &lt;dbl&gt;
+##  1 Queen             1970    97            43.2         15.1 
+##  2 Queen             1980    29            43.8         22.5 
+##  3 Queen             1990     4            19.8         27.6 
+##  4 Queen             2010     6            51.8         11.7 
+##  5 The Beatles       1960     9            69.8          6.53
+##  6 The Beatles       1970     5            69.2          5.89
+##  7 The Beatles       1980     1            39            0   
+##  8 The Beatles       1990     1             1            0   
+##  9 The Beatles       2000     1            74            0   
+## 10 The Beatles       2010     2            55.5          4.95
+## 11 The Cranberries   1990    31            52.5         13.3 
+## 12 The Cranberries   2000     2            35.5          3.54
+## 13 The Cranberries   2010    12            37.6         12.3</code></pre>
+<p>The data frame looks good, let’s add the plot code lines to the block of code above. This time, let’s do a bar chart faceted by <code>track_artist</code>.</p>
+<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb185-1"><a href="data-visualization-ii.html#cb185-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb185-2"><a href="data-visualization-ii.html#cb185-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb185-3"><a href="data-visualization-ii.html#cb185-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb185-4"><a href="data-visualization-ii.html#cb185-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb185-5"><a href="data-visualization-ii.html#cb185-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb185-6"><a href="data-visualization-ii.html#cb185-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
+<span id="cb185-7"><a href="data-visualization-ii.html#cb185-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
+<span id="cb185-8"><a href="data-visualization-ii.html#cb185-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
+<span id="cb185-9"><a href="data-visualization-ii.html#cb185-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb185-10"><a href="data-visualization-ii.html#cb185-10"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb185-11"><a href="data-visualization-ii.html#cb185-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>track_artist)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-107-1.png" width="672" /></p>
+<p>It looks the same as before. Let’s add <code>geom_errorbar</code> to it with <code>ymin</code> and <code>ymax</code> mappings. For that, we need to transform our data frame with <code>mutate</code> to calculate <code>lower</code> and <code>upper</code> variables, which represent the mean <strong>minus</strong> the standard deviation for the lower value of the range, and mean <strong>plus</strong> standard deviation for the upper value of the range.</p>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="data-visualization-ii.html#cb187-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb187-2"><a href="data-visualization-ii.html#cb187-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb187-3"><a href="data-visualization-ii.html#cb187-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb187-4"><a href="data-visualization-ii.html#cb187-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb187-5"><a href="data-visualization-ii.html#cb187-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb187-6"><a href="data-visualization-ii.html#cb187-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
+<span id="cb187-7"><a href="data-visualization-ii.html#cb187-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
+<span id="cb187-8"><a href="data-visualization-ii.html#cb187-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity) </span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 13 x 7
+## # Groups:   track_artist [3]
+##    track_artist    decade     n mean_popularity sd_popularity lower upper
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;int&gt;           &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1 Queen             1970    97            43.2         15.1  28.0   58.3
+##  2 Queen             1980    29            43.8         22.5  21.3   66.2
+##  3 Queen             1990     4            19.8         27.6  -7.83  47.3
+##  4 Queen             2010     6            51.8         11.7  40.2   63.5
+##  5 The Beatles       1960     9            69.8          6.53 63.2   76.3
+##  6 The Beatles       1970     5            69.2          5.89 63.3   75.1
+##  7 The Beatles       1980     1            39            0    39     39  
+##  8 The Beatles       1990     1             1            0     1      1  
+##  9 The Beatles       2000     1            74            0    74     74  
+## 10 The Beatles       2010     2            55.5          4.95 50.6   60.4
+## 11 The Cranberries   1990    31            52.5         13.3  39.2   65.8
+## 12 The Cranberries   2000     2            35.5          3.54 32.0   39.0
+## 13 The Cranberries   2010    12            37.6         12.3  25.2   49.9</code></pre>
+<p>Now we can use <code>geom_errorbar</code>.</p>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="data-visualization-ii.html#cb190-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb190-2"><a href="data-visualization-ii.html#cb190-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb190-3"><a href="data-visualization-ii.html#cb190-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb190-4"><a href="data-visualization-ii.html#cb190-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb190-5"><a href="data-visualization-ii.html#cb190-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb190-6"><a href="data-visualization-ii.html#cb190-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
+<span id="cb190-7"><a href="data-visualization-ii.html#cb190-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
+<span id="cb190-8"><a href="data-visualization-ii.html#cb190-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
+<span id="cb190-9"><a href="data-visualization-ii.html#cb190-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb190-10"><a href="data-visualization-ii.html#cb190-10"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb190-11"><a href="data-visualization-ii.html#cb190-11"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></span>
+<span id="cb190-12"><a href="data-visualization-ii.html#cb190-12"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>track_artist)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-109-1.png" width="672" /></p>
+<p>We can do a similar chart but look at the <code>2010</code> decade only.</p>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="data-visualization-ii.html#cb192-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb192-2"><a href="data-visualization-ii.html#cb192-2"></a><span class="st">  </span><span class="kw">filter</span>(decade <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>) <span class="op">%&gt;%</span></span>
+<span id="cb192-3"><a href="data-visualization-ii.html#cb192-3"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist, decade) <span class="op">%&gt;%</span></span>
+<span id="cb192-4"><a href="data-visualization-ii.html#cb192-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb192-5"><a href="data-visualization-ii.html#cb192-5"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb192-6"><a href="data-visualization-ii.html#cb192-6"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb192-7"><a href="data-visualization-ii.html#cb192-7"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
+<span id="cb192-8"><a href="data-visualization-ii.html#cb192-8"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
+<span id="cb192-9"><a href="data-visualization-ii.html#cb192-9"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
+<span id="cb192-10"><a href="data-visualization-ii.html#cb192-10"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> track_artist, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb192-11"><a href="data-visualization-ii.html#cb192-11"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb192-12"><a href="data-visualization-ii.html#cb192-12"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) <span class="op">+</span></span>
+<span id="cb192-13"><a href="data-visualization-ii.html#cb192-13"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>decade)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;track_artist&#39; (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-110-1.png" width="672" /></p>
+<p>We can also collapse decade, and just look at popularity overall.</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="data-visualization-ii.html#cb194-1"></a>spotify_tc_tv_q <span class="op">%&gt;%</span></span>
+<span id="cb194-2"><a href="data-visualization-ii.html#cb194-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_artist) <span class="op">%&gt;%</span></span>
+<span id="cb194-3"><a href="data-visualization-ii.html#cb194-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">n =</span> <span class="kw">n</span>(),</span>
+<span id="cb194-4"><a href="data-visualization-ii.html#cb194-4"></a>            <span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity),</span>
+<span id="cb194-5"><a href="data-visualization-ii.html#cb194-5"></a>            <span class="dt">sd_popularity =</span> <span class="kw">sd</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb194-6"><a href="data-visualization-ii.html#cb194-6"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">sd_popularity =</span> <span class="kw">replace_na</span>(sd_popularity, <span class="dv">0</span>),</span>
+<span id="cb194-7"><a href="data-visualization-ii.html#cb194-7"></a>         <span class="dt">lower =</span> mean_popularity <span class="op">-</span><span class="st"> </span>sd_popularity,</span>
+<span id="cb194-8"><a href="data-visualization-ii.html#cb194-8"></a>         <span class="dt">upper =</span> mean_popularity <span class="op">+</span><span class="st"> </span>sd_popularity)  <span class="op">%&gt;%</span></span>
+<span id="cb194-9"><a href="data-visualization-ii.html#cb194-9"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> track_artist, <span class="dt">y =</span> mean_popularity, <span class="dt">fill =</span> track_artist)) <span class="op">+</span></span>
+<span id="cb194-10"><a href="data-visualization-ii.html#cb194-10"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb194-11"><a href="data-visualization-ii.html#cb194-11"></a><span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> lower, <span class="dt">ymax =</span> upper)) </span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-111-1.png" width="672" /></p>
+</div>
+</div>
+<div id="data-viz-by-album" class="section level2">
+<h2><span class="header-section-number">9.2</span> Data Viz by Album</h2>
+<p>QUESTION: Which Drake album is the most popular?</p>
+<p>Let’s review the steps to answer our question:</p>
+<ol style="list-style-type: decimal">
+<li><p>Create a new data frame that is a subset of our original data frame</p></li>
+<li><p>Summarize and transform our new data frame to create the variables we need to plot the info we need</p></li>
+<li><p>Try different plots until we find a plot that looks clear</p></li>
+</ol>
+<div id="create-new-data-frame" class="section level3">
+<h3><span class="header-section-number">9.2.1</span> Create new data frame</h3>
+<p>We first filter our data frame by artist.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="data-visualization-ii.html#cb196-1"></a><span class="co"># filter original data frame to create new data frame with selected artists</span></span>
+<span id="cb196-2"><a href="data-visualization-ii.html#cb196-2"></a>spotify_drake &lt;-<span class="st"> </span>spotify_songs <span class="op">%&gt;%</span></span>
+<span id="cb196-3"><a href="data-visualization-ii.html#cb196-3"></a><span class="st">  </span><span class="kw">filter</span>(track_artist <span class="op">==</span><span class="st"> &#39;Drake&#39;</span>)</span>
+<span id="cb196-4"><a href="data-visualization-ii.html#cb196-4"></a></span>
+<span id="cb196-5"><a href="data-visualization-ii.html#cb196-5"></a><span class="co"># inspect new data frame</span></span>
+<span id="cb196-6"><a href="data-visualization-ii.html#cb196-6"></a><span class="kw">glimpse</span>(spotify_drake)</span></code></pre></div>
+<pre><code>## Rows: 100
+## Columns: 25
+## $ track_id                 &lt;chr&gt; &quot;76P07ei8drjrenqtvDbefy&quot;, &quot;1xznGGDReH1oQq0xz…
+## $ track_name               &lt;chr&gt; &quot;Hotline Bling&quot;, &quot;One Dance&quot;, &quot;Too Good&quot;, &quot;B…
+## $ track_artist             &lt;chr&gt; &quot;Drake&quot;, &quot;Drake&quot;, &quot;Drake&quot;, &quot;Drake&quot;, &quot;Drake&quot;,…
+## $ track_popularity         &lt;dbl&gt; 0, 20, 12, 72, 12, 10, 83, 83, 86, 68, 15, 7…
+## $ track_album_id           &lt;chr&gt; &quot;2e42oY2oFArkkTENT8UVXD&quot;, &quot;3hARKC8cinq3mZLLA…
+## $ track_album_name         &lt;chr&gt; &quot;Views&quot;, &quot;Views&quot;, &quot;Views&quot;, &quot;Thank Me Later (…
+## $ track_album_release_date &lt;chr&gt; &quot;2016-05-06&quot;, &quot;2016-05-06&quot;, &quot;2016-05-06&quot;, &quot;2…
+## $ playlist_name            &lt;chr&gt; &quot;BALLARE - رقص&quot;, &quot;Electropop Hits  2017-2020…
+## $ playlist_id              &lt;chr&gt; &quot;1CMvQ4Yr5DlYvYzI0Vc2UE&quot;, &quot;7kyvBmlc1uSqsTL0E…
+## $ playlist_genre           &lt;chr&gt; &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;pop&quot;, &quot;p…
+## $ playlist_subgenre        &lt;chr&gt; &quot;post-teen pop&quot;, &quot;electropop&quot;, &quot;electropop&quot;,…
+## $ danceability             &lt;dbl&gt; 0.905, 0.791, 0.804, 0.431, 0.771, 0.893, 0.…
+## $ energy                   &lt;dbl&gt; 0.617, 0.619, 0.648, 0.894, 0.629, 0.639, 0.…
+## $ key                      &lt;dbl&gt; 2, 1, 7, 5, 1, 2, 1, 1, 7, 1, 11, 10, 2, 1, …
+## $ loudness                 &lt;dbl&gt; -8.039, -5.886, -7.805, -2.673, -5.790, -7.8…
+## $ mode                     &lt;dbl&gt; 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1,…
+## $ speechiness              &lt;dbl&gt; 0.0596, 0.0532, 0.1170, 0.3300, 0.0511, 0.05…
+## $ acousticness             &lt;dbl&gt; 0.00287, 0.00784, 0.05730, 0.09510, 0.00802,…
+## $ instrumentalness         &lt;dbl&gt; 4.40e-04, 4.23e-03, 3.49e-05, 0.00e+00, 2.52…
+## $ liveness                 &lt;dbl&gt; 0.0484, 0.3510, 0.1020, 0.1880, 0.3560, 0.03…
+## $ valence                  &lt;dbl&gt; 0.572, 0.371, 0.392, 0.604, 0.362, 0.579, 0.…
+## $ tempo                    &lt;dbl&gt; 134.972, 103.989, 117.983, 162.193, 103.918,…
+## $ duration_ms              &lt;dbl&gt; 267187, 173987, 263373, 258760, 173975, 2670…
+## $ release_year             &lt;dbl&gt; 2016, 2016, 2016, 2010, 2016, 2015, 2016, 20…
+## $ decade                   &lt;dbl&gt; 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…</code></pre>
+<p>What albums are there in this new data frame?</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="data-visualization-ii.html#cb198-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb198-2"><a href="data-visualization-ii.html#cb198-2"></a><span class="st">  </span><span class="kw">count</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb198-3"><a href="data-visualization-ii.html#cb198-3"></a><span class="st">  </span><span class="kw">arrange</span>(<span class="op">-</span>n)</span></code></pre></div>
+<pre><code>## # A tibble: 27 x 2
+##    track_album_name                                          n
+##    &lt;chr&gt;                                                 &lt;int&gt;
+##  1 Views                                                    23
+##  2 Scorpion                                                 16
+##  3 More Life                                                 9
+##  4 The Best In The World Pack                                7
+##  5 Take Care (Deluxe)                                        5
+##  6 What A Time To Be Alive                                   5
+##  7 If You&#39;re Reading This It&#39;s Too Late                      4
+##  8 Care Package                                              3
+##  9 Hotline Bling                                             3
+## 10 Top Boy (A Selection of Music Inspired by the Series)     3
+## # … with 17 more rows</code></pre>
+</div>
+<div id="summarize-data" class="section level3">
+<h3><span class="header-section-number">9.2.2</span> Summarize data</h3>
+<p>Now we summarize our data for mean popularity per album.</p>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="data-visualization-ii.html#cb200-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb200-2"><a href="data-visualization-ii.html#cb200-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb200-3"><a href="data-visualization-ii.html#cb200-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<pre><code>## # A tibble: 27 x 2
+##    track_album_name                     mean_popularity
+##    &lt;chr&gt;                                          &lt;dbl&gt;
+##  1 0 To 100 / The Catch Up                         5   
+##  2 Back To Back                                   69   
+##  3 Behind Barz (Bonus)                            74   
+##  4 Care Package                                   61.3 
+##  5 Fake Love                                       6   
+##  6 Forever                                         2   
+##  7 Hold On, We&#39;re Going Home                       1   
+##  8 Hotline Bling                                   9.67
+##  9 If You&#39;re Reading This It&#39;s Too Late           18   
+## 10 More Life                                      47.9 
+## # … with 17 more rows</code></pre>
+</div>
+<div id="plot-summarized-data" class="section level3">
+<h3><span class="header-section-number">9.2.3</span> Plot summarized data</h3>
+<p>We now add the <code>ggplot</code> code lines to our summarized data frame.</p>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="data-visualization-ii.html#cb203-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb203-2"><a href="data-visualization-ii.html#cb203-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb203-3"><a href="data-visualization-ii.html#cb203-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb203-4"><a href="data-visualization-ii.html#cb203-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> track_album_name, <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
+<span id="cb203-5"><a href="data-visualization-ii.html#cb203-5"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-115-1.png" width="672" /></p>
+<p>Let’s order the songs by <code>mean_popularity</code>.</p>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="data-visualization-ii.html#cb205-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb205-2"><a href="data-visualization-ii.html#cb205-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb205-3"><a href="data-visualization-ii.html#cb205-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb205-4"><a href="data-visualization-ii.html#cb205-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
+<span id="cb205-5"><a href="data-visualization-ii.html#cb205-5"></a><span class="st">  </span><span class="kw">geom_col</span>()</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-116-1.png" width="672" /></p>
+<p>We can add labels to the bars, with the mean_popularity for each album using <code>geom_label</code>. A new mapping is needed for <code>label</code>, which is the same as the x mapping in this case.</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="data-visualization-ii.html#cb207-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb207-2"><a href="data-visualization-ii.html#cb207-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb207-3"><a href="data-visualization-ii.html#cb207-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb207-4"><a href="data-visualization-ii.html#cb207-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
+<span id="cb207-5"><a href="data-visualization-ii.html#cb207-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb207-6"><a href="data-visualization-ii.html#cb207-6"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> mean_popularity))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-117-1.png" width="672" /></p>
+<p>We need to clean up the means. We can do that using <code>format</code>.</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="data-visualization-ii.html#cb209-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb209-2"><a href="data-visualization-ii.html#cb209-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb209-3"><a href="data-visualization-ii.html#cb209-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb209-4"><a href="data-visualization-ii.html#cb209-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
+<span id="cb209-5"><a href="data-visualization-ii.html#cb209-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb209-6"><a href="data-visualization-ii.html#cb209-6"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">format</span>(mean_popularity, <span class="dt">digits =</span> <span class="dv">1</span>)))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-118-1.png" width="672" /></p>
+<p>We can clean up our chart even more.</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="data-visualization-ii.html#cb211-1"></a>spotify_drake <span class="op">%&gt;%</span></span>
+<span id="cb211-2"><a href="data-visualization-ii.html#cb211-2"></a><span class="st">  </span><span class="kw">group_by</span>(track_album_name) <span class="op">%&gt;%</span></span>
+<span id="cb211-3"><a href="data-visualization-ii.html#cb211-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_popularity =</span> <span class="kw">mean</span>(track_popularity)) <span class="op">%&gt;%</span></span>
+<span id="cb211-4"><a href="data-visualization-ii.html#cb211-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> <span class="kw">reorder</span>(track_album_name, mean_popularity), <span class="dt">x =</span> mean_popularity)) <span class="op">+</span></span>
+<span id="cb211-5"><a href="data-visualization-ii.html#cb211-5"></a><span class="st">  </span><span class="kw">geom_col</span>() <span class="op">+</span></span>
+<span id="cb211-6"><a href="data-visualization-ii.html#cb211-6"></a><span class="st">  </span><span class="kw">geom_label</span>(<span class="kw">aes</span>(<span class="dt">label =</span> <span class="kw">format</span>(mean_popularity, <span class="dt">digits =</span> <span class="dv">1</span>))) <span class="op">+</span></span>
+<span id="cb211-7"><a href="data-visualization-ii.html#cb211-7"></a><span class="st">  </span><span class="kw">xlab</span>(<span class="st">&quot;mean popularity&quot;</span>) <span class="op">+</span></span>
+<span id="cb211-8"><a href="data-visualization-ii.html#cb211-8"></a><span class="st">  </span><span class="kw">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb211-9"><a href="data-visualization-ii.html#cb211-9"></a><span class="st">  </span><span class="kw">theme_bw</span>() <span class="op">+</span></span>
+<span id="cb211-10"><a href="data-visualization-ii.html#cb211-10"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="st">&quot;Albums by Drake&quot;</span>)</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-119-1.png" width="672" /></p>
+</div>
+</div>
+<div id="data-challenge-04" class="section level2">
+<h2><span class="header-section-number">9.3</span> DATA CHALLENGE 04</h2>
+<p>Accept <a href="https://classroom.github.com/a/fYDB-CfS">data challenge 04 assignment</a></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-case-study-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["ESOC_214_Fall_2020.pdf", "ESOC_214_Fall_2020.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

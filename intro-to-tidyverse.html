@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-09-28" />
+<meta name="date" content="2020-10-04" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -245,8 +245,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.8" data-path="data-visualization.html"><a href="data-visualization.html#more-summarize"><i class="fa fa-check"></i><b>8.8</b> More Summarize</a></li>
 <li class="chapter" data-level="8.9" data-path="data-visualization.html"><a href="data-visualization.html#data-challenge-03"><i class="fa fa-check"></i><b>8.9</b> DATA CHALLENGE 03</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics</a><ul>
-<li class="chapter" data-level="9.1" data-path="descriptive-statistics.html"><a href="descriptive-statistics.html#before-class"><i class="fa fa-check"></i><b>9.1</b> Before class</a></li>
+<li class="chapter" data-level="9" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html"><i class="fa fa-check"></i><b>9</b> Data Visualization II</a><ul>
+<li class="chapter" data-level="9.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-viz-by-artist"><i class="fa fa-check"></i><b>9.1</b> Data Viz by Artist</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#explore-artist-info"><i class="fa fa-check"></i><b>9.1.1</b> Explore Artist Info</a></li>
+<li class="chapter" data-level="9.1.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#create-new-data-frame-with-selected-artists"><i class="fa fa-check"></i><b>9.1.2</b> Create new data frame with selected artists</a></li>
+<li class="chapter" data-level="9.1.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#plotting"><i class="fa fa-check"></i><b>9.1.3</b> Plotting</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-viz-by-album"><i class="fa fa-check"></i><b>9.2</b> Data Viz by Album</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#create-new-data-frame"><i class="fa fa-check"></i><b>9.2.1</b> Create new data frame</a></li>
+<li class="chapter" data-level="9.2.2" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#summarize-data"><i class="fa fa-check"></i><b>9.2.2</b> Summarize data</a></li>
+<li class="chapter" data-level="9.2.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#plot-summarized-data"><i class="fa fa-check"></i><b>9.2.3</b> Plot summarized data</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="data-visualization-ii.html"><a href="data-visualization-ii.html#data-challenge-04"><i class="fa fa-check"></i><b>9.3</b> DATA CHALLENGE 04</a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="data-case-study-1.html"><a href="data-case-study-1.html"><i class="fa fa-check"></i><b>10</b> Data Case Study 1</a></li>
 <li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a></li>
@@ -305,11 +315,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We are going to create a <code>data</code> folder in our project, to keep things organized. Today we will be working with <a href="https://www.kaggle.com/groundhogclub/groundhog-day">a data set that contains groundhog day forecasts and temperature</a>. I cleaned up this data set already (no need for data tidying for now).</p>
 <p>You can now list the contents of your <code>data</code> folder with the <code>dir()</code> function with a string that specifies the folder as a parameter.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro-to-tidyverse.html#cb50-1"></a><span class="kw">dir</span>(<span class="st">&quot;data&quot;</span>)</span></code></pre></div>
-<pre><code>## [1] &quot;elnino.csv&quot;                         &quot;groundhog_day.csv&quot;                 
-## [3] &quot;nfl_salary.xlsx&quot;                    &quot;olympic_history_athlete_events.csv&quot;
-## [5] &quot;olympic_history_noc_regions.csv&quot;    &quot;passwords.csv&quot;                     
-## [7] &quot;spotify_songs.csv&quot;                  &quot;tweets.tsv&quot;                        
-## [9] &quot;us_avg_tuition.xlsx&quot;</code></pre>
+<pre><code>##  [1] &quot;elnino.csv&quot;                          &quot;GlobalLandTemperaturesByCountry.csv&quot;
+##  [3] &quot;groundhog_day.csv&quot;                   &quot;nfl_salary.xlsx&quot;                    
+##  [5] &quot;olympic_history_athlete_events.csv&quot;  &quot;olympic_history_noc_regions.csv&quot;    
+##  [7] &quot;passwords.csv&quot;                       &quot;spotify_songs_clean.csv&quot;            
+##  [9] &quot;spotify_songs.csv&quot;                   &quot;tweets.tsv&quot;                         
+## [11] &quot;us_avg_tuition.xlsx&quot;</code></pre>
 </div>
 <div id="whats-our-question-again" class="section level2">
 <h2><span class="header-section-number">6.5</span> What’s our question again?</h2>

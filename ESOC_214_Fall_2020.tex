@@ -120,7 +120,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-09-28}
+\date{2020-10-04}
 
 \begin{document}
 \maketitle
@@ -640,7 +640,7 @@ For more information about dates including holidays, check \href{https://catalog
 
 \textbf{Why am I using YYYY-MM-DD date format?}
 
-\includegraphics{images/iso_8601_2x.png}
+\includegraphics[width=10.89in]{images/iso_8601_2x}
 
 \href{https://xkcd.com/1179/}{ISO 8601 -- xkcd}
 
@@ -2163,11 +2163,12 @@ You can now list the contents of your \texttt{data} folder with the \texttt{dir(
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "elnino.csv"                         "groundhog_day.csv"                 
-## [3] "nfl_salary.xlsx"                    "olympic_history_athlete_events.csv"
-## [5] "olympic_history_noc_regions.csv"    "passwords.csv"                     
-## [7] "spotify_songs.csv"                  "tweets.tsv"                        
-## [9] "us_avg_tuition.xlsx"
+##  [1] "elnino.csv"                          "GlobalLandTemperaturesByCountry.csv"
+##  [3] "groundhog_day.csv"                   "nfl_salary.xlsx"                    
+##  [5] "olympic_history_athlete_events.csv"  "olympic_history_noc_regions.csv"    
+##  [7] "passwords.csv"                       "spotify_songs_clean.csv"            
+##  [9] "spotify_songs.csv"                   "tweets.tsv"                         
+## [11] "us_avg_tuition.xlsx"
 \end{verbatim}
 
 \hypertarget{whats-our-question-again}{%
@@ -3804,11 +3805,699 @@ Your plot should look something like this:
 
 Accept \href{https://classroom.github.com/a/ndGrSqaq}{data challenge 03 assignment}
 
-\hypertarget{descriptive-statistics}{%
-\chapter{Descriptive Statistics}\label{descriptive-statistics}}
+\hypertarget{data-visualization-ii}{%
+\chapter{Data Visualization II}\label{data-visualization-ii}}
 
-\hypertarget{before-class}{%
-\section{Before class}\label{before-class}}
+We will continue working with the spotify data set we worked with last week. The objectives of this module are as follows: by the end of this module you will be able to \ldots{}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Explore a large data frame to decide what part of the data you want to focus on
+\item
+  Create subsets of your original data frame
+\item
+  Create summarizations of your data based on different variables
+\item
+  Plot these summarizations
+\end{enumerate}
+
+\begin{verbatim}
+## Rows: 32,833
+## Columns: 25
+## $ track_id                 <chr> "6f807x0ima9a1j3VPbc7VN", "0r7CVbZTWZgbTCY...
+## $ track_name               <chr> "I Don't Care (with Justin Bieber) - Loud ...
+## $ track_artist             <chr> "Ed Sheeran", "Maroon 5", "Zara Larsson", ...
+## $ track_popularity         <dbl> 66, 67, 70, 60, 69, 67, 62, 69, 68, 67, 58...
+## $ track_album_id           <chr> "2oCs0DGTsRO98Gh5ZSl2Cx", "63rPSO264uRjW1X...
+## $ track_album_name         <chr> "I Don't Care (with Justin Bieber) [Loud L...
+## $ track_album_release_date <chr> "2019-06-14", "2019-12-13", "2019-07-05", ...
+## $ playlist_name            <chr> "Pop Remix", "Pop Remix", "Pop Remix", "Po...
+## $ playlist_id              <chr> "37i9dQZF1DXcZDD7cfEKhW", "37i9dQZF1DXcZDD...
+## $ playlist_genre           <chr> "pop", "pop", "pop", "pop", "pop", "pop", ...
+## $ playlist_subgenre        <chr> "dance pop", "dance pop", "dance pop", "da...
+## $ danceability             <dbl> 0.748, 0.726, 0.675, 0.718, 0.650, 0.675, ...
+## $ energy                   <dbl> 0.916, 0.815, 0.931, 0.930, 0.833, 0.919, ...
+## $ key                      <dbl> 6, 11, 1, 7, 1, 8, 5, 4, 8, 2, 6, 8, 1, 5,...
+## $ loudness                 <dbl> -2.634, -4.969, -3.432, -3.778, -4.672, -5...
+## $ mode                     <dbl> 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, ...
+## $ speechiness              <dbl> 0.0583, 0.0373, 0.0742, 0.1020, 0.0359, 0....
+## $ acousticness             <dbl> 0.10200, 0.07240, 0.07940, 0.02870, 0.0803...
+## $ instrumentalness         <dbl> 0.00e+00, 4.21e-03, 2.33e-05, 9.43e-06, 0....
+## $ liveness                 <dbl> 0.0653, 0.3570, 0.1100, 0.2040, 0.0833, 0....
+## $ valence                  <dbl> 0.518, 0.693, 0.613, 0.277, 0.725, 0.585, ...
+## $ tempo                    <dbl> 122.036, 99.972, 124.008, 121.956, 123.976...
+## $ duration_ms              <dbl> 194754, 162600, 176616, 169093, 189052, 16...
+## $ release_year             <dbl> 2019, 2019, 2019, 2019, 2019, 2019, 2019, ...
+## $ decade                   <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, ...
+\end{verbatim}
+
+\hypertarget{data-viz-by-artist}{%
+\section{Data Viz by Artist}\label{data-viz-by-artist}}
+
+QUESTION: Which artist (from just a few) is most popular? Does that change across different decades?
+
+\hypertarget{explore-artist-info}{%
+\subsection{Explore Artist Info}\label{explore-artist-info}}
+
+Let's check who the artists are in this data set. Check what the unique values are for the \texttt{track\_artist} variable using \texttt{select()} and \texttt{unique()}.
+
+\begin{verbatim}
+## # A tibble: 10,693 x 1
+##    track_artist    
+##    <chr>           
+##  1 Ed Sheeran      
+##  2 Maroon 5        
+##  3 Zara Larsson    
+##  4 The Chainsmokers
+##  5 Lewis Capaldi   
+##  6 Katy Perry      
+##  7 Sam Feldt       
+##  8 Avicii          
+##  9 Shawn Mendes    
+## 10 Ellie Goulding  
+## # ... with 10,683 more rows
+\end{verbatim}
+
+Who's the artist with the most songs? Use \texttt{count()} and \texttt{arrange()} to find out.
+
+\begin{verbatim}
+## # A tibble: 10,693 x 2
+##    track_artist                  n
+##    <chr>                     <int>
+##  1 Martin Garrix               161
+##  2 Queen                       136
+##  3 The Chainsmokers            123
+##  4 David Guetta                110
+##  5 Don Omar                    102
+##  6 Drake                       100
+##  7 Dimitri Vegas & Like Mike    93
+##  8 Calvin Harris                91
+##  9 Hardwell                     84
+## 10 Kygo                         83
+## # ... with 10,683 more rows
+\end{verbatim}
+
+What genre are these artists classified as?
+
+\begin{verbatim}
+## # A tibble: 13,175 x 3
+##    track_artist              playlist_genre     n
+##    <chr>                     <chr>          <int>
+##  1 Queen                     rock             134
+##  2 Martin Garrix             edm              125
+##  3 Don Omar                  latin            100
+##  4 Dimitri Vegas & Like Mike edm               79
+##  5 Guns N' Roses             rock              76
+##  6 Hardwell                  edm               76
+##  7 Logic                     rap               65
+##  8 Daddy Yankee              latin             61
+##  9 David Guetta              edm               60
+## 10 Wisin & Yandel            latin             60
+## # ... with 13,165 more rows
+\end{verbatim}
+
+What can we conclude about artist tracks and \texttt{playlist\_genre}?
+
+Let's look at specific artist of our choosing. I'm looking at \texttt{The\ Cranberries}, \texttt{The\ Beatles} and \texttt{Queen}.
+What genres are their songs classfied as?
+
+\begin{verbatim}
+## # A tibble: 4 x 3
+##   track_artist    playlist_genre     n
+##   <chr>           <chr>          <int>
+## 1 Queen           pop                2
+## 2 Queen           rock             134
+## 3 The Beatles     rock              19
+## 4 The Cranberries rock              45
+\end{verbatim}
+
+What are the two pop songs by Queen? Use \texttt{filter()} and \texttt{select()} to find out.
+
+\begin{verbatim}
+## # A tibble: 2 x 1
+##   track_name                  
+##   <chr>                       
+## 1 Don't Stop Me Now - 2011 Mix
+## 2 Radio Ga Ga
+\end{verbatim}
+
+\hypertarget{create-new-data-frame-with-selected-artists}{%
+\subsection{Create new data frame with selected artists}\label{create-new-data-frame-with-selected-artists}}
+
+Create another data frame that is a subset of the original \texttt{spotify\_songs} data frame to start visualizing info about the artists you chose.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# filter original data frame to create new data frame with selected artists}
+\NormalTok{spotify_tc_tv_q <-}\StringTok{ }\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(track_artist }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'The Cranberries'}\NormalTok{, }\StringTok{'The Beatles'}\NormalTok{, }\StringTok{'Queen'}\NormalTok{))}
+
+\CommentTok{# inspect new data frame}
+\KeywordTok{glimpse}\NormalTok{(spotify_tc_tv_q)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 200
+## Columns: 25
+## $ track_id                 <chr> "7hQJA50XrCWABAu5v6QZ4i", "1lpFXKKckqVkyAN...
+## $ track_name               <chr> "Don't Stop Me Now - 2011 Mix", "Radio Ga ...
+## $ track_artist             <chr> "Queen", "Queen", "The Beatles", "The Cran...
+## $ track_popularity         <dbl> 75, 3, 1, 43, 42, 44, 40, 40, 38, 37, 37, ...
+## $ track_album_id           <chr> "21HMAUrbbYSj9NiPPlGumy", "39MMaY4ampwjkSO...
+## $ track_album_name         <chr> "Jazz (Deluxe Remastered Version)", "The W...
+## $ track_album_release_date <chr> "1978-11-10", "1984-02-27", "1996-03-18", ...
+## $ playlist_name            <chr> "Dr. Q's Prescription Playlist\U0001f48a",...
+## $ playlist_id              <chr> "6jAPdgY9XmxC9cgkXAVmVv", "65HtIbyFkaQPflC...
+## $ playlist_genre           <chr> "pop", "pop", "rock", "rock", "rock", "roc...
+## $ playlist_subgenre        <chr> "post-teen pop", "electropop", "album rock...
+## $ danceability             <dbl> 0.563, 0.762, 0.388, 0.529, 0.473, 0.437, ...
+## $ energy                   <dbl> 0.865, 0.414, 0.677, 0.845, 0.598, 0.785, ...
+## $ key                      <dbl> 5, 5, 8, 0, 6, 4, 0, 9, 7, 9, 7, 0, 0, 9, ...
+## $ loudness                 <dbl> -5.277, -12.036, -7.262, -5.432, -5.101, -...
+## $ mode                     <dbl> 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, ...
+## $ speechiness              <dbl> 0.1600, 0.0379, 0.0301, 0.0294, 0.0268, 0....
+## $ acousticness             <dbl> 0.047200, 0.173000, 0.052700, 0.000199, 0....
+## $ instrumentalness         <dbl> 1.91e-04, 1.11e-04, 1.07e-02, 1.74e-01, 7....
+## $ liveness                 <dbl> 0.7700, 0.0942, 0.2210, 0.2270, 0.1250, 0....
+## $ valence                  <dbl> 0.6010, 0.7310, 0.4240, 0.5710, 0.0565, 0....
+## $ tempo                    <dbl> 156.271, 112.398, 175.818, 109.093, 93.022...
+## $ duration_ms              <dbl> 209413, 349133, 234053, 256387, 239947, 25...
+## $ release_year             <dbl> 1978, 1984, 1996, 2019, 2019, 2019, 2019, ...
+## $ decade                   <dbl> 1970, 1980, 1990, 2010, 2010, 2010, 2010, ...
+\end{verbatim}
+
+\hypertarget{plotting}{%
+\subsection{Plotting}\label{plotting}}
+
+Plot song count (x) by \texttt{decade} (y) the songs were release across \texttt{track\_artist} (color). You need a \texttt{count} of \texttt{track\_artist} and \texttt{decade} for this plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ n, }\DataTypeTok{color =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-101-1.pdf}
+
+To make tendencies clearer, we can add \texttt{geom\_line} to our plot. We need a new aesthetics for the lines to connect the right points, called \texttt{group}. In this case, \texttt{group} takes the same variable as the \texttt{color} mapping.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ n, }\DataTypeTok{color =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group =}\NormalTok{ track_artist))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-102-1.pdf}
+
+From the plot above, what can we conclude about the selected artists? When did they start releasing songs?
+
+Let's look at \texttt{track\_popularity} by artist across decade. For this, we need \texttt{group\_by} and \texttt{summarise} before we can build our plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{color =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group =}\NormalTok{ track_artist))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-103-1.pdf}
+
+How would this plot look like as a bar plot?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{fill =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-104-1.pdf}
+
+Which chart do you think is easier to read? Why?
+
+We have multiple songs per artists, so we can include standard deviation in our \texttt{summarise}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 13 x 5
+## # Groups:   track_artist [3]
+##    track_artist    decade     n mean_popularity sd_popularity
+##    <chr>            <dbl> <int>           <dbl>         <dbl>
+##  1 Queen             1970    97            43.2         15.1 
+##  2 Queen             1980    29            43.8         22.5 
+##  3 Queen             1990     4            19.8         27.6 
+##  4 Queen             2010     6            51.8         11.7 
+##  5 The Beatles       1960     9            69.8          6.53
+##  6 The Beatles       1970     5            69.2          5.89
+##  7 The Beatles       1980     1            39           NA   
+##  8 The Beatles       1990     1             1           NA   
+##  9 The Beatles       2000     1            74           NA   
+## 10 The Beatles       2010     2            55.5          4.95
+## 11 The Cranberries   1990    31            52.5         13.3 
+## 12 The Cranberries   2000     2            35.5          3.54
+## 13 The Cranberries   2010    12            37.6         12.3
+\end{verbatim}
+
+NAs in our data frame is a problem. We can add \texttt{mutate} with \texttt{replace\_na} to replace these NAs with zero.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 13 x 5
+## # Groups:   track_artist [3]
+##    track_artist    decade     n mean_popularity sd_popularity
+##    <chr>            <dbl> <int>           <dbl>         <dbl>
+##  1 Queen             1970    97            43.2         15.1 
+##  2 Queen             1980    29            43.8         22.5 
+##  3 Queen             1990     4            19.8         27.6 
+##  4 Queen             2010     6            51.8         11.7 
+##  5 The Beatles       1960     9            69.8          6.53
+##  6 The Beatles       1970     5            69.2          5.89
+##  7 The Beatles       1980     1            39            0   
+##  8 The Beatles       1990     1             1            0   
+##  9 The Beatles       2000     1            74            0   
+## 10 The Beatles       2010     2            55.5          4.95
+## 11 The Cranberries   1990    31            52.5         13.3 
+## 12 The Cranberries   2000     2            35.5          3.54
+## 13 The Cranberries   2010    12            37.6         12.3
+\end{verbatim}
+
+The data frame looks good, let's add the plot code lines to the block of code above. This time, let's do a bar chart faceted by \texttt{track\_artist}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{),}
+         \DataTypeTok{lower =}\NormalTok{ mean_popularity }\OperatorTok{-}\StringTok{ }\NormalTok{sd_popularity,}
+         \DataTypeTok{upper =}\NormalTok{ mean_popularity }\OperatorTok{+}\StringTok{ }\NormalTok{sd_popularity)  }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{fill =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{track_artist)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-107-1.pdf}
+
+It looks the same as before. Let's add \texttt{geom\_errorbar} to it with \texttt{ymin} and \texttt{ymax} mappings. For that, we need to transform our data frame with \texttt{mutate} to calculate \texttt{lower} and \texttt{upper} variables, which represent the mean \textbf{minus} the standard deviation for the lower value of the range, and mean \textbf{plus} standard deviation for the upper value of the range.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{),}
+         \DataTypeTok{lower =}\NormalTok{ mean_popularity }\OperatorTok{-}\StringTok{ }\NormalTok{sd_popularity,}
+         \DataTypeTok{upper =}\NormalTok{ mean_popularity }\OperatorTok{+}\StringTok{ }\NormalTok{sd_popularity) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 13 x 7
+## # Groups:   track_artist [3]
+##    track_artist    decade     n mean_popularity sd_popularity lower upper
+##    <chr>            <dbl> <int>           <dbl>         <dbl> <dbl> <dbl>
+##  1 Queen             1970    97            43.2         15.1  28.0   58.3
+##  2 Queen             1980    29            43.8         22.5  21.3   66.2
+##  3 Queen             1990     4            19.8         27.6  -7.83  47.3
+##  4 Queen             2010     6            51.8         11.7  40.2   63.5
+##  5 The Beatles       1960     9            69.8          6.53 63.2   76.3
+##  6 The Beatles       1970     5            69.2          5.89 63.3   75.1
+##  7 The Beatles       1980     1            39            0    39     39  
+##  8 The Beatles       1990     1             1            0     1      1  
+##  9 The Beatles       2000     1            74            0    74     74  
+## 10 The Beatles       2010     2            55.5          4.95 50.6   60.4
+## 11 The Cranberries   1990    31            52.5         13.3  39.2   65.8
+## 12 The Cranberries   2000     2            35.5          3.54 32.0   39.0
+## 13 The Cranberries   2010    12            37.6         12.3  25.2   49.9
+\end{verbatim}
+
+Now we can use \texttt{geom\_errorbar}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{),}
+         \DataTypeTok{lower =}\NormalTok{ mean_popularity }\OperatorTok{-}\StringTok{ }\NormalTok{sd_popularity,}
+         \DataTypeTok{upper =}\NormalTok{ mean_popularity }\OperatorTok{+}\StringTok{ }\NormalTok{sd_popularity)  }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{fill =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{track_artist)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-109-1.pdf}
+
+We can do a similar chart but look at the \texttt{2010} decade only.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(decade }\OperatorTok{==}\StringTok{ }\DecValTok{2010}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{),}
+         \DataTypeTok{lower =}\NormalTok{ mean_popularity }\OperatorTok{-}\StringTok{ }\NormalTok{sd_popularity,}
+         \DataTypeTok{upper =}\NormalTok{ mean_popularity }\OperatorTok{+}\StringTok{ }\NormalTok{sd_popularity)  }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ track_artist, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{fill =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{decade)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-110-1.pdf}
+
+We can also collapse decade, and just look at popularity overall.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{),}
+         \DataTypeTok{lower =}\NormalTok{ mean_popularity }\OperatorTok{-}\StringTok{ }\NormalTok{sd_popularity,}
+         \DataTypeTok{upper =}\NormalTok{ mean_popularity }\OperatorTok{+}\StringTok{ }\NormalTok{sd_popularity)  }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ track_artist, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{fill =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-111-1.pdf}
+
+\hypertarget{data-viz-by-album}{%
+\section{Data Viz by Album}\label{data-viz-by-album}}
+
+QUESTION: Which Drake album is the most popular?
+
+Let's review the steps to answer our question:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Create a new data frame that is a subset of our original data frame
+\item
+  Summarize and transform our new data frame to create the variables we need to plot the info we need
+\item
+  Try different plots until we find a plot that looks clear
+\end{enumerate}
+
+\hypertarget{create-new-data-frame}{%
+\subsection{Create new data frame}\label{create-new-data-frame}}
+
+We first filter our data frame by artist.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# filter original data frame to create new data frame with selected artists}
+\NormalTok{spotify_drake <-}\StringTok{ }\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(track_artist }\OperatorTok{==}\StringTok{ 'Drake'}\NormalTok{)}
+
+\CommentTok{# inspect new data frame}
+\KeywordTok{glimpse}\NormalTok{(spotify_drake)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 100
+## Columns: 25
+## $ track_id                 <chr> "76P07ei8drjrenqtvDbefy", "1xznGGDReH1oQq0...
+## $ track_name               <chr> "Hotline Bling", "One Dance", "Too Good", ...
+## $ track_artist             <chr> "Drake", "Drake", "Drake", "Drake", "Drake...
+## $ track_popularity         <dbl> 0, 20, 12, 72, 12, 10, 83, 83, 86, 68, 15,...
+## $ track_album_id           <chr> "2e42oY2oFArkkTENT8UVXD", "3hARKC8cinq3mZL...
+## $ track_album_name         <chr> "Views", "Views", "Views", "Thank Me Later...
+## $ track_album_release_date <chr> "2016-05-06", "2016-05-06", "2016-05-06", ...
+## $ playlist_name            <chr> "BALLARE - رقص", "Electropop Hits  2017-20...
+## $ playlist_id              <chr> "1CMvQ4Yr5DlYvYzI0Vc2UE", "7kyvBmlc1uSqsTL...
+## $ playlist_genre           <chr> "pop", "pop", "pop", "pop", "pop", "pop", ...
+## $ playlist_subgenre        <chr> "post-teen pop", "electropop", "electropop...
+## $ danceability             <dbl> 0.905, 0.791, 0.804, 0.431, 0.771, 0.893, ...
+## $ energy                   <dbl> 0.617, 0.619, 0.648, 0.894, 0.629, 0.639, ...
+## $ key                      <dbl> 2, 1, 7, 5, 1, 2, 1, 1, 7, 1, 11, 10, 2, 1...
+## $ loudness                 <dbl> -8.039, -5.886, -7.805, -2.673, -5.790, -7...
+## $ mode                     <dbl> 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, ...
+## $ speechiness              <dbl> 0.0596, 0.0532, 0.1170, 0.3300, 0.0511, 0....
+## $ acousticness             <dbl> 0.00287, 0.00784, 0.05730, 0.09510, 0.0080...
+## $ instrumentalness         <dbl> 4.40e-04, 4.23e-03, 3.49e-05, 0.00e+00, 2....
+## $ liveness                 <dbl> 0.0484, 0.3510, 0.1020, 0.1880, 0.3560, 0....
+## $ valence                  <dbl> 0.572, 0.371, 0.392, 0.604, 0.362, 0.579, ...
+## $ tempo                    <dbl> 134.972, 103.989, 117.983, 162.193, 103.91...
+## $ duration_ms              <dbl> 267187, 173987, 263373, 258760, 173975, 26...
+## $ release_year             <dbl> 2016, 2016, 2016, 2010, 2016, 2015, 2016, ...
+## $ decade                   <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, ...
+\end{verbatim}
+
+What albums are there in this new data frame?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{-}\NormalTok{n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 27 x 2
+##    track_album_name                                          n
+##    <chr>                                                 <int>
+##  1 Views                                                    23
+##  2 Scorpion                                                 16
+##  3 More Life                                                 9
+##  4 The Best In The World Pack                                7
+##  5 Take Care (Deluxe)                                        5
+##  6 What A Time To Be Alive                                   5
+##  7 If You're Reading This It's Too Late                      4
+##  8 Care Package                                              3
+##  9 Hotline Bling                                             3
+## 10 Top Boy (A Selection of Music Inspired by the Series)     3
+## # ... with 17 more rows
+\end{verbatim}
+
+\hypertarget{summarize-data}{%
+\subsection{Summarize data}\label{summarize-data}}
+
+Now we summarize our data for mean popularity per album.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 27 x 2
+##    track_album_name                     mean_popularity
+##    <chr>                                          <dbl>
+##  1 0 To 100 / The Catch Up                         5   
+##  2 Back To Back                                   69   
+##  3 Behind Barz (Bonus)                            74   
+##  4 Care Package                                   61.3 
+##  5 Fake Love                                       6   
+##  6 Forever                                         2   
+##  7 Hold On, We're Going Home                       1   
+##  8 Hotline Bling                                   9.67
+##  9 If You're Reading This It's Too Late           18   
+## 10 More Life                                      47.9 
+## # ... with 17 more rows
+\end{verbatim}
+
+\hypertarget{plot-summarized-data}{%
+\subsection{Plot summarized data}\label{plot-summarized-data}}
+
+We now add the \texttt{ggplot} code lines to our summarized data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ track_album_name, }\DataTypeTok{x =}\NormalTok{ mean_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-115-1.pdf}
+
+Let's order the songs by \texttt{mean\_popularity}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =} \KeywordTok{reorder}\NormalTok{(track_album_name, mean_popularity), }\DataTypeTok{x =}\NormalTok{ mean_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-116-1.pdf}
+
+We can add labels to the bars, with the mean\_popularity for each album using \texttt{geom\_label}. A new mapping is needed for \texttt{label}, which is the same as the x mapping in this case.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =} \KeywordTok{reorder}\NormalTok{(track_album_name, mean_popularity), }\DataTypeTok{x =}\NormalTok{ mean_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_label}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =}\NormalTok{ mean_popularity))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-117-1.pdf}
+
+We need to clean up the means. We can do that using \texttt{format}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =} \KeywordTok{reorder}\NormalTok{(track_album_name, mean_popularity), }\DataTypeTok{x =}\NormalTok{ mean_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_label}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{format}\NormalTok{(mean_popularity, }\DataTypeTok{digits =} \DecValTok{1}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-118-1.pdf}
+
+We can clean up our chart even more.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =} \KeywordTok{reorder}\NormalTok{(track_album_name, mean_popularity), }\DataTypeTok{x =}\NormalTok{ mean_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_label}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{format}\NormalTok{(mean_popularity, }\DataTypeTok{digits =} \DecValTok{1}\NormalTok{))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"mean popularity"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Albums by Drake"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-119-1.pdf}
+
+\hypertarget{data-challenge-04}{%
+\section{DATA CHALLENGE 04}\label{data-challenge-04}}
+
+Accept \href{https://classroom.github.com/a/fYDB-CfS}{data challenge 04 assignment}
 
 \hypertarget{data-case-study-1}{%
 \chapter{Data Case Study 1}\label{data-case-study-1}}
