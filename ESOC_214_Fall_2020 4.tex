@@ -1,0 +1,4525 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={ESOC 2014 Introduction to Data Science},
+  pdfauthor={Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\usepackage[]{natbib}
+\bibliographystyle{apalike}
+
+\title{ESOC 2014 Introduction to Data Science}
+\usepackage{etoolbox}
+\makeatletter
+\providecommand{\subtitle}[1]{% add subtitle to \maketitle
+  \apptocmd{\@title}{\par {\large #1 \par}}{}{}
+}
+\makeatother
+\subtitle{Fall 2020}
+\author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
+\date{2020-10-04}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{syllabus}{%
+\chapter{Syllabus}\label{syllabus}}
+
+The University of Arizona sits on the homelands of the Tohono O'odham and Pascua Yaqui, whose care and keeping of these lands allows us to be here today. Territory acknowledgements are one small part of disrupting and dismantling colonial structures.
+
+This syllabus is subject to change if need arises.
+
+\textbf{There are two sections of this course}
+
+Tuesday \& Thursday 12:30pm - 1:45pm
+
+\begin{itemize}
+\tightlist
+\item
+  Final Exam Date: December 16 (Wednesday) 1:00pm - 3:00pm
+\end{itemize}
+
+Tuesday \& Thursday 2:00pm - 3:15pm
+
+\begin{itemize}
+\tightlist
+\item
+  Final Exam Date: December 14 (Monday) 3:30pm - 5:30pm
+\end{itemize}
+
+\textbf{Office Hours/Free help session/Work time}
+
+\begin{itemize}
+\tightlist
+\item
+  Tuesday 9:30am - 11:00am \& Wednesday 1:00pm - 2:30pm
+\end{itemize}
+
+\hypertarget{course-description}{%
+\section{Course Description}\label{course-description}}
+
+This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, focusing on the \texttt{tidyverse} package for data science. This course is designed to be interactive and hands-on.
+
+\hypertarget{course-objectives}{%
+\section{Course Objectives}\label{course-objectives}}
+
+This course aims at providing students with an understanding of the various steps in the data science workflow. Students will engage in data wrangling and exploration to provide answers to questions about the data, using the R programming language. During the semester students will work on an individual data science project to be presented to the class.
+
+\hypertarget{learning-outcomes}{%
+\section{Learning Outcomes}\label{learning-outcomes}}
+
+At the end of this course, students will be able to:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Apply the different steps of data science as a process to derive knowledge from data
+
+  1.1. form the question to be answered
+
+  1.2. acquire the data to answer question
+
+  1.3. transform and tidy data so that data analysis is possible
+
+  1.4. explore data with understanding as the goal, which includes data visualization
+
+  1.5. communicate data analysis results
+\item
+  Demonstrate proficiency of the steps 1.3 - 1.5 above in the R programming language and R Markdown
+\item
+  Identify and apply professional standards regarding all aspects of data ethics and privacy, including how data are stored, used, managed, analyzed, and presented
+\item
+  Demonstrate knowledge of what a data scientist is and what a career in data science requires in terms of education, and set goals and make plans in case they want to pursue data science beyond the completion of this course
+\end{enumerate}
+
+Please refer to the \href{https://ischool.arizona.edu/undergraduate-student-competencies}{department's undergraduate student competencies} to find out how this course's learning outcomes fit into your broad education goals.
+
+\hypertarget{a-few-words-on-r-and-coding}{%
+\section{A Few Words on R and Coding}\label{a-few-words-on-r-and-coding}}
+
+This course will be based around the programming language R which we will use within the integrated development environment (IDE) R Studio. For many of you this will be the first time programming, \textbf{AND THAT'S OK! This course is intended for beginners, and we will actively focus on building up your R skills over the course of the semester}. Of course, there will still be challenges along the way, but you will rapidly figure out how to solve your own problems as well as to apply your current knowledge to new and exciting questions. If you are struggling I highly encourage you to take advantage of my free help sessions (see times above). Of course, Google is always a super helpful way to get insight into coding problems. Our class Slack channel will also be there so you can help each other out. You might want to watch \href{https://www.youtube.com/watch?v=ZFaWxxzouCY}{Roger Peng's video on how to get help}, which contains guidelines on what information to provide when asking a question in a public forum.
+
+I also want to note that I highly encourage you to help each other, as data scientists are rarely working in isolation. \textbf{This does not mean you can directly share code associated with an assignment (this is a violation of UA's Code of Academic Integrity)}. What it does mean is that it is helpful to talk to each other about problems you encountered, resources you found, or provide helpful tips.
+
+Learning to code nowadays is much easier, since a simple Google search will research in a huge amount of code that can solve any number of problems. You may use online resources (e.g., StackOverflow), but we will go over the syntax needed to solve all assignments in class. If you do use any external resources, you must explicitly cite where the code was obtained in your comments (add a direct link to the resource). I'll be checking for recycled code, and any code you re-used without a proper citation will be treated as plagiarism.
+
+\hypertarget{a-few-words-on-technology}{%
+\section{A Few Words on Technology}\label{a-few-words-on-technology}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  YOU MUST HAVE ACCESS TO A COMPUTER YOU CAN CODE WITH IN EVERY CLASS! We will be actively coding in R on a daily basis, and not being able to follow along will severely hamper your learning. If you do not have a laptop or yours had troubles at some point during the semester, the library offers fast and free rentals of both macs and PCs: \url{https://new.library.arizona.edu/tech/borrow}. You can also take advantage of the multiple computer labs on campus: \url{https://it.arizona.edu/service/oscr-computer-labs}
+\item
+  You will have access to and will be required to retrieve all course materials from the course page on GitHub.
+\item
+  You will need to have R and R Studio installed and functioning by the second day of class. We will go over what these programs are and how to install them in the first week of class.
+\item
+  Slack participation is critical! If you are having a coding issue, first try and solve it on your own. If you're still struggling, then post it to our Slack. Essentially, if you are about to email me with a homework/class/coding question, post it to Slack first. I'm not doing this to save me time, but rather because virtually all programmers/coders solve problems by helping each other, and thus I want you to do the same! Please \href{https://join.slack.com/t/ischool-esoc214/shared_invite/zt-gbmjw9oz-8hcl5iuktuYYdsamAkPVQA}{register for our Slack channel}.
+\end{enumerate}
+
+\hypertarget{readings}{%
+\section{Readings}\label{readings}}
+
+There is no required textbook for this class. A few times we will use the book ``R for Data Science'' by Hadley Wickham and Garret Grolemund. This book covers how to create full data science pipelines in R (more than we'll be doing here) and is available free here: \url{https://r4ds.had.co.nz/}.
+
+Aside from this book, there will be other required readings. I will link these readings for you on this bookdown. Some come from academic journals, and others are news articles that appear in many of the newspapers you read in print and online. For each reading, a word count and an approximate reading time will be provided. Please adjust these approximations to your own reading time, so you can plan accordingly.
+
+It is crucial that you read all assigned readings to do well in this class. Anyone who has not done the reading will simply not be able to participate.
+
+\hypertarget{assignments-with-grade-breakdown}{%
+\section{Assignments with Grade Breakdown}\label{assignments-with-grade-breakdown}}
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+Activity\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+Total Percent\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+Unit Percent\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+Description\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Final Project\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+30\%\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+5\% Project Proposal 15\% Write-up 10\% Oral presentation\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+This will be a full data science project, complete with formal write-up and presentation to the class\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Midterm\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+20\%\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+20\%\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Sharing Code during Zoom sections (5)\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+10\%\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2\%\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Challenges (9)\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+28\%\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+3.5\%\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Lowest will be dropped. All assignments must completed by the date and time provided in the assignment instructions\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Class Participation\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+10\%\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Participation includes both in-class and message board questions, engagement. To get full credit I should see your name or hear you in class once a week.\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Intro and exit surveys\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2\%\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+1\%\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+Late assignments within 24 hours of due date and time will get a 20\% grade penalty. Assignments submitted 24 hours after the due date and time will not get any credit.
+
+If you are unable to complete an assignment on the due date due to an illness or another personal problem, please contact me as soon as possible so we can talk about ways to help you complete that assignment.
+
+Any work turned in for this class needs to be distinctly developed for this class, and not work turned in for other classes.
+
+Grade Distribution:
+
+90-100\% = A ``exemplary, far beyond reqs/expectations''
+
+80-89\% = B ``exceeds requirements/expectations''
+
+70-79\% = C ``meets requirements/expectations''
+
+60-69\% = D ``falls short of requirements/expectations''
+
+\textless{} 60\% = E ``repeat of course needed''
+
+\textbf{A Note About Final Grades}
+
+I do not modify final grades. I have designed this course to be highly passable for the new learner assuming they do the modest homework assignments, come to class, and participate. I'm not a difficult grader, and I build in extensive opportunities for `easy points.' Given all this, please do not try and ask for a higher grade when end of semester rolls around.
+
+\hypertarget{requirements-for-the-course}{%
+\section{Requirements for the Course}\label{requirements-for-the-course}}
+
+To succeed in this course, 2-3 hours of study time per hour of formal class time (or per unit) are required. This means that in addition to our three hours of formal class meeting time, 6-9 hours a week of study time are needed in order to meet course expectations. These hours should be spent on reading texts, working on your data challenges, researching for new information, or thinking about course content.
+
+\textbf{It's important to mention that each lesson builds upon the previous, and thus staying on top of the material is critical to your success.} As mentioned before, this class is built specifically for beginners, and plenty of students who have never coded before have done extremely well. But, the reason they did is that they came to class consistently, asked questions when they had an issue, and completed their data challenges. If you miss a class, come to office hours to make up what you missed. I will do everything possible to make sure you succeeded assuming you're willing to put in the work!
+
+\hypertarget{course-schedule}{%
+\section{Course Schedule}\label{course-schedule}}
+
+Here is the tentative course schedule. \textbf{Data challenges are always due before the start of class on the associated due date}. There will sometimes be other short readings and assignments. These will be posted on D2L directly after the class period in which they are assigned.
+
+\begin{longtable}[]{@{}llll@{}}
+\toprule
+\begin{minipage}[b]{0.22\columnwidth}\raggedright
+Week\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+Date\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+Goals\strut
+\end{minipage} & \begin{minipage}[b]{0.22\columnwidth}\raggedright
+Assignment\strut
+\end{minipage}\tabularnewline
+\midrule
+\endhead
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 01\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-08-25\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Introductions Syllabus\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-08-27\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Intro do Data Science Data Science workflow\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Reading: \href{readings/module2_what_is_data_science.pdf}{What's data science?} (20 min) YouTube video \href{https://youtu.be/6OFm7YcunWc?t=617}{Angry Hiring Manager Panel} (6.5 min) \href{https://forms.gle/NaqrC87cB8xh6Sdz8}{Survey 1} (10 min)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 02\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-09-01\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+What's Data? What does data analysis look like? IDE overview How and Why to Start a Project Basics of R\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Reading: \href{readings/module2_eds_leek_whatsdatascience.pdf}{Data Science examples} (8 min), \href{readings/module2_modern_data_science_data_intake.pdf}{Data Intake} (12 min) \protect\hyperlink{install-r}{Install R and RStudio}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-09-03\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Basics of R - basic operations - objects - data types\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 03\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-09-08\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Basics of R - data frames - inspecting data - slicing your data\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Read \href{http://varianceexplained.org/programming/bad-code/}{A Million Lines of Bad Code} (5 min) \href{readings/module7_eds_whats_stats.pdf}{What is Statistics Good For?} (3 min)\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-09-10\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Submitting assignments through GitHub\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\href{https://classroom.github.com/a/uE1b8ho7}{Join our GitHub classroom}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 04\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-09-15\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Installing R Packages Intro to Tidyverse\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Read \href{https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/}{Advice to Young (and Old) Programmers: A Conversation with Hadley Wickham} (10 min) \href{https://classroom.github.com/a/uE1b8ho7}{Submit test assignment}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-09-17\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Tidyverse\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 05\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-09-22\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Wrangling\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\href{https://classroom.github.com/a/0CjzlvtW}{Data Challenge 1}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-09-24\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Wrangling\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 06\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-09-29\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Intro to Data Visualization\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\href{https://classroom.github.com/a/DhH5ciNQ}{Data Challenge 2}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-10-01\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Visualization\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 07\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-10-06\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Visualization\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\href{https://classroom.github.com/a/ndGrSqaq}{Data Challenge 3}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-10-08\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Visualization\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 08\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-10-13\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data analysis case study 1\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Challenge 4\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-10-15\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data analysis case study 1\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 09\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-10-20\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+MIDTERM\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Challenge 5\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-10-22\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data analysis case study 2\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 10\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-10-27\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data analysis case study 2\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-10-29\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Getting Data\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Challenge 6\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 11\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-11-03\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Getting Data\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Deadline to meet about final project\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-11-05\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data analysis case study 3\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\href{final_project_docs/esoc214_project_proposal.pdf}{Project Proposal}\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 12\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-11-10\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data analysis case study 3\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-11-12\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Markdown\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Challenge 7\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 13\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-11-17\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Markdown\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-11-19\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Full data analysis case study 4\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Challenge 8\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 14\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-11-24\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Full data analysis case study 4\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-11-26\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Happy Thanksgiving! 🌽🦃🏡\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 15\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-12-01\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Written and Oral Communication in Data Science\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Data Challenge 9\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-12-03\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Written and Oral Communication in Data Science\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\begin{minipage}[t]{0.22\columnwidth}\raggedright
+Week 16\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+2020-12-08\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+Preparing for Final Presentations Wrap-up\strut
+\end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
+\strut
+\end{minipage}\tabularnewline
+\bottomrule
+\end{longtable}
+
+For more information about dates including holidays, check \href{https://catalog.arizona.edu/calendar/2020-2021-academic-calendar}{UArizona's Academic Calendar}.
+
+\textbf{Why am I using YYYY-MM-DD date format?}
+
+\includegraphics[width=10.89in]{images/iso_8601_2x}
+
+\href{https://xkcd.com/1179/}{ISO 8601 -- xkcd}
+
+\hypertarget{final-project}{%
+\section{Final Project}\label{final-project}}
+
+There is a final project in place of a final exam for this class. You will find your own dataset that helps you answer a question that you're interested in. You'll bring these data into R, explore it, clean it, make features, and run an analysis that allows you to answer your question. You will be graded on the completed R script as well as your presentation of the data.
+
+The presentation will last 3-4 minutes, and will take place on the day of the final exam (in place of the exam). University policy on final examinations can be found here: \url{https://www.registrar.arizona.edu/courses/final-examination-regulations-and-information}
+
+\hypertarget{honors-students-requirements}{%
+\section{Honors Students' Requirements}\label{honors-students-requirements}}
+
+Students wishing to take this course for Honors Credit should email me to set up an appointment to discuss the terms of the contact and to sign the Honors Course Contract Request Form. The form is available at \url{https://honors.arizona.edu/academics/honors-contracts}. Students earning credit with the University of Arizona Honors College will be held to the following enhancements:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Honors students will be required to create an academic poster based on their final project, and then present this poster at the iSchool's iShowcase at the end of the semester. Creating a poster will require extra work to ensure clarity of logic, having a well-defined question and approach, and the creation of quality visuals. Guidelines on how to create an engaging academic poster can be found here: \url{https://guides.nyu.edu/posters}. Note: The iShowcase is at the end of the semester, but before finals when the regular class will have the project due. Thus, you will have to be ahead of schedule a bit to meet your honors requirement.
+\item
+  Honors students will also be expected to informally `journal' about the course each week. Each week, that is, students will be required to write a five-sentence paragraph reflecting on some issue or moment that has arisen in our readings or discussions (e.g., the problem with particular terms or some philosophical or practical dilemma). Ultimately, if offering a paragraph each week, honors students will have written roughly 15 reflective paragraphs for the semester. This must be emailed directly to me by Sunday 5pm each week.
+\end{enumerate}
+
+\hypertarget{student-accommodations}{%
+\section{Student Accommodations}\label{student-accommodations}}
+
+It is the University's goal that learning experiences be as accessible as possible. If you anticipate or experience physical or academic barriers based on disability or pregnancy, please let me know immediately so that we can discuss options. You are also welcome to contact Disability Resources (520-621-3268) to establish reasonable accommodations. For additional information on Disability Resources and reasonable accommodations, please visit \url{http://drc.arizona.edu/}.
+
+\hypertarget{attendance-due-dates-and-missing-work}{%
+\section{Attendance, Due Dates, and Missing Work}\label{attendance-due-dates-and-missing-work}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Missed class assignments or exams cannot be made up without a well-documented, verifiable, excuse (for example, a physician's medical excuse). Indeed, due dates are firm, and late work will be accepted only with a verifiable and valid excuse.
+\item
+  The UA policy regarding absences for any sincerely held religious belief, observance or practice will be accommodated where reasonable, \url{http://policy.arizona.edu/human-resources/religious-accommodation-policy}.
+\item
+  Absences pre-approved by the UA Dean of Students (or Dean designee) will be honored. \url{https://deanofstudents.arizona.edu/absences}\\
+\item
+  Arriving late and leaving early is extremely disruptive to others in the class. Please avoid this kind of disruption.
+\item
+  The UA's policy concerning Class Attendance and Administrative Drops is available at: \url{https://catalog.arizona.edu/policy/class-attendance-participation-and-administrative-drop}
+\end{enumerate}
+
+\hypertarget{course-conduct-and-campus-policies}{%
+\section{Course Conduct and Campus Policies}\label{course-conduct-and-campus-policies}}
+
+It's important to be familiar with all campus policies.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Students are encouraged to share intellectual views and discuss freely the principles and applications of course materials. However, graded work/exercises must be the product of independent effort unless otherwise instructed. Students are expected to adhere to the UA Code of Academic Integrity as described in the UA General Catalog. See: \url{http://deanofstudents.arizona.edu/academic-integrity/students/academic-integrity}.
+\item
+  It is the University's goal that learning experiences be as accessible as possible. If you anticipate or experience physical or academic barriers based on disability or pregnancy, please let me know immediately so that we can discuss options. You are also welcome to contact Disability Resources (520-621-3268) to establish reasonable accommodations. For additional information on Disability Resources and reasonable accommodations, please visit \url{http://drc.arizona.edu/}.
+\item
+  The UA Threatening Behavior by Students Policy prohibits threats of physical harm to any member of the University community, including to oneself. See \url{http://policy.arizona.edu/education-and-student-affairs/threatening-behavior-students}.
+\item
+  All student records will be managed and held confidentially. \url{http://www.registrar.arizona.edu/personal-information/family-educational-rights-and-privacy-act-1974-ferpa?topic=ferpa}
+\item
+  The University is committed to creating and maintaining an environment free of discrimination; see \url{http://policy.arizona.edu/human-resources/nondiscrimination-and-anti-harassment-policy}.
+\item
+  Information contained in this syllabus, other than the grade and absence policy, may be subject to change without advance notice as deemed appropriate by the instructor.
+\end{enumerate}
+
+\hypertarget{code-of-conduct}{%
+\section{Code of Conduct}\label{code-of-conduct}}
+
+This code of conduct is based on \href{https://docs.github.com/en/github/site-policy/github-community-guidelines}{GitHub Community Guidelines}. One of the goals of this course is to get you familiar with the data science community, and how people work and learn better together. This is a community we build together, and we need everybody's help to make it better each day.
+
+\hypertarget{our-pledge}{%
+\subsection{Our Pledge}\label{our-pledge}}
+
+In the interest of fostering an open and welcoming environment, we as instructor and students pledge to making participation in our community a harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
+
+\begin{itemize}
+\item
+  \textbf{Be welcoming and open-minded.} Although this is an intro course, like in any other learning setting, we have people at different levels of experience. Other people may not have the same experience level or background as you, but that doesn't mean they don't have good ideas to contribute. I encourage you to be welcoming to everyone, from more advanced coders to those just getting started. We can all learn from each other.
+\item
+  \textbf{Respect each other.} Nothing sabotages healthy conversation like rudeness. Be civil and professional, and don't post or say anything that a reasonable person would consider offensive, abusive, or hate speech. Don't harass or grief anyone. Treat each other with dignity and consideration in all interactions.
+\end{itemize}
+
+You may wish to respond to something by disagreeing with it. That's fine. But remember to criticize ideas, not people. Avoid name-calling, ad hominem attacks, responding to a post's tone instead of its actual content, and knee-jerk reactions. Instead, provide reasoned counter-arguments that improve the conversation.
+
+\begin{itemize}
+\item
+  \textbf{Communicate with empathy.} Disagreements or differences of opinion are a fact of life. Being part of a community means interacting with people from a variety of backgrounds and perspectives (and we are all better because of this variety), many of which may not be your own. If you disagree with someone, try to understand and share their feelings before you address them. This will promote a respectful and friendly atmosphere where people feel comfortable asking questions, participating in discussions, and making contributions.
+\item
+  \textbf{Be clear and stay on topic.} The goal of this course is to learn about data science and how to do data science with R. Off-topic comments are a distraction (sometimes welcome, but usually not) from getting work done and being productive. Staying on topic helps produce positive and productive discussions.
+\end{itemize}
+
+Additionally, as this class will be conducted online, you might not have met each other in person. Communicating on the internet can be awkward, even when you already know people. It's hard to convey or read tone, and sarcasm is frequently misunderstood. Try to use clear language, and think about how it will be received by the other person.
+
+\hypertarget{our-standards}{%
+\subsection{Our Standards}\label{our-standards}}
+
+Examples of behavior that contributes to creating a positive environment include:
+
+\begin{itemize}
+\item
+  Using welcoming and inclusive language
+\item
+  Being respectful of differing viewpoints and experiences
+\item
+  Gracefully accepting constructive criticism
+\item
+  Focusing on what is best for the community
+\item
+  Showing empathy towards other community members
+\end{itemize}
+
+Examples of unacceptable behavior by participants include:
+
+\begin{itemize}
+\item
+  The use of sexualized language or imagery and unwelcome sexual attention or advances
+\item
+  Trolling, insulting/derogatory comments, and personal or political attacks
+\item
+  Public or private harassment
+\item
+  Publishing others' private information, such as a physical or electronic address, without explicit permission
+\item
+  Other conduct which could reasonably be considered inappropriate in a professional setting
+\end{itemize}
+
+\hypertarget{enforcement}{%
+\subsection{Enforcement}\label{enforcement}}
+
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting your instructor at \href{mailto:adrianaps@email.arizona}{\nolinkurl{adrianaps@email.arizona}}. Your instructor will review and investigate all complaints, and will respond in a way that it deems appropriate to the circumstances. Your instructor is obligated to maintain confidentiality with regard to the reporter of an incident.
+
+\hypertarget{attribution}{%
+\subsection{Attribution}\label{attribution}}
+
+This Code of Conduct is adapted from the \href{https://www.contributor-covenant.org/}{Contributor Covenant}, version 1.4, available at \url{http://contributor-covenant.org/version/1/4}
+
+\hypertarget{how-to-ask-for-help}{%
+\section{How to Ask For Help}\label{how-to-ask-for-help}}
+
+We'll see in this course that a key skill that you should develop as a data science is the ability to find solutions to problems. Knowing how to get help is part of that skill.
+
+\hypertarget{before-you-ask-for-help}{%
+\subsection{Before You ask for help}\label{before-you-ask-for-help}}
+
+\begin{itemize}
+\item
+  \textbf{Check for typos.} One of the most common causes of errors are typos, which usually throw an error such as {Error in \_\_\_\_\_ : could not find function ``\_\_\_\_\_''} due to a function being misspelled
+\item
+  \textbf{Check loaded packages.} You also get errors like {Error in data \%\textgreater\% summary() : could not find function ``\%\textgreater\%''} when you failed to load a package.
+\item
+  \textbf{Read the error message.} Don't ignore what R is telling you. Be aware that red text that appears in your console is not alwayws indication of errors. Sometimes it's just a warning.
+\item
+  \textbf{Google is your friend.} Copy and paste the exact error message on a Google search. (this step also includes \textbf{read the documentation} on the package you're trying to use).
+\item
+  If you are still stuck, you an always try \textbf{rubber duck debugging}. Describe the problem aloud, explaining it line-by-line, to a rubber duck or another person (who might not have any experience with programming of data science). This is also a good preparation step to asking other people for help (next section).
+\end{itemize}
+
+\hypertarget{ask-other-people-for-help}{%
+\subsection{Ask other people for help}\label{ask-other-people-for-help}}
+
+Like mentioned before, you should ask your peers for help before you ask your instructor. Relying on a single person to solve all of your problems is dangerous, because that person won't be available throughout your career as a data scientist.
+
+\begin{itemize}
+\item
+  Check \href{https://ischool-esoc214.slack.com}{\textbf{our Slack}} to see if someone else has asked a question similar to yours, and whether there's a solution posted for it.
+\item
+  \textbf{Be precise and informative}. The more context you can provide about what you're trying to do and what errors you're getting, the better. Also describe the steps you took to try to solve the problem yourself.
+\end{itemize}
+
+\hypertarget{list-of-resources}{%
+\subsection{List of Resources}\label{list-of-resources}}
+
+\begin{itemize}
+\tightlist
+\item
+  \href{https://www.r-project.org/help.html}{Getting Help with R}
+\item
+  \href{https://www.youtube.com/watch?v=ZFaWxxzouCY\&feature=youtu.be}{Roger Peng's How To Get Help video}
+\item
+  \href{https://rubberduckdebugging.com/}{Rubber Duck Debugging}
+\end{itemize}
+
+\hypertarget{whats_ds}{%
+\chapter{What's data science?}\label{whats_ds}}
+
+\hypertarget{before-class-1}{%
+\section{Before class \#1}\label{before-class-1}}
+
+Required external reading for this module: \href{readings/module2_what_is_data_science.pdf}{What's data science?} (4,660 words, approx. 20 minutes of reading time)
+
+Watch the \href{https://youtu.be/6OFm7YcunWc?t=617}{YouTube video Angry Hiring Manager Panel} from 10:18 to 16:48 (6.5 minutes) and list the skills they mention as important to have in a data science position.
+
+Fill out \href{https://forms.gle/NaqrC87cB8xh6Sdz8}{Survey 1} (10 min)
+
+\hypertarget{whats-data-science}{%
+\section{What's data science?}\label{whats-data-science}}
+
+Data science is one of the fields with the highest demand, with prospects of increased demand for the next decade \citep{kross2020democratization, hadavand2018can}. Interestingly, the data scientist title was invented in 2008, and the median base salary for a data scientist surpassed \$100,000 in the United States in 2019 \citep{robinson_nolis_2020}.
+
+\textbf{CHALLENGE}
+
+Based on your own experience and on your reading for this module, in your groups discuss the following question:
+
+\begin{itemize}
+\tightlist
+\item
+  What is data science?
+\end{itemize}
+
+\hypertarget{what-does-a-data-scientist-do}{%
+\section{What does a data scientist do?}\label{what-does-a-data-scientist-do}}
+
+Data science is an interdisciplinary field, and as such data scientists hold jobs with a broad range of skills, from statistics to communication. \href{https://www.indeed.com/jobs?q=data+science\&l=United+States}{A quick search for data science jobs} reveals this long list of skills. However, no single data scientist has all skills listed for different data science jobs. Instead, each data scientist specializes in different skills \citep{robinson_nolis_2020}.
+
+\textbf{CHALLENGE}
+
+Make a list of skills listed on data science job announcements and in the video you just watched. Based on these, discuss the following questions in your group:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Which skills do you already have? At what level of proficiency?
+\item
+  Which skills are you interested in developing further?
+\item
+  Based on the skills you already have, and the skills you want to acquire, what type of job in data science would you be interested in?
+\end{enumerate}
+
+\hypertarget{data-science-workflow}{%
+\section{Data Science Workflow}\label{data-science-workflow}}
+
+The basic data science workflow involve three main parts:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  The Question: Form the question you want to answer. Many times you will be given a question, and you have to ``translate'' it so you can answer it with your data analysis.
+\item
+  Data Acquisition: data file, database, or web API
+\item
+  Data Wrangling: import + tidy data + transform \citep{grolemund2018r}
+\item
+  Data Exploration: transform + visualize + model + repeat \citep{grolemund2018r}
+\item
+  Results Communication: visualize + write + knit \citep{grolemund2018r}
+\end{enumerate}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.5\linewidth]{images/data-science} 
+
+}
+
+\caption{typical data science project model (Grolemund and Wickham, 2018)}\label{fig:unnamed-chunk-3}
+\end{figure}
+
+\textbf{CHALLENGE}
+
+In your groups, based on your own intuition and experience, and based on the \href{https://r4ds.had.co.nz/introduction.html}{Introduction to R for Data Science} book \citep{grolemund2018r}, summarize what each of the following steps means:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Tidy
+\item
+  Transform
+\item
+  Visualize
+\item
+  Model
+\item
+  Communicate
+\end{enumerate}
+
+We will approach the entire data science workflow in this course (but not necessarily every step listed), not in this order. We start with step 3 (Data Wrangling) and 4 (Data Exploration), before we address step 2 (Data Acquisition) and step 5 (Communication)
+
+\textbf{CHALLENGE}
+
+Go back to the list of skills and job positions we discussed (based on the reading and the video):
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Which steps in the data science workflow correspond to the job skills we talked about?
+\end{enumerate}
+
+\hypertarget{before-class-2}{%
+\section{Before class \#2}\label{before-class-2}}
+
+Please fill out \href{https://forms.gle/NaqrC87cB8xh6Sdz8}{Survey 1} (10 min).
+
+Reading: \href{readings/module2_eds_leek_whatsdatascience.pdf}{Data Science examples} (1,0333 words, 8 min)
+
+Reading: \href{readings/module2_modern_data_science_data_intake.pdf}{Data Intake} (1,686 words, 12 min)
+
+\hypertarget{whats-data}{%
+\section{What's data?}\label{whats-data}}
+
+\textbf{CHALLENGE}
+
+In your small group, discuss the examples provided in the excerpt from ``Executive Data Science'' \citep{caffo2016executive}.
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Is data science about ``data''? Why or why not?
+\item
+  Why did Netflix end up not implementing the best solution from the Netflix prize challenge?
+\item
+  What data was used in each of the examples provided in the reading?
+\item
+  What is data? (come up with a definition).
+\end{enumerate}
+
+~
+
+Examples of what data might look like.
+
+\begin{itemize}
+\tightlist
+\item
+  Structured data (rare):
+\end{itemize}
+
+State
+
+School Year
+
+Average Tuition
+
+Nevada
+
+2004-05
+
+3621.392
+
+Nevada
+
+2005-06
+
+3687.290
+
+Florida
+
+2004-05
+
+3848.201
+
+Florida
+
+2007-08
+
+3879.416
+
+Florida
+
+2006-07
+
+3887.656
+
+Florida
+
+2005-06
+
+3924.234
+
+Wyoming
+
+2008-09
+
+3928.671
+
+Wyoming
+
+2007-08
+
+4071.898
+
+Wyoming
+
+2004-05
+
+4086.351
+
+Wyoming
+
+2006-07
+
+4122.205
+
+\textbf{CHALLENGE}
+
+Which of the columns (or variables) in the data frame above are \textbf{categorical}, which are \textbf{quantitative}?
+
+~
+
+\begin{itemize}
+\tightlist
+\item
+  Structured, but messy data (more common):
+\end{itemize}
+
+State
+
+2004-05
+
+2005-06
+
+2006-07
+
+2007-08
+
+2008-09
+
+2009-10
+
+2010-11
+
+2011-12
+
+2012-13
+
+2013-14
+
+2014-15
+
+2015-16
+
+Alabama
+
+5682.838
+
+5840.550
+
+5753.496
+
+6008.169
+
+6475.092
+
+7188.954
+
+8071.134
+
+8451.902
+
+9098.069
+
+9358.929
+
+9496.084
+
+9751.101
+
+Alaska
+
+4328.281
+
+4632.623
+
+4918.501
+
+5069.822
+
+5075.482
+
+5454.607
+
+5759.153
+
+5762.421
+
+6026.143
+
+6012.445
+
+6148.808
+
+6571.340
+
+Arizona
+
+5138.495
+
+5415.516
+
+5481.419
+
+5681.638
+
+6058.464
+
+7263.204
+
+8839.605
+
+9966.716
+
+10133.503
+
+10296.200
+
+10413.844
+
+10646.278
+
+Arkansas
+
+5772.302
+
+6082.379
+
+6231.977
+
+6414.900
+
+6416.503
+
+6627.092
+
+6900.912
+
+7028.991
+
+7286.580
+
+7408.495
+
+7606.410
+
+7867.297
+
+California
+
+5285.921
+
+5527.881
+
+5334.826
+
+5672.472
+
+5897.888
+
+7258.771
+
+8193.739
+
+9436.426
+
+9360.574
+
+9274.193
+
+9186.824
+
+9269.844
+
+Colorado
+
+4703.777
+
+5406.967
+
+5596.348
+
+6227.002
+
+6284.137
+
+6948.473
+
+7748.201
+
+8315.632
+
+8792.856
+
+9292.954
+
+9298.599
+
+9748.188
+
+Connecticut
+
+7983.695
+
+8249.074
+
+8367.549
+
+8677.702
+
+8720.976
+
+9371.019
+
+9827.013
+
+9736.431
+
+10036.627
+
+10453.110
+
+10663.995
+
+11397.337
+
+Delaware
+
+8352.890
+
+8610.597
+
+8681.846
+
+8945.801
+
+8995.473
+
+9987.183
+
+10534.181
+
+11026.241
+
+11362.690
+
+11502.524
+
+11514.660
+
+11676.216
+
+Florida
+
+3848.201
+
+3924.234
+
+3887.656
+
+3879.416
+
+4150.004
+
+4783.032
+
+5510.659
+
+5940.945
+
+6494.901
+
+6451.664
+
+6345.000
+
+6360.159
+
+Georgia
+
+4298.040
+
+4492.167
+
+4584.268
+
+4790.266
+
+4831.365
+
+5549.913
+
+6428.007
+
+7709.284
+
+7853.257
+
+7992.390
+
+8063.014
+
+8446.961
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+user\_id
+
+screen\_name
+
+text
+
+reply\_to\_screen\_name
+
+6.331283e+07
+
+blagogirl
+
+\citet{realTuckFrumper} The illiterate calling Iran out?
+80 million bounty on Trumps head?
+
+realTuckFrumper
+
+6.331283e+07
+
+blagogirl
+
+\citet{JonHutson} Iran does NOT fear Trump.
+They realize what OUR country is dealing with.
+``The White House is inflicted with mental retardation''
+
+JonHutson
+
+1.125104e+18
+
+dl\_kirkwood
+
+I'm afraid 11 soldiers had to be shipped out from the Iran hit after all with traumatic brain injuries. Seems the Military does not notify homeland unless a soldiers is shipped out for the injury. So, Trump did not know for a week. \url{https://t.co/HdBNbKClBl}
+
+NA
+
+2.820552e+07
+
+djbarro
+
+\citet{GloriaAllred} Are you going to carry a sign supporting the women in Iran brave enough to remove their hijabs and go to prison?
+
+GloriaAllred
+
+1.506314e+08
+
+kizu91
+
+US\ldots Special\ldots Representative\ldots Hold\ldots Press\ldots Briefing\ldots Situation in\ldots Iran\ldots Video\ldots first\ldots week\ldots January\ldots saw\ldots drastic\ldots spike\ldots tensions\ldots Washington\ldots Tehran\ldots President\ldots Donald Trump\ldots order\ldots assassination\ldots elite\ldots Quds\ldots Force\ldots commander\ldots Qasem\ldots Soleimani\ldots Iraq
+
+NA
+
+1.506314e+08
+
+kizu91
+
+crash\ldots land\ldots collide\ldots plane\ldots aircraft\ldots all\ldots176\ldots people\ldots on board\ldots Iran\ldots missile\ldots attack\ldots US\ldots base\ldots Iraq\ldots rocket\ldots Western\ldots Sahara\ldots Suriname\ldots Colombia\ldots Dominica\ldots Australia\ldots Anguilla\ldots Guadeloupe\ldots Uruguay\ldots Cyprus\ldots Namibia\ldots Brazil\ldots Paraguay\ldots Denmark\ldots55
+
+NA
+
+1.506314e+08
+
+kizu91
+
+Iran\ldots MP\ldots Urge\ldots Gov't\ldots Expel\ldots UK\ldots Envoy\ldots Consider\ldots Downgrading\ldots Diplomatic\ldots Ties\ldots Alleged\ldots Meddling\ldots envoy\ldots Robert Macaire\ldots detained\ldots days\ldots ago\ldots alleged\ldots participation\ldots unsanctioned\ldots protest\ldots Tehran\ldots down\ldots Ukraine\ldots Boeing\ldots737\ldots release\ldots15\ldots minutes
+
+NA
+
+1.506314e+08
+
+kizu91
+
+Government\ldots Supporter\ldots Gather\ldots Tehran\ldots13\ldots.Friday\ldots Prayer\ldots Video\ldots Iran\ldots gather\ldots rally\ldots commemorate\ldots kill\ldots fatal\ldots crash\ldots land\ldots collide\ldots Ukraine\ldots Boeing\ldots plane\ldots aircraft\ldots shot\ldots down\ldots missile\ldots rocket\ldots January\ldots Imam\ldots Khomeini\ldots International\ldots Airport\ldots16
+
+NA
+
+1.506314e+08
+
+kizu91
+
+British\ldots Treasury\ldots Expand\ldots Hezbollah\ldots Asset\ldots Freeze\ldots UK\ldots government\ldots approved\ldots measure\ldots follow\ldots heat\ldots conflict\ldots United States\ldots Islamic\ldots Republic\ldots Iran\ldots Trump\ldots Administration\ldots target\ldots assassination\ldots high-profile\ldots military\ldots general\ldots early\ldots January\ldots film
+
+NA
+
+7.297365e+17
+
+SwmpladySH
+
+Hackers Are Coming for the 2020 Election --- And We're Not Ready \url{https://t.co/q82kNu9gMd} via \citet{RollingStone}
+
+NA
+
+\begin{itemize}
+\tightlist
+\item
+  Textual Data (always messy):
+\end{itemize}
+
+\begin{verbatim}
+##  [1] "CHAPTER I"                                                               
+##  [2] ""                                                                        
+##  [3] ""                                                                        
+##  [4] "Emma Woodhouse, handsome, clever, and rich, with a comfortable home"     
+##  [5] "and happy disposition, seemed to unite some of the best blessings of"    
+##  [6] "existence; and had lived nearly twenty-one years in the world with very" 
+##  [7] "little to distress or vex her."                                          
+##  [8] ""                                                                        
+##  [9] "She was the youngest of the two daughters of a most affectionate,"       
+## [10] "indulgent father; and had, in consequence of her sister's marriage, been"
+\end{verbatim}
+
+** CHALLENGE **
+
+What data formats are out there in the world. Create a list based on your experience and the excerpt from ``Modern Data Science with R'' \citep{baumer2017modern}.
+
+\hypertarget{what-does-data-analysis-look-like}{%
+\section{What does data analysis look like?}\label{what-does-data-analysis-look-like}}
+
+The way you communicate your data analysis will depend on what question you're trying to answer and who your audience is. Here are some of my favorite data analysis reports:
+
+\begin{itemize}
+\item
+  \href{https://twitter.com/IsChiaThere/status/1282681472185401349/photo/1}{Whose (coffee) beans reign supreme?} A \#tidytuesday static image
+\item
+  \href{https://twitter.com/geokaramanis/status/1283410776913514496/photo/1}{Women in Space} A \#tidytuesday static image
+\item
+  \href{https://sebastianwolf.shinyapps.io/stravachaserapp/}{Which city is faster?} A City Cycle Race Shinny app
+\item
+  \href{https://pudding.cool/2020/07/gendered-descriptions/}{The Physical Traits that Define Men and Women in Literature} An interactice website
+\end{itemize}
+
+\hypertarget{install-r}{%
+\chapter{Exploring our IDE (Rstudio)}\label{install-r}}
+
+\hypertarget{before-class-3}{%
+\section{Before class \#3}\label{before-class-3}}
+
+Install R and RStudio.
+
+We are using RStudio as our IDE for this course. If you are running your R code in your computer, you need to install both R and RStudio. Alternatively, you can create a free account at \url{http://rstudio.cloud} and run your R code in the cloud. Either way, we will be using the same IDE (i.e., RStudio).
+
+What's an \textbf{IDE}? IDE stands for \textbf{i}ntegrated \textbf{d}evelopment \textbf{e}nvironment, and its goal is to facilitate coding by integrating a \textbf{text editor}, a \textbf{console} and other tools into one window.
+
+\hypertarget{ive-never-installed-r-and-rstudio-in-my-computer-or-im-not-sure-i-have-r-and-rstudio-installed-in-my-computer}{%
+\subsection{I've never installed R and RStudio in my computer OR I'm not sure I have R and RStudio installed in my computer}\label{ive-never-installed-r-and-rstudio-in-my-computer-or-im-not-sure-i-have-r-and-rstudio-installed-in-my-computer}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Download and install R from \url{https://cran.r-project.org} (If you are a Windows user, first \href{https://www.computerhope.com/issues/ch001121.htm\#:~:text=Press\%20and\%20hold\%20the\%20Windows,running\%20the\%2064\%2Dbit\%20version.}{determine if you are running the 32 or the 64 bit version})
+\item
+  Download and install RStudio from \url{https://rstudio.com/products/rstudio/download/\#download}
+\end{enumerate}
+
+Here's a \href{https://youtu.be/Iwp8bm7w4fQ}{video on how to install R and RStudio on a mac}.
+
+\hypertarget{i-already-have-r-and-rstudio-installed}{%
+\subsection{I already have R and RStudio installed}\label{i-already-have-r-and-rstudio-installed}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Open RStudio
+\item
+  Check your R version by entering \texttt{sessionInfo()} on your console.
+\item
+  The latest release for R was June 22, 2020 (R version 4.0.2 Taking Off Again). If your R version is older than the most recent version, please follow step 1 in the previous section to update R.
+\item
+  Check your RStudio version, if your version is older than Version 1.3.x, please follow step 2 in the previous section to update RStudio.
+\end{enumerate}
+
+How often should I update R and RStudio? Always make sure that you have the latest version of R, RStudio, and the packages you're using in your code to ensure you are not running into bugs that are caused by having older versions installed in your computer.
+
+When \href{https://community.rstudio.com/t/should-i-update-all-my-r-packages-frequently-yes-no-why/5856/4}{asked}, \href{https://community.rstudio.com/u/jennybryan}{Jenny Bryan} summarizes the importance of keeping your system up-to-date saying that ``You will always eventually have a reason that you must update. So you can either do that very infrequently, suffer with old versions in the middle, and experience great pain at update. Or admit that maintaining your system is a normal ongoing activity, and do it more often.''
+
+~
+
+You can ensure your packages are also up-to-date by clicking on ``Tools'' on your RStudio top menu bar, and selecting ``Check for Packages Updates\ldots{}''
+
+\hypertarget{why-learn-r}{%
+\section{Why learn R?}\label{why-learn-r}}
+
+R is both a programming language and \href{https://www.r-project.org/}{a free software environment for statistical computing and graphics}. In addition to being free, here are other reasons to learn R:
+
+\begin{itemize}
+\item
+  \textbf{R is popular.} According to \href{http://r4stats.com/articles/popularity/}{Robert A. Muenchen's post on the popularity of data science software} (which is updated frequently), R is among the top 5 technologies that are mentioned in data science job ads on indeed.com.
+\item
+  \textbf{R is very powerful and versatile}. From creating websites (like this bookdown you're reading right now) to building machine learning models, R has it all.
+\item
+  \textbf{The R community is active and very supportive}. Because R is so popular, there are a number of forums on R. A good way to get a glimpse on how active the R community is to follow \href{https://twitter.com/search?q=\%23rstats}{\texttt{\#rstats}} on twitter.
+\end{itemize}
+
+\hypertarget{why-use-rstudio}{%
+\section{Why use RStudio?}\label{why-use-rstudio}}
+
+You can just use R, but RStudio is an IDE that makes using R easier and more fun. Some features that make RStudio the IDE that many data scientists use:
+
+\begin{itemize}
+\item
+  RStudio is \textbf{free} and \textbf{open source}.
+\item
+  RStudio contains a full-feature integrated text editor, with tab-completion, spellcheck, etc.
+\item
+  RStudio is a cross-platform interface that looks the same across platforms.
+\item
+  RStudio allows you to organize your data science projects so you're not always hunting for the right script that goes with the data you want to analyze. (also, it integrates nicely with \texttt{rmarkdown} and \texttt{knitr})
+\end{itemize}
+
+\hypertarget{create-an-r-project}{%
+\section{Create an R Project}\label{create-an-r-project}}
+
+In today's class, we will focus on situating ourselves around our IDE. For every lesson, we will either start a new R project or open an R project we've been working on.
+
+Why create a RStudio project? RStudio projects make it easier to keep your projects organized, since each project has their own working directory, workspace, history, and source documents. In other words, it's much easier to open an R project and not have to worry about setting your working directory than to try to hunt down your files.
+
+Here are the steps we are starting with today:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Start a new R project
+\item
+  Create a new R script
+\item
+  Save that R script as 01-class\_one
+\end{enumerate}
+
+~
+
+\textbf{CHALLENGE}
+
+Take a moment to look around your IDE. What are the main panes on the RStudio interface. What are the 4 main areas of the interface? Can you guess what each area is for?
+
+\hypertarget{operations-and-objects}{%
+\section{Operations and Objects}\label{operations-and-objects}}
+
+Let's start by using R as a calculator. On your \textbf{console} type \texttt{3\ +\ 3} and hit enter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{3} \OperatorTok{+}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+What symbols do we use for all basic operations (addition, subtraction, multiplication, and division)?
+What happens if you type \texttt{3\ +}?
+
+Let's save our calculation into an object, by using the assignment symbol \texttt{\textless{}-}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum_result <-}\StringTok{ }\DecValTok{3} \OperatorTok{+}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+Take a moment to look around your IDE once again. What has changed?
+
+Now, let's use this new object in our calculation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{sum_result }\OperatorTok{+}\StringTok{ }\DecValTok{3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 9
+\end{verbatim}
+
+Take a moment to look around your IDE once again. Has anything changed?
+
+What else can we do with an object?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{class}\NormalTok{(sum_result)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+R is primarily a functional programming language. That means that there pre-programmed functions in base R such as \texttt{class()} and that you can also write your own functions (more on that later).
+
+Type \texttt{?class} in your console and hit enter to get more information about this function.
+
+\textbf{CHALLENGE}
+
+Create an object called \texttt{daisys\_age} that holds the number 8.
+Multiply \texttt{daisys\_age} by 4 and save the results in another object called \texttt{daisys\_human\_age}
+
+Imagine I had multiple pets (unfortunately, that is not true, Daisy is my only pet). I can create a \textbf{vector} to hold multiple numbers representing the age of each of my pets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets_ages <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{6}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Take a moment to look around your IDE once again. What has changed?
+
+What is the class of the object \texttt{my\_pets\_ages}?
+
+Now let's multiply this vector by 4.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets_ages }\OperatorTok{*}\StringTok{ }\DecValTok{4}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 32  8 24 12  4
+\end{verbatim}
+
+Errors are pretty common when writing code in any programming language, so be ready to read error messages and debug your code. Let's insert a typing error in our previous code:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets_ages <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{6}\NormalTok{, }\StringTok{'3'}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{CHALLENGE}
+
+Try to multiply \texttt{my\_pets\_ages} by 4. What happens? How can we debug our code to find out what is causing the error?
+
+\hypertarget{r-basics}{%
+\chapter{R Basics}\label{r-basics}}
+
+\hypertarget{before-class-4}{%
+\section{Before Class \#4}\label{before-class-4}}
+
+Read \href{http://varianceexplained.org/programming/bad-code/}{A Million Lines of Bad Code} a blog post by \href{http://varianceexplained.org/about/}{David Robinson}. (549 words, 5 minutes)
+
+Read \href{readings/module7_eds_whats_stats.pdf}{What is Statistics Good For?} (398 words, 3 min)
+
+\hypertarget{dataframes}{%
+\section{Dataframes}\label{dataframes}}
+
+You will rarely work with individual numeric values, or even individual numeric vectors. Often, we have information organized in dataframes, which is R's version of a spreadsheet.
+
+Let's go back to my imaginary pet's ages (make sure you have the correct vector in your global environment).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets_ages <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\DecValTok{8}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{6}\NormalTok{, }\StringTok{'3'}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{my_pets_ages <-}\StringTok{ }\KeywordTok{as.numeric}\NormalTok{(my_pets_ages)}
+\end{Highlighting}
+\end{Shaded}
+
+We will now create a vector of strings or characters that holds my imaginary pets' names (we have to be careful to keep the same order then the \texttt{my\_pets\_ages} vector).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets_names <-}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'Daisy'}\NormalTok{, }\StringTok{'Violet'}\NormalTok{, }\StringTok{'Lily'}\NormalTok{, }\StringTok{'Iris'}\NormalTok{, }\StringTok{'Poppy'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Let's now create a dataframe that contains info about my pets.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create dataframe}
+\NormalTok{my_pets <-}\StringTok{ }\KeywordTok{data.frame}\NormalTok{(}\DataTypeTok{name =}\NormalTok{ my_pets_names, }\DataTypeTok{age =}\NormalTok{ my_pets_ages)}
+
+\CommentTok{# print out dataframe}
+\NormalTok{my_pets}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     name age
+## 1  Daisy   8
+## 2 Violet   2
+## 3   Lily   6
+## 4   Iris   3
+## 5  Poppy   1
+\end{verbatim}
+
+\textbf{CHALLENGE}
+
+There's a number of functions you can run on dataframes. Try running the following functions on \texttt{my\_pets}:
+
+\begin{itemize}
+\item
+  summary()
+\item
+  nrow()
+\item
+  ncol()
+\item
+  dim()
+\end{itemize}
+
+What other functions can/do you think/know of?
+
+\hypertarget{slicing-your-dataframe}{%
+\section{Slicing your dataframe}\label{slicing-your-dataframe}}
+
+There are different ways you can slice or subset your dataframe.
+
+You can use indices for rows and columns.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets[}\DecValTok{1}\NormalTok{,]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    name age
+## 1 Daisy   8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets[, }\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Daisy"  "Violet" "Lily"   "Iris"   "Poppy"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets[}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Daisy"
+\end{verbatim}
+
+You can use a column name or a row name instead of an index.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets[, }\StringTok{'age'}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8 2 6 3 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets[}\StringTok{'1'}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    name age
+## 1 Daisy   8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets[}\StringTok{'1'}\NormalTok{, }\StringTok{'age'}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+Or you can use \texttt{\$} to retrieve values from a column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets}\OperatorTok{$}\NormalTok{age}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8 2 6 3 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets}\OperatorTok{$}\NormalTok{age[}\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+You can also use comparisons to filter your dataframe
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get index with which() function}
+\KeywordTok{which}\NormalTok{(my_pets}\OperatorTok{$}\NormalTok{age }\OperatorTok{==}\StringTok{ }\DecValTok{8}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# use which() inside dataframe indexing my_pets[row_number, column_number]}
+\NormalTok{my_pets[}\KeywordTok{which}\NormalTok{(my_pets}\OperatorTok{$}\NormalTok{age }\OperatorTok{==}\StringTok{ }\DecValTok{8}\NormalTok{),]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    name age
+## 1 Daisy   8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets[}\KeywordTok{which}\NormalTok{(my_pets}\OperatorTok{$}\NormalTok{age }\OperatorTok{==}\StringTok{ }\DecValTok{8}\NormalTok{), }\DecValTok{1}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Daisy"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets[}\KeywordTok{which}\NormalTok{(my_pets}\OperatorTok{$}\NormalTok{age }\OperatorTok{==}\StringTok{ }\DecValTok{8}\NormalTok{), }\StringTok{'name'}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Daisy"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{my_pets[}\KeywordTok{which}\NormalTok{(my_pets}\OperatorTok{$}\NormalTok{age }\OperatorTok{==}\StringTok{ }\DecValTok{8}\NormalTok{),]}\OperatorTok{$}\NormalTok{name}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Daisy"
+\end{verbatim}
+
+\textbf{CHALLENGE}
+
+Print out a list of pet names that are older than 3.
+
+\hypertarget{adding-new-variables-i.e.-columns-to-your-dataframe}{%
+\section{Adding new variables (i.e., columns) to your dataframe}\label{adding-new-variables-i.e.-columns-to-your-dataframe}}
+
+So far the \texttt{my\_pets} dataframe has two columns: name and age.
+
+Let's add a third column with the pets' ages in human years. For that, we are going to use \texttt{\$} on with a variable (or column) name that does not exist in our dataframe yet. We will then assign to this variable the value in the \texttt{age} column multiplied by 4.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# create new column called human_years}
+\NormalTok{my_pets}\OperatorTok{$}\NormalTok{human_years <-}\StringTok{ }\NormalTok{my_pets}\OperatorTok{$}\NormalTok{age }\OperatorTok{*}\StringTok{ }\DecValTok{4}
+
+\CommentTok{# print dataframe}
+\NormalTok{my_pets}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     name age human_years
+## 1  Daisy   8          32
+## 2 Violet   2           8
+## 3   Lily   6          24
+## 4   Iris   3          12
+## 5  Poppy   1           4
+\end{verbatim}
+
+Inspect the new \texttt{my\_pets} dataframe. What dimensions does it have now? How could you get a list of just the human years values in the data frame?
+
+\hypertarget{descriptive-stats-on-dataframes}{%
+\section{Descriptive stats on dataframes}\label{descriptive-stats-on-dataframes}}
+
+Let's explore some functions for descriptive statistics.
+
+\textbf{CHALLENGE}
+
+Try running the following functions on \texttt{my\_pets\$age} and \texttt{my\_pets\$human\_years}:
+
+\begin{itemize}
+\item
+  mean()
+\item
+  sd()
+\item
+  median()
+\item
+  max()
+\item
+  min()
+\item
+  range()
+\end{itemize}
+
+What other functions can/do you think/know of?
+
+\hypertarget{note-on-coding-style}{%
+\section{Note on coding style}\label{note-on-coding-style}}
+
+Coding style refers to how you name your objects and functions, how you comment your code, how you use spacing throughout your code, etc. If your coding style is consistent, your code is easier to read and easier to debug as a result. Here's some guides, so you can develop your own coding style:
+
+\begin{itemize}
+\item
+  \href{https://style.tidyverse.org}{The tidyverse style guide}
+\item
+  \href{http://adv-r.had.co.nz/Style.html}{Hadley Wickham's Advance R coding style}
+\item
+  \href{https://google.github.io/styleguide/Rguide.html}{Google's R Style Guide}
+\end{itemize}
+
+\hypertarget{version-control}{%
+\chapter{Version Control}\label{version-control}}
+
+\hypertarget{before-class-5}{%
+\section{Before Class \#5}\label{before-class-5}}
+
+\hypertarget{install-git-on-your-computer}{%
+\subsection{Install git on your computer}\label{install-git-on-your-computer}}
+
+Access the \href{https://git-scm.com/download}{git download page} and download the appropriate version for your machine.
+
+If you have a Windows 10 machine, you can watch \href{https://www.youtube.com/watch?v=nbFwejIsHlY}{this video that shows you how to install Git on windows}. When installing, note where it's installed (on the ``Select Destination Location'' window) so you can check if you have the correct path to Git set up in RStudio (it's usually \texttt{C:\textbackslash{}Program\textbackslash{}Git}).
+
+If you have a Mac, you can watch \href{https://www.youtube.com/watch?v=PSULlxUk744}{this video that shows you how to install Git on a Mac}.
+
+\hypertarget{create-a-github-account}{%
+\subsection{Create a GitHub account}\label{create-a-github-account}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Access the \href{https://github.com/}{GitHub} page.
+\item
+  Click on ``\href{https://github.com/join}{Sign Up for GitHub}.''
+\item
+  Fill out the ``Create your account'' forms.
+\item
+  A verification will be sent to your email address, check your inbox for a ``Please verify your email address'' message. Click on ``Verify email address'' button.
+\end{enumerate}
+
+If you already have a GitHub account, confirm you know your username and password by logging in at \href{https://github.com/}{GitHub}.
+
+\hypertarget{join-our-github-classroom}{%
+\subsection{Join our GitHub classroom}\label{join-our-github-classroom}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Access our \href{https://classroom.github.com/classrooms/69162822-esoc214-classroom-1}{join our GitHub classroom} page.
+\item
+  A window with information about what GitHub Classroom wants to access from your GitHub profile will appear. Click on ``Authorize github''.
+\item
+  Access our \href{https://classroom.github.com/a/uE1b8ho7}{first assignment} and click on ``Accept this assignment''
+\end{enumerate}
+
+\hypertarget{link-rstudio-to-github}{%
+\subsection{Link RStudio to GitHub}\label{link-rstudio-to-github}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Open ``preferences'' in RStudio.
+\item
+  Click on ``Git/SVN'' in the menu on the left.
+\item
+  Under ``SSH RSA Key:'' click on ``Create RSA Key\ldots{}''
+\item
+  A window will pop up, click on ``Create''
+\item
+  A new window will pop up, click ``Close''
+\item
+  Now there's a ``View public key'' link next to ``SSH RSA Key:''; click on it
+\item
+  Copy key and close the window
+\item
+  Go to your \href{https://github.com/settings/profile}{GitHub account settings}
+\item
+  On the menu on the left, click on ``SSH and GPC keys''
+\item
+  Click on the ``New SSH Key'' button
+\item
+  Choose a title (e.g., RStudio Connection) and copy the key to the ``key'' field
+\item
+  Click ``Add SSH Key''
+\end{enumerate}
+
+\hypertarget{what-is-version-control}{%
+\section{What is version control?}\label{what-is-version-control}}
+
+Version control is a best practice for reproducible analyses, and widely used in industry and research (i.e., you will need to know how to use version control in your future job).
+
+The purpose of version control is to keep track of changes to your files over time, so that you can recall specific versions at any point in your project.
+
+\href{https://git-scm.com/}{Git} is an open source version control software system that is very popular -- 58\% of data scientist use Git \citep{beckman2020implementing}. There are a number of other version control software available (e.g., \href{https://www.perforce.com/blog/vcs/git-vs-perforce-how-choose-and-when-use-both}{Perforce}).
+
+\hypertarget{submitting-assignments}{%
+\section{Submitting assignments}\label{submitting-assignments}}
+
+\hypertarget{clone-assignment-repository}{%
+\subsection{Clone assignment repository}\label{clone-assignment-repository}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Go to our \href{https://classroom.github.com/a/uE1b8ho7}{first assignment GitHub repository}
+\item
+  Click on the ``Code'' button and copy the git url (e.g., \url{https://github.com/esoc214/test-assignment-yournamehere.git})
+\item
+  Open RStudio
+\item
+  Go ``File'' \textgreater{} ``New Project\ldots{}''
+\item
+  In the pop-up window, select ``Version Control''
+\item
+  Then choose ``Git''
+\item
+  In the ``Repository URL:'' field enter the link to the first assignment repository from your GitHub account.
+\item
+  Click ``Create''
+\end{enumerate}
+
+\hypertarget{modify-files}{%
+\subsection{Modify files}\label{modify-files}}
+
+For the first assignment, which is a test assignment so you're all set up to submitting all of your assignments for this class, you need to modify \texttt{READM.md} only. For other assignments you will need to edit .R scripts.
+
+\hypertarget{commit-changes}{%
+\subsection{Commit changes}\label{commit-changes}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  On the top right panel in RStudio (i.e., Environment quadrant), click on the ``Git'' tab
+\item
+  You will see a list of files, indicating which files have been modified (a blue ``M'' shows next to modified file).
+\item
+  Click on ``Commit'' on the top of this tab
+\item
+  A new window will pop-up. Stage the files you want to commit (click on the check box next to file) and enter a commit message.
+\item
+  Press ``Commit'' and if everything looks good, close the commit window.
+\item
+  Click ``Push'' on top right
+\end{enumerate}
+
+\hypertarget{intro-to-tidyverse}{%
+\chapter{Intro to Tidyverse}\label{intro-to-tidyverse}}
+
+\hypertarget{before-class-6}{%
+\section{Before Class \#6}\label{before-class-6}}
+
+Read \href{https://www.r-bloggers.com/advice-to-young-and-old-programmers-a-conversation-with-hadley-wickham/}{Advice to Young (and Old) Programmers: A Conversation with Hadley Wickham} by Philip Waggoner (2,599 words, 10 minutes)
+
+\hypertarget{what-are-r-packages}{%
+\section{What are R Packages?}\label{what-are-r-packages}}
+
+An R package contains functions, and it might contain data. There are a lot of R packages out here (check the Comprehensive R Archive Network, i.e., CRAN, for a \href{https://cran.r-project.org/web/packages/available_packages_by_name.html}{full list}). That is one of the beautiful things about R, anyone can create an R package to share their code.
+
+\hypertarget{installing-packages}{%
+\section{Installing Packages}\label{installing-packages}}
+
+The function to install packages in R is \texttt{install.packages()}. We will be working with \href{https://www.tidyverse.org/}{TidyVerse} extensively in this course, which is a collection of R packages carefully designed for data science.
+
+Open your RStudio. In your console, enter the following to install tidyverse (this may take a while).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+You need to install any package only once (remember to check for new package versions and to keep your packages updated). However, with every new R session, you need to load the packages you are going to use by using the \texttt{library()} function (a library is an installed R package in your computer).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+Note that when calling the \texttt{install.packages()} function you need to enter the package name between quotation marks (e.g., ``tidyverse''). When you call the \texttt{library()} function, you don't use quotation marks (e.g., tidyverse).
+
+\hypertarget{before-you-load-your-data}{%
+\section{Before You Load your Data}\label{before-you-load-your-data}}
+
+Although we are working within an R project, which sets the working directory automatically for you, it's good practice to check what folder you are working from by calling the \texttt{getwd()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{getwd}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "/Users/adriana/Desktop/ESOC214/Fall 2020/bookdown/ESOC_214_Fall_2020"
+\end{verbatim}
+
+You can list the contents of your working directory by using the \texttt{dir()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dir}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+We are going to create a \texttt{data} folder in our project, to keep things organized. Today we will be working with \href{https://www.kaggle.com/groundhogclub/groundhog-day}{a data set that contains groundhog day forecasts and temperature}. I cleaned up this data set already (no need for data tidying for now).
+
+You can now list the contents of your \texttt{data} folder with the \texttt{dir()} function with a string that specifies the folder as a parameter.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{dir}\NormalTok{(}\StringTok{"data"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "elnino.csv"                          "GlobalLandTemperaturesByCountry.csv"
+##  [3] "groundhog_day.csv"                   "nfl_salary.xlsx"                    
+##  [5] "olympic_history_athlete_events.csv"  "olympic_history_noc_regions.csv"    
+##  [7] "passwords.csv"                       "spotify_songs_clean.csv"            
+##  [9] "spotify_songs.csv"                   "tweets.tsv"                         
+## [11] "us_avg_tuition.xlsx"
+\end{verbatim}
+
+\hypertarget{whats-our-question-again}{%
+\section{What's our question again?}\label{whats-our-question-again}}
+
+Here's what we will focus on answering today, which is an excerpt from the \href{https://www.kaggle.com/groundhogclub/groundhog-day}{Groundhog Day Forecasts and Temperatures} kaggle page.
+
+``Thousands gather at Gobbler's Knob in Punxsutawney, Pennsylvania, on the second day of February to await the spring forecast from a groundhog known as Punxsutawney Phil. According to legend, if Phil sees his shadow the United States is in store for six more weeks of winter weather. But, if Phil doesn't see his shadow, the country should expect warmer temperatures and the arrival of an early spring.''
+
+So, in summary, our question is \textbf{How accurate is Punxsutawney Phil's winter weather forecast?}
+
+\hypertarget{load-data-with-tidyverse}{%
+\section{Load Data with Tidyverse}\label{load-data-with-tidyverse}}
+
+We will use the \texttt{read\_csv()} function from the \texttt{readr} package (which is part of \texttt{tidyverse}) to read data in. Be careful, there's a similar function that is read.csv() from base R. We do want to use the function with the \texttt{\_} (i.e., \texttt{read\_csv()})
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/groundhog_day.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   Year = col_double(),
+##   Punxsutawney_Phil = col_character(),
+##   February_Average_Temperature = col_double(),
+##   February_Average_Temperature_Northeast = col_double(),
+##   February_Average_Temperature_Midwest = col_double(),
+##   February_Average_Temperature_Pennsylvania = col_double(),
+##   March_Average_Temperature = col_double(),
+##   March_Average_Temperature_Northeast = col_double(),
+##   March_Average_Temperature_Midwest = col_double(),
+##   March_Average_Temperature_Pennsylvania = col_double()
+## )
+\end{verbatim}
+
+\textbf{CHALLENGE}
+
+\textbf{Reading warnings} - R often prints out warnings in red (these are not always errors). What information did you get when loading your data?
+
+\hypertarget{inspect-your-data}{%
+\section{Inspect Your Data}\label{inspect-your-data}}
+
+As with any other programming language, there are multiple ways to doing anything. As such, there are multiple ways of inspecting your data in R. Here are some of my favorite ways of inspecting my data:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get an overview of the data frame}
+\KeywordTok{glimpse}\NormalTok{(groundhog_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 122
+## Columns: 10
+## $ Year                                      <dbl> 1895, 1896, 1897, 1898, 1...
+## $ Punxsutawney_Phil                         <chr> "No Record", "No Record",...
+## $ February_Average_Temperature              <dbl> 26.60, 35.04, 33.39, 35.3...
+## $ February_Average_Temperature_Northeast    <dbl> 15.6, 22.2, 23.6, 24.8, 1...
+## $ February_Average_Temperature_Midwest      <dbl> 21.9, 33.5, 34.7, 33.3, 2...
+## $ February_Average_Temperature_Pennsylvania <dbl> 17.0, 26.6, 27.9, 26.7, 2...
+## $ March_Average_Temperature                 <dbl> 39.97, 38.03, 38.79, 41.0...
+## $ March_Average_Temperature_Northeast       <dbl> 27.6, 25.3, 32.0, 38.0, 2...
+## $ March_Average_Temperature_Midwest         <dbl> 40.2, 36.9, 44.0, 46.0, 3...
+## $ March_Average_Temperature_Pennsylvania    <dbl> 31.3, 27.8, 36.9, 42.0, 3...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{summary}\NormalTok{(groundhog_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Year      Punxsutawney_Phil  February_Average_Temperature
+##  Min.   :1895   Length:122         Min.   :25.23               
+##  1st Qu.:1925   Class :character   1st Qu.:31.78               
+##  Median :1956   Mode  :character   Median :33.69               
+##  Mean   :1956                      Mean   :33.80               
+##  3rd Qu.:1986                      3rd Qu.:36.01               
+##  Max.   :2016                      Max.   :41.41               
+##  February_Average_Temperature_Northeast February_Average_Temperature_Midwest
+##  Min.   :10.40                          Min.   :20.30                       
+##  1st Qu.:20.02                          1st Qu.:29.62                       
+##  Median :22.95                          Median :33.20                       
+##  Mean   :22.69                          Mean   :32.69                       
+##  3rd Qu.:25.98                          3rd Qu.:36.30                       
+##  Max.   :31.60                          Max.   :41.40                       
+##  February_Average_Temperature_Pennsylvania March_Average_Temperature
+##  Min.   :15.20                             Min.   :35.44            
+##  1st Qu.:23.60                             1st Qu.:39.38            
+##  Median :26.95                             Median :41.81            
+##  Mean   :26.52                             Mean   :41.70            
+##  3rd Qu.:29.80                             3rd Qu.:43.56            
+##  Max.   :35.80                             Max.   :50.41            
+##  March_Average_Temperature_Northeast March_Average_Temperature_Midwest
+##  Min.   :24.20                       Min.   :28.50                    
+##  1st Qu.:29.70                       1st Qu.:39.08                    
+##  Median :32.55                       Median :42.85                    
+##  Mean   :32.37                       Mean   :42.57                    
+##  3rd Qu.:34.80                       3rd Qu.:45.60                    
+##  Max.   :43.40                       Max.   :56.30                    
+##  March_Average_Temperature_Pennsylvania
+##  Min.   :24.50                         
+##  1st Qu.:32.95                         
+##  Median :35.85                         
+##  Mean   :35.91                         
+##  3rd Qu.:38.55                         
+##  Max.   :47.70
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get variable names}
+\KeywordTok{colnames}\NormalTok{(groundhog_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Year"                                     
+##  [2] "Punxsutawney_Phil"                        
+##  [3] "February_Average_Temperature"             
+##  [4] "February_Average_Temperature_Northeast"   
+##  [5] "February_Average_Temperature_Midwest"     
+##  [6] "February_Average_Temperature_Pennsylvania"
+##  [7] "March_Average_Temperature"                
+##  [8] "March_Average_Temperature_Northeast"      
+##  [9] "March_Average_Temperature_Midwest"        
+## [10] "March_Average_Temperature_Pennsylvania"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{names}\NormalTok{(groundhog_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "Year"                                     
+##  [2] "Punxsutawney_Phil"                        
+##  [3] "February_Average_Temperature"             
+##  [4] "February_Average_Temperature_Northeast"   
+##  [5] "February_Average_Temperature_Midwest"     
+##  [6] "February_Average_Temperature_Pennsylvania"
+##  [7] "March_Average_Temperature"                
+##  [8] "March_Average_Temperature_Northeast"      
+##  [9] "March_Average_Temperature_Midwest"        
+## [10] "March_Average_Temperature_Pennsylvania"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# check the categorical variable}
+\KeywordTok{unique}\NormalTok{(groundhog_predictions}\OperatorTok{$}\NormalTok{Punxsutawney_Phil)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "No Record"      "Full Shadow"    "No Shadow"      "Partial Shadow"
+\end{verbatim}
+
+\textbf{CHALLENGE}
+
+Which variables are numeric? Which are categorical?
+
+\hypertarget{the-pipe}{%
+\section{The Pipe}\label{the-pipe}}
+
+We will be using the package \texttt{dplyr} (which is also part of \texttt{tidyverse}) to do an exploratory analysis of our data.
+
+The package \texttt{dplyr} most used function is \texttt{\%\textgreater{}\%} (called the pipe). The pipe allows you to ``pipe'' (or redirect) objects into functions. (hint: use ctrl+shift+m or cmd+shift+m as a shortcut for typing \texttt{\%\textgreater{}\%}).
+
+Here's how to pipe the \texttt{avocado\_data} object into the \texttt{summary()} function
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# get an overview of the data frame}
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{summary}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Year      Punxsutawney_Phil  February_Average_Temperature
+##  Min.   :1895   Length:122         Min.   :25.23               
+##  1st Qu.:1925   Class :character   1st Qu.:31.78               
+##  Median :1956   Mode  :character   Median :33.69               
+##  Mean   :1956                      Mean   :33.80               
+##  3rd Qu.:1986                      3rd Qu.:36.01               
+##  Max.   :2016                      Max.   :41.41               
+##  February_Average_Temperature_Northeast February_Average_Temperature_Midwest
+##  Min.   :10.40                          Min.   :20.30                       
+##  1st Qu.:20.02                          1st Qu.:29.62                       
+##  Median :22.95                          Median :33.20                       
+##  Mean   :22.69                          Mean   :32.69                       
+##  3rd Qu.:25.98                          3rd Qu.:36.30                       
+##  Max.   :31.60                          Max.   :41.40                       
+##  February_Average_Temperature_Pennsylvania March_Average_Temperature
+##  Min.   :15.20                             Min.   :35.44            
+##  1st Qu.:23.60                             1st Qu.:39.38            
+##  Median :26.95                             Median :41.81            
+##  Mean   :26.52                             Mean   :41.70            
+##  3rd Qu.:29.80                             3rd Qu.:43.56            
+##  Max.   :35.80                             Max.   :50.41            
+##  March_Average_Temperature_Northeast March_Average_Temperature_Midwest
+##  Min.   :24.20                       Min.   :28.50                    
+##  1st Qu.:29.70                       1st Qu.:39.08                    
+##  Median :32.55                       Median :42.85                    
+##  Mean   :32.37                       Mean   :42.57                    
+##  3rd Qu.:34.80                       3rd Qu.:45.60                    
+##  Max.   :43.40                       Max.   :56.30                    
+##  March_Average_Temperature_Pennsylvania
+##  Min.   :24.50                         
+##  1st Qu.:32.95                         
+##  Median :35.85                         
+##  Mean   :35.91                         
+##  3rd Qu.:38.55                         
+##  Max.   :47.70
+\end{verbatim}
+
+The pipe allows us to apply multiple functions to the same object.
+
+Let's start by selecting one column in our data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Punxsutawney_Phil)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 122 x 1
+##    Punxsutawney_Phil
+##    <chr>            
+##  1 No Record        
+##  2 No Record        
+##  3 No Record        
+##  4 Full Shadow      
+##  5 No Record        
+##  6 Full Shadow      
+##  7 Full Shadow      
+##  8 No Record        
+##  9 Full Shadow      
+## 10 Full Shadow      
+## # ... with 112 more rows
+\end{verbatim}
+
+Now let's add another pipe to get unique values in this column.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Punxsutawney_Phil) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{unique}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 1
+##   Punxsutawney_Phil
+##   <chr>            
+## 1 No Record        
+## 2 Full Shadow      
+## 3 No Shadow        
+## 4 Partial Shadow
+\end{verbatim}
+
+\hypertarget{counting-categorical-variables}{%
+\section{Counting Categorical Variables}\label{counting-categorical-variables}}
+
+One of the functions I most use when exploring my data is \texttt{count()}, which you can combine with \texttt{\%\textgreater{}\%}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{count}\NormalTok{(Punxsutawney_Phil)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   Punxsutawney_Phil     n
+##   <chr>             <int>
+## 1 Full Shadow         100
+## 2 No Record             6
+## 3 No Shadow            15
+## 4 Partial Shadow        1
+\end{verbatim}
+
+You can do the same adding \texttt{group\_by()} to your pipeline.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Punxsutawney_Phil) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+## # Groups:   Punxsutawney_Phil [4]
+##   Punxsutawney_Phil     n
+##   <chr>             <int>
+## 1 Full Shadow         100
+## 2 No Record             6
+## 3 No Shadow            15
+## 4 Partial Shadow        1
+\end{verbatim}
+
+And instead of \texttt{count()} we can use the \texttt{summarise()} and \texttt{n()} functions.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Punxsutawney_Phil) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{total =} \KeywordTok{n}\NormalTok{())}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 4 x 2
+##   Punxsutawney_Phil total
+##   <chr>             <int>
+## 1 Full Shadow         100
+## 2 No Record             6
+## 3 No Shadow            15
+## 4 Partial Shadow        1
+\end{verbatim}
+
+\textbf{CHALLENGE}
+
+This last way of counting categorical variables (with \texttt{summarise()} and \texttt{n()}) outputs a data frame that is slightly different from the previous too. What's the difference?
+
+\hypertarget{group_by-summarise}{%
+\section{group\_by + summarise}\label{group_by-summarise}}
+
+The combination of the \texttt{group\_by()} and \texttt{summarise()} functions is very powerful. In addition to using the \texttt{n()} function to count how many rows per each category in our categorical variable, we can use other functions with numeric (i.e., quantitative) variable such as \texttt{sum()} and \texttt{mean()}.
+
+\textbf{CHALLENGE}
+
+Take a moment to revisit the question we want to answer.
+
+\begin{itemize}
+\item
+  What do we want to find out?
+\item
+  How can we answer our question with this data?
+\item
+  What function (e.g., \texttt{sum()}, \texttt{max()}, \texttt{mean()}) do we use to answer our question? With what variables/columns?
+\end{itemize}
+
+Complete the code below.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(Punxsutawney_Phil) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{total =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{____ =} \KeywordTok{____}\NormalTok{(____))}
+\end{Highlighting}
+\end{Shaded}
+
+Example of output that you might want to get to answer our question:
+
+\begin{verbatim}
+## # A tibble: 4 x 4
+##   Punxsutawney_Phil total feb_mean_temp mar_mean_temp
+##   <chr>             <int>         <dbl>         <dbl>
+## 1 Full Shadow         100          33.7          41.7
+## 2 No Record             6          31.4          39.1
+## 3 No Shadow            15          35.6          43.0
+## 4 Partial Shadow        1          30.7          41.3
+\end{verbatim}
+
+\hypertarget{group_by-filter}{%
+\section{group\_by + filter}\label{group_by-filter}}
+
+The output above contains six \texttt{No\ Record} observations and only one \texttt{Partial\ Shadow}. We can keep just observations that are \texttt{Full\ Shadow} and \texttt{No\ Shadow} by using the filter() function:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(Punxsutawney_Phil }\OperatorTok{==}\StringTok{ "Full Shadow"} \OperatorTok{|}
+\StringTok{           }\NormalTok{Punxsutawney_Phil }\OperatorTok{==}\StringTok{ "No Shadow"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(Punxsutawney_Phil)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 2 x 2
+##   Punxsutawney_Phil     n
+##   <chr>             <int>
+## 1 Full Shadow         100
+## 2 No Shadow            15
+\end{verbatim}
+
+\textbf{CHALLENGE}
+
+Add a \texttt{filter()} to your solution from the previous challenge.
+
+Example of output that you might want to get:
+
+\begin{verbatim}
+## # A tibble: 2 x 4
+##   Punxsutawney_Phil total feb_mean_temp mar_mean_temp
+##   <chr>             <int>         <dbl>         <dbl>
+## 1 Full Shadow         100          33.7          41.7
+## 2 No Shadow            15          35.6          43.0
+\end{verbatim}
+
+\hypertarget{pivot-dataframe}{%
+\section{Pivot Dataframe}\label{pivot-dataframe}}
+
+Another useful function we will be using a lot during this course is \texttt{pivot\_longer()}, which pivots (or tilts) some columns in our dataframe so we have one column for each of our variables.
+
+Let's first select the temperatures for individual regions and create a new dataframe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selected_predictions <-}\StringTok{ }\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(Year, Punxsutawney_Phil, }
+\NormalTok{         February_Average_Temperature_Northeast, }
+\NormalTok{         February_Average_Temperature_Midwest,}
+\NormalTok{         February_Average_Temperature_Pennsylvania,}
+\NormalTok{         March_Average_Temperature_Northeast,}
+\NormalTok{         March_Average_Temperature_Midwest,}
+\NormalTok{         March_Average_Temperature_Pennsylvania)}
+
+\KeywordTok{colnames}\NormalTok{(selected_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Year"                                     
+## [2] "Punxsutawney_Phil"                        
+## [3] "February_Average_Temperature_Northeast"   
+## [4] "February_Average_Temperature_Midwest"     
+## [5] "February_Average_Temperature_Pennsylvania"
+## [6] "March_Average_Temperature_Northeast"      
+## [7] "March_Average_Temperature_Midwest"        
+## [8] "March_Average_Temperature_Pennsylvania"
+\end{verbatim}
+
+Another way of doing the same thing we just did is by saying the columns we want to eliminate from our selection, using the \texttt{-} (i.e, minus) sign.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selected_predictions <-}\StringTok{ }\NormalTok{groundhog_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{February_Average_Temperature, }\OperatorTok{-}\NormalTok{March_Average_Temperature)}
+
+\KeywordTok{colnames}\NormalTok{(selected_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Year"                                     
+## [2] "Punxsutawney_Phil"                        
+## [3] "February_Average_Temperature_Northeast"   
+## [4] "February_Average_Temperature_Midwest"     
+## [5] "February_Average_Temperature_Pennsylvania"
+## [6] "March_Average_Temperature_Northeast"      
+## [7] "March_Average_Temperature_Midwest"        
+## [8] "March_Average_Temperature_Pennsylvania"
+\end{verbatim}
+
+Now we are ready to \texttt{pivot\_longer()} our selected\_predictions dataframe. Let's examine our selected\_predictions dataframe. We want to move all numbers to our numeric variable called temperature, and we want the column names to be another variable called \texttt{month\_region} so that are data is tidy.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(selected_predictions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 8
+##    Year Punxsutawney_Ph~ February_Averag~ February_Averag~ February_Averag~
+##   <dbl> <chr>                       <dbl>            <dbl>            <dbl>
+## 1  1895 No Record                    15.6             21.9             17  
+## 2  1896 No Record                    22.2             33.5             26.6
+## 3  1897 No Record                    23.6             34.7             27.9
+## 4  1898 Full Shadow                  24.8             33.3             26.7
+## 5  1899 No Record                    18.1             22.2             20  
+## 6  1900 Full Shadow                  21.4             27.5             24.1
+## # ... with 3 more variables: March_Average_Temperature_Northeast <dbl>,
+## #   March_Average_Temperature_Midwest <dbl>,
+## #   March_Average_Temperature_Pennsylvania <dbl>
+\end{verbatim}
+
+Again we can list all the columns we want to pivot (i.e., all the columns that are numeric), but we have a smaller number of columns we don't want to pivot, so we use the \texttt{-} (minus) symbol with the columns we don't want to pivot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selected_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{Year, }\OperatorTok{-}\NormalTok{Punxsutawney_Phil))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 732 x 4
+##     Year Punxsutawney_Phil name                                      value
+##    <dbl> <chr>             <chr>                                     <dbl>
+##  1  1895 No Record         February_Average_Temperature_Northeast     15.6
+##  2  1895 No Record         February_Average_Temperature_Midwest       21.9
+##  3  1895 No Record         February_Average_Temperature_Pennsylvania  17  
+##  4  1895 No Record         March_Average_Temperature_Northeast        27.6
+##  5  1895 No Record         March_Average_Temperature_Midwest          40.2
+##  6  1895 No Record         March_Average_Temperature_Pennsylvania     31.3
+##  7  1896 No Record         February_Average_Temperature_Northeast     22.2
+##  8  1896 No Record         February_Average_Temperature_Midwest       33.5
+##  9  1896 No Record         February_Average_Temperature_Pennsylvania  26.6
+## 10  1896 No Record         March_Average_Temperature_Northeast        25.3
+## # ... with 722 more rows
+\end{verbatim}
+
+We can specify the column names so they are not just \texttt{name} and \texttt{value}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{selected_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{Year, }\OperatorTok{-}\NormalTok{Punxsutawney_Phil),}
+               \DataTypeTok{names_to =} \StringTok{"month_region"}\NormalTok{,}
+               \DataTypeTok{values_to =} \StringTok{"temperature"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 732 x 4
+##     Year Punxsutawney_Phil month_region                              temperature
+##    <dbl> <chr>             <chr>                                           <dbl>
+##  1  1895 No Record         February_Average_Temperature_Northeast           15.6
+##  2  1895 No Record         February_Average_Temperature_Midwest             21.9
+##  3  1895 No Record         February_Average_Temperature_Pennsylvania        17  
+##  4  1895 No Record         March_Average_Temperature_Northeast              27.6
+##  5  1895 No Record         March_Average_Temperature_Midwest                40.2
+##  6  1895 No Record         March_Average_Temperature_Pennsylvania           31.3
+##  7  1896 No Record         February_Average_Temperature_Northeast           22.2
+##  8  1896 No Record         February_Average_Temperature_Midwest             33.5
+##  9  1896 No Record         February_Average_Temperature_Pennsylvania        26.6
+## 10  1896 No Record         March_Average_Temperature_Northeast              25.3
+## # ... with 722 more rows
+\end{verbatim}
+
+Let's save the result above in a new dataframe.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predictions_tidy <-}\StringTok{ }\NormalTok{selected_predictions }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \KeywordTok{c}\NormalTok{(}\OperatorTok{-}\NormalTok{Year, }\OperatorTok{-}\NormalTok{Punxsutawney_Phil),}
+               \DataTypeTok{names_to =} \StringTok{"month_region"}\NormalTok{,}
+               \DataTypeTok{values_to =} \StringTok{"temperature"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{separating-one-categorical-column-into-two}{%
+\section{Separating one categorical column into two}\label{separating-one-categorical-column-into-two}}
+
+When we look at our \texttt{predictions\_tidy}, we see that the \texttt{month\_region} is actually holding two categorical variables. We can separate this column into its two variables with the \texttt{separate()} function. There are four parts to each of the values, the two middle parts are not useful so we name the first part \texttt{month} the last \texttt{region} and the other two not useful parts (the middle two) \texttt{trash1} and \texttt{trash2}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predictions_tidy_v2 <-}\StringTok{ }\NormalTok{predictions_tidy }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{separate}\NormalTok{(}\DataTypeTok{col =}\NormalTok{ month_region,}
+           \DataTypeTok{into =} \KeywordTok{c}\NormalTok{(}\StringTok{"month"}\NormalTok{, }\StringTok{"trash1"}\NormalTok{, }\StringTok{"trash2"}\NormalTok{, }\StringTok{"region"}\NormalTok{)) }
+
+\NormalTok{predictions_tidy_v2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 732 x 7
+##     Year Punxsutawney_Phil month    trash1  trash2      region       temperature
+##    <dbl> <chr>             <chr>    <chr>   <chr>       <chr>              <dbl>
+##  1  1895 No Record         February Average Temperature Northeast           15.6
+##  2  1895 No Record         February Average Temperature Midwest             21.9
+##  3  1895 No Record         February Average Temperature Pennsylvania        17  
+##  4  1895 No Record         March    Average Temperature Northeast           27.6
+##  5  1895 No Record         March    Average Temperature Midwest             40.2
+##  6  1895 No Record         March    Average Temperature Pennsylvania        31.3
+##  7  1896 No Record         February Average Temperature Northeast           22.2
+##  8  1896 No Record         February Average Temperature Midwest             33.5
+##  9  1896 No Record         February Average Temperature Pennsylvania        26.6
+## 10  1896 No Record         March    Average Temperature Northeast           25.3
+## # ... with 722 more rows
+\end{verbatim}
+
+We can delete the two not useful columns (i.e., \texttt{trash1} and \texttt{trash2}) by using the \texttt{select()} and \texttt{-} (minus) symbol.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predictions_tidy_v2 <-}\StringTok{ }\NormalTok{predictions_tidy_v2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\OperatorTok{-}\NormalTok{trash1, }\OperatorTok{-}\NormalTok{trash2)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{example-of-plotting}{%
+\section{Example of Plotting}\label{example-of-plotting}}
+
+Now that we have our tidy dataframe (i.e., \texttt{predictions\_tidy\_v2}), we can plot temperatures by year:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{predictions_tidy_v2 }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ Year, }
+             \DataTypeTok{y =}\NormalTok{ temperature)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{color =}\NormalTok{ month))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-48-1.pdf}
+
+\hypertarget{data-challenge-01}{%
+\section{DATA CHALLENGE 01}\label{data-challenge-01}}
+
+Accept \href{https://classroom.github.com/a/0CjzlvtW}{data challenge 01 assignment}
+
+\hypertarget{data-wrangling}{%
+\chapter{Data Wrangling}\label{data-wrangling}}
+
+\hypertarget{load-libraries}{%
+\section{Load libraries}\label{load-libraries}}
+
+Load tidyverse using \texttt{library()}
+
+Our data for this module is an excel spreadsheet, so we need to install a new package to handle this type of data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"readxl"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{read-your-data-in}{%
+\section{Read your data in}\label{read-your-data-in}}
+
+After \texttt{readxl} package installation is done:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  load \texttt{readxl} using \texttt{library()}
+\item
+  check your working environment with \texttt{getwd()} and \texttt{dir()}
+\item
+  load your data
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary <-}\StringTok{ }\KeywordTok{read_excel}\NormalTok{(}\StringTok{"data/nfl_salary.xlsx"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  inspect your data with \texttt{summary()}, \texttt{glimpse()} and \texttt{View()}
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(nfl_salary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 800
+## Columns: 11
+## $ year                <dbl> 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011,...
+## $ Cornerback          <dbl> 11265916, 11000000, 10000000, 10000000, 1000000...
+## $ `Defensive Lineman` <dbl> 17818000, 16200000, 12476000, 11904706, 1176278...
+## $ Linebacker          <dbl> 16420000, 15623000, 11825000, 10083333, 1002000...
+## $ `Offensive Lineman` <dbl> 15960000, 12800000, 11767500, 10358200, 1000000...
+## $ Quarterback         <dbl> 17228125, 16000000, 14400000, 14100000, 1351000...
+## $ `Running Back`      <dbl> 12955000, 10873833, 9479000, 7700000, 7500000, ...
+## $ Safety              <dbl> 8871428, 8787500, 8282500, 8000000, 7804333, 76...
+## $ `Special Teamer`    <dbl> 4300000, 3725000, 3556176, 3500000, 3250000, 32...
+## $ `Tight End`         <dbl> 8734375, 8591000, 8290000, 7723333, 6974666, 61...
+## $ `Wide Receiver`     <dbl> 16250000, 14175000, 11424000, 11415000, 1080000...
+\end{verbatim}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{4}
+\item
+  How many observations are there?
+\item
+  What variables are there in the data?
+\end{enumerate}
+
+\hypertarget{summarise-data}{%
+\section{Summarise data}\label{summarise-data}}
+
+QUESTIONS:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Have salaries for different NFL positions increased between 2011 and 2018?
+\item
+  What positions pay more and less?
+\end{enumerate}
+
+Let's summarise the \texttt{mean} salary for Quarterback \texttt{by\ year}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{quarterback_mean_salary =} \KeywordTok{mean}\NormalTok{(Quarterback, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 8 x 2
+##    year quarterback_mean_salary
+##   <dbl>                   <dbl>
+## 1  2011                3376113.
+## 2  2012                3496408.
+## 3  2013                3450185.
+## 4  2014                4234160.
+## 5  2015                4225789.
+## 6  2016                5499939.
+## 7  2017                5329727.
+## 8  2018                6593769.
+\end{verbatim}
+
+What would we do to add the mean salary for \texttt{Cornerback}?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{quarterback_mean_salary =} \KeywordTok{mean}\NormalTok{(Quarterback, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{),}
+            \DataTypeTok{cornerback_mean_salary =} \KeywordTok{mean}\NormalTok{(Cornerback, }\DataTypeTok{na.rm =} \OtherTok{TRUE}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 8 x 3
+##    year quarterback_mean_salary cornerback_mean_salary
+##   <dbl>                   <dbl>                  <dbl>
+## 1  2011                3376113.               3037766.
+## 2  2012                3496408.               3132916.
+## 3  2013                3450185.               2901798.
+## 4  2014                4234160.               3038278.
+## 5  2015                4225789.               3758543.
+## 6  2016                5499939.               4201470.
+## 7  2017                5329727.               4125692.
+## 8  2018                6593769.               4659704.
+\end{verbatim}
+
+Let's stop and think about how our data is organized. Is our data tidy?
+
+We have columns that mix two type of variables:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  categorical variable for position
+\item
+  numeric variable for salary
+\end{enumerate}
+
+\hypertarget{tidy-data}{%
+\section{Tidy data}\label{tidy-data}}
+
+In order to make our data easier to work with, we need to make sure each column in our data represents just one variable. To do that for our \texttt{nfl\_salary} dataframe, we need to pivot it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy <-}\StringTok{ }\NormalTok{nfl_salary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{pivot_longer}\NormalTok{(}\DataTypeTok{cols =} \OperatorTok{-}\NormalTok{year,}
+               \DataTypeTok{names_to =} \StringTok{"position"}\NormalTok{,}
+               \DataTypeTok{values_to =} \StringTok{"salary"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Always inspect your new data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(nfl_salary_tidy)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 8,000
+## Columns: 3
+## $ year     <dbl> 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011...
+## $ position <chr> "Cornerback", "Defensive Lineman", "Linebacker", "Offensiv...
+## $ salary   <dbl> 11265916, 17818000, 16420000, 15960000, 17228125, 12955000...
+\end{verbatim}
+
+How many positions are there in the data? We can now do a \texttt{count()} with our categorical variable for \texttt{position}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(position)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 10 x 2
+##    position              n
+##    <chr>             <int>
+##  1 Cornerback          800
+##  2 Defensive Lineman   800
+##  3 Linebacker          800
+##  4 Offensive Lineman   800
+##  5 Quarterback         800
+##  6 Running Back        800
+##  7 Safety              800
+##  8 Special Teamer      800
+##  9 Tight End           800
+## 10 Wide Receiver       800
+\end{verbatim}
+
+We can add \texttt{year} to our \texttt{group\_by} to check how many observations per \texttt{position} across \texttt{year}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(position, year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 80 x 3
+##    position           year     n
+##    <chr>             <dbl> <int>
+##  1 Cornerback         2011   100
+##  2 Cornerback         2012   100
+##  3 Cornerback         2013   100
+##  4 Cornerback         2014   100
+##  5 Cornerback         2015   100
+##  6 Cornerback         2016   100
+##  7 Cornerback         2017   100
+##  8 Cornerback         2018   100
+##  9 Defensive Lineman  2011   100
+## 10 Defensive Lineman  2012   100
+## # ... with 70 more rows
+\end{verbatim}
+
+Let's check for NAs (i.e., missing data), we can do that by using \texttt{is.na()} and \texttt{filter()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\KeywordTok{is.na}\NormalTok{(salary)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(position, year)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9 x 3
+##   position        year     n
+##   <chr>          <dbl> <int>
+## 1 Quarterback     2011     3
+## 2 Quarterback     2012    12
+## 3 Quarterback     2013     7
+## 4 Quarterback     2014    11
+## 5 Quarterback     2015     3
+## 6 Quarterback     2016     5
+## 7 Quarterback     2017     3
+## 8 Quarterback     2018    11
+## 9 Special Teamer  2011     1
+\end{verbatim}
+
+We can remove these rows from our data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy_clean <-}\StringTok{ }\NormalTok{nfl_salary_tidy }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}\OperatorTok{!}\KeywordTok{is.na}\NormalTok{(salary))}
+\end{Highlighting}
+\end{Shaded}
+
+Inspect your new data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(nfl_salary_tidy_clean)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 7,944
+## Columns: 3
+## $ year     <dbl> 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011, 2011...
+## $ position <chr> "Cornerback", "Defensive Lineman", "Linebacker", "Offensiv...
+## $ salary   <dbl> 11265916, 17818000, 16420000, 15960000, 17228125, 12955000...
+\end{verbatim}
+
+Now we can do our salary \texttt{summarise()} in a cleaner way. We are going to do a \texttt{mean()} of our numeric variable \texttt{salary} by \texttt{year} AND \texttt{position}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy_clean }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, position) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_salary =} \KeywordTok{mean}\NormalTok{(salary))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 80 x 3
+## # Groups:   year [8]
+##     year position          mean_salary
+##    <dbl> <chr>                   <dbl>
+##  1  2011 Cornerback           3037766.
+##  2  2011 Defensive Lineman    4306995.
+##  3  2011 Linebacker           4016045.
+##  4  2011 Offensive Lineman    4662748.
+##  5  2011 Quarterback          3376113.
+##  6  2011 Running Back         1976341.
+##  7  2011 Safety               2241891.
+##  8  2011 Special Teamer       1244069.
+##  9  2011 Tight End            1608100.
+## 10  2011 Wide Receiver        2996590.
+## # ... with 70 more rows
+\end{verbatim}
+
+We can do the group\_by both ways (first \texttt{year} and then \texttt{position} or vice-versa).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy_clean }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(position, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_salary =} \KeywordTok{mean}\NormalTok{(salary)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(mean_salary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'position' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 80 x 3
+## # Groups:   position [10]
+##    position        year mean_salary
+##    <chr>          <dbl>       <dbl>
+##  1 Special Teamer  2013    1235892.
+##  2 Special Teamer  2011    1244069.
+##  3 Special Teamer  2014    1264493.
+##  4 Special Teamer  2012    1313043.
+##  5 Special Teamer  2015    1348637.
+##  6 Special Teamer  2016    1394443.
+##  7 Special Teamer  2017    1459552.
+##  8 Special Teamer  2018    1571447.
+##  9 Tight End       2011    1608100.
+## 10 Tight End       2012    1664520.
+## # ... with 70 more rows
+\end{verbatim}
+
+Add a \texttt{-} (minus) sign to the argument in \texttt{arrange()} to arrange your results by decreasing order of mean\_salary.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy_clean }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(position, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_salary =} \KeywordTok{mean}\NormalTok{(salary)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{-}\NormalTok{mean_salary)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'position' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 80 x 3
+## # Groups:   position [10]
+##    position           year mean_salary
+##    <chr>             <dbl>       <dbl>
+##  1 Offensive Lineman  2018    7522647.
+##  2 Defensive Lineman  2018    7202360.
+##  3 Quarterback        2018    6593769.
+##  4 Offensive Lineman  2017    6370947.
+##  5 Defensive Lineman  2017    6202601.
+##  6 Wide Receiver      2018    5627721.
+##  7 Quarterback        2016    5499939.
+##  8 Offensive Lineman  2016    5410392.
+##  9 Quarterback        2017    5329727.
+## 10 Linebacker         2018    5293675.
+## # ... with 70 more rows
+\end{verbatim}
+
+We can also add \texttt{arrange()} to our code block.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy_clean }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(position, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_salary =} \KeywordTok{mean}\NormalTok{(salary)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'position' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 80 x 3
+## # Groups:   position [10]
+##    position           year mean_salary
+##    <chr>             <dbl>       <dbl>
+##  1 Cornerback         2011    3037766.
+##  2 Cornerback         2012    3132916.
+##  3 Cornerback         2013    2901798.
+##  4 Cornerback         2014    3038278.
+##  5 Cornerback         2015    3758543.
+##  6 Cornerback         2016    4201470.
+##  7 Cornerback         2017    4125692.
+##  8 Cornerback         2018    4659704.
+##  9 Defensive Lineman  2011    4306995.
+## 10 Defensive Lineman  2012    4693730.
+## # ... with 70 more rows
+\end{verbatim}
+
+\hypertarget{viz-demo}{%
+\subsection{Viz Demo}\label{viz-demo}}
+
+We can also visualize our data using \texttt{ggplot()}.
+
+First we save our summary results in a new dataframe called \texttt{nfl\_salary\_summary}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_summary <-}\StringTok{ }\NormalTok{nfl_salary_tidy_clean }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(position, year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_salary =} \KeywordTok{mean}\NormalTok{(salary)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'position' (override with `.groups` argument)
+\end{verbatim}
+
+Then we plot it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_summary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ mean_salary,}
+             \DataTypeTok{color =}\NormalTok{ position,}
+             \DataTypeTok{group =}\NormalTok{ position)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-67-1.pdf}
+
+\hypertarget{transform-data}{%
+\section{Transform Data}\label{transform-data}}
+
+Now that our data is tidy, we can transform our data by adding new variables/columns to it.
+
+It seems some salaries for certain positions show a higher increase across the years than the salaries for other positions. In other words, the proportion of what position makes in relation to total money spent in salaries for each each.
+
+We can check this is true by creating a \texttt{sum()} of salaries for each year and a count of players using \texttt{n()}:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy_clean }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, position) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{player_count =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{total_per_position =} \KeywordTok{sum}\NormalTok{(salary)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 80 x 4
+## # Groups:   year [8]
+##     year position          player_count total_per_position
+##    <dbl> <chr>                    <int>              <dbl>
+##  1  2011 Cornerback                 100          303776605
+##  2  2011 Defensive Lineman          100          430699528
+##  3  2011 Linebacker                 100          401604548
+##  4  2011 Offensive Lineman          100          466274753
+##  5  2011 Quarterback                 97          327482939
+##  6  2011 Running Back               100          197634074
+##  7  2011 Safety                     100          224189136
+##  8  2011 Special Teamer              99          123162874
+##  9  2011 Tight End                  100          160810030
+## 10  2011 Wide Receiver              100          299659044
+## # ... with 70 more rows
+\end{verbatim}
+
+We can then add \texttt{mutate()} to our code block to calculate \texttt{sum()} of all salaries per year.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy_clean }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, position) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{player_count =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{total_per_position =} \KeywordTok{sum}\NormalTok{(salary)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_per_year =} \KeywordTok{sum}\NormalTok{(total_per_position)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 80 x 5
+## # Groups:   year [8]
+##     year position          player_count total_per_position total_per_year
+##    <dbl> <chr>                    <int>              <dbl>          <dbl>
+##  1  2011 Cornerback                 100          303776605     2935293531
+##  2  2011 Defensive Lineman          100          430699528     2935293531
+##  3  2011 Linebacker                 100          401604548     2935293531
+##  4  2011 Offensive Lineman          100          466274753     2935293531
+##  5  2011 Quarterback                 97          327482939     2935293531
+##  6  2011 Running Back               100          197634074     2935293531
+##  7  2011 Safety                     100          224189136     2935293531
+##  8  2011 Special Teamer              99          123162874     2935293531
+##  9  2011 Tight End                  100          160810030     2935293531
+## 10  2011 Wide Receiver              100          299659044     2935293531
+## # ... with 70 more rows
+\end{verbatim}
+
+Now we can calculate the percentage cost of each position by the total salaries for each year, we can do that all in the same \texttt{mutate()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy_clean }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, position) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{player_count =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{total_per_position =} \KeywordTok{sum}\NormalTok{(salary)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_per_year =} \KeywordTok{sum}\NormalTok{(total_per_position),}
+         \DataTypeTok{percentage_cost =}\NormalTok{ total_per_position}\OperatorTok{/}\NormalTok{total_per_year) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 80 x 6
+## # Groups:   year [8]
+##     year position   player_count total_per_posit~ total_per_year percentage_cost
+##    <dbl> <chr>             <int>            <dbl>          <dbl>           <dbl>
+##  1  2011 Cornerback          100        303776605     2935293531          0.103 
+##  2  2011 Defensive~          100        430699528     2935293531          0.147 
+##  3  2011 Linebacker          100        401604548     2935293531          0.137 
+##  4  2011 Offensive~          100        466274753     2935293531          0.159 
+##  5  2011 Quarterba~           97        327482939     2935293531          0.112 
+##  6  2011 Running B~          100        197634074     2935293531          0.0673
+##  7  2011 Safety              100        224189136     2935293531          0.0764
+##  8  2011 Special T~           99        123162874     2935293531          0.0420
+##  9  2011 Tight End           100        160810030     2935293531          0.0548
+## 10  2011 Wide Rece~          100        299659044     2935293531          0.102 
+## # ... with 70 more rows
+\end{verbatim}
+
+Add \texttt{arrange()} to see higher percentages at the top.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_tidy_clean }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, position) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{player_count =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{total_per_position =} \KeywordTok{sum}\NormalTok{(salary)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_per_year =} \KeywordTok{sum}\NormalTok{(total_per_position),}
+         \DataTypeTok{percentage_cost =}\NormalTok{ total_per_position}\OperatorTok{/}\NormalTok{total_per_year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{-}\NormalTok{percentage_cost)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 80 x 6
+## # Groups:   year [8]
+##     year position   player_count total_per_posit~ total_per_year percentage_cost
+##    <dbl> <chr>             <int>            <dbl>          <dbl>           <dbl>
+##  1  2018 Offensive~          100        752264724     4557047519           0.165
+##  2  2014 Defensive~          100        503535499     3154183189           0.160
+##  3  2011 Offensive~          100        466274753     2935293531           0.159
+##  4  2017 Offensive~          100        637094749     4027571325           0.158
+##  5  2018 Defensive~          100        720236012     4557047519           0.158
+##  6  2013 Defensive~          100        454787761     2920039442           0.156
+##  7  2014 Offensive~          100        489885308     3154183189           0.155
+##  8  2013 Offensive~          100        453489965     2920039442           0.155
+##  9  2012 Defensive~          100        469373045     3032589536           0.155
+## 10  2017 Defensive~          100        620260110     4027571325           0.154
+## # ... with 70 more rows
+\end{verbatim}
+
+\hypertarget{viz-demo-1}{%
+\subsection{Viz Demo}\label{viz-demo-1}}
+
+We can also visualize our data using \texttt{ggplot()}.
+
+First we save our summary results in a new dataframe called \texttt{nfl\_salary\_summary}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_summary <-}\StringTok{ }\NormalTok{nfl_salary_tidy_clean }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(year, position) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{player_count =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{total_per_position =} \KeywordTok{sum}\NormalTok{(salary)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{total_per_year =} \KeywordTok{sum}\NormalTok{(total_per_position),}
+         \DataTypeTok{percentage_cost =}\NormalTok{ total_per_position}\OperatorTok{/}\NormalTok{total_per_year) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{-}\NormalTok{percentage_cost)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+\end{verbatim}
+
+Then we plot it.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{nfl_salary_summary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ year, }\DataTypeTok{y =}\NormalTok{ percentage_cost,}
+             \DataTypeTok{color =}\NormalTok{ position,}
+             \DataTypeTok{group =}\NormalTok{ position)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-73-1.pdf}
+
+\hypertarget{data-challenge-02}{%
+\section{DATA CHALLENGE 02}\label{data-challenge-02}}
+
+Accept \href{https://classroom.github.com/a/DhH5ciNQ}{data challenge 02 assignment}
+
+\hypertarget{data-visualization}{%
+\chapter{Data Visualization}\label{data-visualization}}
+
+\hypertarget{the-layered-grammar-of-graphics}{%
+\section{The layered grammar of graphics}\label{the-layered-grammar-of-graphics}}
+
+The package we will be using for plotting in this class is called \texttt{ggplot2} which is part of \texttt{tidyverse}, and it uses as a principle the idea of layered grammar of graphics. That means you can add code to add or change your plot in layers, by using the \texttt{+} symbol.
+
+Let's start with some data, so we can created different plots using different layers.
+
+\hypertarget{load-data}{%
+\section{Load data}\label{load-data}}
+
+Get data directly from \href{https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-01-21/spotify_songs.csv}{tidy tuesday github}.
+
+\begin{verbatim}
+## Rows: 32,833
+## Columns: 23
+## $ track_id                 <chr> "6f807x0ima9a1j3VPbc7VN", "0r7CVbZTWZgbTCY...
+## $ track_name               <chr> "I Don't Care (with Justin Bieber) - Loud ...
+## $ track_artist             <chr> "Ed Sheeran", "Maroon 5", "Zara Larsson", ...
+## $ track_popularity         <dbl> 66, 67, 70, 60, 69, 67, 62, 69, 68, 67, 58...
+## $ track_album_id           <chr> "2oCs0DGTsRO98Gh5ZSl2Cx", "63rPSO264uRjW1X...
+## $ track_album_name         <chr> "I Don't Care (with Justin Bieber) [Loud L...
+## $ track_album_release_date <chr> "2019-06-14", "2019-12-13", "2019-07-05", ...
+## $ playlist_name            <chr> "Pop Remix", "Pop Remix", "Pop Remix", "Po...
+## $ playlist_id              <chr> "37i9dQZF1DXcZDD7cfEKhW", "37i9dQZF1DXcZDD...
+## $ playlist_genre           <chr> "pop", "pop", "pop", "pop", "pop", "pop", ...
+## $ playlist_subgenre        <chr> "dance pop", "dance pop", "dance pop", "da...
+## $ danceability             <dbl> 0.748, 0.726, 0.675, 0.718, 0.650, 0.675, ...
+## $ energy                   <dbl> 0.916, 0.815, 0.931, 0.930, 0.833, 0.919, ...
+## $ key                      <dbl> 6, 11, 1, 7, 1, 8, 5, 4, 8, 2, 6, 8, 1, 5,...
+## $ loudness                 <dbl> -2.634, -4.969, -3.432, -3.778, -4.672, -5...
+## $ mode                     <dbl> 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, ...
+## $ speechiness              <dbl> 0.0583, 0.0373, 0.0742, 0.1020, 0.0359, 0....
+## $ acousticness             <dbl> 0.10200, 0.07240, 0.07940, 0.02870, 0.0803...
+## $ instrumentalness         <dbl> 0.00e+00, 4.21e-03, 2.33e-05, 9.43e-06, 0....
+## $ liveness                 <dbl> 0.0653, 0.3570, 0.1100, 0.2040, 0.0833, 0....
+## $ valence                  <dbl> 0.518, 0.693, 0.613, 0.277, 0.725, 0.585, ...
+## $ tempo                    <dbl> 122.036, 99.972, 124.008, 121.956, 123.976...
+## $ duration_ms              <dbl> 194754, 162600, 176616, 169093, 189052, 16...
+\end{verbatim}
+
+EXERCISE
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  What variables do we have in this data?
+\item
+  What questions can you ask about this data?
+\end{enumerate}
+
+\hypertarget{what-to-plot}{%
+\section{What to plot?}\label{what-to-plot}}
+
+The first thing you need to do is define what you want to plot. If you've never plotted data before, you might not be familiar with the different types of charts you can create.
+
+Here's a few (can you tell what type of plot these are?):
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-75-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  What is the plot above called?
+\item
+  What variable(s) are we plotting?
+\item
+  What can we conclude based on this plot?
+\end{enumerate}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-76-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  What is the plot above called?
+\item
+  What variable(s) are we plotting?
+\item
+  What can we conclude based on this plot?
+\end{enumerate}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-77-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  What is the plot above called?
+\item
+  What variable(s) are we plotting?
+\item
+  What can we conclude based on this plot?
+\end{enumerate}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-78-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  What is the plot above called?
+\item
+  What variable(s) are we plotting?
+\item
+  What can we conclude based on this plot?
+\end{enumerate}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-79-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  What is the plot above called?
+\item
+  What variable(s) are we plotting?
+\item
+  What can we conclude based on this plot?
+\end{enumerate}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-80-1.pdf}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  What is the plot above called?
+\item
+  What variable(s) are we plotting?
+\item
+  What can we conclude based on this plot?
+\end{enumerate}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-81-1.pdf}
+
+\hypertarget{aesthetic-mappings}{%
+\section{Aesthetic Mappings}\label{aesthetic-mappings}}
+
+You map your aesthetics using the \texttt{aes()} function, which can be place inside of the \texttt{ggplot()} function.
+
+\hypertarget{one-continuous-variable}{%
+\subsection{One continuous variable}\label{one-continuous-variable}}
+
+You need to map at least one variable when you are plotting. Check the help for \texttt{geom\_histogram} to see what kind of variable you can plot in a histogram.
+
+The variable \texttt{track\_popularity} is continuous.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ track_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-82-1.pdf}
+
+The variable \texttt{release\_year} is also continuous.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_histogram}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-83-1.pdf}
+
+\hypertarget{two-numeric-variables}{%
+\subsection{Two numeric variables}\label{two-numeric-variables}}
+
+Two-dimensional plots have two axis, \texttt{x} (horizontal) and \texttt{y} (vertical).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ track_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-84-1.pdf}
+
+\hypertarget{geom_-i.e.-geometric-objects}{%
+\section{geom\_ (i.e., Geometric Objects)}\label{geom_-i.e.-geometric-objects}}
+
+Functions such as \texttt{geom\_histogram()}, \texttt{geom\_point()}, and \texttt{geom\_col()} are geometric objects and determine what type of plot R draws.
+
+You can also map other elements of your chart in addition to position (i.e., \texttt{x} and \texttt{y}), such as color, size, and shape.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ track_popularity,}
+             \DataTypeTok{color =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-85-1.pdf}
+
+EXERCISE
+
+Check the help page for \texttt{geom\_point} (enter \texttt{?geom\_point} in your console).
+Change \texttt{geom\_point()} to the suggested variations in its help page.
+
+\hypertarget{more-mappings-with-aes}{%
+\section{More mappings with aes()}\label{more-mappings-with-aes}}
+
+In addition to \texttt{color} you can also add \texttt{size} and \texttt{shape} to \texttt{aes()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ track_popularity,}
+             \DataTypeTok{color =}\NormalTok{ playlist_subgenre,}
+             \DataTypeTok{shape =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-86-1.pdf}
+
+The plot above is too messy, there's too much information. You often need to transform your data before plotting it.
+
+EXERCISE
+
+Summarize mean \texttt{track\_popularity} by \texttt{release\_year}, \texttt{playlist\_genre} and \texttt{playlist\_subgenre}.
+
+Your summarized data frame should look something like this:
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'release_year', 'playlist_genre' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 883 x 4
+## # Groups:   release_year, playlist_genre [302]
+##    release_year playlist_genre playlist_subgenre  mean_popularity
+##           <dbl> <chr>          <chr>                        <dbl>
+##  1         1957 r&b            urban contemporary              59
+##  2         1957 rock           classic rock                     1
+##  3         1958 rock           classic rock                    73
+##  4         1960 r&b            neo soul                        13
+##  5         1960 r&b            urban contemporary              19
+##  6         1961 r&b            urban contemporary              47
+##  7         1962 r&b            urban contemporary              64
+##  8         1962 rock           classic rock                    64
+##  9         1963 r&b            neo soul                        73
+## 10         1963 rock           album rock                      59
+## # ... with 873 more rows
+\end{verbatim}
+
+Now you can plot your summarized data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_summary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ mean_popularity,}
+             \DataTypeTok{color =}\NormalTok{ playlist_subgenre,}
+             \DataTypeTok{shape =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-88-1.pdf}
+
+Still super messy. Shape is not really a good way to do this.
+
+Let's try a bar plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_summary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ mean_popularity,}
+             \DataTypeTok{fill =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{) }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-89-1.pdf}
+
+Not great either, too much going on.
+
+\hypertarget{facets}{%
+\section{Facets}\label{facets}}
+
+You can use the \texttt{facet\_wrap()} function to split your plotting into several smaller plots, usually by a categorical variable.
+
+Let's try the scatterplot first.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_summary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ mean_popularity,}
+             \DataTypeTok{color =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{playlist_subgenre)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-90-1.pdf}
+
+What about a bar plot?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_summary }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ release_year, }
+             \DataTypeTok{y =}\NormalTok{ mean_popularity,}
+             \DataTypeTok{fill =}\NormalTok{ playlist_genre)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{playlist_subgenre)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+\hypertarget{more-summarize}{%
+\section{More Summarize}\label{more-summarize}}
+
+We can also plot categorical variables on the \texttt{x} axis.
+
+EXERCISE
+
+Summarize mean \texttt{track\_popularity} by \texttt{playlist\_genre}.
+
+Your summarized data frame should look something like this:
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 6 x 2
+##   playlist_genre mean_popularity
+##   <chr>                    <dbl>
+## 1 edm                       34.8
+## 2 latin                     47.0
+## 3 pop                       47.7
+## 4 r&b                       41.2
+## 5 rap                       43.2
+## 6 rock                      41.7
+\end{verbatim}
+
+Now plot a bar chart mapping \texttt{x} to \texttt{playlist\_genre}, \texttt{y} to \texttt{mean\_popularity}.
+
+Your plot should look something like this:
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+\hypertarget{data-challenge-03}{%
+\section{DATA CHALLENGE 03}\label{data-challenge-03}}
+
+Accept \href{https://classroom.github.com/a/ndGrSqaq}{data challenge 03 assignment}
+
+\hypertarget{data-visualization-ii}{%
+\chapter{Data Visualization II}\label{data-visualization-ii}}
+
+We will continue working with the spotify data set we worked with last week. The objectives of this module are as follows: by the end of this module you will be able to \ldots{}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Explore a large data frame to decide what part of the data you want to focus on
+\item
+  Create subsets of your original data frame
+\item
+  Create summarizations of your data based on different variables
+\item
+  Plot these summarizations
+\end{enumerate}
+
+\begin{verbatim}
+## Rows: 32,833
+## Columns: 25
+## $ track_id                 <chr> "6f807x0ima9a1j3VPbc7VN", "0r7CVbZTWZgbTCY...
+## $ track_name               <chr> "I Don't Care (with Justin Bieber) - Loud ...
+## $ track_artist             <chr> "Ed Sheeran", "Maroon 5", "Zara Larsson", ...
+## $ track_popularity         <dbl> 66, 67, 70, 60, 69, 67, 62, 69, 68, 67, 58...
+## $ track_album_id           <chr> "2oCs0DGTsRO98Gh5ZSl2Cx", "63rPSO264uRjW1X...
+## $ track_album_name         <chr> "I Don't Care (with Justin Bieber) [Loud L...
+## $ track_album_release_date <chr> "2019-06-14", "2019-12-13", "2019-07-05", ...
+## $ playlist_name            <chr> "Pop Remix", "Pop Remix", "Pop Remix", "Po...
+## $ playlist_id              <chr> "37i9dQZF1DXcZDD7cfEKhW", "37i9dQZF1DXcZDD...
+## $ playlist_genre           <chr> "pop", "pop", "pop", "pop", "pop", "pop", ...
+## $ playlist_subgenre        <chr> "dance pop", "dance pop", "dance pop", "da...
+## $ danceability             <dbl> 0.748, 0.726, 0.675, 0.718, 0.650, 0.675, ...
+## $ energy                   <dbl> 0.916, 0.815, 0.931, 0.930, 0.833, 0.919, ...
+## $ key                      <dbl> 6, 11, 1, 7, 1, 8, 5, 4, 8, 2, 6, 8, 1, 5,...
+## $ loudness                 <dbl> -2.634, -4.969, -3.432, -3.778, -4.672, -5...
+## $ mode                     <dbl> 1, 1, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, ...
+## $ speechiness              <dbl> 0.0583, 0.0373, 0.0742, 0.1020, 0.0359, 0....
+## $ acousticness             <dbl> 0.10200, 0.07240, 0.07940, 0.02870, 0.0803...
+## $ instrumentalness         <dbl> 0.00e+00, 4.21e-03, 2.33e-05, 9.43e-06, 0....
+## $ liveness                 <dbl> 0.0653, 0.3570, 0.1100, 0.2040, 0.0833, 0....
+## $ valence                  <dbl> 0.518, 0.693, 0.613, 0.277, 0.725, 0.585, ...
+## $ tempo                    <dbl> 122.036, 99.972, 124.008, 121.956, 123.976...
+## $ duration_ms              <dbl> 194754, 162600, 176616, 169093, 189052, 16...
+## $ release_year             <dbl> 2019, 2019, 2019, 2019, 2019, 2019, 2019, ...
+## $ decade                   <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, ...
+\end{verbatim}
+
+\hypertarget{data-viz-by-artist}{%
+\section{Data Viz by Artist}\label{data-viz-by-artist}}
+
+QUESTION: Which artist (from just a few) is most popular? Does that change across different decades?
+
+\hypertarget{explore-artist-info}{%
+\subsection{Explore Artist Info}\label{explore-artist-info}}
+
+Let's check who the artists are in this data set. Check what the unique values are for the \texttt{track\_artist} variable using \texttt{select()} and \texttt{unique()}.
+
+\begin{verbatim}
+## # A tibble: 10,693 x 1
+##    track_artist    
+##    <chr>           
+##  1 Ed Sheeran      
+##  2 Maroon 5        
+##  3 Zara Larsson    
+##  4 The Chainsmokers
+##  5 Lewis Capaldi   
+##  6 Katy Perry      
+##  7 Sam Feldt       
+##  8 Avicii          
+##  9 Shawn Mendes    
+## 10 Ellie Goulding  
+## # ... with 10,683 more rows
+\end{verbatim}
+
+Who's the artist with the most songs? Use \texttt{count()} and \texttt{arrange()} to find out.
+
+\begin{verbatim}
+## # A tibble: 10,693 x 2
+##    track_artist                  n
+##    <chr>                     <int>
+##  1 Martin Garrix               161
+##  2 Queen                       136
+##  3 The Chainsmokers            123
+##  4 David Guetta                110
+##  5 Don Omar                    102
+##  6 Drake                       100
+##  7 Dimitri Vegas & Like Mike    93
+##  8 Calvin Harris                91
+##  9 Hardwell                     84
+## 10 Kygo                         83
+## # ... with 10,683 more rows
+\end{verbatim}
+
+What genre are these artists classified as?
+
+\begin{verbatim}
+## # A tibble: 13,175 x 3
+##    track_artist              playlist_genre     n
+##    <chr>                     <chr>          <int>
+##  1 Queen                     rock             134
+##  2 Martin Garrix             edm              125
+##  3 Don Omar                  latin            100
+##  4 Dimitri Vegas & Like Mike edm               79
+##  5 Guns N' Roses             rock              76
+##  6 Hardwell                  edm               76
+##  7 Logic                     rap               65
+##  8 Daddy Yankee              latin             61
+##  9 David Guetta              edm               60
+## 10 Wisin & Yandel            latin             60
+## # ... with 13,165 more rows
+\end{verbatim}
+
+What can we conclude about artist tracks and \texttt{playlist\_genre}?
+
+Let's look at specific artist of our choosing. I'm looking at \texttt{The\ Cranberries}, \texttt{The\ Beatles} and \texttt{Queen}.
+What genres are their songs classfied as?
+
+\begin{verbatim}
+## # A tibble: 4 x 3
+##   track_artist    playlist_genre     n
+##   <chr>           <chr>          <int>
+## 1 Queen           pop                2
+## 2 Queen           rock             134
+## 3 The Beatles     rock              19
+## 4 The Cranberries rock              45
+\end{verbatim}
+
+What are the two pop songs by Queen? Use \texttt{filter()} and \texttt{select()} to find out.
+
+\begin{verbatim}
+## # A tibble: 2 x 1
+##   track_name                  
+##   <chr>                       
+## 1 Don't Stop Me Now - 2011 Mix
+## 2 Radio Ga Ga
+\end{verbatim}
+
+\hypertarget{create-new-data-frame-with-selected-artists}{%
+\subsection{Create new data frame with selected artists}\label{create-new-data-frame-with-selected-artists}}
+
+Create another data frame that is a subset of the original \texttt{spotify\_songs} data frame to start visualizing info about the artists you chose.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# filter original data frame to create new data frame with selected artists}
+\NormalTok{spotify_tc_tv_q <-}\StringTok{ }\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(track_artist }\OperatorTok{%in%}\StringTok{ }\KeywordTok{c}\NormalTok{(}\StringTok{'The Cranberries'}\NormalTok{, }\StringTok{'The Beatles'}\NormalTok{, }\StringTok{'Queen'}\NormalTok{))}
+
+\CommentTok{# inspect new data frame}
+\KeywordTok{glimpse}\NormalTok{(spotify_tc_tv_q)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 200
+## Columns: 25
+## $ track_id                 <chr> "7hQJA50XrCWABAu5v6QZ4i", "1lpFXKKckqVkyAN...
+## $ track_name               <chr> "Don't Stop Me Now - 2011 Mix", "Radio Ga ...
+## $ track_artist             <chr> "Queen", "Queen", "The Beatles", "The Cran...
+## $ track_popularity         <dbl> 75, 3, 1, 43, 42, 44, 40, 40, 38, 37, 37, ...
+## $ track_album_id           <chr> "21HMAUrbbYSj9NiPPlGumy", "39MMaY4ampwjkSO...
+## $ track_album_name         <chr> "Jazz (Deluxe Remastered Version)", "The W...
+## $ track_album_release_date <chr> "1978-11-10", "1984-02-27", "1996-03-18", ...
+## $ playlist_name            <chr> "Dr. Q's Prescription Playlist\U0001f48a",...
+## $ playlist_id              <chr> "6jAPdgY9XmxC9cgkXAVmVv", "65HtIbyFkaQPflC...
+## $ playlist_genre           <chr> "pop", "pop", "rock", "rock", "rock", "roc...
+## $ playlist_subgenre        <chr> "post-teen pop", "electropop", "album rock...
+## $ danceability             <dbl> 0.563, 0.762, 0.388, 0.529, 0.473, 0.437, ...
+## $ energy                   <dbl> 0.865, 0.414, 0.677, 0.845, 0.598, 0.785, ...
+## $ key                      <dbl> 5, 5, 8, 0, 6, 4, 0, 9, 7, 9, 7, 0, 0, 9, ...
+## $ loudness                 <dbl> -5.277, -12.036, -7.262, -5.432, -5.101, -...
+## $ mode                     <dbl> 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, ...
+## $ speechiness              <dbl> 0.1600, 0.0379, 0.0301, 0.0294, 0.0268, 0....
+## $ acousticness             <dbl> 0.047200, 0.173000, 0.052700, 0.000199, 0....
+## $ instrumentalness         <dbl> 1.91e-04, 1.11e-04, 1.07e-02, 1.74e-01, 7....
+## $ liveness                 <dbl> 0.7700, 0.0942, 0.2210, 0.2270, 0.1250, 0....
+## $ valence                  <dbl> 0.6010, 0.7310, 0.4240, 0.5710, 0.0565, 0....
+## $ tempo                    <dbl> 156.271, 112.398, 175.818, 109.093, 93.022...
+## $ duration_ms              <dbl> 209413, 349133, 234053, 256387, 239947, 25...
+## $ release_year             <dbl> 1978, 1984, 1996, 2019, 2019, 2019, 2019, ...
+## $ decade                   <dbl> 1970, 1980, 1990, 2010, 2010, 2010, 2010, ...
+\end{verbatim}
+
+\hypertarget{plotting}{%
+\subsection{Plotting}\label{plotting}}
+
+Plot song count (x) by \texttt{decade} (y) the songs were release across \texttt{track\_artist} (color). You need a \texttt{count} of \texttt{track\_artist} and \texttt{decade} for this plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ n, }\DataTypeTok{color =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-101-1.pdf}
+
+To make tendencies clearer, we can add \texttt{geom\_line} to our plot. We need a new aesthetics for the lines to connect the right points, called \texttt{group}. In this case, \texttt{group} takes the same variable as the \texttt{color} mapping.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ n, }\DataTypeTok{color =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group =}\NormalTok{ track_artist))}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-102-1.pdf}
+
+From the plot above, what can we conclude about the selected artists? When did they start releasing songs?
+
+Let's look at \texttt{track\_popularity} by artist across decade. For this, we need \texttt{group\_by} and \texttt{summarise} before we can build our plot.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{color =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_line}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{group =}\NormalTok{ track_artist))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-103-1.pdf}
+
+How would this plot look like as a bar plot?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{fill =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{(}\DataTypeTok{position =} \StringTok{"dodge"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-104-1.pdf}
+
+Which chart do you think is easier to read? Why?
+
+We have multiple songs per artists, so we can include standard deviation in our \texttt{summarise}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 13 x 5
+## # Groups:   track_artist [3]
+##    track_artist    decade     n mean_popularity sd_popularity
+##    <chr>            <dbl> <int>           <dbl>         <dbl>
+##  1 Queen             1970    97            43.2         15.1 
+##  2 Queen             1980    29            43.8         22.5 
+##  3 Queen             1990     4            19.8         27.6 
+##  4 Queen             2010     6            51.8         11.7 
+##  5 The Beatles       1960     9            69.8          6.53
+##  6 The Beatles       1970     5            69.2          5.89
+##  7 The Beatles       1980     1            39           NA   
+##  8 The Beatles       1990     1             1           NA   
+##  9 The Beatles       2000     1            74           NA   
+## 10 The Beatles       2010     2            55.5          4.95
+## 11 The Cranberries   1990    31            52.5         13.3 
+## 12 The Cranberries   2000     2            35.5          3.54
+## 13 The Cranberries   2010    12            37.6         12.3
+\end{verbatim}
+
+NAs in our data frame is a problem. We can add \texttt{mutate} with \texttt{replace\_na} to replace these NAs with zero.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 13 x 5
+## # Groups:   track_artist [3]
+##    track_artist    decade     n mean_popularity sd_popularity
+##    <chr>            <dbl> <int>           <dbl>         <dbl>
+##  1 Queen             1970    97            43.2         15.1 
+##  2 Queen             1980    29            43.8         22.5 
+##  3 Queen             1990     4            19.8         27.6 
+##  4 Queen             2010     6            51.8         11.7 
+##  5 The Beatles       1960     9            69.8          6.53
+##  6 The Beatles       1970     5            69.2          5.89
+##  7 The Beatles       1980     1            39            0   
+##  8 The Beatles       1990     1             1            0   
+##  9 The Beatles       2000     1            74            0   
+## 10 The Beatles       2010     2            55.5          4.95
+## 11 The Cranberries   1990    31            52.5         13.3 
+## 12 The Cranberries   2000     2            35.5          3.54
+## 13 The Cranberries   2010    12            37.6         12.3
+\end{verbatim}
+
+The data frame looks good, let's add the plot code lines to the block of code above. This time, let's do a bar chart faceted by \texttt{track\_artist}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{),}
+         \DataTypeTok{lower =}\NormalTok{ mean_popularity }\OperatorTok{-}\StringTok{ }\NormalTok{sd_popularity,}
+         \DataTypeTok{upper =}\NormalTok{ mean_popularity }\OperatorTok{+}\StringTok{ }\NormalTok{sd_popularity)  }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{fill =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{track_artist)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-107-1.pdf}
+
+It looks the same as before. Let's add \texttt{geom\_errorbar} to it with \texttt{ymin} and \texttt{ymax} mappings. For that, we need to transform our data frame with \texttt{mutate} to calculate \texttt{lower} and \texttt{upper} variables, which represent the mean \textbf{minus} the standard deviation for the lower value of the range, and mean \textbf{plus} standard deviation for the upper value of the range.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{),}
+         \DataTypeTok{lower =}\NormalTok{ mean_popularity }\OperatorTok{-}\StringTok{ }\NormalTok{sd_popularity,}
+         \DataTypeTok{upper =}\NormalTok{ mean_popularity }\OperatorTok{+}\StringTok{ }\NormalTok{sd_popularity) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 13 x 7
+## # Groups:   track_artist [3]
+##    track_artist    decade     n mean_popularity sd_popularity lower upper
+##    <chr>            <dbl> <int>           <dbl>         <dbl> <dbl> <dbl>
+##  1 Queen             1970    97            43.2         15.1  28.0   58.3
+##  2 Queen             1980    29            43.8         22.5  21.3   66.2
+##  3 Queen             1990     4            19.8         27.6  -7.83  47.3
+##  4 Queen             2010     6            51.8         11.7  40.2   63.5
+##  5 The Beatles       1960     9            69.8          6.53 63.2   76.3
+##  6 The Beatles       1970     5            69.2          5.89 63.3   75.1
+##  7 The Beatles       1980     1            39            0    39     39  
+##  8 The Beatles       1990     1             1            0     1      1  
+##  9 The Beatles       2000     1            74            0    74     74  
+## 10 The Beatles       2010     2            55.5          4.95 50.6   60.4
+## 11 The Cranberries   1990    31            52.5         13.3  39.2   65.8
+## 12 The Cranberries   2000     2            35.5          3.54 32.0   39.0
+## 13 The Cranberries   2010    12            37.6         12.3  25.2   49.9
+\end{verbatim}
+
+Now we can use \texttt{geom\_errorbar}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{),}
+         \DataTypeTok{lower =}\NormalTok{ mean_popularity }\OperatorTok{-}\StringTok{ }\NormalTok{sd_popularity,}
+         \DataTypeTok{upper =}\NormalTok{ mean_popularity }\OperatorTok{+}\StringTok{ }\NormalTok{sd_popularity)  }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ decade, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{fill =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{track_artist)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-109-1.pdf}
+
+We can do a similar chart but look at the \texttt{2010} decade only.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(decade }\OperatorTok{==}\StringTok{ }\DecValTok{2010}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist, decade) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{),}
+         \DataTypeTok{lower =}\NormalTok{ mean_popularity }\OperatorTok{-}\StringTok{ }\NormalTok{sd_popularity,}
+         \DataTypeTok{upper =}\NormalTok{ mean_popularity }\OperatorTok{+}\StringTok{ }\NormalTok{sd_popularity)  }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ track_artist, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{fill =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_wrap}\NormalTok{(}\OperatorTok{~}\NormalTok{decade)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` regrouping output by 'track_artist' (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-110-1.pdf}
+
+We can also collapse decade, and just look at popularity overall.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_tc_tv_q }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_artist) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{n =} \KeywordTok{n}\NormalTok{(),}
+            \DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity),}
+            \DataTypeTok{sd_popularity =} \KeywordTok{sd}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{sd_popularity =} \KeywordTok{replace_na}\NormalTok{(sd_popularity, }\DecValTok{0}\NormalTok{),}
+         \DataTypeTok{lower =}\NormalTok{ mean_popularity }\OperatorTok{-}\StringTok{ }\NormalTok{sd_popularity,}
+         \DataTypeTok{upper =}\NormalTok{ mean_popularity }\OperatorTok{+}\StringTok{ }\NormalTok{sd_popularity)  }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ track_artist, }\DataTypeTok{y =}\NormalTok{ mean_popularity, }\DataTypeTok{fill =}\NormalTok{ track_artist)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_errorbar}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{ymin =}\NormalTok{ lower, }\DataTypeTok{ymax =}\NormalTok{ upper)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-111-1.pdf}
+
+\hypertarget{data-viz-by-album}{%
+\section{Data Viz by Album}\label{data-viz-by-album}}
+
+QUESTION: Which Drake album is the most popular?
+
+Let's review the steps to answer our question:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Create a new data frame that is a subset of our original data frame
+\item
+  Summarize and transform our new data frame to create the variables we need to plot the info we need
+\item
+  Try different plots until we find a plot that looks clear
+\end{enumerate}
+
+\hypertarget{create-new-data-frame}{%
+\subsection{Create new data frame}\label{create-new-data-frame}}
+
+We first filter our data frame by artist.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# filter original data frame to create new data frame with selected artists}
+\NormalTok{spotify_drake <-}\StringTok{ }\NormalTok{spotify_songs }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(track_artist }\OperatorTok{==}\StringTok{ 'Drake'}\NormalTok{)}
+
+\CommentTok{# inspect new data frame}
+\KeywordTok{glimpse}\NormalTok{(spotify_drake)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 100
+## Columns: 25
+## $ track_id                 <chr> "76P07ei8drjrenqtvDbefy", "1xznGGDReH1oQq0...
+## $ track_name               <chr> "Hotline Bling", "One Dance", "Too Good", ...
+## $ track_artist             <chr> "Drake", "Drake", "Drake", "Drake", "Drake...
+## $ track_popularity         <dbl> 0, 20, 12, 72, 12, 10, 83, 83, 86, 68, 15,...
+## $ track_album_id           <chr> "2e42oY2oFArkkTENT8UVXD", "3hARKC8cinq3mZL...
+## $ track_album_name         <chr> "Views", "Views", "Views", "Thank Me Later...
+## $ track_album_release_date <chr> "2016-05-06", "2016-05-06", "2016-05-06", ...
+## $ playlist_name            <chr> "BALLARE - رقص", "Electropop Hits  2017-20...
+## $ playlist_id              <chr> "1CMvQ4Yr5DlYvYzI0Vc2UE", "7kyvBmlc1uSqsTL...
+## $ playlist_genre           <chr> "pop", "pop", "pop", "pop", "pop", "pop", ...
+## $ playlist_subgenre        <chr> "post-teen pop", "electropop", "electropop...
+## $ danceability             <dbl> 0.905, 0.791, 0.804, 0.431, 0.771, 0.893, ...
+## $ energy                   <dbl> 0.617, 0.619, 0.648, 0.894, 0.629, 0.639, ...
+## $ key                      <dbl> 2, 1, 7, 5, 1, 2, 1, 1, 7, 1, 11, 10, 2, 1...
+## $ loudness                 <dbl> -8.039, -5.886, -7.805, -2.673, -5.790, -7...
+## $ mode                     <dbl> 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, ...
+## $ speechiness              <dbl> 0.0596, 0.0532, 0.1170, 0.3300, 0.0511, 0....
+## $ acousticness             <dbl> 0.00287, 0.00784, 0.05730, 0.09510, 0.0080...
+## $ instrumentalness         <dbl> 4.40e-04, 4.23e-03, 3.49e-05, 0.00e+00, 2....
+## $ liveness                 <dbl> 0.0484, 0.3510, 0.1020, 0.1880, 0.3560, 0....
+## $ valence                  <dbl> 0.572, 0.371, 0.392, 0.604, 0.362, 0.579, ...
+## $ tempo                    <dbl> 134.972, 103.989, 117.983, 162.193, 103.91...
+## $ duration_ms              <dbl> 267187, 173987, 263373, 258760, 173975, 26...
+## $ release_year             <dbl> 2016, 2016, 2016, 2010, 2016, 2015, 2016, ...
+## $ decade                   <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, ...
+\end{verbatim}
+
+What albums are there in this new data frame?
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{arrange}\NormalTok{(}\OperatorTok{-}\NormalTok{n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 27 x 2
+##    track_album_name                                          n
+##    <chr>                                                 <int>
+##  1 Views                                                    23
+##  2 Scorpion                                                 16
+##  3 More Life                                                 9
+##  4 The Best In The World Pack                                7
+##  5 Take Care (Deluxe)                                        5
+##  6 What A Time To Be Alive                                   5
+##  7 If You're Reading This It's Too Late                      4
+##  8 Care Package                                              3
+##  9 Hotline Bling                                             3
+## 10 Top Boy (A Selection of Music Inspired by the Series)     3
+## # ... with 17 more rows
+\end{verbatim}
+
+\hypertarget{summarize-data}{%
+\subsection{Summarize data}\label{summarize-data}}
+
+Now we summarize our data for mean popularity per album.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\begin{verbatim}
+## # A tibble: 27 x 2
+##    track_album_name                     mean_popularity
+##    <chr>                                          <dbl>
+##  1 0 To 100 / The Catch Up                         5   
+##  2 Back To Back                                   69   
+##  3 Behind Barz (Bonus)                            74   
+##  4 Care Package                                   61.3 
+##  5 Fake Love                                       6   
+##  6 Forever                                         2   
+##  7 Hold On, We're Going Home                       1   
+##  8 Hotline Bling                                   9.67
+##  9 If You're Reading This It's Too Late           18   
+## 10 More Life                                      47.9 
+## # ... with 17 more rows
+\end{verbatim}
+
+\hypertarget{plot-summarized-data}{%
+\subsection{Plot summarized data}\label{plot-summarized-data}}
+
+We now add the \texttt{ggplot} code lines to our summarized data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ track_album_name, }\DataTypeTok{x =}\NormalTok{ mean_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-115-1.pdf}
+
+Let's order the songs by \texttt{mean\_popularity}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =} \KeywordTok{reorder}\NormalTok{(track_album_name, mean_popularity), }\DataTypeTok{x =}\NormalTok{ mean_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-116-1.pdf}
+
+We can add labels to the bars, with the mean\_popularity for each album using \texttt{geom\_label}. A new mapping is needed for \texttt{label}, which is the same as the x mapping in this case.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =} \KeywordTok{reorder}\NormalTok{(track_album_name, mean_popularity), }\DataTypeTok{x =}\NormalTok{ mean_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_label}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =}\NormalTok{ mean_popularity))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-117-1.pdf}
+
+We need to clean up the means. We can do that using \texttt{format}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =} \KeywordTok{reorder}\NormalTok{(track_album_name, mean_popularity), }\DataTypeTok{x =}\NormalTok{ mean_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_label}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{format}\NormalTok{(mean_popularity, }\DataTypeTok{digits =} \DecValTok{1}\NormalTok{)))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-118-1.pdf}
+
+We can clean up our chart even more.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{spotify_drake }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(track_album_name) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summarise}\NormalTok{(}\DataTypeTok{mean_popularity =} \KeywordTok{mean}\NormalTok{(track_popularity)) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =} \KeywordTok{reorder}\NormalTok{(track_album_name, mean_popularity), }\DataTypeTok{x =}\NormalTok{ mean_popularity)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_col}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_label}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{label =} \KeywordTok{format}\NormalTok{(mean_popularity, }\DataTypeTok{digits =} \DecValTok{1}\NormalTok{))) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{xlab}\NormalTok{(}\StringTok{"mean popularity"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ylab}\NormalTok{(}\StringTok{""}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_bw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{ggtitle}\NormalTok{(}\StringTok{"Albums by Drake"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `summarise()` ungrouping output (override with `.groups` argument)
+\end{verbatim}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-119-1.pdf}
+
+\hypertarget{data-challenge-04}{%
+\section{DATA CHALLENGE 04}\label{data-challenge-04}}
+
+Accept \href{https://classroom.github.com/a/fYDB-CfS}{data challenge 04 assignment}
+
+\hypertarget{data-case-study-1}{%
+\chapter{Data Case Study 1}\label{data-case-study-1}}
+
+\hypertarget{data-case-study-2}{%
+\chapter{Data Case Study 2}\label{data-case-study-2}}
+
+\hypertarget{getting-data}{%
+\chapter{Getting Data}\label{getting-data}}
+
+\hypertarget{data-case-study-3}{%
+\chapter{Data Case Study 3}\label{data-case-study-3}}
+
+\hypertarget{markdown}{%
+\chapter{Markdown}\label{markdown}}
+
+\hypertarget{data-case-study-4}{%
+\chapter{Data Case Study 4}\label{data-case-study-4}}
+
+\hypertarget{analysis-reporting}{%
+\chapter{Analysis Reporting}\label{analysis-reporting}}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
