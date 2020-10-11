@@ -120,7 +120,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-10-09}
+\date{2020-10-11}
 
 \begin{document}
 \maketitle
@@ -505,7 +505,7 @@ Week 09\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
 MIDTERM\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-Data Challenge 5\strut
+\href{https://classroom.github.com/a/6eey650g}{Data Challenge 5}\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.22\columnwidth}\raggedright
 \strut
@@ -4501,6 +4501,407 @@ Accept \href{https://classroom.github.com/a/fYDB-CfS}{data challenge 04 assignme
 
 \hypertarget{data-case-study-1}{%
 \chapter{Data Case Study 1}\label{data-case-study-1}}
+
+This is our first case study of the semester. The goal of each case study is to consolidate the content we've covered so far in class, which at this point includes:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Load libraries using \texttt{library()}
+\item
+  Read data using \texttt{read\_csv()} or \texttt{read\_excel()}
+\item
+  Inspect data using \texttt{summary()} or \texttt{glimpse()} and/or \texttt{View()}
+\item
+  Review your data question (what variables do you need to answer your question?)
+\item
+  Explore data using the following functions:
+\end{enumerate}
+
+\begin{itemize}
+\item
+  \texttt{count()}
+\item
+  \texttt{group\_by()} + \texttt{summarise()}
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{5}
+\tightlist
+\item
+  Plot data using the functions above and:
+\end{enumerate}
+
+\begin{itemize}
+\item
+  \texttt{filter()}
+\item
+  \texttt{mutate()}
+\item
+  \texttt{gglot(aes())} + \texttt{geom\_...}
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# load library}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+
+\CommentTok{# read data in}
+\NormalTok{olympic_events <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/olympic_history_athlete_events.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   ID = col_double(),
+##   Name = col_character(),
+##   Sex = col_character(),
+##   Age = col_double(),
+##   Height = col_double(),
+##   Weight = col_double(),
+##   Team = col_character(),
+##   NOC = col_character(),
+##   Games = col_character(),
+##   Year = col_double(),
+##   Season = col_character(),
+##   City = col_character(),
+##   Sport = col_character(),
+##   Event = col_character(),
+##   Medal = col_character()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{olympic_noc_regions <-}\StringTok{ }\KeywordTok{read_csv}\NormalTok{(}\StringTok{"data/olympic_history_noc_regions.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   NOC = col_character(),
+##   region = col_character(),
+##   notes = col_character()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# inspect data }
+\KeywordTok{glimpse}\NormalTok{(olympic_events)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 271,116
+## Columns: 15
+## $ ID     <dbl> 1, 2, 3, 4, 5, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, ...
+## $ Name   <chr> "A Dijiang", "A Lamusi", "Gunnar Nielsen Aaby", "Edgar Linde...
+## $ Sex    <chr> "M", "M", "M", "M", "F", "F", "F", "F", "F", "F", "M", "M", ...
+## $ Age    <dbl> 24, 23, 24, 34, 21, 21, 25, 25, 27, 27, 31, 31, 31, 31, 33, ...
+## $ Height <dbl> 180, 170, NA, NA, 185, 185, 185, 185, 185, 185, 188, 188, 18...
+## $ Weight <dbl> 80, 60, NA, NA, 82, 82, 82, 82, 82, 82, 75, 75, 75, 75, 75, ...
+## $ Team   <chr> "China", "China", "Denmark", "Denmark/Sweden", "Netherlands"...
+## $ NOC    <chr> "CHN", "CHN", "DEN", "DEN", "NED", "NED", "NED", "NED", "NED...
+## $ Games  <chr> "1992 Summer", "2012 Summer", "1920 Summer", "1900 Summer", ...
+## $ Year   <dbl> 1992, 2012, 1920, 1900, 1988, 1988, 1992, 1992, 1994, 1994, ...
+## $ Season <chr> "Summer", "Summer", "Summer", "Summer", "Winter", "Winter", ...
+## $ City   <chr> "Barcelona", "London", "Antwerpen", "Paris", "Calgary", "Cal...
+## $ Sport  <chr> "Basketball", "Judo", "Football", "Tug-Of-War", "Speed Skati...
+## $ Event  <chr> "Basketball Men's Basketball", "Judo Men's Extra-Lightweight...
+## $ Medal  <chr> NA, NA, NA, "Gold", NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(olympic_noc_regions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 230
+## Columns: 3
+## $ NOC    <chr> "AFG", "AHO", "ALB", "ALG", "AND", "ANG", "ANT", "ANZ", "ARG...
+## $ region <chr> "Afghanistan", "Curacao", "Albania", "Algeria", "Andorra", "...
+## $ notes  <chr> NA, "Netherlands Antilles", NA, NA, NA, NA, "Antigua and Bar...
+\end{verbatim}
+
+\hypertarget{data-questions}{%
+\section{Data Questions}\label{data-questions}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\item
+  Has athlete height and weight changed over time overall?
+\item
+  Has height and weight changed over time for the top 5 countries with the most medals?
+\end{enumerate}
+
+\hypertarget{data-exploration}{%
+\section{Data Exploration}\label{data-exploration}}
+
+Suggestions of data exploration:
+
+What type of olympics? What years? How many athletes per game?
+
+\begin{verbatim}
+## # A tibble: 51 x 2
+##    Games           n
+##    <chr>       <int>
+##  1 1896 Summer   380
+##  2 1900 Summer  1936
+##  3 1904 Summer  1301
+##  4 1906 Summer  1733
+##  5 1908 Summer  3101
+##  6 1912 Summer  4040
+##  7 1920 Summer  4292
+##  8 1924 Summer  5233
+##  9 1924 Winter   460
+## 10 1928 Summer  4992
+## # ... with 41 more rows
+\end{verbatim}
+
+This data set is huge, the plot below will take a while to process:
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-122-1.pdf}
+
+What are the top countries for medal count?
+
+\begin{verbatim}
+## # A tibble: 783 x 3
+##    Team          Medal      n
+##    <chr>         <chr>  <int>
+##  1 United States Gold    2474
+##  2 United States Silver  1512
+##  3 United States Bronze  1233
+##  4 Soviet Union  Gold    1058
+##  5 Soviet Union  Silver   716
+##  6 Germany       Gold     679
+##  7 Germany       Bronze   678
+##  8 Soviet Union  Bronze   677
+##  9 Germany       Silver   627
+## 10 Great Britain Silver   582
+## # ... with 773 more rows
+\end{verbatim}
+
+\hypertarget{calculate-height-and-weight-relationship}{%
+\section{Calculate height and weight relationship}\label{calculate-height-and-weight-relationship}}
+
+It's difficult to plot three numeric variables (in this case we want to plot weight, height, across different years) with so many data points. So I'll create a new variable in my data frame with is the relationship between height and weight (i.e., kg per cm).
+
+\begin{verbatim}
+## # A tibble: 271,116 x 3
+##    Weight Height kg_per_cm
+##     <dbl>  <dbl>     <dbl>
+##  1     80    180     0.444
+##  2     60    170     0.353
+##  3     NA     NA    NA    
+##  4     NA     NA    NA    
+##  5     82    185     0.443
+##  6     82    185     0.443
+##  7     82    185     0.443
+##  8     82    185     0.443
+##  9     82    185     0.443
+## 10     82    185     0.443
+## # ... with 271,106 more rows
+\end{verbatim}
+
+\hypertarget{plot-kilos-per-centimeter-across-years}{%
+\section{Plot kilos per centimeter across years}\label{plot-kilos-per-centimeter-across-years}}
+
+Now that we have this new variable, which is kilos per centimeters, we can plot this variable across years.
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-125-1.pdf}
+
+Let's see if summarised data (i.e., mean of kg\_per\_cm across year), makes more sense.
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-126-1.pdf}
+
+Let's split by Summer vs.~Winter olympics.
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-127-1.pdf}
+
+\hypertarget{plot-weight-over-time}{%
+\section{Plot weight over time}\label{plot-weight-over-time}}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-128-1.pdf}
+
+\hypertarget{plot-height-over-time}{%
+\section{Plot height over time}\label{plot-height-over-time}}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-129-1.pdf}
+
+\hypertarget{data-filtering}{%
+\section{Data Filtering}\label{data-filtering}}
+
+Get only top 5 countries for highest medal count
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##   Team              n
+##   <chr>         <int>
+## 1 United States  5219
+## 2 Soviet Union   2451
+## 3 Germany        1984
+## 4 Great Britain  1673
+## 5 France         1550
+\end{verbatim}
+
+Create a list of these countries to filter the largest data set to create a smaller data frame.
+
+\begin{verbatim}
+## Rows: 56,100
+## Columns: 16
+## $ ID        <dbl> 6, 6, 6, 6, 6, 6, 6, 6, 7, 7, 7, 7, 7, 7, 7, 7, 34, 52, 5...
+## $ Name      <chr> "Per Knut Aaland", "Per Knut Aaland", "Per Knut Aaland", ...
+## $ Sex       <chr> "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M", "M...
+## $ Age       <dbl> 31, 31, 31, 31, 33, 33, 33, 33, 31, 31, 31, 31, 33, 33, 3...
+## $ Height    <dbl> 188, 188, 188, 188, 188, 188, 188, 188, 183, 183, 183, 18...
+## $ Weight    <dbl> 75, 75, 75, 75, 75, 75, 75, 75, 72, 72, 72, 72, 72, 72, 7...
+## $ Team      <chr> "United States", "United States", "United States", "Unite...
+## $ NOC       <chr> "USA", "USA", "USA", "USA", "USA", "USA", "USA", "USA", "...
+## $ Games     <chr> "1992 Winter", "1992 Winter", "1992 Winter", "1992 Winter...
+## $ Year      <dbl> 1992, 1992, 1992, 1992, 1994, 1994, 1994, 1994, 1992, 199...
+## $ Season    <chr> "Winter", "Winter", "Winter", "Winter", "Winter", "Winter...
+## $ City      <chr> "Albertville", "Albertville", "Albertville", "Albertville...
+## $ Sport     <chr> "Cross Country Skiing", "Cross Country Skiing", "Cross Co...
+## $ Event     <chr> "Cross Country Skiing Men's 10 kilometres", "Cross Countr...
+## $ Medal     <chr> NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N...
+## $ kg_per_cm <dbl> 0.3989362, 0.3989362, 0.3989362, 0.3989362, 0.3989362, 0....
+\end{verbatim}
+
+\hypertarget{plot-height-and-weight-across-countries-over-the-years}{%
+\section{Plot height and weight across countries over the years}\label{plot-height-and-weight-across-countries-over-the-years}}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-132-1.pdf}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-133-1.pdf}
+
+\hypertarget{solving-the-problem-of-team-name-changes-over-time}{%
+\section{Solving the problem of team name changes over time}\label{solving-the-problem-of-team-name-changes-over-time}}
+
+We can use name of Olympic committee (\texttt{NOC}) to standardized Team to country
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{olympic_events }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(NOC, Team)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 1,231 x 3
+##    NOC   Team                     n
+##    <chr> <chr>                <int>
+##  1 AFG   Afghanistan            126
+##  2 AHO   Netherlands Antilles    79
+##  3 ALB   Albania                 70
+##  4 ALG   Algeria                551
+##  5 AND   Andorra                169
+##  6 ANG   Angola                 267
+##  7 ANT   Antigua and Barbuda    133
+##  8 ANZ   Australasia             77
+##  9 ANZ   Sydney Rowing Club       9
+## 10 ARG   Acturus                  2
+## # ... with 1,221 more rows
+\end{verbatim}
+
+The \texttt{olympic\_noc\_regions} data frame can help with that process.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(olympic_noc_regions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 3
+##   NOC   region      notes               
+##   <chr> <chr>       <chr>               
+## 1 AFG   Afghanistan <NA>                
+## 2 AHO   Curacao     Netherlands Antilles
+## 3 ALB   Albania     <NA>                
+## 4 ALG   Algeria     <NA>                
+## 5 AND   Andorra     <NA>                
+## 6 ANG   Angola      <NA>
+\end{verbatim}
+
+We can add region to our \texttt{olympic\_events} data frame by joining the \texttt{olympic\_events} data frame with the \texttt{olympic\_noc\_regions} data frame by the \texttt{NOC} column. For that we will use the \texttt{left\_join()} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{olympic_events <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(olympic_events,}
+\NormalTok{                       olympic_noc_regions)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "NOC"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{olympic_events }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(NOC, region)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 230 x 3
+##    NOC   region          n
+##    <chr> <chr>       <int>
+##  1 AFG   Afghanistan   126
+##  2 AHO   Curacao        79
+##  3 ALB   Albania        70
+##  4 ALG   Algeria       551
+##  5 AND   Andorra       169
+##  6 ANG   Angola        267
+##  7 ANT   Antigua       133
+##  8 ANZ   Australia      86
+##  9 ARG   Argentina    3297
+## 10 ARM   Armenia       221
+## # ... with 220 more rows
+\end{verbatim}
+
+Let's check what we have for Russia now.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{olympic_events }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{filter}\NormalTok{(region }\OperatorTok{==}\StringTok{ "Russia"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(NOC, region)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 3 x 3
+##   NOC   region     n
+##   <chr> <chr>  <int>
+## 1 EUN   Russia   864
+## 2 RUS   Russia  5143
+## 3 URS   Russia  5685
+\end{verbatim}
+
+We can now calculate medals per region instead of team name.
+Get only top 5 countries for highest medal count
+
+\begin{verbatim}
+## # A tibble: 5 x 2
+##   region      n
+##   <chr>   <int>
+## 1 USA      5637
+## 2 Russia   3947
+## 3 Germany  3756
+## 4 UK       2068
+## 5 France   1777
+\end{verbatim}
+
+\hypertarget{data-challenge-05}{%
+\section{DATA CHALLENGE 05}\label{data-challenge-05}}
+
+Accept \href{https://classroom.github.com/a/6eey650g}{data challenge 05 assignment}
 
 \hypertarget{data-case-study-2}{%
 \chapter{Data Case Study 2}\label{data-case-study-2}}
