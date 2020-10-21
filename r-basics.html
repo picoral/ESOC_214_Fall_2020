@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 4 R Basics | ESOC 2014 Introduction to Data Science</title>
   <meta name="description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 4 R Basics | ESOC 2014 Introduction to Data Science" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-10-19" />
+<meta name="date" content="2020-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -270,7 +272,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.9" data-path="data-case-study-1.html"><a href="data-case-study-1.html#solving-the-problem-of-team-name-changes-over-time"><i class="fa fa-check"></i><b>10.9</b> Solving the problem of team name changes over time</a></li>
 <li class="chapter" data-level="10.10" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-challenge-05"><i class="fa fa-check"></i><b>10.10</b> DATA CHALLENGE 05</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a></li>
+<li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a><ul>
+<li class="chapter" data-level="11.1" data-path="data-case-study-2.html"><a href="data-case-study-2.html#reading-data-from-a-url"><i class="fa fa-check"></i><b>11.1</b> Reading data from a URL</a></li>
+<li class="chapter" data-level="11.2" data-path="data-case-study-2.html"><a href="data-case-study-2.html#cleaning-up-column-names"><i class="fa fa-check"></i><b>11.2</b> Cleaning up column names</a></li>
+<li class="chapter" data-level="11.3" data-path="data-case-study-2.html"><a href="data-case-study-2.html#manipulating-dates"><i class="fa fa-check"></i><b>11.3</b> Manipulating Dates</a></li>
+<li class="chapter" data-level="11.4" data-path="data-case-study-2.html"><a href="data-case-study-2.html#extra-data-libraries"><i class="fa fa-check"></i><b>11.4</b> Extra Data libraries</a></li>
+<li class="chapter" data-level="11.5" data-path="data-case-study-2.html"><a href="data-case-study-2.html#exploring-data"><i class="fa fa-check"></i><b>11.5</b> Exploring Data</a></li>
+<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-06"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 06</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>12</b> Getting Data</a></li>
 <li class="chapter" data-level="13" data-path="data-case-study-3.html"><a href="data-case-study-3.html"><i class="fa fa-check"></i><b>13</b> Data Case Study 3</a></li>
 <li class="chapter" data-level="14" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>14</b> Markdown</a></li>
@@ -327,10 +336,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>CHALLENGE</strong></p>
 <p>There’s a number of functions you can run on dataframes. Try running the following functions on <code>my_pets</code>:</p>
 <ul>
-<li><p>summary()</p></li>
+<li><p>summary()</p>
+<ul>
 <li><p>nrow()</p></li>
 <li><p>ncol()</p></li>
 <li><p>dim()</p></li>
+</ul></li>
 </ul>
 <p>What other functions can/do you think/know of?</p>
 </div>
@@ -398,12 +409,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>CHALLENGE</strong></p>
 <p>Try running the following functions on <code>my_pets$age</code> and <code>my_pets$human_years</code>:</p>
 <ul>
-<li><p>mean()</p></li>
+<li><p>mean()</p>
+<ul>
 <li><p>sd()</p></li>
 <li><p>median()</p></li>
 <li><p>max()</p></li>
 <li><p>min()</p></li>
 <li><p>range()</p></li>
+</ul></li>
 </ul>
 <p>What other functions can/do you think/know of?</p>
 </div>
@@ -411,9 +424,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.6</span> Note on coding style</h2>
 <p>Coding style refers to how you name your objects and functions, how you comment your code, how you use spacing throughout your code, etc. If your coding style is consistent, your code is easier to read and easier to debug as a result. Here’s some guides, so you can develop your own coding style:</p>
 <ul>
-<li><p><a href="https://style.tidyverse.org">The tidyverse style guide</a></p></li>
+<li><p><a href="https://style.tidyverse.org">The tidyverse style guide</a></p>
+<ul>
 <li><p><a href="http://adv-r.had.co.nz/Style.html">Hadley Wickham’s Advance R coding style</a></p></li>
 <li><p><a href="https://google.github.io/styleguide/Rguide.html">Google’s R Style Guide</a></p></li>
+</ul></li>
 </ul>
 
 </div>

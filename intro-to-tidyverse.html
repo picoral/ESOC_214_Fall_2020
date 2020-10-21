@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Module 6 Intro to Tidyverse | ESOC 2014 Introduction to Data Science</title>
   <meta name="description" content="This course provides an introduction to the various skills and considerations required for data management and analysis in business, education, and science. Particular attention will be given to learning how to use the free and open-source computing environment R, as well as one of its data visualization packages, ggplot2." />
-  <meta name="generator" content="bookdown 0.20 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Module 6 Intro to Tidyverse | ESOC 2014 Introduction to Data Science" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-10-19" />
+<meta name="date" content="2020-10-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,8 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
@@ -270,7 +272,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="10.9" data-path="data-case-study-1.html"><a href="data-case-study-1.html#solving-the-problem-of-team-name-changes-over-time"><i class="fa fa-check"></i><b>10.9</b> Solving the problem of team name changes over time</a></li>
 <li class="chapter" data-level="10.10" data-path="data-case-study-1.html"><a href="data-case-study-1.html#data-challenge-05"><i class="fa fa-check"></i><b>10.10</b> DATA CHALLENGE 05</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a></li>
+<li class="chapter" data-level="11" data-path="data-case-study-2.html"><a href="data-case-study-2.html"><i class="fa fa-check"></i><b>11</b> Data Case Study 2</a><ul>
+<li class="chapter" data-level="11.1" data-path="data-case-study-2.html"><a href="data-case-study-2.html#reading-data-from-a-url"><i class="fa fa-check"></i><b>11.1</b> Reading data from a URL</a></li>
+<li class="chapter" data-level="11.2" data-path="data-case-study-2.html"><a href="data-case-study-2.html#cleaning-up-column-names"><i class="fa fa-check"></i><b>11.2</b> Cleaning up column names</a></li>
+<li class="chapter" data-level="11.3" data-path="data-case-study-2.html"><a href="data-case-study-2.html#manipulating-dates"><i class="fa fa-check"></i><b>11.3</b> Manipulating Dates</a></li>
+<li class="chapter" data-level="11.4" data-path="data-case-study-2.html"><a href="data-case-study-2.html#extra-data-libraries"><i class="fa fa-check"></i><b>11.4</b> Extra Data libraries</a></li>
+<li class="chapter" data-level="11.5" data-path="data-case-study-2.html"><a href="data-case-study-2.html#exploring-data"><i class="fa fa-check"></i><b>11.5</b> Exploring Data</a></li>
+<li class="chapter" data-level="11.6" data-path="data-case-study-2.html"><a href="data-case-study-2.html#data-challenge-06"><i class="fa fa-check"></i><b>11.6</b> DATA CHALLENGE 06</a></li>
+</ul></li>
 <li class="chapter" data-level="12" data-path="getting-data.html"><a href="getting-data.html"><i class="fa fa-check"></i><b>12</b> Getting Data</a></li>
 <li class="chapter" data-level="13" data-path="data-case-study-3.html"><a href="data-case-study-3.html"><i class="fa fa-check"></i><b>13</b> Data Case Study 3</a></li>
 <li class="chapter" data-level="14" data-path="markdown.html"><a href="markdown.html"><i class="fa fa-check"></i><b>14</b> Markdown</a></li>
@@ -326,12 +335,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>We are going to create a <code>data</code> folder in our project, to keep things organized. Today we will be working with <a href="https://www.kaggle.com/groundhogclub/groundhog-day">a data set that contains groundhog day forecasts and temperature</a>. I cleaned up this data set already (no need for data tidying for now).</p>
 <p>You can now list the contents of your <code>data</code> folder with the <code>dir()</code> function with a string that specifies the folder as a parameter.</p>
 <div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="intro-to-tidyverse.html#cb50-1"></a><span class="kw">dir</span>(<span class="st">&quot;data&quot;</span>)</span></code></pre></div>
-<pre><code>##  [1] &quot;elnino.csv&quot;                          &quot;GlobalLandTemperaturesByCountry.csv&quot;
-##  [3] &quot;groundhog_day.csv&quot;                   &quot;nfl_salary.xlsx&quot;                    
-##  [5] &quot;olympic_history_athlete_events.csv&quot;  &quot;olympic_history_noc_regions.csv&quot;    
-##  [7] &quot;passwords.csv&quot;                       &quot;spotify_songs_clean.csv&quot;            
-##  [9] &quot;spotify_songs.csv&quot;                   &quot;tweets.tsv&quot;                         
-## [11] &quot;us_avg_tuition.xlsx&quot;</code></pre>
+<pre><code>##  [1] &quot;elnino.csv&quot;                           
+##  [2] &quot;GlobalLandTemperaturesByCountry.csv&quot;  
+##  [3] &quot;GlobalLandTemperaturesByMajorCity.csv&quot;
+##  [4] &quot;groundhog_day.csv&quot;                    
+##  [5] &quot;nfl_salary.xlsx&quot;                      
+##  [6] &quot;olympic_history_athlete_events.csv&quot;   
+##  [7] &quot;olympic_history_noc_regions.csv&quot;      
+##  [8] &quot;passwords.csv&quot;                        
+##  [9] &quot;spotify_songs_clean.csv&quot;              
+## [10] &quot;spotify_songs.csv&quot;                    
+## [11] &quot;tweets.tsv&quot;                           
+## [12] &quot;us_avg_tuition.xlsx&quot;</code></pre>
 </div>
 <div id="whats-our-question-again" class="section level2">
 <h2><span class="header-section-number">6.5</span> What’s our question again?</h2>
