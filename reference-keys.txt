@@ -123,6 +123,10 @@ extra-data-libraries
 exploring-data
 data-challenge-06
 getting-data
+search-for-data-sets
+extracting-data-tables-from-pdf-files
+extracting-data-tables-from-websites
+project-proposal
 data-case-study-3
 markdown
 data-case-study-4
