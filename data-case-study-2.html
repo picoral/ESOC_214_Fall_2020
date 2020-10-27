@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-10-26" />
+<meta name="date" content="2020-10-27" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,18 +314,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-case-study-2" class="section level1">
 <h1><span class="header-section-number">Module 11</span> Data Case Study 2</h1>
 <p>We’ve been working mainly with the <code>tidyverse</code> library, but today we will work with a few different libraries. The packages <code>janitor</code> and <code>lubridate</code> are very useful. Maybe sure you have these installed (use <code>install.packages</code>) before you load these libraries.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="data-case-study-2.html#cb237-1"></a><span class="kw">library</span>(janitor)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-case-study-2.html#cb1-1"></a><span class="kw">library</span>(janitor)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;janitor&#39;</code></pre>
 <pre><code>## The following objects are masked from &#39;package:stats&#39;:
 ## 
 ##     chisq.test, fisher.test</code></pre>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="data-case-study-2.html#cb240-1"></a><span class="kw">library</span>(lubridate)</span>
-<span id="cb240-2"><a href="data-case-study-2.html#cb240-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-case-study-2.html#cb4-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;lubridate&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     date, intersect, setdiff, union</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="data-case-study-2.html#cb7-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ───────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ──────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x lubridate::as.difftime() masks base::as.difftime()
+## x lubridate::date()        masks base::date()
+## x dplyr::filter()          masks stats::filter()
+## x lubridate::intersect()   masks base::intersect()
+## x dplyr::lag()             masks stats::lag()
+## x lubridate::setdiff()     masks base::setdiff()
+## x lubridate::union()       masks base::union()</code></pre>
 <div id="reading-data-from-a-url" class="section level2">
 <h2><span class="header-section-number">11.1</span> Reading data from a URL</h2>
 <p>Today we are working with a large data set on global land temperatures. I added the csv file to github because it’s a very large file. You can use <code>read_csv</code> to read the file directly from github</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="data-case-study-2.html#cb241-1"></a>global_temperatures &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/esoc214/fall2020_002_class_scripts/main/data/GlobalLandTemperaturesByCountry.csv&quot;</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="data-case-study-2.html#cb11-1"></a>global_temperatures &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;https://raw.githubusercontent.com/esoc214/fall2020_002_class_scripts/main/data/GlobalLandTemperaturesByCountry.csv&quot;</span>) </span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   dt = col_date(format = &quot;&quot;),
@@ -333,8 +351,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   AverageTemperatureUncertainty = col_double(),
 ##   Country = col_character()
 ## )</code></pre>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="data-case-study-2.html#cb243-1"></a><span class="co"># inspect data</span></span>
-<span id="cb243-2"><a href="data-case-study-2.html#cb243-2"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="data-case-study-2.html#cb13-1"></a><span class="co"># inspect data</span></span>
+<span id="cb13-2"><a href="data-case-study-2.html#cb13-2"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
 <pre><code>## Rows: 577,462
 ## Columns: 4
 ## $ dt                            &lt;date&gt; 1743-11-01, 1743-12-01, 1744-01-01, 17…
@@ -345,11 +363,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="cleaning-up-column-names" class="section level2">
 <h2><span class="header-section-number">11.2</span> Cleaning up column names</h2>
 <p>Column names from different data sets usually have a number of different casings (Camel, Pascal, Snake, Kebab Case, etc.). I like to use <code>clean_names()</code> to standardize column names to <code>snake_case</code>.</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="data-case-study-2.html#cb245-1"></a>global_temperatures &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
-<span id="cb245-2"><a href="data-case-study-2.html#cb245-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span>
-<span id="cb245-3"><a href="data-case-study-2.html#cb245-3"></a></span>
-<span id="cb245-4"><a href="data-case-study-2.html#cb245-4"></a><span class="co"># inspect data</span></span>
-<span id="cb245-5"><a href="data-case-study-2.html#cb245-5"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-case-study-2.html#cb15-1"></a>global_temperatures &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb15-2"><a href="data-case-study-2.html#cb15-2"></a><span class="st">  </span><span class="kw">clean_names</span>()</span>
+<span id="cb15-3"><a href="data-case-study-2.html#cb15-3"></a></span>
+<span id="cb15-4"><a href="data-case-study-2.html#cb15-4"></a><span class="co"># inspect data</span></span>
+<span id="cb15-5"><a href="data-case-study-2.html#cb15-5"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
 <pre><code>## Rows: 577,462
 ## Columns: 4
 ## $ dt                              &lt;date&gt; 1743-11-01, 1743-12-01, 1744-01-01, …
@@ -360,48 +378,48 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="manipulating-dates" class="section level2">
 <h2><span class="header-section-number">11.3</span> Manipulating Dates</h2>
 <p>Now, let’s turn our attention to the <code>dt</code> column, which is a date.</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="data-case-study-2.html#cb247-1"></a><span class="kw">class</span>(global_temperatures<span class="op">$</span>dt)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="data-case-study-2.html#cb17-1"></a><span class="kw">class</span>(global_temperatures<span class="op">$</span>dt)</span></code></pre></div>
 <pre><code>## [1] &quot;Date&quot;</code></pre>
 <p>There’s a number of functions we can run on a <code>Date</code> variable.</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="data-case-study-2.html#cb249-1"></a><span class="co"># extract year from dt variable in global_temperatures</span></span>
-<span id="cb249-2"><a href="data-case-study-2.html#cb249-2"></a><span class="kw">year</span>(global_temperatures<span class="op">$</span>dt)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="data-case-study-2.html#cb19-1"></a><span class="co"># extract year from dt variable in global_temperatures</span></span>
+<span id="cb19-2"><a href="data-case-study-2.html#cb19-2"></a><span class="kw">year</span>(global_temperatures<span class="op">$</span>dt)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
 <pre><code>##  [1] 1743 1743 1744 1744 1744 1744 1744 1744 1744 1744</code></pre>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="data-case-study-2.html#cb251-1"></a><span class="co"># extract month from dt variable in global_temperatures</span></span>
-<span id="cb251-2"><a href="data-case-study-2.html#cb251-2"></a><span class="kw">month</span>(global_temperatures<span class="op">$</span>dt)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-case-study-2.html#cb21-1"></a><span class="co"># extract month from dt variable in global_temperatures</span></span>
+<span id="cb21-2"><a href="data-case-study-2.html#cb21-2"></a><span class="kw">month</span>(global_temperatures<span class="op">$</span>dt)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
 <pre><code>##  [1] 11 12  1  2  3  4  5  6  7  8</code></pre>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="data-case-study-2.html#cb253-1"></a><span class="kw">month</span>(global_temperatures<span class="op">$</span>dt, <span class="dt">label =</span> <span class="ot">TRUE</span>)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-case-study-2.html#cb23-1"></a><span class="kw">month</span>(global_temperatures<span class="op">$</span>dt, <span class="dt">label =</span> <span class="ot">TRUE</span>)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
 <pre><code>##  [1] Nov Dec Jan Feb Mar Apr May Jun Jul Aug
 ## 12 Levels: Jan &lt; Feb &lt; Mar &lt; Apr &lt; May &lt; Jun &lt; Jul &lt; Aug &lt; Sep &lt; ... &lt; Dec</code></pre>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="data-case-study-2.html#cb255-1"></a><span class="co"># extract week from dt variable in global_temperatures</span></span>
-<span id="cb255-2"><a href="data-case-study-2.html#cb255-2"></a><span class="kw">week</span>(global_temperatures<span class="op">$</span>dt)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="data-case-study-2.html#cb25-1"></a><span class="co"># extract week from dt variable in global_temperatures</span></span>
+<span id="cb25-2"><a href="data-case-study-2.html#cb25-2"></a><span class="kw">week</span>(global_temperatures<span class="op">$</span>dt)[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)]</span></code></pre></div>
 <pre><code>##  [1] 44 48  1  5  9 14 18 22 27 31</code></pre>
 <p>We can create new columns in our data frame with <code>year</code>, <code>month</code>, and <code>week</code> extracted from <code>dt</code> in our data frame by using <code>mutate</code>.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="data-case-study-2.html#cb257-1"></a>global_temperatures <span class="op">%&gt;%</span></span>
-<span id="cb257-2"><a href="data-case-study-2.html#cb257-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(dt),</span>
-<span id="cb257-3"><a href="data-case-study-2.html#cb257-3"></a>         <span class="dt">month =</span> <span class="kw">month</span>(dt),</span>
-<span id="cb257-4"><a href="data-case-study-2.html#cb257-4"></a>         <span class="dt">decade =</span> <span class="kw">gsub</span>(<span class="st">&quot;([12][0-9][0-9])[0-9]&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">10&quot;</span>, year))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-case-study-2.html#cb27-1"></a>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb27-2"><a href="data-case-study-2.html#cb27-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(dt),</span>
+<span id="cb27-3"><a href="data-case-study-2.html#cb27-3"></a>         <span class="dt">month =</span> <span class="kw">month</span>(dt),</span>
+<span id="cb27-4"><a href="data-case-study-2.html#cb27-4"></a>         <span class="dt">decade =</span> year <span class="op">-</span><span class="st"> </span>(year <span class="op">%%</span><span class="st"> </span><span class="dv">10</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 577,462 x 7
 ##    dt         average_temperat… average_temperature_… country  year month decade
-##    &lt;date&gt;                 &lt;dbl&gt;                 &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; 
-##  1 1743-11-01              4.38                  2.29 Åland    1743    11 1740  
-##  2 1743-12-01             NA                    NA    Åland    1743    12 1740  
-##  3 1744-01-01             NA                    NA    Åland    1744     1 1740  
-##  4 1744-02-01             NA                    NA    Åland    1744     2 1740  
-##  5 1744-03-01             NA                    NA    Åland    1744     3 1740  
-##  6 1744-04-01              1.53                  4.68 Åland    1744     4 1740  
-##  7 1744-05-01              6.70                  1.79 Åland    1744     5 1740  
-##  8 1744-06-01             11.6                   1.58 Åland    1744     6 1740  
-##  9 1744-07-01             15.3                   1.41 Åland    1744     7 1740  
-## 10 1744-08-01             NA                    NA    Åland    1744     8 1740  
+##    &lt;date&gt;                 &lt;dbl&gt;                 &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+##  1 1743-11-01              4.38                  2.29 Åland    1743    11   1740
+##  2 1743-12-01             NA                    NA    Åland    1743    12   1740
+##  3 1744-01-01             NA                    NA    Åland    1744     1   1740
+##  4 1744-02-01             NA                    NA    Åland    1744     2   1740
+##  5 1744-03-01             NA                    NA    Åland    1744     3   1740
+##  6 1744-04-01              1.53                  4.68 Åland    1744     4   1740
+##  7 1744-05-01              6.70                  1.79 Åland    1744     5   1740
+##  8 1744-06-01             11.6                   1.58 Åland    1744     6   1740
+##  9 1744-07-01             15.3                   1.41 Åland    1744     7   1740
+## 10 1744-08-01             NA                    NA    Åland    1744     8   1740
 ## # … with 577,452 more rows</code></pre>
 <p>Instead of just printing to the console, let’s change the original data frame.</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="data-case-study-2.html#cb259-1"></a>global_temperatures &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
-<span id="cb259-2"><a href="data-case-study-2.html#cb259-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(dt),</span>
-<span id="cb259-3"><a href="data-case-study-2.html#cb259-3"></a>         <span class="dt">month =</span> <span class="kw">month</span>(dt),</span>
-<span id="cb259-4"><a href="data-case-study-2.html#cb259-4"></a>         <span class="dt">decade =</span> <span class="kw">gsub</span>(<span class="st">&quot;([12][0-9][0-9])[0-9]&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">10&quot;</span>, year))</span>
-<span id="cb259-5"><a href="data-case-study-2.html#cb259-5"></a></span>
-<span id="cb259-6"><a href="data-case-study-2.html#cb259-6"></a><span class="co"># inspect changes</span></span>
-<span id="cb259-7"><a href="data-case-study-2.html#cb259-7"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-case-study-2.html#cb29-1"></a>global_temperatures &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb29-2"><a href="data-case-study-2.html#cb29-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">year =</span> <span class="kw">year</span>(dt),</span>
+<span id="cb29-3"><a href="data-case-study-2.html#cb29-3"></a>         <span class="dt">month =</span> <span class="kw">month</span>(dt),</span>
+<span id="cb29-4"><a href="data-case-study-2.html#cb29-4"></a>         <span class="dt">decade =</span> <span class="kw">gsub</span>(<span class="st">&quot;([12][0-9][0-9])[0-9]&quot;</span>, <span class="st">&quot;</span><span class="ch">\\</span><span class="st">10&quot;</span>, year))</span>
+<span id="cb29-5"><a href="data-case-study-2.html#cb29-5"></a></span>
+<span id="cb29-6"><a href="data-case-study-2.html#cb29-6"></a><span class="co"># inspect changes</span></span>
+<span id="cb29-7"><a href="data-case-study-2.html#cb29-7"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
 <pre><code>## Rows: 577,462
 ## Columns: 7
 ## $ dt                              &lt;date&gt; 1743-11-01, 1743-12-01, 1744-01-01, …
@@ -415,12 +433,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="extra-data-libraries" class="section level2">
 <h2><span class="header-section-number">11.4</span> Extra Data libraries</h2>
 <p>If you need some hierarchical information that is not present in your data frame, such as continent based on country, check if there is a package that will do that for you. In our case, we will use the <code>countrycode</code> package.</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-case-study-2.html#cb261-1"></a><span class="co"># make sure you install this library</span></span>
-<span id="cb261-2"><a href="data-case-study-2.html#cb261-2"></a><span class="kw">library</span>(countrycode)</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-case-study-2.html#cb31-1"></a><span class="co"># make sure you install this library</span></span>
+<span id="cb31-2"><a href="data-case-study-2.html#cb31-2"></a><span class="kw">library</span>(countrycode)</span></code></pre></div>
 <p>Let’s look at our <code>country</code> variable.</p>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="data-case-study-2.html#cb262-1"></a><span class="co"># what does country look like in our data?</span></span>
-<span id="cb262-2"><a href="data-case-study-2.html#cb262-2"></a>global_temperatures <span class="op">%&gt;%</span></span>
-<span id="cb262-3"><a href="data-case-study-2.html#cb262-3"></a><span class="st">  </span><span class="kw">count</span>(country)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-case-study-2.html#cb32-1"></a><span class="co"># what does country look like in our data?</span></span>
+<span id="cb32-2"><a href="data-case-study-2.html#cb32-2"></a>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb32-3"><a href="data-case-study-2.html#cb32-3"></a><span class="st">  </span><span class="kw">count</span>(country)</span></code></pre></div>
 <pre><code>## # A tibble: 243 x 2
 ##    country            n
 ##    &lt;chr&gt;          &lt;int&gt;
@@ -436,18 +454,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 Antarctica       764
 ## # … with 233 more rows</code></pre>
 <p>We use the function <code>countrycode()</code> to get continent from a country name.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="data-case-study-2.html#cb264-1"></a><span class="co"># create new column called continent</span></span>
-<span id="cb264-2"><a href="data-case-study-2.html#cb264-2"></a>global_temperatures &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
-<span id="cb264-3"><a href="data-case-study-2.html#cb264-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">continent =</span> <span class="kw">countrycode</span>(<span class="dt">sourcevar =</span> country,</span>
-<span id="cb264-4"><a href="data-case-study-2.html#cb264-4"></a>                            <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>,</span>
-<span id="cb264-5"><a href="data-case-study-2.html#cb264-5"></a>                            <span class="dt">destination =</span> <span class="st">&quot;continent&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="data-case-study-2.html#cb34-1"></a><span class="co"># create new column called continent</span></span>
+<span id="cb34-2"><a href="data-case-study-2.html#cb34-2"></a>global_temperatures &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb34-3"><a href="data-case-study-2.html#cb34-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">continent =</span> <span class="kw">countrycode</span>(<span class="dt">sourcevar =</span> country,</span>
+<span id="cb34-4"><a href="data-case-study-2.html#cb34-4"></a>                            <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>,</span>
+<span id="cb34-5"><a href="data-case-study-2.html#cb34-5"></a>                            <span class="dt">destination =</span> <span class="st">&quot;continent&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning: Problem with `mutate()` input `continent`.
 ## ℹ Some values were not matched unambiguously: Africa, Antarctica, Asia, Baker Island, Europe, French Southern And Antarctic Lands, Heard Island And Mcdonald Islands, Kingman Reef, North America, Oceania, Palmyra Atoll, Saint Martin, South America, South Georgia And The South Sandwich Isla, Virgin Islands
 ## 
 ## ℹ Input `continent` is `countrycode(sourcevar = country, origin = &quot;country.name&quot;, destination = &quot;continent&quot;)`.</code></pre>
 <pre><code>## Warning in countrycode(sourcevar = country, origin = &quot;country.name&quot;, destination = &quot;continent&quot;): Some values were not matched unambiguously: Africa, Antarctica, Asia, Baker Island, Europe, French Southern And Antarctic Lands, Heard Island And Mcdonald Islands, Kingman Reef, North America, Oceania, Palmyra Atoll, Saint Martin, South America, South Georgia And The South Sandwich Isla, Virgin Islands</code></pre>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-case-study-2.html#cb267-1"></a><span class="co"># inspect data</span></span>
-<span id="cb267-2"><a href="data-case-study-2.html#cb267-2"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="data-case-study-2.html#cb37-1"></a><span class="co"># inspect data</span></span>
+<span id="cb37-2"><a href="data-case-study-2.html#cb37-2"></a><span class="kw">glimpse</span>(global_temperatures)</span></code></pre></div>
 <pre><code>## Rows: 577,462
 ## Columns: 8
 ## $ dt                              &lt;date&gt; 1743-11-01, 1743-12-01, 1744-01-01, …
@@ -459,10 +477,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ decade                          &lt;chr&gt; &quot;1740&quot;, &quot;1740&quot;, &quot;1740&quot;, &quot;1740&quot;, &quot;1740…
 ## $ continent                       &lt;chr&gt; &quot;Europe&quot;, &quot;Europe&quot;, &quot;Europe&quot;, &quot;Europe…</code></pre>
 <p>Always check your data. Let’s look at continent more closely, especially since we got a warning message.</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-case-study-2.html#cb269-1"></a><span class="co"># why some continents were not assigned</span></span>
-<span id="cb269-2"><a href="data-case-study-2.html#cb269-2"></a>global_temperatures <span class="op">%&gt;%</span></span>
-<span id="cb269-3"><a href="data-case-study-2.html#cb269-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(continent)) <span class="op">%&gt;%</span></span>
-<span id="cb269-4"><a href="data-case-study-2.html#cb269-4"></a><span class="st">  </span><span class="kw">distinct</span>(country)</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="data-case-study-2.html#cb39-1"></a><span class="co"># why some continents were not assigned</span></span>
+<span id="cb39-2"><a href="data-case-study-2.html#cb39-2"></a>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb39-3"><a href="data-case-study-2.html#cb39-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(continent)) <span class="op">%&gt;%</span></span>
+<span id="cb39-4"><a href="data-case-study-2.html#cb39-4"></a><span class="st">  </span><span class="kw">distinct</span>(country)</span></code></pre></div>
 <pre><code>## # A tibble: 15 x 1
 ##    country                                  
 ##    &lt;chr&gt;                                    
@@ -482,16 +500,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 14 South Georgia And The South Sandwich Isla
 ## 15 Virgin Islands</code></pre>
 <p>It seems we can eliminate the rows with NA for continent.</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-case-study-2.html#cb271-1"></a><span class="co"># keep only continents that are not NA</span></span>
-<span id="cb271-2"><a href="data-case-study-2.html#cb271-2"></a>global_temp_continents &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
-<span id="cb271-3"><a href="data-case-study-2.html#cb271-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(continent))</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="data-case-study-2.html#cb41-1"></a><span class="co"># keep only continents that are not NA</span></span>
+<span id="cb41-2"><a href="data-case-study-2.html#cb41-2"></a>global_temp_continents &lt;-<span class="st"> </span>global_temperatures <span class="op">%&gt;%</span></span>
+<span id="cb41-3"><a href="data-case-study-2.html#cb41-3"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span><span class="kw">is.na</span>(continent))</span></code></pre></div>
 </div>
 <div id="exploring-data" class="section level2">
 <h2><span class="header-section-number">11.5</span> Exploring Data</h2>
 <p>Now that our data is clean and transformed, what’s our data question? The data frame is still very large, so some summarization would be helpful.</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-case-study-2.html#cb272-1"></a>global_temp_continents  <span class="op">%&gt;%</span></span>
-<span id="cb272-2"><a href="data-case-study-2.html#cb272-2"></a><span class="st">  </span><span class="kw">group_by</span>(decade, continent) <span class="op">%&gt;%</span></span>
-<span id="cb272-3"><a href="data-case-study-2.html#cb272-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="data-case-study-2.html#cb42-1"></a>global_temp_continents  <span class="op">%&gt;%</span></span>
+<span id="cb42-2"><a href="data-case-study-2.html#cb42-2"></a><span class="st">  </span><span class="kw">group_by</span>(decade, continent) <span class="op">%&gt;%</span></span>
+<span id="cb42-3"><a href="data-case-study-2.html#cb42-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;decade&#39; (override with `.groups` argument)</code></pre>
 <pre><code>## # A tibble: 128 x 3
 ## # Groups:   decade [28]
@@ -509,42 +527,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 10 1770   Americas       6.61
 ## # … with 118 more rows</code></pre>
 <p>It’s still a long data frame, plotting helps here.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="data-case-study-2.html#cb275-1"></a>global_temp_continents  <span class="op">%&gt;%</span></span>
-<span id="cb275-2"><a href="data-case-study-2.html#cb275-2"></a><span class="st">  </span><span class="kw">group_by</span>(decade, continent) <span class="op">%&gt;%</span></span>
-<span id="cb275-3"><a href="data-case-study-2.html#cb275-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb275-4"><a href="data-case-study-2.html#cb275-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_temp, <span class="dt">color =</span> continent)) <span class="op">+</span></span>
-<span id="cb275-5"><a href="data-case-study-2.html#cb275-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="data-case-study-2.html#cb45-1"></a>global_temp_continents  <span class="op">%&gt;%</span></span>
+<span id="cb45-2"><a href="data-case-study-2.html#cb45-2"></a><span class="st">  </span><span class="kw">group_by</span>(decade, continent) <span class="op">%&gt;%</span></span>
+<span id="cb45-3"><a href="data-case-study-2.html#cb45-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb45-4"><a href="data-case-study-2.html#cb45-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_temp, <span class="dt">color =</span> continent)) <span class="op">+</span></span>
+<span id="cb45-5"><a href="data-case-study-2.html#cb45-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <pre><code>## `summarise()` regrouping output by &#39;decade&#39; (override with `.groups` argument)</code></pre>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-151-1.png" width="672" /></p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
 <p>Looking at the plot above, how reliable do you think these temperatures are? Why?</p>
 <p>Let’s look at Europe only.</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="data-case-study-2.html#cb277-1"></a>europe_temps &lt;-<span class="st"> </span>global_temp_continents  <span class="op">%&gt;%</span></span>
-<span id="cb277-2"><a href="data-case-study-2.html#cb277-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="data-case-study-2.html#cb278-1"></a>europe_temps  <span class="op">%&gt;%</span></span>
-<span id="cb278-2"><a href="data-case-study-2.html#cb278-2"></a><span class="st">  </span><span class="kw">group_by</span>(decade) <span class="op">%&gt;%</span></span>
-<span id="cb278-3"><a href="data-case-study-2.html#cb278-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb278-4"><a href="data-case-study-2.html#cb278-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_temp)) <span class="op">+</span></span>
-<span id="cb278-5"><a href="data-case-study-2.html#cb278-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="data-case-study-2.html#cb47-1"></a>europe_temps &lt;-<span class="st"> </span>global_temp_continents  <span class="op">%&gt;%</span></span>
+<span id="cb47-2"><a href="data-case-study-2.html#cb47-2"></a><span class="st">  </span><span class="kw">filter</span>(continent <span class="op">==</span><span class="st"> &quot;Europe&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="data-case-study-2.html#cb48-1"></a>europe_temps  <span class="op">%&gt;%</span></span>
+<span id="cb48-2"><a href="data-case-study-2.html#cb48-2"></a><span class="st">  </span><span class="kw">group_by</span>(decade) <span class="op">%&gt;%</span></span>
+<span id="cb48-3"><a href="data-case-study-2.html#cb48-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb48-4"><a href="data-case-study-2.html#cb48-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> decade, <span class="dt">y =</span> mean_temp)) <span class="op">+</span></span>
+<span id="cb48-5"><a href="data-case-study-2.html#cb48-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-153-1.png" width="672" /></p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>Now that we have filtered by continent, we can look at <code>year</code> instead of <code>decade</code>, because you have less information to plot (just one continent).</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="data-case-study-2.html#cb280-1"></a>europe_temps  <span class="op">%&gt;%</span></span>
-<span id="cb280-2"><a href="data-case-study-2.html#cb280-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
-<span id="cb280-3"><a href="data-case-study-2.html#cb280-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb280-4"><a href="data-case-study-2.html#cb280-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> mean_temp)) <span class="op">+</span></span>
-<span id="cb280-5"><a href="data-case-study-2.html#cb280-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="data-case-study-2.html#cb50-1"></a>europe_temps  <span class="op">%&gt;%</span></span>
+<span id="cb50-2"><a href="data-case-study-2.html#cb50-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span></span>
+<span id="cb50-3"><a href="data-case-study-2.html#cb50-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb50-4"><a href="data-case-study-2.html#cb50-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> mean_temp)) <span class="op">+</span></span>
+<span id="cb50-5"><a href="data-case-study-2.html#cb50-5"></a><span class="st">  </span><span class="kw">geom_point</span>()</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <pre><code>## Warning: Removed 4 rows containing missing values (geom_point).</code></pre>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-154-1.png" width="672" /></p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
 <p>Let’s look at monthly temperatures</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="data-case-study-2.html#cb283-1"></a>europe_temps  <span class="op">%&gt;%</span></span>
-<span id="cb283-2"><a href="data-case-study-2.html#cb283-2"></a><span class="st">  </span><span class="kw">group_by</span>(month) <span class="op">%&gt;%</span></span>
-<span id="cb283-3"><a href="data-case-study-2.html#cb283-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
-<span id="cb283-4"><a href="data-case-study-2.html#cb283-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> mean_temp)) <span class="op">+</span></span>
-<span id="cb283-5"><a href="data-case-study-2.html#cb283-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb283-6"><a href="data-case-study-2.html#cb283-6"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="data-case-study-2.html#cb53-1"></a>europe_temps  <span class="op">%&gt;%</span></span>
+<span id="cb53-2"><a href="data-case-study-2.html#cb53-2"></a><span class="st">  </span><span class="kw">group_by</span>(month) <span class="op">%&gt;%</span></span>
+<span id="cb53-3"><a href="data-case-study-2.html#cb53-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_temp =</span> <span class="kw">mean</span>(average_temperature, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span></span>
+<span id="cb53-4"><a href="data-case-study-2.html#cb53-4"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> month, <span class="dt">y =</span> mean_temp)) <span class="op">+</span></span>
+<span id="cb53-5"><a href="data-case-study-2.html#cb53-5"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb53-6"><a href="data-case-study-2.html#cb53-6"></a><span class="st">  </span><span class="kw">geom_line</span>()</span></code></pre></div>
 <pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-155-1.png" width="672" /></p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <p>Would this pattern, of temperature increase around June, be the same no matter the continent?</p>
 </div>
 <div id="data-challenge-06" class="section level2">
