@@ -128,6 +128,8 @@ extracting-data-tables-from-pdf-files
 extracting-data-tables-from-websites
 project-proposal
 data-case-study-3
+adding-population-info-to-data-frame
+plotting-a-map
 markdown
 data-case-study-4
 analysis-reporting

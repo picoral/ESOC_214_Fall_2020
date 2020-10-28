@@ -133,7 +133,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-10-26}
+\date{2020-10-28}
 
 \begin{document}
 \maketitle
@@ -4718,24 +4718,24 @@ We can create new columns in our data frame with \texttt{year}, \texttt{month}, 
 \NormalTok{global_temperatures }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{year =} \KeywordTok{year}\NormalTok{(dt),}
          \DataTypeTok{month =} \KeywordTok{month}\NormalTok{(dt),}
-         \DataTypeTok{decade =} \KeywordTok{gsub}\NormalTok{(}\StringTok{"([12][0-9][0-9])[0-9]"}\NormalTok{, }\StringTok{"}\CharTok{\textbackslash{}\textbackslash{}}\StringTok{10"}\NormalTok{, year))}
+         \DataTypeTok{decade =}\NormalTok{ year }\OperatorTok{-}\StringTok{ }\NormalTok{(year }\OperatorTok{%%}\StringTok{ }\DecValTok{10}\NormalTok{))}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{verbatim}
 ## # A tibble: 577,462 x 7
 ##    dt         average_temperat~ average_temperature_~ country  year month decade
-##    <date>                 <dbl>                 <dbl> <chr>   <dbl> <dbl> <chr> 
-##  1 1743-11-01              4.38                  2.29 Åland    1743    11 1740  
-##  2 1743-12-01             NA                    NA    Åland    1743    12 1740  
-##  3 1744-01-01             NA                    NA    Åland    1744     1 1740  
-##  4 1744-02-01             NA                    NA    Åland    1744     2 1740  
-##  5 1744-03-01             NA                    NA    Åland    1744     3 1740  
-##  6 1744-04-01              1.53                  4.68 Åland    1744     4 1740  
-##  7 1744-05-01              6.70                  1.79 Åland    1744     5 1740  
-##  8 1744-06-01             11.6                   1.58 Åland    1744     6 1740  
-##  9 1744-07-01             15.3                   1.41 Åland    1744     7 1740  
-## 10 1744-08-01             NA                    NA    Åland    1744     8 1740  
+##    <date>                 <dbl>                 <dbl> <chr>   <dbl> <dbl>  <dbl>
+##  1 1743-11-01              4.38                  2.29 Åland    1743    11   1740
+##  2 1743-12-01             NA                    NA    Åland    1743    12   1740
+##  3 1744-01-01             NA                    NA    Åland    1744     1   1740
+##  4 1744-02-01             NA                    NA    Åland    1744     2   1740
+##  5 1744-03-01             NA                    NA    Åland    1744     3   1740
+##  6 1744-04-01              1.53                  4.68 Åland    1744     4   1740
+##  7 1744-05-01              6.70                  1.79 Åland    1744     5   1740
+##  8 1744-06-01             11.6                   1.58 Åland    1744     6   1740
+##  9 1744-07-01             15.3                   1.41 Åland    1744     7   1740
+## 10 1744-08-01             NA                    NA    Åland    1744     8   1740
 ## # ... with 577,452 more rows
 \end{verbatim}
 
@@ -6402,6 +6402,232 @@ Plot it.
 
 \hypertarget{data-case-study-3}{%
 \chapter{Data Case Study 3}\label{data-case-study-3}}
+
+For this case study, we will work with the Great American Beer Festival data set, provided as a \href{https://github.com/rfordatascience/tidytuesday/blob/master/data/2020/2020-10-20/readme.md}{tidy tuesday} data set.
+
+As usual, we first load the libraries we are going to use.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+Then we load the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beer_awards <-}\StringTok{ }\NormalTok{readr}\OperatorTok{::}\KeywordTok{read_csv}\NormalTok{(}\StringTok{'https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2020/2020-10-20/beer_awards.csv'}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   medal = col_character(),
+##   beer_name = col_character(),
+##   brewery = col_character(),
+##   city = col_character(),
+##   state = col_character(),
+##   category = col_character(),
+##   year = col_double()
+## )
+\end{verbatim}
+
+Take some time to explore this data set. What questions can you ask? What plots can you draw?
+
+\hypertarget{adding-population-info-to-data-frame}{%
+\section{Adding population info to data frame}\label{adding-population-info-to-data-frame}}
+
+Whenever you're dealing with states or countries, it's usually relevant to know the population of the different states/countries. For beer awards, we can assume that the higher the population of a state, the higher the number of breweries, thus the higher the number of awards. Let's check if this assumption is correct. First, we need to retrieve information about US states' population numbers. The \texttt{usmap} package has a \texttt{statepop} data set with that info.
+
+First, we need to install \texttt{usmap} and called it with \texttt{library()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(usmap)}
+\end{Highlighting}
+\end{Shaded}
+
+We can now inspect the \texttt{statepop} data frame.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(statepop)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 51
+## Columns: 4
+## $ fips     <chr> "01", "02", "04", "05", "06", "08", "09", "10", "11", "12"...
+## $ abbr     <chr> "AL", "AK", "AZ", "AR", "CA", "CO", "CT", "DE", "DC", "FL"...
+## $ full     <chr> "Alabama", "Alaska", "Arizona", "Arkansas", "California", ...
+## $ pop_2015 <dbl> 4858979, 738432, 6828065, 2978204, 39144818, 5456574, 3590...
+\end{verbatim}
+
+We just need the \texttt{abbr} and \texttt{pop\_2015} columns, but we have to make sure that the state abbreviation column name matches what we have for our \texttt{beer\_awards} data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{us_pop <-}\StringTok{ }\NormalTok{statepop }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{select}\NormalTok{(}\StringTok{"state"}\NormalTok{ =}\StringTok{ }\NormalTok{abbr,}
+\NormalTok{         pop_}\DecValTok{2015}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+We are interested in number of beer awards per state, to check whether it correlates with the population size. We need to summarise our \texttt{beer\_awards} data to get number of awards per state.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beer_awards }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(state)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 52 x 2
+##    state     n
+##    <chr> <int>
+##  1 Ak        1
+##  2 AK       62
+##  3 AL        6
+##  4 AR        5
+##  5 AZ       92
+##  6 CA      962
+##  7 CO      659
+##  8 CT       16
+##  9 DC        4
+## 10 DE       43
+## # ... with 42 more rows
+\end{verbatim}
+
+There are at least two Alaska state codes (Ak and AK). We need to standardize the codes, to upper case, for this count to work correctly. Let's fix that in our original data, so we don't run into this problem again.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beer_awards <-}\StringTok{ }\NormalTok{beer_awards }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{state =} \KeywordTok{toupper}\NormalTok{(state))}
+\end{Highlighting}
+\end{Shaded}
+
+Now we can count number of awards per state.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{award_count_per_state <-}\StringTok{ }\NormalTok{beer_awards }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(state)}
+
+\CommentTok{# inspect data}
+\KeywordTok{glimpse}\NormalTok{(award_count_per_state)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 50
+## Columns: 2
+## $ state <chr> "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL", "...
+## $ n     <int> 63, 6, 5, 92, 962, 659, 16, 4, 43, 62, 38, 17, 28, 22, 155, 7...
+\end{verbatim}
+
+We now can add population info from our \texttt{us\_pop} data frame to our \texttt{award\_count\_per\_state} data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{award_count_per_state <-}\StringTok{ }\KeywordTok{left_join}\NormalTok{(award_count_per_state, us_pop)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Joining, by = "state"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# inspect data}
+\KeywordTok{glimpse}\NormalTok{(award_count_per_state)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 50
+## Columns: 3
+## $ state    <chr> "AK", "AL", "AR", "AZ", "CA", "CO", "CT", "DC", "DE", "FL"...
+## $ n        <int> 63, 6, 5, 92, 962, 659, 16, 4, 43, 62, 38, 17, 28, 22, 155...
+## $ pop_2015 <dbl> 738432, 4858979, 2978204, 6828065, 39144818, 5456574, 3590...
+\end{verbatim}
+
+Finally, we draw a scatter plot of award count (\texttt{n}) by population size (\texttt{pop\_2015}).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{award_count_per_state }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ pop_}\DecValTok{2015}\NormalTok{, }\DataTypeTok{y =}\NormalTok{ n)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-187-1.pdf}
+
+\hypertarget{plotting-a-map}{%
+\section{Plotting a map}\label{plotting-a-map}}
+
+Whenever you have data with locations, like US states, you can think about plotting data to a geographical map. For the US, that's made extra easy with the \texttt{usmap} package.
+
+We can now plot a map, using the \texttt{plot\_usmpa} function.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beer_awards }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(state, medal) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{plot_usmap}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ ., }\DataTypeTok{values =} \StringTok{"n"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-188-1.pdf}
+
+Let's make it look nicer by moving the legend right.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beer_awards }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(state, medal) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{plot_usmap}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ ., }\DataTypeTok{values =} \StringTok{"n"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"right"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-189-1.pdf}
+
+We can also change the title of the legend.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beer_awards }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(state, medal) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{plot_usmap}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ ., }\DataTypeTok{values =} \StringTok{"n"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"right"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_continuous}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Award Count"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-190-1.pdf}
+
+People usually associate darker colors with higher density or higher values. Let's change the colors to define a light color for our \texttt{low} values and a dark color for our \texttt{high} values. Check this documentation for \href{http://www.stat.columbia.edu/~tzheng/files/Rcolor.pdf}{color names in R}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{beer_awards }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{count}\NormalTok{(state, medal) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{plot_usmap}\NormalTok{(}\DataTypeTok{data =}\NormalTok{ ., }\DataTypeTok{values =} \StringTok{"n"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme}\NormalTok{(}\DataTypeTok{legend.position =} \StringTok{"right"}\NormalTok{) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_fill_continuous}\NormalTok{(}\DataTypeTok{name =} \StringTok{"Award Count"}\NormalTok{,}
+                        \DataTypeTok{low =} \StringTok{"darkgoldenrod2"}\NormalTok{, }
+                        \DataTypeTok{high =} \StringTok{"darkgoldenrod4"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-191-1.pdf}
 
 \hypertarget{markdown}{%
 \chapter{Markdown}\label{markdown}}
