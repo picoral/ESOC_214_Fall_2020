@@ -1,4 +1,6 @@
 fig:unnamed-chunk-3
+tab:unnamed-chunk-202
+tab:unnamed-chunk-204
 syllabus
 course-description
 course-objectives
@@ -131,6 +133,16 @@ data-case-study-3
 adding-population-info-to-data-frame
 plotting-a-map
 data-challenge-07
-markdown
+r-markdown
+creating-a-new-r-markdown-file
+chunk-options
+change-yaml-header
+text-formatting
+reading-data
+data-tables
+plots
+data-challenge-08
 data-case-study-4
 analysis-reporting
+r-markdown-1
+including-plots
