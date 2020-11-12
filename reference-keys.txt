@@ -140,7 +140,9 @@ change-yaml-header
 text-formatting
 reading-data
 data-tables
+manual-tables
 plots
+knitting-pdfs
 data-challenge-08
 data-case-study-4
 analysis-reporting

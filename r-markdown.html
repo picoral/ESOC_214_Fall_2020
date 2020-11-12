@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-11-09" />
+<meta name="date" content="2020-11-12" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -298,8 +298,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.4" data-path="r-markdown.html"><a href="r-markdown.html#text-formatting"><i class="fa fa-check"></i><b>14.4</b> Text Formatting</a></li>
 <li class="chapter" data-level="14.5" data-path="r-markdown.html"><a href="r-markdown.html#reading-data"><i class="fa fa-check"></i><b>14.5</b> Reading Data</a></li>
 <li class="chapter" data-level="14.6" data-path="r-markdown.html"><a href="r-markdown.html#data-tables"><i class="fa fa-check"></i><b>14.6</b> Data Tables</a></li>
-<li class="chapter" data-level="14.7" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>14.7</b> Plots</a></li>
-<li class="chapter" data-level="14.8" data-path="r-markdown.html"><a href="r-markdown.html#data-challenge-08"><i class="fa fa-check"></i><b>14.8</b> Data Challenge 08</a></li>
+<li class="chapter" data-level="14.7" data-path="r-markdown.html"><a href="r-markdown.html#manual-tables"><i class="fa fa-check"></i><b>14.7</b> Manual Tables</a></li>
+<li class="chapter" data-level="14.8" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>14.8</b> Plots</a></li>
+<li class="chapter" data-level="14.9" data-path="r-markdown.html"><a href="r-markdown.html#knitting-pdfs"><i class="fa fa-check"></i><b>14.9</b> Knitting PDFs</a></li>
+<li class="chapter" data-level="14.10" data-path="r-markdown.html"><a href="r-markdown.html#data-challenge-08"><i class="fa fa-check"></i><b>14.10</b> Data Challenge 08</a></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="data-case-study-4.html"><a href="data-case-study-4.html"><i class="fa fa-check"></i><b>15</b> Data Case Study 4</a></li>
 <li class="chapter" data-level="16" data-path="analysis-reporting.html"><a href="analysis-reporting.html"><i class="fa fa-check"></i><b>16</b> Analysis Reporting</a></li>
@@ -512,14 +514,56 @@ West
 </tbody>
 </table>
 </div>
+<div id="manual-tables" class="section level2">
+<h2><span class="header-section-number">14.7</span> Manual Tables</h2>
+<p>You might want to add an explanation table that does not come from your data. You can build tables manually in markdown by using the right dashes. Note that the default is left align. You can use <code>:</code> to change that alignment.</p>
+<pre><code>| Tables        | Are           | Cool  |
+|---------------|:-------------:|------:|
+| row 1 col 1   | row 1 col 2   | $1600 |
+| row 2 col 1   | row 2 col 2   |   $12 |
+| row 1 col 1   | row 3 col 2   |    $1 |</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th>Tables</th>
+<th align="center">Are</th>
+<th align="right">Cool</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>row 1 col 1</td>
+<td align="center">row 1 col 2</td>
+<td align="right">$1600</td>
+</tr>
+<tr class="even">
+<td>row 2 col 1</td>
+<td align="center">row 2 col 2</td>
+<td align="right">$12</td>
+</tr>
+<tr class="odd">
+<td>row 1 col 1</td>
+<td align="center">row 3 col 2</td>
+<td align="right">$1</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div id="plots" class="section level2">
-<h2><span class="header-section-number">14.7</span> Plots</h2>
+<h2><span class="header-section-number">14.8</span> Plots</h2>
 <p>There are also a number of options that you can use for displaying plots nicely.</p>
 <p><img src="images/nice_plot.png" width="734" /></p>
 <p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-206-1.png" width="768" /></p>
 </div>
+<div id="knitting-pdfs" class="section level2">
+<h2><span class="header-section-number">14.9</span> Knitting PDFs</h2>
+<p>The easiest way to install TeX in your computer (if you don’t have TeX/LaTeX installed already) is through the <code>tinytext</code> package.</p>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="r-markdown.html#cb351-1"></a><span class="kw">install.packages</span>(<span class="st">&#39;tinytex&#39;</span>)</span>
+<span id="cb351-2"><a href="r-markdown.html#cb351-2"></a>tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()</span></code></pre></div>
+<p>Now you can change <code>html_document</code> to <code>pdf_document</code> to output a pdf instead of a html file.</p>
+</div>
 <div id="data-challenge-08" class="section level2">
-<h2><span class="header-section-number">14.8</span> Data Challenge 08</h2>
+<h2><span class="header-section-number">14.10</span> Data Challenge 08</h2>
 <p>Accept <a href="https://classroom.github.com/a/hsqRqRx1">data challenge 08 assignment</a></p>
 
 </div>

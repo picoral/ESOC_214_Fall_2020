@@ -133,7 +133,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-11-09}
+\date{2020-11-12}
 
 \begin{document}
 \maketitle
@@ -6801,6 +6801,30 @@ West & 204.54\\
 \end{tabular}
 \end{table}
 
+\hypertarget{manual-tables}{%
+\section{Manual Tables}\label{manual-tables}}
+
+You might want to add an explanation table that does not come from your data. You can build tables manually in markdown by using the right dashes. Note that the default is left align. You can use \texttt{:} to change that alignment.
+
+\begin{verbatim}
+| Tables        | Are           | Cool  |
+|---------------|:-------------:|------:|
+| row 1 col 1   | row 1 col 2   | $1600 |
+| row 2 col 1   | row 2 col 2   |   $12 |
+| row 1 col 1   | row 3 col 2   |    $1 |
+\end{verbatim}
+
+\begin{longtable}[]{@{}lcr@{}}
+\toprule
+Tables & Are & Cool\tabularnewline
+\midrule
+\endhead
+row 1 col 1 & row 1 col 2 & \$1600\tabularnewline
+row 2 col 1 & row 2 col 2 & \$12\tabularnewline
+row 1 col 1 & row 3 col 2 & \$1\tabularnewline
+\bottomrule
+\end{longtable}
+
 \hypertarget{plots}{%
 \section{Plots}\label{plots}}
 
@@ -6809,6 +6833,20 @@ There are also a number of options that you can use for displaying plots nicely.
 \includegraphics[width=20.39in]{images/nice_plot}
 
 \includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-206-1.pdf}
+
+\hypertarget{knitting-pdfs}{%
+\section{Knitting PDFs}\label{knitting-pdfs}}
+
+The easiest way to install TeX in your computer (if you don't have TeX/LaTeX installed already) is through the \texttt{tinytext} package.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{'tinytex'}\NormalTok{)}
+\NormalTok{tinytex}\OperatorTok{::}\KeywordTok{install_tinytex}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+Now you can change \texttt{html\_document} to \texttt{pdf\_document} to output a pdf instead of a html file.
 
 \hypertarget{data-challenge-08}{%
 \section{Data Challenge 08}\label{data-challenge-08}}
