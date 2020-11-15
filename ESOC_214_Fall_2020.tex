@@ -133,7 +133,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-11-12}
+\date{2020-11-14}
 
 \begin{document}
 \maketitle
@@ -608,7 +608,7 @@ Week 14\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
 Happy Thanksgiving! 🌽🦃🏡\strut
 \end{minipage} & \begin{minipage}[t]{0.22\columnwidth}\raggedright
-Data Challenge 9\strut
+\href{https://classroom.github.com/a/J1bexrCQ}{Data Challenge 9}\strut
 \end{minipage}\tabularnewline
 \begin{minipage}[t]{0.22\columnwidth}\raggedright
 \strut
@@ -1823,10 +1823,11 @@ You can now list the contents of your \texttt{data} folder with the \texttt{dir(
 ##  [7] "olympic_history_athlete_events.csv"   
 ##  [8] "olympic_history_noc_regions.csv"      
 ##  [9] "passwords.csv"                        
-## [10] "spotify_songs_clean.csv"              
-## [11] "spotify_songs.csv"                    
-## [12] "tweets.tsv"                           
-## [13] "us_avg_tuition.xlsx"
+## [10] "president_county_candidate.csv"       
+## [11] "spotify_songs_clean.csv"              
+## [12] "spotify_songs.csv"                    
+## [13] "tweets.tsv"                           
+## [14] "us_avg_tuition.xlsx"
 \end{verbatim}
 
 \hypertarget{whats-our-question-again}{%
@@ -6849,12 +6850,114 @@ The easiest way to install TeX in your computer (if you don't have TeX/LaTeX ins
 Now you can change \texttt{html\_document} to \texttt{pdf\_document} to output a pdf instead of a html file.
 
 \hypertarget{data-challenge-08}{%
-\section{Data Challenge 08}\label{data-challenge-08}}
+\section{DATA CHALLENGE 08}\label{data-challenge-08}}
 
 Accept \href{https://classroom.github.com/a/hsqRqRx1}{data challenge 08 assignment}
 
 \hypertarget{data-case-study-4}{%
 \chapter{Data Case Study 4}\label{data-case-study-4}}
+
+The learning objectives of this module are:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Apply different parts of the data science workflow, for data import to data visualization, to a new data set
+\item
+  Build an R script with data wrangling and a R markdown file with the data analysis report
+\end{enumerate}
+
+\hypertarget{data}{%
+\section{Data}\label{data}}
+
+For this module, we are using \href{https://www.kaggle.com/unanimad/us-election-2020?select=president_county_candidate.csv}{2020 election data from Kaggle}. More specifically, we want the \texttt{president\_county\_candidate.csv} data file.
+
+\hypertarget{data-wrangling-1}{%
+\section{Data Wrangling}\label{data-wrangling-1}}
+
+We need to apply the following steps:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Read data in R
+\item
+  Explore data
+\item
+  Add (with mutate) any other variables we find relevant
+\end{enumerate}
+
+\begin{verbatim}
+## Rows: 31,139
+## Columns: 6
+## $ state       <chr> "Delaware", "Delaware", "Delaware", "Delaware", "Delawa...
+## $ county      <chr> "Kent County", "Kent County", "Kent County", "Kent Coun...
+## $ candidate   <chr> "Joe Biden", "Donald Trump", "Jo Jorgensen", "Howie Haw...
+## $ party       <chr> "DEM", "REP", "LIB", "GRN", "DEM", "REP", "LIB", "GRN",...
+## $ total_votes <dbl> 44552, 41009, 1044, 420, 195034, 88364, 2953, 1282, 712...
+## $ won         <lgl> TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, T...
+\end{verbatim}
+
+How many votes total for each candidate?
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-209-1.pdf}
+
+We can get electoral votes per state. The best table I found is from \href{https://en.wikipedia.org/wiki/United_States_Electoral_College\#:~:text=Electoral\%20votes\%2C\%20out\%20of\%20538,entitled\%20to\%20at\%20least\%203.}{wikipedia}
+
+\begin{verbatim}
+## Rows: 51
+## Columns: 2
+## $ state           <chr> "Alabama", "Alaska", "Arizona", "Arkansas", "Califo...
+## $ electoral_votes <dbl> 9, 3, 11, 6, 55, 9, 7, 3, 3, 29, 16, 4, 4, 20, 11, ...
+\end{verbatim}
+
+How many electoral votes for each candidate? Firs we need to calculate who won each state.
+
+\begin{verbatim}
+## Rows: 51
+## Columns: 2
+## $ state       <chr> "Alabama", "Alaska", "Arizona", "Arkansas", "California...
+## $ total_votes <dbl> 2309900, 334789, 3384972, 1211793, 16822143, 3254844, 1...
+\end{verbatim}
+
+\begin{verbatim}
+## Rows: 51
+## Columns: 5
+## Groups: state [51]
+## $ state         <chr> "Alabama", "Alaska", "Arizona", "Arkansas", "Californ...
+## $ candidate     <chr> "Donald Trump", "Donald Trump", "Joe Biden", "Donald ...
+## $ popular_vote  <dbl> 1434159, 179080, 1671491, 758183, 10734181, 1803419, ...
+## $ total_votes   <dbl> 2309900, 334789, 3384972, 1211793, 16822143, 3254844,...
+## $ perc_pop_vote <dbl> 0.6208749, 0.5349041, 0.4937976, 0.6256704, 0.6380983...
+\end{verbatim}
+
+Now we can add electoral votes to winner by state data.
+
+\begin{verbatim}
+## Rows: 51
+## Columns: 6
+## Groups: state [51]
+## $ state           <chr> "Alabama", "Alaska", "Arizona", "Arkansas", "Califo...
+## $ candidate       <chr> "Donald Trump", "Donald Trump", "Joe Biden", "Donal...
+## $ popular_vote    <dbl> 1434159, 179080, 1671491, 758183, 10734181, 1803419...
+## $ total_votes     <dbl> 2309900, 334789, 3384972, 1211793, 16822143, 325484...
+## $ perc_pop_vote   <dbl> 0.6208749, 0.5349041, 0.4937976, 0.6256704, 0.63809...
+## $ electoral_votes <dbl> 9, 3, 11, 6, 55, 9, 7, 3, 3, 29, 16, 4, 4, 20, 11, ...
+\end{verbatim}
+
+Plot it!
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-213-1.pdf}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-214-1.pdf}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-215-1.pdf}
+
+\hypertarget{data-challenge-09}{%
+\section{DATA CHALLENGE 09}\label{data-challenge-09}}
+
+Accept \href{https://classroom.github.com/a/J1bexrCQ}{data challenge 09 assignment}
 
 \hypertarget{analysis-reporting}{%
 \chapter{Analysis Reporting}\label{analysis-reporting}}

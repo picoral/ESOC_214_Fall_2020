@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-11-12" />
+<meta name="date" content="2020-11-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -301,9 +301,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.7" data-path="r-markdown.html"><a href="r-markdown.html#manual-tables"><i class="fa fa-check"></i><b>14.7</b> Manual Tables</a></li>
 <li class="chapter" data-level="14.8" data-path="r-markdown.html"><a href="r-markdown.html#plots"><i class="fa fa-check"></i><b>14.8</b> Plots</a></li>
 <li class="chapter" data-level="14.9" data-path="r-markdown.html"><a href="r-markdown.html#knitting-pdfs"><i class="fa fa-check"></i><b>14.9</b> Knitting PDFs</a></li>
-<li class="chapter" data-level="14.10" data-path="r-markdown.html"><a href="r-markdown.html#data-challenge-08"><i class="fa fa-check"></i><b>14.10</b> Data Challenge 08</a></li>
+<li class="chapter" data-level="14.10" data-path="r-markdown.html"><a href="r-markdown.html#data-challenge-08"><i class="fa fa-check"></i><b>14.10</b> DATA CHALLENGE 08</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="data-case-study-4.html"><a href="data-case-study-4.html"><i class="fa fa-check"></i><b>15</b> Data Case Study 4</a></li>
+<li class="chapter" data-level="15" data-path="data-case-study-4.html"><a href="data-case-study-4.html"><i class="fa fa-check"></i><b>15</b> Data Case Study 4</a><ul>
+<li class="chapter" data-level="15.1" data-path="data-case-study-4.html"><a href="data-case-study-4.html#data"><i class="fa fa-check"></i><b>15.1</b> Data</a></li>
+<li class="chapter" data-level="15.2" data-path="data-case-study-4.html"><a href="data-case-study-4.html#data-wrangling-1"><i class="fa fa-check"></i><b>15.2</b> Data Wrangling</a></li>
+<li class="chapter" data-level="15.3" data-path="data-case-study-4.html"><a href="data-case-study-4.html#data-challenge-09"><i class="fa fa-check"></i><b>15.3</b> DATA CHALLENGE 09</a></li>
+</ul></li>
 <li class="chapter" data-level="16" data-path="analysis-reporting.html"><a href="analysis-reporting.html"><i class="fa fa-check"></i><b>16</b> Analysis Reporting</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a><ul>
 <li class="chapter" data-level="16.1" data-path="references.html"><a href="references.html#r-markdown-1"><i class="fa fa-check"></i><b>16.1</b> R Markdown</a></li>
@@ -331,7 +335,71 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="data-case-study-4" class="section level1">
 <h1><span class="header-section-number">Module 15</span> Data Case Study 4</h1>
+<p>The learning objectives of this module are:</p>
+<ol style="list-style-type: decimal">
+<li><p>Apply different parts of the data science workflow, for data import to data visualization, to a new data set</p></li>
+<li><p>Build an R script with data wrangling and a R markdown file with the data analysis report</p></li>
+</ol>
+<div id="data" class="section level2">
+<h2><span class="header-section-number">15.1</span> Data</h2>
+<p>For this module, we are using <a href="https://www.kaggle.com/unanimad/us-election-2020?select=president_county_candidate.csv">2020 election data from Kaggle</a>. More specifically, we want the <code>president_county_candidate.csv</code> data file.</p>
+</div>
+<div id="data-wrangling-1" class="section level2">
+<h2><span class="header-section-number">15.2</span> Data Wrangling</h2>
+<p>We need to apply the following steps:</p>
+<ol style="list-style-type: decimal">
+<li>Read data in R</li>
+<li>Explore data</li>
+<li>Add (with mutate) any other variables we find relevant</li>
+</ol>
+<pre><code>## Rows: 31,139
+## Columns: 6
+## $ state       &lt;chr&gt; &quot;Delaware&quot;, &quot;Delaware&quot;, &quot;Delaware&quot;, &quot;Delaware&quot;, &quot;Delaware…
+## $ county      &lt;chr&gt; &quot;Kent County&quot;, &quot;Kent County&quot;, &quot;Kent County&quot;, &quot;Kent County…
+## $ candidate   &lt;chr&gt; &quot;Joe Biden&quot;, &quot;Donald Trump&quot;, &quot;Jo Jorgensen&quot;, &quot;Howie Hawki…
+## $ party       &lt;chr&gt; &quot;DEM&quot;, &quot;REP&quot;, &quot;LIB&quot;, &quot;GRN&quot;, &quot;DEM&quot;, &quot;REP&quot;, &quot;LIB&quot;, &quot;GRN&quot;, &quot;…
+## $ total_votes &lt;dbl&gt; 44552, 41009, 1044, 420, 195034, 88364, 2953, 1282, 71230…
+## $ won         &lt;lgl&gt; TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, TRU…</code></pre>
+<p>How many votes total for each candidate?</p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-209-1.png" width="768" /></p>
+<p>We can get electoral votes per state. The best table I found is from <a href="https://en.wikipedia.org/wiki/United_States_Electoral_College#:~:text=Electoral%20votes%2C%20out%20of%20538,entitled%20to%20at%20least%203.">wikipedia</a></p>
+<pre><code>## Rows: 51
+## Columns: 2
+## $ state           &lt;chr&gt; &quot;Alabama&quot;, &quot;Alaska&quot;, &quot;Arizona&quot;, &quot;Arkansas&quot;, &quot;Californ…
+## $ electoral_votes &lt;dbl&gt; 9, 3, 11, 6, 55, 9, 7, 3, 3, 29, 16, 4, 4, 20, 11, 6,…</code></pre>
+<p>How many electoral votes for each candidate? Firs we need to calculate who won each state.</p>
+<pre><code>## Rows: 51
+## Columns: 2
+## $ state       &lt;chr&gt; &quot;Alabama&quot;, &quot;Alaska&quot;, &quot;Arizona&quot;, &quot;Arkansas&quot;, &quot;California&quot;,…
+## $ total_votes &lt;dbl&gt; 2309900, 334789, 3384972, 1211793, 16822143, 3254844, 182…</code></pre>
+<pre><code>## Rows: 51
+## Columns: 5
+## Groups: state [51]
+## $ state         &lt;chr&gt; &quot;Alabama&quot;, &quot;Alaska&quot;, &quot;Arizona&quot;, &quot;Arkansas&quot;, &quot;California…
+## $ candidate     &lt;chr&gt; &quot;Donald Trump&quot;, &quot;Donald Trump&quot;, &quot;Joe Biden&quot;, &quot;Donald Tr…
+## $ popular_vote  &lt;dbl&gt; 1434159, 179080, 1671491, 758183, 10734181, 1803419, 10…
+## $ total_votes   &lt;dbl&gt; 2309900, 334789, 3384972, 1211793, 16822143, 3254844, 1…
+## $ perc_pop_vote &lt;dbl&gt; 0.6208749, 0.5349041, 0.4937976, 0.6256704, 0.6380983, …</code></pre>
+<p>Now we can add electoral votes to winner by state data.</p>
+<pre><code>## Rows: 51
+## Columns: 6
+## Groups: state [51]
+## $ state           &lt;chr&gt; &quot;Alabama&quot;, &quot;Alaska&quot;, &quot;Arizona&quot;, &quot;Arkansas&quot;, &quot;Californ…
+## $ candidate       &lt;chr&gt; &quot;Donald Trump&quot;, &quot;Donald Trump&quot;, &quot;Joe Biden&quot;, &quot;Donald …
+## $ popular_vote    &lt;dbl&gt; 1434159, 179080, 1671491, 758183, 10734181, 1803419, …
+## $ total_votes     &lt;dbl&gt; 2309900, 334789, 3384972, 1211793, 16822143, 3254844,…
+## $ perc_pop_vote   &lt;dbl&gt; 0.6208749, 0.5349041, 0.4937976, 0.6256704, 0.6380983…
+## $ electoral_votes &lt;dbl&gt; 9, 3, 11, 6, 55, 9, 7, 3, 3, 29, 16, 4, 4, 20, 11, 6,…</code></pre>
+<p>Plot it!</p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-215-1.png" width="672" /></p>
+</div>
+<div id="data-challenge-09" class="section level2">
+<h2><span class="header-section-number">15.3</span> DATA CHALLENGE 09</h2>
+<p>Accept <a href="https://classroom.github.com/a/J1bexrCQ">data challenge 09 assignment</a></p>
 
+</div>
 </div>
             </section>
 

@@ -145,6 +145,9 @@ plots
 knitting-pdfs
 data-challenge-08
 data-case-study-4
+data
+data-wrangling-1
+data-challenge-09
 analysis-reporting
 r-markdown-1
 including-plots
