@@ -149,6 +149,10 @@ data
 data-wrangling-1
 data-challenge-09
 analysis-reporting
+types-of-stories
+telling-a-story
+how-to-tell-the-story
+telling-a-story-well
 final-project-submission
 r-markdown-1
 including-plots

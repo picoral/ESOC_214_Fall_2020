@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-11-15" />
+<meta name="date" content="2020-11-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -309,11 +309,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.3" data-path="data-case-study-4.html"><a href="data-case-study-4.html#data-challenge-09"><i class="fa fa-check"></i><b>15.3</b> DATA CHALLENGE 09</a></li>
 </ul></li>
 <li class="chapter" data-level="16" data-path="analysis-reporting.html"><a href="analysis-reporting.html"><i class="fa fa-check"></i><b>16</b> Analysis Reporting</a><ul>
-<li class="chapter" data-level="16.1" data-path="analysis-reporting.html"><a href="analysis-reporting.html#final-project-submission"><i class="fa fa-check"></i><b>16.1</b> FINAL PROJECT SUBMISSION</a></li>
+<li class="chapter" data-level="16.1" data-path="analysis-reporting.html"><a href="analysis-reporting.html#types-of-stories"><i class="fa fa-check"></i><b>16.1</b> Types of stories</a></li>
+<li class="chapter" data-level="16.2" data-path="analysis-reporting.html"><a href="analysis-reporting.html#telling-a-story"><i class="fa fa-check"></i><b>16.2</b> Telling a story</a><ul>
+<li class="chapter" data-level="16.2.1" data-path="analysis-reporting.html"><a href="analysis-reporting.html#how-to-tell-the-story"><i class="fa fa-check"></i><b>16.2.1</b> How to tell the story</a></li>
+</ul></li>
+<li class="chapter" data-level="16.3" data-path="analysis-reporting.html"><a href="analysis-reporting.html#telling-a-story-well"><i class="fa fa-check"></i><b>16.3</b> Telling a story well</a></li>
+<li class="chapter" data-level="16.4" data-path="analysis-reporting.html"><a href="analysis-reporting.html#final-project-submission"><i class="fa fa-check"></i><b>16.4</b> FINAL PROJECT SUBMISSION</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a><ul>
-<li class="chapter" data-level="16.2" data-path="references.html"><a href="references.html#r-markdown-1"><i class="fa fa-check"></i><b>16.2</b> R Markdown</a></li>
-<li class="chapter" data-level="16.3" data-path="references.html"><a href="references.html#including-plots"><i class="fa fa-check"></i><b>16.3</b> Including Plots</a></li>
+<li class="chapter" data-level="16.5" data-path="references.html"><a href="references.html#r-markdown-1"><i class="fa fa-check"></i><b>16.5</b> R Markdown</a></li>
+<li class="chapter" data-level="16.6" data-path="references.html"><a href="references.html#including-plots"><i class="fa fa-check"></i><b>16.6</b> Including Plots</a></li>
 </ul></li>
 <li class="divider"></li>
 <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
@@ -337,10 +342,185 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="analysis-reporting" class="section level1">
 <h1><span class="header-section-number">Module 16</span> Analysis Reporting</h1>
+<p>Your data analysis is as good as your analysis reporting. You need to make sure you are communicating your data analysis results in a way that makes sense to all of your stakeholders. <a href="https://clauswilke.com/dataviz/telling-a-story.html">Claus Wilke</a> makes the point that the “goal in telling a story should be to use facts and logical reasoning” <span class="citation">(Wilke <a href="#ref-wilke2019fundamentals" role="doc-biblioref">2019</a>)</span>. That way, you not only make your point, but your point will be remember longer and better.</p>
+<div id="types-of-stories" class="section level2">
+<h2><span class="header-section-number">16.1</span> Types of stories</h2>
+<ol style="list-style-type: decimal">
+<li>Lead–Development–Resolution</li>
+<li>Action–Background–Development–Climax–Ending</li>
+<li>Opening–Challenge–Action–Resolution</li>
+</ol>
+<p>If you want more details about these, see <a href="https://clauswilke.com/dataviz/telling-a-story.html">Chapter 29 of Claus Wilke’s book</a><span class="citation">(Wilke <a href="#ref-wilke2019fundamentals" role="doc-biblioref">2019</a>)</span>.</p>
+</div>
+<div id="telling-a-story" class="section level2">
+<h2><span class="header-section-number">16.2</span> Telling a story</h2>
+<p>In this module, we will study how multiple tables and plots should be strung together in a story that illustrates the point you want to drive. The simplest way to tell a story is by presenting your visualizations in a challenge-resolution way. What’s the lead? What’s the development? What’s the resolution for the following data analysis?</p>
+<p><img src="images/telling_a_story_all.png" width="1520" /></p>
+<div id="how-to-tell-the-story" class="section level3">
+<h3><span class="header-section-number">16.2.1</span> How to tell the story</h3>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysis-reporting.html#cb1-1"></a><span class="kw">library</span>(janitor)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;janitor&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     chisq.test, fisher.test</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analysis-reporting.html#cb4-1"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb4-2"><a href="analysis-reporting.html#cb4-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ──────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
+## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
+## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analysis-reporting.html#cb8-1"></a>women_labor_force_data &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/women_in_labor_force.csv&quot;</span>,</span>
+<span id="cb8-2"><a href="analysis-reporting.html#cb8-2"></a>                                     <span class="dt">delim =</span> <span class="st">&quot;;&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb8-3"><a href="analysis-reporting.html#cb8-3"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   No = col_double(),
+##   Country = col_character(),
+##   `Level of development` = col_character(),
+##   `European Union Membership` = col_character(),
+##   Currency = col_character(),
+##   `Women Entrepreneurship Index` = col_double(),
+##   `Entrepreneurship Index` = col_double(),
+##   `Inflation rate` = col_double(),
+##   `Female Labor Force Participation Rate` = col_double()
+## )</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analysis-reporting.html#cb10-1"></a><span class="kw">glimpse</span>(women_labor_force_data)</span></code></pre></div>
+<pre><code>## Rows: 51
+## Columns: 9
+## $ no                                    &lt;dbl&gt; 4, 6, 17, 18, 19, 20, 22, 28, 3…
+## $ country                               &lt;chr&gt; &quot;Austria&quot;, &quot;Belgium&quot;, &quot;Estonia&quot;…
+## $ level_of_development                  &lt;chr&gt; &quot;Developed&quot;, &quot;Developed&quot;, &quot;Deve…
+## $ european_union_membership             &lt;chr&gt; &quot;Member&quot;, &quot;Member&quot;, &quot;Member&quot;, &quot;…
+## $ currency                              &lt;chr&gt; &quot;Euro&quot;, &quot;Euro&quot;, &quot;Euro&quot;, &quot;Euro&quot;,…
+## $ women_entrepreneurship_index          &lt;dbl&gt; 54.9, 63.6, 55.4, 66.4, 68.8, 6…
+## $ entrepreneurship_index                &lt;dbl&gt; 64.9, 65.5, 60.2, 65.7, 67.3, 6…
+## $ inflation_rate                        &lt;dbl&gt; 0.90, 0.60, -0.88, -0.20, 0.00,…
+## $ female_labor_force_participation_rate &lt;dbl&gt; 67.10, 58.00, 68.50, 67.70, 60.…</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analysis-reporting.html#cb12-1"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
+<span id="cb12-2"><a href="analysis-reporting.html#cb12-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> level_of_development,</span>
+<span id="cb12-3"><a href="analysis-reporting.html#cb12-3"></a>             <span class="dt">y =</span> inflation_rate)) <span class="op">+</span></span>
+<span id="cb12-4"><a href="analysis-reporting.html#cb12-4"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb12-5"><a href="analysis-reporting.html#cb12-5"></a><span class="st">  </span><span class="kw">theme_linedraw</span>() <span class="op">+</span></span>
+<span id="cb12-6"><a href="analysis-reporting.html#cb12-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Level of Development&quot;</span>,</span>
+<span id="cb12-7"><a href="analysis-reporting.html#cb12-7"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
+<span id="cb12-8"><a href="analysis-reporting.html#cb12-8"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation by Development across different countries&quot;</span>)</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysis-reporting.html#cb13-1"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
+<span id="cb13-2"><a href="analysis-reporting.html#cb13-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> inflation_rate,</span>
+<span id="cb13-3"><a href="analysis-reporting.html#cb13-3"></a>             <span class="dt">x =</span> entrepreneurship_index)) <span class="op">+</span></span>
+<span id="cb13-4"><a href="analysis-reporting.html#cb13-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb13-5"><a href="analysis-reporting.html#cb13-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb13-6"><a href="analysis-reporting.html#cb13-6"></a>              <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x) <span class="op">+</span></span>
+<span id="cb13-7"><a href="analysis-reporting.html#cb13-7"></a><span class="st">  </span><span class="kw">theme_linedraw</span>() <span class="op">+</span></span>
+<span id="cb13-8"><a href="analysis-reporting.html#cb13-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Entrepreneurship Index&quot;</span>,</span>
+<span id="cb13-9"><a href="analysis-reporting.html#cb13-9"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
+<span id="cb13-10"><a href="analysis-reporting.html#cb13-10"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation vs. Entrepreneurship&quot;</span>)</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analysis-reporting.html#cb14-1"></a>model_<span class="dv">1</span> &lt;-<span class="st"> </span>women_labor_force_data <span class="op">%&gt;%</span></span>
+<span id="cb14-2"><a href="analysis-reporting.html#cb14-2"></a><span class="st">  </span><span class="kw">lm</span>(<span class="dt">formula =</span> inflation_rate <span class="op">~</span><span class="st"> </span>entrepreneurship_index) <span class="op">%&gt;%</span></span>
+<span id="cb14-3"><a href="analysis-reporting.html#cb14-3"></a><span class="st">  </span><span class="kw">summary</span>() </span>
+<span id="cb14-4"><a href="analysis-reporting.html#cb14-4"></a></span>
+<span id="cb14-5"><a href="analysis-reporting.html#cb14-5"></a>model_<span class="dv">1</span><span class="op">$</span>coefficients <span class="op">%&gt;%</span></span>
+<span id="cb14-6"><a href="analysis-reporting.html#cb14-6"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">8.793863</td>
+<td align="right">2.1751516</td>
+<td align="right">4.042874</td>
+<td align="right">0.0001862</td>
+</tr>
+<tr class="even">
+<td align="left">entrepreneurship_index</td>
+<td align="right">-0.131373</td>
+<td align="right">0.0436008</td>
+<td align="right">-3.013090</td>
+<td align="right">0.0040851</td>
+</tr>
+</tbody>
+</table>
+<p>The relationship between inflation and entrepreneurship is negative, with inflation going <strong>down</strong> 0.13 points for each additional point in Entrepreneurship. The linear regression model for this relationship explains 14% of the variation in the data.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="analysis-reporting.html#cb15-1"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
+<span id="cb15-2"><a href="analysis-reporting.html#cb15-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> inflation_rate,</span>
+<span id="cb15-3"><a href="analysis-reporting.html#cb15-3"></a>             <span class="dt">x =</span> women_entrepreneurship_index)) <span class="op">+</span></span>
+<span id="cb15-4"><a href="analysis-reporting.html#cb15-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb15-5"><a href="analysis-reporting.html#cb15-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb15-6"><a href="analysis-reporting.html#cb15-6"></a>              <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x) <span class="op">+</span></span>
+<span id="cb15-7"><a href="analysis-reporting.html#cb15-7"></a><span class="st">  </span><span class="kw">theme_linedraw</span>() <span class="op">+</span></span>
+<span id="cb15-8"><a href="analysis-reporting.html#cb15-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Women Entrepreneurship Index&quot;</span>,</span>
+<span id="cb15-9"><a href="analysis-reporting.html#cb15-9"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
+<span id="cb15-10"><a href="analysis-reporting.html#cb15-10"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation vs. Women Entrepreneurship&quot;</span>)</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="analysis-reporting.html#cb16-1"></a>model_<span class="dv">2</span> &lt;-<span class="st"> </span>women_labor_force_data <span class="op">%&gt;%</span></span>
+<span id="cb16-2"><a href="analysis-reporting.html#cb16-2"></a><span class="st">  </span><span class="kw">lm</span>(<span class="dt">formula =</span> inflation_rate <span class="op">~</span><span class="st"> </span>women_entrepreneurship_index) <span class="op">%&gt;%</span></span>
+<span id="cb16-3"><a href="analysis-reporting.html#cb16-3"></a><span class="st">  </span><span class="kw">summary</span>()</span>
+<span id="cb16-4"><a href="analysis-reporting.html#cb16-4"></a></span>
+<span id="cb16-5"><a href="analysis-reporting.html#cb16-5"></a>model_<span class="dv">2</span><span class="op">$</span>coefficients <span class="op">%&gt;%</span></span>
+<span id="cb16-6"><a href="analysis-reporting.html#cb16-6"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="right">Estimate</th>
+<th align="right">Std. Error</th>
+<th align="right">t value</th>
+<th align="right">Pr(&gt;|t|)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">(Intercept)</td>
+<td align="right">10.8048470</td>
+<td align="right">2.3920152</td>
+<td align="right">4.517048</td>
+<td align="right">0.0000396</td>
+</tr>
+<tr class="even">
+<td align="left">women_entrepreneurship_index</td>
+<td align="right">-0.1717811</td>
+<td align="right">0.0479573</td>
+<td align="right">-3.581957</td>
+<td align="right">0.0007823</td>
+</tr>
+</tbody>
+</table>
+<p>The relationship between inflation and women entrepreneurship is negative, with inflation going <strong>down</strong> 0.17 points for each additional point in women entrepreneurship. The linear regression model for this relationship explains 19% of the variation in the data.</p>
+</div>
+</div>
+<div id="telling-a-story-well" class="section level2">
+<h2><span class="header-section-number">16.3</span> Telling a story well</h2>
+<p>Here are some general guidelines for telling a story well <span class="citation">(Wilke <a href="#ref-wilke2019fundamentals" role="doc-biblioref">2019</a>)</span>:</p>
+<ol style="list-style-type: decimal">
+<li>Never assume your audience can rapidly process complex visual displays: choose the simplest visualization possible.</li>
+<li>When you’re trying to show too much data at once you may end up not showing anything.</li>
+<li>When preparing a presentation or report, aim to use a different type of visualization for each distinct analysis.</li>
+</ol>
+</div>
 <div id="final-project-submission" class="section level2">
-<h2><span class="header-section-number">16.1</span> FINAL PROJECT SUBMISSION</h2>
+<h2><span class="header-section-number">16.4</span> FINAL PROJECT SUBMISSION</h2>
 <p>Accept the <a href="https://classroom.github.com/a/J-8vd5iB">final project submission on GitHub</a>.</p>
 
+</div>
+</div>
+<h3>References</h3>
+<div id="refs" class="references">
+<div id="ref-wilke2019fundamentals">
+<p>Wilke, Claus O. 2019. <em>Fundamentals of Data Visualization: A Primer on Making Informative and Compelling Figures</em>. O’Reilly Media.</p>
 </div>
 </div>
             </section>

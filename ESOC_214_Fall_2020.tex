@@ -133,7 +133,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-11-15}
+\date{2020-11-25}
 
 \begin{document}
 \maketitle
@@ -1827,7 +1827,8 @@ You can now list the contents of your \texttt{data} folder with the \texttt{dir(
 ## [11] "spotify_songs_clean.csv"              
 ## [12] "spotify_songs.csv"                    
 ## [13] "tweets.tsv"                           
-## [14] "us_avg_tuition.xlsx"
+## [14] "us_avg_tuition.xlsx"                  
+## [15] "women_in_labor_force.csv"
 \end{verbatim}
 
 \hypertarget{whats-our-question-again}{%
@@ -6961,6 +6962,190 @@ Accept \href{https://classroom.github.com/a/J1bexrCQ}{data challenge 09 assignme
 
 \hypertarget{analysis-reporting}{%
 \chapter{Analysis Reporting}\label{analysis-reporting}}
+
+Your data analysis is as good as your analysis reporting. You need to make sure you are communicating your data analysis results in a way that makes sense to all of your stakeholders. \href{https://clauswilke.com/dataviz/telling-a-story.html}{Claus Wilke} makes the point that the ``goal in telling a story should be to use facts and logical reasoning'' \citep{wilke2019fundamentals}. That way, you not only make your point, but your point will be remember longer and better.
+
+\hypertarget{types-of-stories}{%
+\section{Types of stories}\label{types-of-stories}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Lead--Development--Resolution
+\item
+  Action--Background--Development--Climax--Ending
+\item
+  Opening--Challenge--Action--Resolution
+\end{enumerate}
+
+\hypertarget{telling-a-story}{%
+\section{Telling a story}\label{telling-a-story}}
+
+In this module, we will study how multiple tables and plots should be strung together in a story that illustrates the point you want to drive. The simplest way to tell a story is by presenting your visualizations in a challenge-resolution way. What's the lead? What's the development? What's the resolution for the following data analysis?
+
+\includegraphics[width=42.22in]{images/telling_a_story_all}
+
+\hypertarget{how-to-tell-the-story}{%
+\subsection{How to tell the story}\label{how-to-tell-the-story}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(janitor)}
+\KeywordTok{library}\NormalTok{(knitr)}
+\KeywordTok{library}\NormalTok{(tidyverse)}
+
+\NormalTok{women_labor_force_data <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"data/women_in_labor_force.csv"}\NormalTok{,}
+                                     \DataTypeTok{delim =} \StringTok{";"}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{clean_names}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Parsed with column specification:
+## cols(
+##   No = col_double(),
+##   Country = col_character(),
+##   `Level of development` = col_character(),
+##   `European Union Membership` = col_character(),
+##   Currency = col_character(),
+##   `Women Entrepreneurship Index` = col_double(),
+##   `Entrepreneurship Index` = col_double(),
+##   `Inflation rate` = col_double(),
+##   `Female Labor Force Participation Rate` = col_double()
+## )
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{glimpse}\NormalTok{(women_labor_force_data)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 51
+## Columns: 9
+## $ no                                    <dbl> 4, 6, 17, 18, 19, 20, 22, 28,...
+## $ country                               <chr> "Austria", "Belgium", "Estoni...
+## $ level_of_development                  <chr> "Developed", "Developed", "De...
+## $ european_union_membership             <chr> "Member", "Member", "Member",...
+## $ currency                              <chr> "Euro", "Euro", "Euro", "Euro...
+## $ women_entrepreneurship_index          <dbl> 54.9, 63.6, 55.4, 66.4, 68.8,...
+## $ entrepreneurship_index                <dbl> 64.9, 65.5, 60.2, 65.7, 67.3,...
+## $ inflation_rate                        <dbl> 0.90, 0.60, -0.88, -0.20, 0.0...
+## $ female_labor_force_participation_rate <dbl> 67.10, 58.00, 68.50, 67.70, 6...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{women_labor_force_data }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ level_of_development,}
+             \DataTypeTok{y =}\NormalTok{ inflation_rate)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_boxplot}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_linedraw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Level of Development"}\NormalTok{,}
+       \DataTypeTok{y =} \StringTok{"Inflation Rate"}\NormalTok{,}
+       \DataTypeTok{title =} \StringTok{"Inflation by Development across different countries"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-218-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{women_labor_force_data }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ inflation_rate,}
+             \DataTypeTok{x =}\NormalTok{ entrepreneurship_index)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{,}
+              \DataTypeTok{formula =}\NormalTok{ y }\OperatorTok{~}\StringTok{ }\NormalTok{x) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_linedraw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Entrepreneurship Index"}\NormalTok{,}
+       \DataTypeTok{y =} \StringTok{"Inflation Rate"}\NormalTok{,}
+       \DataTypeTok{title =} \StringTok{"Inflation vs. Entrepreneurship"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-219-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\NormalTok{women_labor_force_data }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{lm}\NormalTok{(}\DataTypeTok{formula =}\NormalTok{ inflation_rate }\OperatorTok{~}\StringTok{ }\NormalTok{entrepreneurship_index) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summary}\NormalTok{() }
+
+\NormalTok{model_}\DecValTok{1}\OperatorTok{$}\NormalTok{coefficients }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{kable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|r|r|r|r}
+\hline
+  & Estimate & Std. Error & t value & Pr(>|t|)\\
+\hline
+(Intercept) & 8.793863 & 2.1751516 & 4.042874 & 0.0001862\\
+\hline
+entrepreneurship\_index & -0.131373 & 0.0436008 & -3.013090 & 0.0040851\\
+\hline
+\end{tabular}
+
+The relationship between inflation and entrepreneurship is negative, with inflation going \textbf{down} 0.13 points for each additional point in Entrepreneurship. The linear regression model for this relationship explains 14\% of the variation in the data.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{women_labor_force_data }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ inflation_rate,}
+             \DataTypeTok{x =}\NormalTok{ women_entrepreneurship_index)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_point}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_smooth}\NormalTok{(}\DataTypeTok{method =} \StringTok{"lm"}\NormalTok{,}
+              \DataTypeTok{formula =}\NormalTok{ y }\OperatorTok{~}\StringTok{ }\NormalTok{x) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{theme_linedraw}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}\DataTypeTok{x =} \StringTok{"Women Entrepreneurship Index"}\NormalTok{,}
+       \DataTypeTok{y =} \StringTok{"Inflation Rate"}\NormalTok{,}
+       \DataTypeTok{title =} \StringTok{"Inflation vs. Women Entrepreneurship"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{ESOC_214_Fall_2020_files/figure-latex/unnamed-chunk-221-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{model_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\NormalTok{women_labor_force_data }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{lm}\NormalTok{(}\DataTypeTok{formula =}\NormalTok{ inflation_rate }\OperatorTok{~}\StringTok{ }\NormalTok{women_entrepreneurship_index) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{summary}\NormalTok{()}
+
+\NormalTok{model_}\DecValTok{2}\OperatorTok{$}\NormalTok{coefficients }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{kable}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{tabular}{l|r|r|r|r}
+\hline
+  & Estimate & Std. Error & t value & Pr(>|t|)\\
+\hline
+(Intercept) & 10.8048470 & 2.3920152 & 4.517048 & 0.0000396\\
+\hline
+women\_entrepreneurship\_index & -0.1717811 & 0.0479573 & -3.581957 & 0.0007823\\
+\hline
+\end{tabular}
+
+The relationship between inflation and women entrepreneurship is negative, with inflation going \textbf{down} 0.17 points for each additional point in women entrepreneurship. The linear regression model for this relationship explains 19\% of the variation in the data.
+
+\hypertarget{telling-a-story-well}{%
+\section{Telling a story well}\label{telling-a-story-well}}
+
+Here are some general guidelines for telling a story well \citep{wilke2019fundamentals}:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Never assume your audience can rapidly process complex visual displays: choose the simplest visualization possible.
+\item
+  When you're trying to show too much data at once you may end up not showing anything.
+\item
+  When preparing a presentation or report, aim to use a different type of visualization for each distinct analysis.
+\end{enumerate}
 
 \hypertarget{final-project-submission}{%
 \section{FINAL PROJECT SUBMISSION}\label{final-project-submission}}
