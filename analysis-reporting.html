@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-11-25" />
+<meta name="date" content="2020-11-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -358,25 +358,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="images/telling_a_story_all.png" width="1520" /></p>
 <div id="how-to-tell-the-story" class="section level3">
 <h3><span class="header-section-number">16.2.1</span> How to tell the story</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="analysis-reporting.html#cb1-1"></a><span class="kw">library</span>(janitor)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;janitor&#39;</code></pre>
-<pre><code>## The following objects are masked from &#39;package:stats&#39;:
-## 
-##     chisq.test, fisher.test</code></pre>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="analysis-reporting.html#cb4-1"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb4-2"><a href="analysis-reporting.html#cb4-2"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ──────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.2     ✓ purrr   0.3.4
-## ✓ tibble  3.0.3     ✓ dplyr   1.0.2
-## ✓ tidyr   1.1.2     ✓ stringr 1.4.0
-## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
-<pre><code>## ── Conflicts ─────────────────────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="analysis-reporting.html#cb8-1"></a>women_labor_force_data &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/women_in_labor_force.csv&quot;</span>,</span>
-<span id="cb8-2"><a href="analysis-reporting.html#cb8-2"></a>                                     <span class="dt">delim =</span> <span class="st">&quot;;&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb8-3"><a href="analysis-reporting.html#cb8-3"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="analysis-reporting.html#cb357-1"></a><span class="kw">library</span>(janitor)</span>
+<span id="cb357-2"><a href="analysis-reporting.html#cb357-2"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb357-3"><a href="analysis-reporting.html#cb357-3"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb357-4"><a href="analysis-reporting.html#cb357-4"></a></span>
+<span id="cb357-5"><a href="analysis-reporting.html#cb357-5"></a>women_labor_force_data &lt;-<span class="st"> </span><span class="kw">read_delim</span>(<span class="st">&quot;data/women_in_labor_force.csv&quot;</span>,</span>
+<span id="cb357-6"><a href="analysis-reporting.html#cb357-6"></a>                                     <span class="dt">delim =</span> <span class="st">&quot;;&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb357-7"><a href="analysis-reporting.html#cb357-7"></a><span class="st">  </span><span class="kw">clean_names</span>()</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   No = col_double(),
@@ -389,7 +377,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   `Inflation rate` = col_double(),
 ##   `Female Labor Force Participation Rate` = col_double()
 ## )</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="analysis-reporting.html#cb10-1"></a><span class="kw">glimpse</span>(women_labor_force_data)</span></code></pre></div>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="analysis-reporting.html#cb359-1"></a><span class="kw">glimpse</span>(women_labor_force_data)</span></code></pre></div>
 <pre><code>## Rows: 51
 ## Columns: 9
 ## $ no                                    &lt;dbl&gt; 4, 6, 17, 18, 19, 20, 22, 28, 3…
@@ -401,101 +389,159 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## $ entrepreneurship_index                &lt;dbl&gt; 64.9, 65.5, 60.2, 65.7, 67.3, 6…
 ## $ inflation_rate                        &lt;dbl&gt; 0.90, 0.60, -0.88, -0.20, 0.00,…
 ## $ female_labor_force_participation_rate &lt;dbl&gt; 67.10, 58.00, 68.50, 67.70, 60.…</code></pre>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="analysis-reporting.html#cb12-1"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
-<span id="cb12-2"><a href="analysis-reporting.html#cb12-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> level_of_development,</span>
-<span id="cb12-3"><a href="analysis-reporting.html#cb12-3"></a>             <span class="dt">y =</span> inflation_rate)) <span class="op">+</span></span>
-<span id="cb12-4"><a href="analysis-reporting.html#cb12-4"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
-<span id="cb12-5"><a href="analysis-reporting.html#cb12-5"></a><span class="st">  </span><span class="kw">theme_linedraw</span>() <span class="op">+</span></span>
-<span id="cb12-6"><a href="analysis-reporting.html#cb12-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Level of Development&quot;</span>,</span>
-<span id="cb12-7"><a href="analysis-reporting.html#cb12-7"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
-<span id="cb12-8"><a href="analysis-reporting.html#cb12-8"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation by Development across different countries&quot;</span>)</span></code></pre></div>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="analysis-reporting.html#cb13-1"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
-<span id="cb13-2"><a href="analysis-reporting.html#cb13-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> inflation_rate,</span>
-<span id="cb13-3"><a href="analysis-reporting.html#cb13-3"></a>             <span class="dt">x =</span> entrepreneurship_index)) <span class="op">+</span></span>
-<span id="cb13-4"><a href="analysis-reporting.html#cb13-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb13-5"><a href="analysis-reporting.html#cb13-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb13-6"><a href="analysis-reporting.html#cb13-6"></a>              <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x) <span class="op">+</span></span>
-<span id="cb13-7"><a href="analysis-reporting.html#cb13-7"></a><span class="st">  </span><span class="kw">theme_linedraw</span>() <span class="op">+</span></span>
-<span id="cb13-8"><a href="analysis-reporting.html#cb13-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Entrepreneurship Index&quot;</span>,</span>
-<span id="cb13-9"><a href="analysis-reporting.html#cb13-9"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
-<span id="cb13-10"><a href="analysis-reporting.html#cb13-10"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation vs. Entrepreneurship&quot;</span>)</span></code></pre></div>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="analysis-reporting.html#cb14-1"></a>model_<span class="dv">1</span> &lt;-<span class="st"> </span>women_labor_force_data <span class="op">%&gt;%</span></span>
-<span id="cb14-2"><a href="analysis-reporting.html#cb14-2"></a><span class="st">  </span><span class="kw">lm</span>(<span class="dt">formula =</span> inflation_rate <span class="op">~</span><span class="st"> </span>entrepreneurship_index) <span class="op">%&gt;%</span></span>
-<span id="cb14-3"><a href="analysis-reporting.html#cb14-3"></a><span class="st">  </span><span class="kw">summary</span>() </span>
-<span id="cb14-4"><a href="analysis-reporting.html#cb14-4"></a></span>
-<span id="cb14-5"><a href="analysis-reporting.html#cb14-5"></a>model_<span class="dv">1</span><span class="op">$</span>coefficients <span class="op">%&gt;%</span></span>
-<span id="cb14-6"><a href="analysis-reporting.html#cb14-6"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="analysis-reporting.html#cb361-1"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
+<span id="cb361-2"><a href="analysis-reporting.html#cb361-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> level_of_development,</span>
+<span id="cb361-3"><a href="analysis-reporting.html#cb361-3"></a>             <span class="dt">y =</span> inflation_rate)) <span class="op">+</span></span>
+<span id="cb361-4"><a href="analysis-reporting.html#cb361-4"></a><span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span></span>
+<span id="cb361-5"><a href="analysis-reporting.html#cb361-5"></a><span class="st">  </span><span class="kw">theme_linedraw</span>() <span class="op">+</span></span>
+<span id="cb361-6"><a href="analysis-reporting.html#cb361-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Level of Development&quot;</span>,</span>
+<span id="cb361-7"><a href="analysis-reporting.html#cb361-7"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
+<span id="cb361-8"><a href="analysis-reporting.html#cb361-8"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation by Development across different countries&quot;</span>)</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-218-1.png" width="672" /></p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="analysis-reporting.html#cb362-1"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
+<span id="cb362-2"><a href="analysis-reporting.html#cb362-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> inflation_rate,</span>
+<span id="cb362-3"><a href="analysis-reporting.html#cb362-3"></a>             <span class="dt">x =</span> entrepreneurship_index)) <span class="op">+</span></span>
+<span id="cb362-4"><a href="analysis-reporting.html#cb362-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb362-5"><a href="analysis-reporting.html#cb362-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb362-6"><a href="analysis-reporting.html#cb362-6"></a>              <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x) <span class="op">+</span></span>
+<span id="cb362-7"><a href="analysis-reporting.html#cb362-7"></a><span class="st">  </span><span class="kw">theme_linedraw</span>() <span class="op">+</span></span>
+<span id="cb362-8"><a href="analysis-reporting.html#cb362-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Entrepreneurship Index&quot;</span>,</span>
+<span id="cb362-9"><a href="analysis-reporting.html#cb362-9"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
+<span id="cb362-10"><a href="analysis-reporting.html#cb362-10"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation vs. Entrepreneurship&quot;</span>)</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-219-1.png" width="672" /></p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="analysis-reporting.html#cb363-1"></a>model_<span class="dv">1</span> &lt;-<span class="st"> </span>women_labor_force_data <span class="op">%&gt;%</span></span>
+<span id="cb363-2"><a href="analysis-reporting.html#cb363-2"></a><span class="st">  </span><span class="kw">lm</span>(<span class="dt">formula =</span> inflation_rate <span class="op">~</span><span class="st"> </span>entrepreneurship_index) <span class="op">%&gt;%</span></span>
+<span id="cb363-3"><a href="analysis-reporting.html#cb363-3"></a><span class="st">  </span><span class="kw">summary</span>() </span>
+<span id="cb363-4"><a href="analysis-reporting.html#cb363-4"></a></span>
+<span id="cb363-5"><a href="analysis-reporting.html#cb363-5"></a>model_<span class="dv">1</span><span class="op">$</span>coefficients <span class="op">%&gt;%</span></span>
+<span id="cb363-6"><a href="analysis-reporting.html#cb363-6"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">Estimate</th>
-<th align="right">Std. Error</th>
-<th align="right">t value</th>
-<th align="right">Pr(&gt;|t|)</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">(Intercept)</td>
-<td align="right">8.793863</td>
-<td align="right">2.1751516</td>
-<td align="right">4.042874</td>
-<td align="right">0.0001862</td>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+8.793863
+</td>
+<td style="text-align:right;">
+2.1751516
+</td>
+<td style="text-align:right;">
+4.042874
+</td>
+<td style="text-align:right;">
+0.0001862
+</td>
 </tr>
-<tr class="even">
-<td align="left">entrepreneurship_index</td>
-<td align="right">-0.131373</td>
-<td align="right">0.0436008</td>
-<td align="right">-3.013090</td>
-<td align="right">0.0040851</td>
+<tr>
+<td style="text-align:left;">
+entrepreneurship_index
+</td>
+<td style="text-align:right;">
+-0.131373
+</td>
+<td style="text-align:right;">
+0.0436008
+</td>
+<td style="text-align:right;">
+-3.013090
+</td>
+<td style="text-align:right;">
+0.0040851
+</td>
 </tr>
 </tbody>
 </table>
 <p>The relationship between inflation and entrepreneurship is negative, with inflation going <strong>down</strong> 0.13 points for each additional point in Entrepreneurship. The linear regression model for this relationship explains 14% of the variation in the data.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="analysis-reporting.html#cb15-1"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
-<span id="cb15-2"><a href="analysis-reporting.html#cb15-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> inflation_rate,</span>
-<span id="cb15-3"><a href="analysis-reporting.html#cb15-3"></a>             <span class="dt">x =</span> women_entrepreneurship_index)) <span class="op">+</span></span>
-<span id="cb15-4"><a href="analysis-reporting.html#cb15-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb15-5"><a href="analysis-reporting.html#cb15-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
-<span id="cb15-6"><a href="analysis-reporting.html#cb15-6"></a>              <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x) <span class="op">+</span></span>
-<span id="cb15-7"><a href="analysis-reporting.html#cb15-7"></a><span class="st">  </span><span class="kw">theme_linedraw</span>() <span class="op">+</span></span>
-<span id="cb15-8"><a href="analysis-reporting.html#cb15-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Women Entrepreneurship Index&quot;</span>,</span>
-<span id="cb15-9"><a href="analysis-reporting.html#cb15-9"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
-<span id="cb15-10"><a href="analysis-reporting.html#cb15-10"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation vs. Women Entrepreneurship&quot;</span>)</span></code></pre></div>
-<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="analysis-reporting.html#cb16-1"></a>model_<span class="dv">2</span> &lt;-<span class="st"> </span>women_labor_force_data <span class="op">%&gt;%</span></span>
-<span id="cb16-2"><a href="analysis-reporting.html#cb16-2"></a><span class="st">  </span><span class="kw">lm</span>(<span class="dt">formula =</span> inflation_rate <span class="op">~</span><span class="st"> </span>women_entrepreneurship_index) <span class="op">%&gt;%</span></span>
-<span id="cb16-3"><a href="analysis-reporting.html#cb16-3"></a><span class="st">  </span><span class="kw">summary</span>()</span>
-<span id="cb16-4"><a href="analysis-reporting.html#cb16-4"></a></span>
-<span id="cb16-5"><a href="analysis-reporting.html#cb16-5"></a>model_<span class="dv">2</span><span class="op">$</span>coefficients <span class="op">%&gt;%</span></span>
-<span id="cb16-6"><a href="analysis-reporting.html#cb16-6"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="analysis-reporting.html#cb364-1"></a>women_labor_force_data <span class="op">%&gt;%</span></span>
+<span id="cb364-2"><a href="analysis-reporting.html#cb364-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">y =</span> inflation_rate,</span>
+<span id="cb364-3"><a href="analysis-reporting.html#cb364-3"></a>             <span class="dt">x =</span> women_entrepreneurship_index)) <span class="op">+</span></span>
+<span id="cb364-4"><a href="analysis-reporting.html#cb364-4"></a><span class="st">  </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb364-5"><a href="analysis-reporting.html#cb364-5"></a><span class="st">  </span><span class="kw">geom_smooth</span>(<span class="dt">method =</span> <span class="st">&quot;lm&quot;</span>,</span>
+<span id="cb364-6"><a href="analysis-reporting.html#cb364-6"></a>              <span class="dt">formula =</span> y <span class="op">~</span><span class="st"> </span>x) <span class="op">+</span></span>
+<span id="cb364-7"><a href="analysis-reporting.html#cb364-7"></a><span class="st">  </span><span class="kw">theme_linedraw</span>() <span class="op">+</span></span>
+<span id="cb364-8"><a href="analysis-reporting.html#cb364-8"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Women Entrepreneurship Index&quot;</span>,</span>
+<span id="cb364-9"><a href="analysis-reporting.html#cb364-9"></a>       <span class="dt">y =</span> <span class="st">&quot;Inflation Rate&quot;</span>,</span>
+<span id="cb364-10"><a href="analysis-reporting.html#cb364-10"></a>       <span class="dt">title =</span> <span class="st">&quot;Inflation vs. Women Entrepreneurship&quot;</span>)</span></code></pre></div>
+<p><img src="ESOC_214_Fall_2020_files/figure-html/unnamed-chunk-221-1.png" width="672" /></p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="analysis-reporting.html#cb365-1"></a>model_<span class="dv">2</span> &lt;-<span class="st"> </span>women_labor_force_data <span class="op">%&gt;%</span></span>
+<span id="cb365-2"><a href="analysis-reporting.html#cb365-2"></a><span class="st">  </span><span class="kw">lm</span>(<span class="dt">formula =</span> inflation_rate <span class="op">~</span><span class="st"> </span>women_entrepreneurship_index) <span class="op">%&gt;%</span></span>
+<span id="cb365-3"><a href="analysis-reporting.html#cb365-3"></a><span class="st">  </span><span class="kw">summary</span>()</span>
+<span id="cb365-4"><a href="analysis-reporting.html#cb365-4"></a></span>
+<span id="cb365-5"><a href="analysis-reporting.html#cb365-5"></a>model_<span class="dv">2</span><span class="op">$</span>coefficients <span class="op">%&gt;%</span></span>
+<span id="cb365-6"><a href="analysis-reporting.html#cb365-6"></a><span class="st">  </span><span class="kw">kable</span>()</span></code></pre></div>
 <table>
 <thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">Estimate</th>
-<th align="right">Std. Error</th>
-<th align="right">t value</th>
-<th align="right">Pr(&gt;|t|)</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Estimate
+</th>
+<th style="text-align:right;">
+Std. Error
+</th>
+<th style="text-align:right;">
+t value
+</th>
+<th style="text-align:right;">
+Pr(&gt;|t|)
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">(Intercept)</td>
-<td align="right">10.8048470</td>
-<td align="right">2.3920152</td>
-<td align="right">4.517048</td>
-<td align="right">0.0000396</td>
+<tr>
+<td style="text-align:left;">
+(Intercept)
+</td>
+<td style="text-align:right;">
+10.8048470
+</td>
+<td style="text-align:right;">
+2.3920152
+</td>
+<td style="text-align:right;">
+4.517048
+</td>
+<td style="text-align:right;">
+0.0000396
+</td>
 </tr>
-<tr class="even">
-<td align="left">women_entrepreneurship_index</td>
-<td align="right">-0.1717811</td>
-<td align="right">0.0479573</td>
-<td align="right">-3.581957</td>
-<td align="right">0.0007823</td>
+<tr>
+<td style="text-align:left;">
+women_entrepreneurship_index
+</td>
+<td style="text-align:right;">
+-0.1717811
+</td>
+<td style="text-align:right;">
+0.0479573
+</td>
+<td style="text-align:right;">
+-3.581957
+</td>
+<td style="text-align:right;">
+0.0007823
+</td>
 </tr>
 </tbody>
 </table>
@@ -514,6 +560,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="final-project-submission" class="section level2">
 <h2><span class="header-section-number">16.4</span> FINAL PROJECT SUBMISSION</h2>
 <p>Accept the <a href="https://classroom.github.com/a/J-8vd5iB">final project submission on GitHub</a>.</p>
+<ul>
+<li><p><a href="https://classroom.github.com/a/J-8vd5iB">Final Project</a> is due December 16 (Wednesday) at 3:00pm</p></li>
+<li><p><a href="https://forms.gle/DDhAKNG28erqjwtM9">Survey 2</a> is also due December 16 (Wednesday) at 3:00pm</p></li>
+</ul>
 
 </div>
 </div>
