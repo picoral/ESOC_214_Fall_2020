@@ -154,5 +154,3 @@ telling-a-story
 how-to-tell-the-story
 telling-a-story-well
 final-project-submission
-r-markdown-1
-including-plots

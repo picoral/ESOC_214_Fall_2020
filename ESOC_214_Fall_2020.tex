@@ -133,7 +133,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-11-30}
+\date{2020-12-01}
 
 \begin{document}
 \maketitle
@@ -6979,7 +6979,7 @@ Your data analysis is as good as your analysis reporting. You need to make sure 
   Opening--Challenge--Action--Resolution
 \end{enumerate}
 
-If you want more details about these, see \href{https://clauswilke.com/dataviz/telling-a-story.html}{Chapter 29 of Claus Wilke's book}\citep{wilke2019fundamentals}.
+If you want more details about these, see \href{https://clauswilke.com/dataviz/telling-a-story.html}{Chapter 29 of Claus Wilke's book} \citep{wilke2019fundamentals}.
 
 \hypertarget{telling-a-story}{%
 \section{Telling a story}\label{telling-a-story}}
@@ -6991,12 +6991,16 @@ In this module, we will study how multiple tables and plots should be strung tog
 \hypertarget{how-to-tell-the-story}{%
 \subsection{How to tell the story}\label{how-to-tell-the-story}}
 
+The data we are using for this module was obtained from \href{https://www.kaggle.com/babyoda/women-entrepreneurship-and-labor-force}{Kaggle's Women Entrepreneurship and Labor Force}.
+
 \begin{Shaded}
 \begin{Highlighting}[]
 \KeywordTok{library}\NormalTok{(janitor)}
 \KeywordTok{library}\NormalTok{(knitr)}
 \KeywordTok{library}\NormalTok{(tidyverse)}
 
+\CommentTok{# data from https://www.kaggle.com/babyoda/women-entrepreneurship-and-labor-force}
+\CommentTok{# read data in and clean column names}
 \NormalTok{women_labor_force_data <-}\StringTok{ }\KeywordTok{read_delim}\NormalTok{(}\StringTok{"data/women_in_labor_force.csv"}\NormalTok{,}
                                      \DataTypeTok{delim =} \StringTok{";"}\NormalTok{) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{clean_names}\NormalTok{()}
@@ -7020,6 +7024,7 @@ In this module, we will study how multiple tables and plots should be strung tog
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# inspect data}
 \KeywordTok{glimpse}\NormalTok{(women_labor_force_data)}
 \end{Highlighting}
 \end{Shaded}
@@ -7040,6 +7045,7 @@ In this module, we will study how multiple tables and plots should be strung tog
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# boxplot of level of development (binary) vs inflation rate}
 \NormalTok{women_labor_force_data }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ level_of_development,}
              \DataTypeTok{y =}\NormalTok{ inflation_rate)) }\OperatorTok{+}
@@ -7055,6 +7061,8 @@ In this module, we will study how multiple tables and plots should be strung tog
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# scatterplot with regression line of inflation rate}
+\CommentTok{# vs entrepreneurship index}
 \NormalTok{women_labor_force_data }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ inflation_rate,}
              \DataTypeTok{x =}\NormalTok{ entrepreneurship_index)) }\OperatorTok{+}
@@ -7072,10 +7080,12 @@ In this module, we will study how multiple tables and plots should be strung tog
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# run regression and get summary of results}
 \NormalTok{model_}\DecValTok{1}\NormalTok{ <-}\StringTok{ }\NormalTok{women_labor_force_data }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{lm}\NormalTok{(}\DataTypeTok{formula =}\NormalTok{ inflation_rate }\OperatorTok{~}\StringTok{ }\NormalTok{entrepreneurship_index) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{summary}\NormalTok{() }
 
+\CommentTok{# print our coefficients of regression results}
 \NormalTok{model_}\DecValTok{1}\OperatorTok{$}\NormalTok{coefficients }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{kable}\NormalTok{()}
 \end{Highlighting}
@@ -7095,6 +7105,8 @@ The relationship between inflation and entrepreneurship is negative, with inflat
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# scatterplot with regression line of inflation rate}
+\CommentTok{# vs women entrepreneurship index}
 \NormalTok{women_labor_force_data }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{y =}\NormalTok{ inflation_rate,}
              \DataTypeTok{x =}\NormalTok{ women_entrepreneurship_index)) }\OperatorTok{+}
@@ -7112,10 +7124,12 @@ The relationship between inflation and entrepreneurship is negative, with inflat
 
 \begin{Shaded}
 \begin{Highlighting}[]
+\CommentTok{# run regression and get summary of results}
 \NormalTok{model_}\DecValTok{2}\NormalTok{ <-}\StringTok{ }\NormalTok{women_labor_force_data }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{lm}\NormalTok{(}\DataTypeTok{formula =}\NormalTok{ inflation_rate }\OperatorTok{~}\StringTok{ }\NormalTok{women_entrepreneurship_index) }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{summary}\NormalTok{()}
 
+\CommentTok{# print our coefficients of regression results}
 \NormalTok{model_}\DecValTok{2}\OperatorTok{$}\NormalTok{coefficients }\OperatorTok{%>%}
 \StringTok{  }\KeywordTok{kable}\NormalTok{()}
 \end{Highlighting}
@@ -7160,38 +7174,6 @@ Accept the \href{https://classroom.github.com/a/J-8vd5iB}{final project submissi
 \item
   \href{https://forms.gle/DDhAKNG28erqjwtM9}{Survey 2} is also due December 16 (Wednesday) at 3:00pm
 \end{itemize}
-
-\hypertarget{r-markdown-1}{%
-\section{R Markdown}\label{r-markdown-1}}
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see \url{http://rmarkdown.rstudio.com}.
-
-When you click the \textbf{Knit} button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-\begin{Shaded}
-\begin{Highlighting}[]
-\KeywordTok{summary}\NormalTok{(cars)}
-\end{Highlighting}
-\end{Shaded}
-
-\begin{verbatim}
-##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00
-\end{verbatim}
-
-\hypertarget{including-plots}{%
-\section{Including Plots}\label{including-plots}}
-
-You can also embed plots, for example:
-
-\includegraphics{ESOC_214_Fall_2020_files/figure-latex/pressure-1.pdf}
-
-Note that the \texttt{echo\ =\ FALSE} parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
   \bibliography{book.bib,packages.bib}
 
