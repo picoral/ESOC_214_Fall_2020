@@ -24,7 +24,7 @@
 <meta name="author" content="Adriana Picoral, PhD (she/her)  adrianaps@email.arizona.edu" />
 
 
-<meta name="date" content="2020-12-01" />
+<meta name="date" content="2020-12-07" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -314,7 +314,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="16.2.1" data-path="analysis-reporting.html"><a href="analysis-reporting.html#how-to-tell-the-story"><i class="fa fa-check"></i><b>16.2.1</b> How to tell the story</a></li>
 </ul></li>
 <li class="chapter" data-level="16.3" data-path="analysis-reporting.html"><a href="analysis-reporting.html#telling-a-story-well"><i class="fa fa-check"></i><b>16.3</b> Telling a story well</a></li>
-<li class="chapter" data-level="16.4" data-path="analysis-reporting.html"><a href="analysis-reporting.html#final-project-submission"><i class="fa fa-check"></i><b>16.4</b> FINAL PROJECT SUBMISSION</a></li>
+<li class="chapter" data-level="16.4" data-path="analysis-reporting.html"><a href="analysis-reporting.html#interactive-dashboards"><i class="fa fa-check"></i><b>16.4</b> Interactive dashboards</a></li>
+<li class="chapter" data-level="16.5" data-path="analysis-reporting.html"><a href="analysis-reporting.html#final-project-submission"><i class="fa fa-check"></i><b>16.5</b> FINAL PROJECT SUBMISSION</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
@@ -567,8 +568,63 @@ women_entrepreneurship_index
 <li>When preparing a presentation or report, aim to use a different type of visualization for each distinct analysis.</li>
 </ol>
 </div>
+<div id="interactive-dashboards" class="section level2">
+<h2><span class="header-section-number">16.4</span> Interactive dashboards</h2>
+<p>We can create interactive dashboards with the <code>shiny</code> package. Go to <code>File</code> &gt; <code>New File</code> and choose <code>Shiny Web App...</code>. Give a name to your app (which will be the name of the folder created in your project for that app). All <code>shiny</code> app have their own folder and are called <code>app.R</code> – DO NOT change this name, that’s how RStudio knows an Shiny app is a Shiny app.</p>
+<p>A <code>Run App</code> should be at the top of your <code>app.R</code> file. Click on it to see what happens.</p>
+<p>Each Shiny app has two elements: the <code>ui</code> or user interface, and the <code>server</code>.</p>
+<p>First change we are going to make is to rename the <code>plotOutput</code> to <code>my_plot</code> – we also need to make that change in the <code>server</code> side.</p>
+<p>Run the app to make sure things are working fine.</p>
+<p>Let’s change the plot that is drawn. We will reuse the box plot from this module.</p>
+<pre><code>server &lt;- function(input, output) {
+
+    output$my_plot &lt;- renderPlot({
+        women_labor_force_data %&gt;%
+            ggplot(aes(x = level_of_development,
+                       y = inflation_rate)) +
+            geom_boxplot() +
+            theme_linedraw()
+    })
+}
+</code></pre>
+<p>In order for the<code>renderPlot</code> above to work, we need to make sure we read the data in. Also add the needed libraries to the top of your <code>app.R</code> (like R markdown files, Shiny apps are self-contained as it does not relly on objects in the working Environment).</p>
+<pre><code>library(janitor)
+library(shiny)
+library(tidyverse)
+
+# read data in
+women_entrepreneur_data &lt;- read_delim(&quot;data/women_in_labor_force.csv&quot;,
+                                      delim = &quot;;&quot;) %&gt;%
+    clean_names()</code></pre>
+<p>Run the app to make sure everything is working.</p>
+<p>The interactivity is gone, since we do not have any <code>input$</code> to change our box plot.</p>
+<p>Let’s first replace the <code>sliderInput</code> with a <code>selectInput</code></p>
+<pre><code>selectInput(&quot;variable&quot;,
+            &quot;Select variable:&quot;, 
+            c(&quot;inflation_rate&quot;,
+            &quot;entrepreneurship_index&quot;))</code></pre>
+<p>Run the app to make sure we didn’t break anything.</p>
+<p>Now we can add <code>input$</code> to our y mapping.</p>
+<pre><code>output$my_plot &lt;- renderPlot({
+        women_entrepreneur_data %&gt;%
+            ggplot(aes(x = level_of_development,
+                       y = input$variable)) +
+            geom_boxplot() +
+            theme_linedraw()
+    })</code></pre>
+<p>Run the app.</p>
+<p>The interactivity is there, but there’s a problem with the plotting. The problems comes from the fact that <code>input$variable</code> is a string, not a variable. We can fix that by using <code>aes_string</code> instead for the aesthetics mapping.</p>
+<pre><code>output$my_plot &lt;- renderPlot({
+        women_entrepreneur_data %&gt;%
+            ggplot(aes(x = level_of_development)) +
+            geom_boxplot(aes_string(y = input$variable)) +
+            theme_linedraw()
+    })</code></pre>
+<p>CHALLENGE:</p>
+<p>Add another plot output, this time for the scatterplot. What interactivity can you add to it?</p>
+</div>
 <div id="final-project-submission" class="section level2">
-<h2><span class="header-section-number">16.4</span> FINAL PROJECT SUBMISSION</h2>
+<h2><span class="header-section-number">16.5</span> FINAL PROJECT SUBMISSION</h2>
 <p>Accept the <a href="https://classroom.github.com/a/J-8vd5iB">final project submission on GitHub</a>.</p>
 <ul>
 <li><p><a href="https://classroom.github.com/a/J-8vd5iB">Final Project</a> is due December 16 (Wednesday) at 3:00pm</p></li>

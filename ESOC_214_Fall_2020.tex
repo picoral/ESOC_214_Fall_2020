@@ -133,7 +133,7 @@
 \makeatother
 \subtitle{Fall 2020}
 \author{Adriana Picoral, PhD (she/her) \href{mailto:adrianaps@email.arizona.edu}{\nolinkurl{adrianaps@email.arizona.edu}}}
-\date{2020-12-01}
+\date{2020-12-07}
 
 \begin{document}
 \maketitle
@@ -7162,6 +7162,91 @@ Here are some general guidelines for telling a story well \citep{wilke2019fundam
 \item
   When preparing a presentation or report, aim to use a different type of visualization for each distinct analysis.
 \end{enumerate}
+
+\hypertarget{interactive-dashboards}{%
+\section{Interactive dashboards}\label{interactive-dashboards}}
+
+We can create interactive dashboards with the \texttt{shiny} package. Go to \texttt{File} \textgreater{} \texttt{New\ File} and choose \texttt{Shiny\ Web\ App...}. Give a name to your app (which will be the name of the folder created in your project for that app). All \texttt{shiny} app have their own folder and are called \texttt{app.R} -- DO NOT change this name, that's how RStudio knows an Shiny app is a Shiny app.
+
+A \texttt{Run\ App} should be at the top of your \texttt{app.R} file. Click on it to see what happens.
+
+Each Shiny app has two elements: the \texttt{ui} or user interface, and the \texttt{server}.
+
+First change we are going to make is to rename the \texttt{plotOutput} to \texttt{my\_plot} -- we also need to make that change in the \texttt{server} side.
+
+Run the app to make sure things are working fine.
+
+Let's change the plot that is drawn. We will reuse the box plot from this module.
+
+\begin{verbatim}
+server <- function(input, output) {
+
+    output$my_plot <- renderPlot({
+        women_labor_force_data %>%
+            ggplot(aes(x = level_of_development,
+                       y = inflation_rate)) +
+            geom_boxplot() +
+            theme_linedraw()
+    })
+}
+\end{verbatim}
+
+In order for the\texttt{renderPlot} above to work, we need to make sure we read the data in. Also add the needed libraries to the top of your \texttt{app.R} (like R markdown files, Shiny apps are self-contained as it does not relly on objects in the working Environment).
+
+\begin{verbatim}
+library(janitor)
+library(shiny)
+library(tidyverse)
+
+# read data in
+women_entrepreneur_data <- read_delim("data/women_in_labor_force.csv",
+                                      delim = ";") %>%
+    clean_names()
+\end{verbatim}
+
+Run the app to make sure everything is working.
+
+The interactivity is gone, since we do not have any \texttt{input\$} to change our box plot.
+
+Let's first replace the \texttt{sliderInput} with a \texttt{selectInput}
+
+\begin{verbatim}
+selectInput("variable",
+            "Select variable:", 
+            c("inflation_rate",
+            "entrepreneurship_index"))
+\end{verbatim}
+
+Run the app to make sure we didn't break anything.
+
+Now we can add \texttt{input\$} to our y mapping.
+
+\begin{verbatim}
+output$my_plot <- renderPlot({
+        women_entrepreneur_data %>%
+            ggplot(aes(x = level_of_development,
+                       y = input$variable)) +
+            geom_boxplot() +
+            theme_linedraw()
+    })
+\end{verbatim}
+
+Run the app.
+
+The interactivity is there, but there's a problem with the plotting. The problems comes from the fact that \texttt{input\$variable} is a string, not a variable. We can fix that by using \texttt{aes\_string} instead for the aesthetics mapping.
+
+\begin{verbatim}
+output$my_plot <- renderPlot({
+        women_entrepreneur_data %>%
+            ggplot(aes(x = level_of_development)) +
+            geom_boxplot(aes_string(y = input$variable)) +
+            theme_linedraw()
+    })
+\end{verbatim}
+
+CHALLENGE:
+
+Add another plot output, this time for the scatterplot. What interactivity can you add to it?
 
 \hypertarget{final-project-submission}{%
 \section{FINAL PROJECT SUBMISSION}\label{final-project-submission}}

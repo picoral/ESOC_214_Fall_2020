@@ -153,4 +153,5 @@ types-of-stories
 telling-a-story
 how-to-tell-the-story
 telling-a-story-well
+interactive-dashboards
 final-project-submission
